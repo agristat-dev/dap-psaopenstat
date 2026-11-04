@@ -16,7 +16,11 @@
     filtersSyncing: false,
     exporting: false,
     exportingFormat: null,
+    unfilteredBootstrap: false,
   };
+
+  const DATASETS_CACHE_KEY = "psa_browse_datasets_v1";
+  const DATASETS_CACHE_TTL_MS = 5 * 60 * 1000;
 
   let browseFilterApplyTimer = null;
 
@@ -634,22 +638,27 @@
     }, delayMs);
   }
 
-  function buildQueryParams(forExport = false) {
+  function buildQueryParams(forExport = false, { paginationOnly = false } = {}) {
     const params = new URLSearchParams();
     if (state.datasetId) params.set("dataset", state.datasetId);
-    if (!browseYearRangeIsFull()) {
-      const { year_from, year_to } = browseGetYearRange();
-      if (year_from != null) params.set("year_from", String(year_from));
-      if (year_to != null) params.set("year_to", String(year_to));
+    if (!state.unfilteredBootstrap) {
+      if (!browseYearRangeIsFull()) {
+        const { year_from, year_to } = browseGetYearRange();
+        if (year_from != null) params.set("year_from", String(year_from));
+        if (year_to != null) params.set("year_to", String(year_to));
+      }
+      for (const value of browseMultiFilterValues(els.region)) params.append("region", value);
+      for (const value of browseMultiFilterValues(els.province)) params.append("province", value);
+      for (const value of browseMultiFilterValues(els.cropGroup)) params.append("crop_group", value);
+      for (const value of browseMultiFilterValues(els.cropSubtype)) params.append("crop_subtype", value);
+      for (const value of browseMultiFilterValues(els.quarter)) params.append("quarter", value);
     }
-    for (const value of browseMultiFilterValues(els.region)) params.append("region", value);
-    for (const value of browseMultiFilterValues(els.province)) params.append("province", value);
-    for (const value of browseMultiFilterValues(els.cropGroup)) params.append("crop_group", value);
-    for (const value of browseMultiFilterValues(els.cropSubtype)) params.append("crop_subtype", value);
-    for (const value of browseMultiFilterValues(els.quarter)) params.append("quarter", value);
     if (!forExport) {
       params.set("limit", String(state.limit));
       params.set("offset", String(state.offset));
+      if (paginationOnly && state.total > 0 && state.offset > 0) {
+        params.set("total_hint", String(state.total));
+      }
     }
     return params;
   }
@@ -662,6 +671,9 @@
 
   function loadingHintForMessage(message) {
     const text = String(message || "").toLowerCase();
+    if (text.includes("starting api")) {
+      return "The hosted API may take up to a minute to wake after idle on Render.";
+    }
     if (text.includes("dataset")) {
       return "Loading filters and preparing the table";
     }
@@ -669,6 +681,17 @@
       return "Discovering available PSA OpenSTAT datasets";
     }
     return "Applying filters and fetching rows";
+  }
+
+  function scheduleColdStartHint() {
+    return window.setTimeout(() => {
+      if (state.loadCount <= 0) return;
+      updateLoadingChrome("Starting API server…");
+    }, 4000);
+  }
+
+  function clearColdStartHint(timerId) {
+    if (timerId != null) window.clearTimeout(timerId);
   }
 
   function updateLoadingChrome(message) {
@@ -1102,41 +1125,81 @@
     return res.json();
   }
 
-  async function loadRows() {
+  function applyRowsPayload(payload) {
+    state.total = payload.total || 0;
+    state.valueMode = payload.value_mode || state.valueMode;
+    renderTable(payload);
+    setStatus(state.total ? "" : "No matching records.");
+    updatePagination();
+  }
+
+  async function handleRowsFetchError(res, retryFn) {
+    const err = await res.json().catch(() => ({}));
+    if (
+      res.status === 422 &&
+      state.limit > 500 &&
+      isPageLimitValidationError(err.detail)
+    ) {
+      configurePageSizeOptions(500);
+      setStatus(
+        "This backend allows up to 500 rows per page. Restart run_dashboard.bat to enable 1,000-row pages.",
+        false
+      );
+      return retryFn();
+    }
+    throw new Error(formatApiDetail(err.detail) || `Could not load table (${res.status})`);
+  }
+
+  async function loadRows({ paginationOnly = false } = {}) {
     if (!state.datasetId) return;
     setBusy(true, { message: "Loading data…" });
     setStatus("");
     try {
-      const params = buildQueryParams(false);
+      const params = buildQueryParams(false, { paginationOnly });
       const res = await fetch(api(`/api/browse/rows?${params}`), { cache: "no-store" });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        if (
-          res.status === 422 &&
-          state.limit > 500 &&
-          isPageLimitValidationError(err.detail)
-        ) {
-          configurePageSizeOptions(500);
-          setStatus(
-            "This backend allows up to 500 rows per page. Restart run_dashboard.bat to enable 1,000-row pages.",
-            false
-          );
-          return loadRows();
-        }
-        throw new Error(formatApiDetail(err.detail) || `Could not load table (${res.status})`);
+        await handleRowsFetchError(res, () => loadRows({ paginationOnly }));
+        return;
       }
       const payload = await res.json();
-      state.total = payload.total || 0;
-      state.valueMode = payload.value_mode || state.valueMode;
-      renderTable(payload);
-      setStatus(state.total ? "" : "No matching records.");
-      updatePagination();
+      applyRowsPayload(payload);
     } catch (error) {
       setStatus(error.message || "Failed to load data.", true);
       if (els.tableShell) els.tableShell.hidden = true;
       if (els.pagination) els.pagination.classList.add("is-inactive");
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function loadDatasetInit(datasetId) {
+    const params = new URLSearchParams();
+    params.set("dataset", datasetId);
+    params.set("limit", String(state.limit));
+    params.set("offset", "0");
+    const res = await fetch(api(`/api/browse/init?${params}`), { cache: "no-store" });
+    if (res.status === 404) return null;
+    if (!res.ok) {
+      await handleRowsFetchError(res, () => loadDatasetInit(datasetId));
+      return null;
+    }
+    return res.json();
+  }
+
+  async function selectDatasetLegacyParallel(datasetId, ds) {
+    state.unfilteredBootstrap = true;
+    try {
+      await Promise.all([
+        (async () => {
+          state.meta = await loadMeta(datasetId);
+          populateFilters(state.meta);
+          syncBrowseCropFilterLabels();
+          updateDatasetMeta(ds);
+        })(),
+        loadRows(),
+      ]);
+    } finally {
+      state.unfilteredBootstrap = false;
     }
   }
 
@@ -1155,15 +1218,25 @@
     syncBrowseCropFilterLabels();
     setBusy(true, { message: "Loading dataset…" });
     setStatus("");
+    const coldHintTimer = scheduleColdStartHint();
     try {
-      state.meta = await loadMeta(datasetId);
-      populateFilters(state.meta);
-      syncBrowseCropFilterLabels();
-      updateDatasetMeta(ds);
-      await loadRows();
+      const initPayload = await loadDatasetInit(datasetId);
+      if (initPayload?.meta && initPayload?.page) {
+        if (initPayload.page_max != null) {
+          configurePageSizeOptions(initPayload.page_max);
+        }
+        state.meta = initPayload.meta;
+        populateFilters(state.meta);
+        syncBrowseCropFilterLabels();
+        updateDatasetMeta(ds);
+        applyRowsPayload(initPayload.page);
+      } else {
+        await selectDatasetLegacyParallel(datasetId, ds);
+      }
     } catch (error) {
       setStatus(error.message || "Dataset unavailable.", true);
     } finally {
+      clearColdStartHint(coldHintTimer);
       setBusy(false);
     }
   }
@@ -1213,28 +1286,75 @@
     return text.includes("limit") && (text.includes("less than") || text.includes("maximum"));
   }
 
+  function readDatasetsCache() {
+    try {
+      const raw = sessionStorage.getItem(DATASETS_CACHE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed?.payload?.datasets?.length) return null;
+      if (Date.now() - Number(parsed.at) > DATASETS_CACHE_TTL_MS) return null;
+      return parsed.payload;
+    } catch (_err) {
+      return null;
+    }
+  }
+
+  function writeDatasetsCache(payload) {
+    try {
+      sessionStorage.setItem(
+        DATASETS_CACHE_KEY,
+        JSON.stringify({ at: Date.now(), payload })
+      );
+    } catch (_err) {
+      /* quota / private mode */
+    }
+  }
+
+  function applyDatasetsPayload(payload) {
+    state.datasets = payload.datasets || [];
+    configurePageSizeOptions(payload.page_max ?? 1000);
+    renderDatasetSelect();
+  }
+
+  async function fetchDatasetsPayload() {
+    const res = await fetch(api("/api/browse/datasets"));
+    if (!res.ok) {
+      const detail = await readApiError(res);
+      if (res.status === 404) {
+        throw new Error(
+          "Browse API not found. Restart the backend (run_dashboard.bat or uvicorn app:app on port 8765), then open http://127.0.0.1:8765/browse — do not open browse.html from a static-only server."
+        );
+      }
+      throw new Error(detail || "Could not list datasets. Is the API running?");
+    }
+    const payload = await res.json();
+    writeDatasetsCache(payload);
+    return payload;
+  }
+
   async function initDatasets() {
     setBusy(true, { message: "Loading datasets…" });
+    const cached = readDatasetsCache();
+    let firstId = cached?.datasets?.[0]?.id;
     try {
-      const res = await fetch(api("/api/browse/datasets"), { cache: "no-store" });
-      if (!res.ok) {
-        const detail = await readApiError(res);
-        if (res.status === 404) {
-          throw new Error(
-            "Browse API not found. Restart the backend (run_dashboard.bat or uvicorn app:app on port 8765), then open http://127.0.0.1:8765/browse — do not open browse.html from a static-only server."
-          );
-        }
-        throw new Error(detail || "Could not list datasets. Is the API running?");
+      if (cached) {
+        applyDatasetsPayload(cached);
+        fetchDatasetsPayload()
+          .then((fresh) => {
+            if (!fresh.datasets?.length) return;
+            applyDatasetsPayload(fresh);
+          })
+          .catch(() => {});
+      } else {
+        const payload = await fetchDatasetsPayload();
+        applyDatasetsPayload(payload);
+        firstId = payload.datasets?.[0]?.id;
       }
-      const payload = await res.json();
-      state.datasets = payload.datasets || [];
-      configurePageSizeOptions(payload.page_max ?? 1000);
       if (!state.datasets.length) {
         setStatus("No datasets are available yet. Run the data refresh pipeline first.", true);
         return;
       }
-      renderDatasetSelect();
-      await selectDataset(state.datasets[0].id);
+      await selectDataset(firstId || state.datasets[0].id);
     } finally {
       setBusy(false);
     }
@@ -1357,12 +1477,12 @@
     });
     els.prevPage?.addEventListener("click", () => {
       state.offset = Math.max(0, state.offset - state.limit);
-      loadRows();
+      loadRows({ paginationOnly: state.offset > 0 });
     });
     els.nextPage?.addEventListener("click", () => {
       if (state.offset + state.limit < state.total) {
         state.offset += state.limit;
-        loadRows();
+        loadRows({ paginationOnly: true });
       }
     });
     els.downloadCsvBtn?.addEventListener("click", () => downloadCsv());

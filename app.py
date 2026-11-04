@@ -15,6 +15,7 @@ import io
 import os
 import re
 import sqlite3
+import time
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
@@ -23,7 +24,7 @@ from typing import Any, Iterator, Optional
 from apscheduler.schedulers.background import BackgroundScheduler
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, RedirectResponse, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -340,6 +341,12 @@ def on_shutdown() -> None:
         scheduler.shutdown(wait=False)
 
 
+@app.get("/api/ping")
+def ping() -> dict[str, bool]:
+    """Minimal wake endpoint for keep-alive pings (no SQLite access)."""
+    return {"ok": True}
+
+
 @app.get("/api/health")
 def health() -> dict[str, Any]:
     from scraping.data_source import active_source, api_origin, source_label
@@ -425,6 +432,7 @@ def refresh_status() -> dict:
 @app.post("/api/refresh", response_model=RefreshResponse)
 def refresh_now() -> dict:
     """Kick off a background OpenSTAT (or Explorer) pull + reshape. Falls back to CSV backup."""
+    _invalidate_browse_datasets_cache()
     if IS_SERVERLESS:
         raise HTTPException(
             status_code=501,
@@ -433,120 +441,108 @@ def refresh_now() -> dict:
     return pipeline.refresh_in_background()
 
 
-@app.get("/api/meta")
-def meta(dataset: str = Query("palay_corn")) -> dict[str, Any]:
-    from scraping.data_source import api_origin, source_label
-
-    cfg = resolve_dataset(dataset)
+def _dataset_meta_core(conn: sqlite3.Connection, cfg: dict[str, Any]) -> dict[str, Any]:
     table = cfg["table"]
-    with db(dataset) as conn:
-        dim_prefix = cfg.get("dim_prefix")
-        annual_table = cfg.get("annual_table")
-        use_dims = bool(
-            dim_prefix
-            and annual_table
-            and conn.execute(
-                "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
-                (f"{dim_prefix}_year",),
-            ).fetchone()
-        )
-        if use_dims:
-            years = [
-                r[0]
-                for r in conn.execute(f"SELECT value FROM {dim_prefix}_year ORDER BY value")
+    dim_prefix = cfg.get("dim_prefix")
+    annual_table = cfg.get("annual_table")
+    use_dims = bool(
+        dim_prefix
+        and annual_table
+        and conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+            (f"{dim_prefix}_year",),
+        ).fetchone()
+    )
+    if use_dims:
+        years = [
+            r[0] for r in conn.execute(f"SELECT value FROM {dim_prefix}_year ORDER BY value")
+        ]
+        regions = [
+            r[0] for r in conn.execute(f"SELECT value FROM {dim_prefix}_region ORDER BY value")
+        ]
+        provinces = [
+            {"region": r["region"], "province": r["province"]}
+            for r in conn.execute(
+                f"SELECT region, province FROM {dim_prefix}_province "
+                "ORDER BY region, province"
+            )
+        ]
+        crops = [
+            {"crop_group": r["crop_group"], "crop_subtype": r["crop_subtype"]}
+            for r in conn.execute(
+                f"SELECT crop_group, crop_subtype FROM {dim_prefix}_crop "
+                "ORDER BY crop_group, crop_subtype"
+            )
+        ]
+        crop_groups = sorted({c["crop_group"] for c in crops})
+        quarters = [
+            r[0] for r in conn.execute(f"SELECT value FROM {dim_prefix}_quarter ORDER BY value")
+        ]
+        semesters = [
+            r[0] for r in conn.execute(f"SELECT value FROM {dim_prefix}_semester ORDER BY value")
+        ]
+        month_table = f"{dim_prefix}_month"
+        months = []
+        if conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+            (month_table,),
+        ).fetchone():
+            months = [
+                r[0] for r in conn.execute(f"SELECT value FROM {month_table} ORDER BY value")
             ]
-            regions = [
-                r[0]
-                for r in conn.execute(f"SELECT value FROM {dim_prefix}_region ORDER BY value")
+        totals = conn.execute(
+            f"""
+            SELECT COUNT(*) AS rows,
+                   MIN(year) AS year_min,
+                   MAX(year) AS year_max,
+                   {_volume_agg(cfg)} AS volume_sum,
+                   {_area_agg(cfg)} AS area_sum
+            FROM {annual_table}
+            """
+        ).fetchone()
+        totals = dict(totals)
+        totals["rows"] = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+    else:
+        years = [r[0] for r in conn.execute(f"SELECT DISTINCT year FROM {table} ORDER BY year")]
+        regions = [
+            r[0] for r in conn.execute(f"SELECT DISTINCT region FROM {table} ORDER BY region")
+        ]
+        provinces = [
+            {"region": r["region"], "province": r["province"]}
+            for r in conn.execute(
+                f"SELECT DISTINCT region, province FROM {table} ORDER BY region, province"
+            )
+        ]
+        crops = [
+            {"crop_group": r["crop_group"], "crop_subtype": r["crop_subtype"]}
+            for r in conn.execute(
+                f"SELECT DISTINCT crop_group, crop_subtype FROM {table} "
+                "ORDER BY crop_group, crop_subtype"
+            )
+        ]
+        crop_groups = sorted({c["crop_group"] for c in crops})
+        quarters = [
+            r[0] for r in conn.execute(f"SELECT DISTINCT quarter FROM {table} ORDER BY quarter")
+        ]
+        semesters = [
+            r[0] for r in conn.execute(f"SELECT DISTINCT semester FROM {table} ORDER BY semester")
+        ]
+        col_names = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+        months = []
+        if "month" in col_names:
+            months = [
+                r[0] for r in conn.execute(f"SELECT DISTINCT month FROM {table} ORDER BY month")
             ]
-            provinces = [
-                {"region": r["region"], "province": r["province"]}
-                for r in conn.execute(
-                    f"SELECT region, province FROM {dim_prefix}_province "
-                    "ORDER BY region, province"
-                )
-            ]
-            crops = [
-                {"crop_group": r["crop_group"], "crop_subtype": r["crop_subtype"]}
-                for r in conn.execute(
-                    f"SELECT crop_group, crop_subtype FROM {dim_prefix}_crop "
-                    "ORDER BY crop_group, crop_subtype"
-                )
-            ]
-            crop_groups = sorted({c["crop_group"] for c in crops})
-            quarters = [
-                r[0]
-                for r in conn.execute(f"SELECT value FROM {dim_prefix}_quarter ORDER BY value")
-            ]
-            semesters = [
-                r[0]
-                for r in conn.execute(f"SELECT value FROM {dim_prefix}_semester ORDER BY value")
-            ]
-            month_table = f"{dim_prefix}_month"
-            months = []
-            if conn.execute(
-                "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
-                (month_table,),
-            ).fetchone():
-                months = [
-                    r[0]
-                    for r in conn.execute(f"SELECT value FROM {month_table} ORDER BY value")
-                ]
-            totals = conn.execute(
-                f"""
-                SELECT COUNT(*) AS rows,
-                       MIN(year) AS year_min,
-                       MAX(year) AS year_max,
-                       {_volume_agg(cfg)} AS volume_sum,
-                       {_area_agg(cfg)} AS area_sum
-                FROM {annual_table}
-                """
-            ).fetchone()
-            totals = dict(totals)
-            totals["rows"] = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
-        else:
-            years = [r[0] for r in conn.execute(f"SELECT DISTINCT year FROM {table} ORDER BY year")]
-            regions = [
-                r[0] for r in conn.execute(f"SELECT DISTINCT region FROM {table} ORDER BY region")
-            ]
-            provinces = [
-                {"region": r["region"], "province": r["province"]}
-                for r in conn.execute(
-                    f"SELECT DISTINCT region, province FROM {table} ORDER BY region, province"
-                )
-            ]
-            crops = [
-                {"crop_group": r["crop_group"], "crop_subtype": r["crop_subtype"]}
-                for r in conn.execute(
-                    f"SELECT DISTINCT crop_group, crop_subtype FROM {table} "
-                    "ORDER BY crop_group, crop_subtype"
-                )
-            ]
-            crop_groups = sorted({c["crop_group"] for c in crops})
-            quarters = [
-                r[0] for r in conn.execute(f"SELECT DISTINCT quarter FROM {table} ORDER BY quarter")
-            ]
-            semesters = [
-                r[0]
-                for r in conn.execute(f"SELECT DISTINCT semester FROM {table} ORDER BY semester")
-            ]
-            col_names = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
-            months = []
-            if "month" in col_names:
-                months = [
-                    r[0]
-                    for r in conn.execute(f"SELECT DISTINCT month FROM {table} ORDER BY month")
-                ]
-            totals = conn.execute(
-                f"""
-                SELECT COUNT(*) AS rows,
-                       MIN(year) AS year_min,
-                       MAX(year) AS year_max,
-                       {_volume_agg(cfg)} AS volume_sum,
-                       {_area_agg(cfg)} AS area_sum
-                FROM {table}
-                """
-            ).fetchone()
+        totals = conn.execute(
+            f"""
+            SELECT COUNT(*) AS rows,
+                   MIN(year) AS year_min,
+                   MAX(year) AS year_max,
+                   {_volume_agg(cfg)} AS volume_sum,
+                   {_area_agg(cfg)} AS area_sum
+            FROM {table}
+            """
+        ).fetchone()
 
     return {
         "dataset": cfg["key"],
@@ -560,11 +556,26 @@ def meta(dataset: str = Query("palay_corn")) -> dict[str, Any]:
         "months": months,
         "value_mode": cfg.get("value_mode") or "sum",
         "summary": dict(totals) if totals else {},
+    }
+
+
+def _meta_response_extras() -> dict[str, Any]:
+    from scraping.data_source import api_origin, source_label
+
+    return {
         "refresh": pipeline.get_refresh_state(),
         "source": source_label(),
         "api_origin": api_origin(),
         "csv_backup": FINAL_CSV.name if FINAL_CSV.exists() else None,
     }
+
+
+@app.get("/api/meta")
+def meta(dataset: str = Query("palay_corn")) -> dict[str, Any]:
+    cfg = resolve_dataset(dataset)
+    with db(dataset) as conn:
+        core = _dataset_meta_core(conn, cfg)
+    return {**core, **_meta_response_extras()}
 
 
 def _filters_sql(
@@ -2534,8 +2545,18 @@ def _browse_dataset_period_range(
     return None
 
 
-@app.get("/api/browse/datasets")
-def browse_datasets() -> dict[str, Any]:
+_BROWSE_DATASETS_CACHE: Optional[dict[str, Any]] = None
+_BROWSE_DATASETS_CACHE_AT: float = 0.0
+_BROWSE_DATASETS_CACHE_TTL_SEC = 300.0
+
+
+def _invalidate_browse_datasets_cache() -> None:
+    global _BROWSE_DATASETS_CACHE, _BROWSE_DATASETS_CACHE_AT
+    _BROWSE_DATASETS_CACHE = None
+    _BROWSE_DATASETS_CACHE_AT = 0.0
+
+
+def _build_browse_datasets_payload() -> dict[str, Any]:
     items: list[dict[str, Any]] = []
     for key, cfg in DATASETS.items():
         db_path = Path(cfg["db_path"])
@@ -2560,6 +2581,90 @@ def browse_datasets() -> dict[str, Any]:
     return {"datasets": items, "page_max": BROWSE_PAGE_MAX}
 
 
+@app.get("/api/browse/datasets")
+def browse_datasets() -> JSONResponse:
+    global _BROWSE_DATASETS_CACHE, _BROWSE_DATASETS_CACHE_AT
+    now = time.monotonic()
+    if (
+        _BROWSE_DATASETS_CACHE is not None
+        and (now - _BROWSE_DATASETS_CACHE_AT) < _BROWSE_DATASETS_CACHE_TTL_SEC
+    ):
+        payload = _BROWSE_DATASETS_CACHE
+    else:
+        payload = _build_browse_datasets_payload()
+        _BROWSE_DATASETS_CACHE = payload
+        _BROWSE_DATASETS_CACHE_AT = now
+    return JSONResponse(
+        content=payload,
+        headers={"Cache-Control": "public, max-age=300"},
+    )
+
+
+def _browse_rows_core(
+    conn: sqlite3.Connection,
+    cfg: dict[str, Any],
+    *,
+    year_from: Optional[int] = None,
+    year_to: Optional[int] = None,
+    region: Optional[list[str]] = None,
+    province: Optional[list[str]] = None,
+    crop_group: Optional[list[str]] = None,
+    crop_subtype: Optional[list[str]] = None,
+    quarter: Optional[list[int]] = None,
+    semester: Optional[list[int]] = None,
+    month: Optional[list[int]] = None,
+    q: Optional[str] = None,
+    limit: int,
+    offset: int,
+    total_hint: Optional[int] = None,
+) -> dict[str, Any]:
+    table = cfg["table"]
+    col_names = set(_table_column_names(conn, table))
+    where, params = _browse_where(
+        conn,
+        table,
+        year_from=year_from,
+        year_to=year_to,
+        region=region,
+        province=province,
+        crop_group=crop_group,
+        crop_subtype=crop_subtype,
+        quarter=quarter,
+        semester=semester,
+        month=month,
+        q=q,
+    )
+    if total_hint is not None and offset > 0:
+        total = int(total_hint)
+    else:
+        total = conn.execute(f"SELECT COUNT(*) FROM {table}{where}", params).fetchone()[0]
+    order_sql = _browse_order_sql(col_names)
+    data_params = [*params, limit, offset]
+    cursor = conn.execute(
+        f"SELECT * FROM {table}{where} ORDER BY {order_sql} LIMIT ? OFFSET ?",
+        data_params,
+    )
+    raw_columns = [d[0] for d in cursor.description or []]
+    columns = _browse_display_columns(cfg["key"], raw_columns)
+    rows = [
+        {
+            col: _browse_format_cell_value(cfg["key"], col, dict(r)[col])
+            for col in columns
+        }
+        for r in cursor.fetchall()
+    ]
+    return {
+        "dataset": cfg["key"],
+        "label": cfg["label"],
+        "columns": columns,
+        "rows": rows,
+        "total": int(total),
+        "limit": limit,
+        "offset": offset,
+        "value_mode": cfg.get("value_mode") or "sum",
+    }
+
+
 @app.get("/api/browse/rows")
 def browse_rows(
     dataset: str = Query("palay_corn"),
@@ -2575,14 +2680,17 @@ def browse_rows(
     q: Optional[str] = None,
     limit: int = Query(100, ge=1, le=BROWSE_PAGE_MAX),
     offset: int = Query(0, ge=0),
+    total_hint: Optional[int] = Query(
+        None,
+        ge=0,
+        description="When paginating (offset > 0), skip COUNT(*) if the client already knows the total.",
+    ),
 ) -> dict[str, Any]:
     cfg = resolve_dataset(dataset)
-    table = cfg["table"]
     with db(dataset) as conn:
-        col_names = set(_table_column_names(conn, table))
-        where, params = _browse_where(
+        return _browse_rows_core(
             conn,
-            table,
+            cfg,
             year_from=year_from,
             year_to=year_to,
             region=region,
@@ -2593,32 +2701,27 @@ def browse_rows(
             semester=semester,
             month=month,
             q=q,
+            limit=limit,
+            offset=offset,
+            total_hint=total_hint,
         )
-        total = conn.execute(f"SELECT COUNT(*) FROM {table}{where}", params).fetchone()[0]
-        order_sql = _browse_order_sql(col_names)
-        data_params = [*params, limit, offset]
-        cursor = conn.execute(
-            f"SELECT * FROM {table}{where} ORDER BY {order_sql} LIMIT ? OFFSET ?",
-            data_params,
-        )
-        raw_columns = [d[0] for d in cursor.description or []]
-        columns = _browse_display_columns(cfg["key"], raw_columns)
-        rows = [
-            {
-                col: _browse_format_cell_value(cfg["key"], col, dict(r)[col])
-                for col in columns
-            }
-            for r in cursor.fetchall()
-        ]
+
+
+@app.get("/api/browse/init")
+def browse_init(
+    dataset: str = Query("palay_corn"),
+    limit: int = Query(100, ge=1, le=BROWSE_PAGE_MAX),
+    offset: int = Query(0, ge=0),
+) -> dict[str, Any]:
+    """Filter metadata and the first result page in one round trip (single DB connection)."""
+    cfg = resolve_dataset(dataset)
+    with db(dataset) as conn:
+        meta_core = _dataset_meta_core(conn, cfg)
+        page = _browse_rows_core(conn, cfg, limit=limit, offset=offset)
     return {
-        "dataset": cfg["key"],
-        "label": cfg["label"],
-        "columns": columns,
-        "rows": rows,
-        "total": int(total),
-        "limit": limit,
-        "offset": offset,
-        "value_mode": cfg.get("value_mode") or "sum",
+        "meta": {**meta_core, **_meta_response_extras()},
+        "page": page,
+        "page_max": BROWSE_PAGE_MAX,
     }
 
 

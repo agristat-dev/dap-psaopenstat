@@ -37,6 +37,11 @@ const hintsContents = `(function () {
   }
   link("dns-prefetch", origin);
   link("preconnect", origin, "anonymous");
+  try {
+    fetch(origin + "/api/ping", { mode: "cors", credentials: "omit", keepalive: true });
+  } catch (_err) {
+    /* ignore */
+  }
 })();
 `;
 
