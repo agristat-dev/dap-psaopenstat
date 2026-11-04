@@ -1,0 +1,1973 @@
+{
+  "source": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/",
+  "source_label": "NOAA CPC Relative Oceanic Ni\u00f1o Index (RONI)",
+  "threshold_c": 0.5,
+  "min_consecutive_seasons": 5,
+  "updated_at": "2026-09-16T23:34:20.671813+00:00",
+  "year_min": 1950,
+  "year_max": 2026,
+  "years": {
+    "1950": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "enso_seasons": 6,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 6,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.2,
+      "la_nina_intensity": "moderate"
+    },
+    "1951": {
+      "phase": "el_nino",
+      "peak_roni": 1.0,
+      "enso_seasons": 10,
+      "el_nino_seasons": 10,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.0,
+      "el_nino_intensity": "moderate"
+    },
+    "1952": {
+      "phase": "el_nino",
+      "peak_roni": 1.0,
+      "enso_seasons": 1,
+      "el_nino_seasons": 1,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.0,
+      "el_nino_intensity": "moderate"
+    },
+    "1953": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "enso_seasons": 11,
+      "el_nino_seasons": 11,
+      "la_nina_seasons": 0,
+      "intensity": "weak",
+      "el_nino_peak_roni": 0.9,
+      "el_nino_intensity": "weak"
+    },
+    "1954": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "enso_seasons": 2,
+      "el_nino_seasons": 2,
+      "la_nina_seasons": 0,
+      "intensity": "weak",
+      "el_nino_peak_roni": 0.9,
+      "el_nino_intensity": "weak"
+    },
+    "1955": {
+      "phase": "la_nina",
+      "peak_roni": -1.4,
+      "enso_seasons": 5,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 5,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.4,
+      "la_nina_intensity": "moderate"
+    },
+    "1956": {
+      "phase": "la_nina",
+      "peak_roni": -1.4,
+      "enso_seasons": 1,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 1,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.4,
+      "la_nina_intensity": "moderate"
+    },
+    "1957": {
+      "phase": "el_nino",
+      "peak_roni": 1.9,
+      "enso_seasons": 10,
+      "el_nino_seasons": 10,
+      "la_nina_seasons": 0,
+      "intensity": "strong",
+      "el_nino_peak_roni": 1.9,
+      "el_nino_intensity": "strong"
+    },
+    "1958": {
+      "phase": "el_nino",
+      "peak_roni": 1.9,
+      "enso_seasons": 8,
+      "el_nino_seasons": 8,
+      "la_nina_seasons": 0,
+      "intensity": "strong",
+      "el_nino_peak_roni": 1.9,
+      "el_nino_intensity": "strong"
+    },
+    "1959": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "enso_seasons": 4,
+      "el_nino_seasons": 4,
+      "la_nina_seasons": 0,
+      "intensity": "weak",
+      "el_nino_peak_roni": 0.8,
+      "el_nino_intensity": "weak"
+    },
+    "1963": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "enso_seasons": 6,
+      "el_nino_seasons": 6,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.1,
+      "el_nino_intensity": "moderate"
+    },
+    "1964": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "enso_seasons": 10,
+      "el_nino_seasons": 2,
+      "la_nina_seasons": 8,
+      "intensity": "weak",
+      "la_nina_peak_roni": -0.7,
+      "la_nina_intensity": "weak"
+    },
+    "1965": {
+      "phase": "el_nino",
+      "peak_roni": 2.0,
+      "enso_seasons": 8,
+      "el_nino_seasons": 8,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.0,
+      "el_nino_intensity": "very_strong"
+    },
+    "1966": {
+      "phase": "el_nino",
+      "peak_roni": 2.0,
+      "enso_seasons": 4,
+      "el_nino_seasons": 4,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.0,
+      "el_nino_intensity": "very_strong"
+    },
+    "1968": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "enso_seasons": 3,
+      "el_nino_seasons": 3,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.1,
+      "el_nino_intensity": "moderate"
+    },
+    "1969": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "enso_seasons": 7,
+      "el_nino_seasons": 7,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.1,
+      "el_nino_intensity": "moderate"
+    },
+    "1970": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "enso_seasons": 7,
+      "el_nino_seasons": 1,
+      "la_nina_seasons": 6,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.0,
+      "la_nina_intensity": "moderate"
+    },
+    "1971": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "enso_seasons": 5,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 5,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.0,
+      "la_nina_intensity": "moderate"
+    },
+    "1972": {
+      "phase": "el_nino",
+      "peak_roni": 2.0,
+      "enso_seasons": 9,
+      "el_nino_seasons": 9,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.0,
+      "el_nino_intensity": "very_strong"
+    },
+    "1973": {
+      "phase": "la_nina",
+      "peak_roni": -1.9,
+      "enso_seasons": 11,
+      "el_nino_seasons": 3,
+      "la_nina_seasons": 8,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.9,
+      "la_nina_intensity": "strong"
+    },
+    "1974": {
+      "phase": "la_nina",
+      "peak_roni": -1.9,
+      "enso_seasons": 6,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 6,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.9,
+      "la_nina_intensity": "strong"
+    },
+    "1975": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "enso_seasons": 8,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 8,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.1,
+      "la_nina_intensity": "moderate"
+    },
+    "1976": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "enso_seasons": 8,
+      "el_nino_seasons": 6,
+      "la_nina_seasons": 2,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.1,
+      "el_nino_intensity": "moderate"
+    },
+    "1977": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "enso_seasons": 10,
+      "el_nino_seasons": 10,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.1,
+      "el_nino_intensity": "moderate"
+    },
+    "1978": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "enso_seasons": 2,
+      "el_nino_seasons": 2,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.1,
+      "el_nino_intensity": "moderate"
+    },
+    "1979": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "enso_seasons": 3,
+      "el_nino_seasons": 3,
+      "la_nina_seasons": 0,
+      "intensity": "weak",
+      "el_nino_peak_roni": 0.7,
+      "el_nino_intensity": "weak"
+    },
+    "1980": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "enso_seasons": 2,
+      "el_nino_seasons": 2,
+      "la_nina_seasons": 0,
+      "intensity": "weak",
+      "el_nino_peak_roni": 0.7,
+      "el_nino_intensity": "weak"
+    },
+    "1982": {
+      "phase": "el_nino",
+      "peak_roni": 2.4,
+      "enso_seasons": 9,
+      "el_nino_seasons": 9,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.4,
+      "el_nino_intensity": "very_strong"
+    },
+    "1983": {
+      "phase": "el_nino",
+      "peak_roni": 2.4,
+      "enso_seasons": 10,
+      "el_nino_seasons": 6,
+      "la_nina_seasons": 4,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.4,
+      "el_nino_intensity": "very_strong"
+    },
+    "1984": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "enso_seasons": 9,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 9,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.1,
+      "la_nina_intensity": "moderate"
+    },
+    "1985": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "enso_seasons": 6,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 6,
+      "intensity": "weak",
+      "la_nina_peak_roni": -0.9,
+      "la_nina_intensity": "weak"
+    },
+    "1986": {
+      "phase": "el_nino",
+      "peak_roni": 1.5,
+      "enso_seasons": 5,
+      "el_nino_seasons": 5,
+      "la_nina_seasons": 0,
+      "intensity": "strong",
+      "el_nino_peak_roni": 1.5,
+      "el_nino_intensity": "strong"
+    },
+    "1987": {
+      "phase": "el_nino",
+      "peak_roni": 1.5,
+      "enso_seasons": 12,
+      "el_nino_seasons": 12,
+      "la_nina_seasons": 0,
+      "intensity": "strong",
+      "el_nino_peak_roni": 1.5,
+      "el_nino_intensity": "strong"
+    },
+    "1988": {
+      "phase": "la_nina",
+      "peak_roni": -1.9,
+      "enso_seasons": 10,
+      "el_nino_seasons": 1,
+      "la_nina_seasons": 9,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.9,
+      "la_nina_intensity": "strong"
+    },
+    "1989": {
+      "phase": "la_nina",
+      "peak_roni": -1.9,
+      "enso_seasons": 5,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 5,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.9,
+      "la_nina_intensity": "strong"
+    },
+    "1991": {
+      "phase": "el_nino",
+      "peak_roni": 2.1,
+      "enso_seasons": 8,
+      "el_nino_seasons": 8,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.1,
+      "el_nino_intensity": "very_strong"
+    },
+    "1992": {
+      "phase": "el_nino",
+      "peak_roni": 2.1,
+      "enso_seasons": 7,
+      "el_nino_seasons": 7,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.1,
+      "el_nino_intensity": "very_strong"
+    },
+    "1993": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "enso_seasons": 10,
+      "el_nino_seasons": 10,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.1,
+      "el_nino_intensity": "moderate"
+    },
+    "1994": {
+      "phase": "el_nino",
+      "peak_roni": 1.3,
+      "enso_seasons": 6,
+      "el_nino_seasons": 6,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.3,
+      "el_nino_intensity": "moderate"
+    },
+    "1995": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "enso_seasons": 8,
+      "el_nino_seasons": 3,
+      "la_nina_seasons": 5,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.0,
+      "la_nina_intensity": "moderate"
+    },
+    "1996": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "enso_seasons": 3,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 3,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.0,
+      "la_nina_intensity": "moderate"
+    },
+    "1997": {
+      "phase": "el_nino",
+      "peak_roni": 2.3,
+      "enso_seasons": 9,
+      "el_nino_seasons": 9,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.3,
+      "el_nino_intensity": "very_strong"
+    },
+    "1998": {
+      "phase": "la_nina",
+      "peak_roni": -1.6,
+      "enso_seasons": 11,
+      "el_nino_seasons": 4,
+      "la_nina_seasons": 7,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.6,
+      "la_nina_intensity": "strong"
+    },
+    "1999": {
+      "phase": "la_nina",
+      "peak_roni": -1.6,
+      "enso_seasons": 12,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 12,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.6,
+      "la_nina_intensity": "strong"
+    },
+    "2000": {
+      "phase": "la_nina",
+      "peak_roni": -1.6,
+      "enso_seasons": 9,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 9,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.6,
+      "la_nina_intensity": "strong"
+    },
+    "2001": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "enso_seasons": 3,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 3,
+      "intensity": "weak",
+      "la_nina_peak_roni": -0.8,
+      "la_nina_intensity": "weak"
+    },
+    "2002": {
+      "phase": "el_nino",
+      "peak_roni": 1.3,
+      "enso_seasons": 6,
+      "el_nino_seasons": 6,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.3,
+      "el_nino_intensity": "moderate"
+    },
+    "2003": {
+      "phase": "el_nino",
+      "peak_roni": 1.3,
+      "enso_seasons": 2,
+      "el_nino_seasons": 2,
+      "la_nina_seasons": 0,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.3,
+      "el_nino_intensity": "moderate"
+    },
+    "2004": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "enso_seasons": 6,
+      "el_nino_seasons": 6,
+      "la_nina_seasons": 0,
+      "intensity": "weak",
+      "el_nino_peak_roni": 0.7,
+      "el_nino_intensity": "weak"
+    },
+    "2005": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "enso_seasons": 3,
+      "el_nino_seasons": 1,
+      "la_nina_seasons": 2,
+      "intensity": "weak",
+      "la_nina_peak_roni": -0.9,
+      "la_nina_intensity": "weak"
+    },
+    "2006": {
+      "phase": "both",
+      "peak_roni": 0.9,
+      "enso_seasons": 8,
+      "el_nino_seasons": 4,
+      "la_nina_seasons": 4,
+      "intensity": "weak",
+      "el_nino_peak_roni": 0.9,
+      "el_nino_intensity": "weak"
+    },
+    "2007": {
+      "phase": "la_nina",
+      "peak_roni": -1.7,
+      "enso_seasons": 7,
+      "el_nino_seasons": 1,
+      "la_nina_seasons": 6,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.7,
+      "la_nina_intensity": "strong"
+    },
+    "2008": {
+      "phase": "la_nina",
+      "peak_roni": -1.7,
+      "enso_seasons": 8,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 8,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.7,
+      "la_nina_intensity": "strong"
+    },
+    "2009": {
+      "phase": "el_nino",
+      "peak_roni": 1.5,
+      "enso_seasons": 7,
+      "el_nino_seasons": 4,
+      "la_nina_seasons": 3,
+      "intensity": "strong",
+      "el_nino_peak_roni": 1.5,
+      "el_nino_intensity": "strong"
+    },
+    "2010": {
+      "phase": "la_nina",
+      "peak_roni": -1.6,
+      "enso_seasons": 11,
+      "el_nino_seasons": 3,
+      "la_nina_seasons": 8,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.6,
+      "la_nina_intensity": "strong"
+    },
+    "2011": {
+      "phase": "la_nina",
+      "peak_roni": -1.6,
+      "enso_seasons": 9,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 9,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.6,
+      "la_nina_intensity": "strong"
+    },
+    "2012": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "enso_seasons": 3,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 3,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.0,
+      "la_nina_intensity": "moderate"
+    },
+    "2014": {
+      "phase": "el_nino",
+      "peak_roni": 2.3,
+      "enso_seasons": 2,
+      "el_nino_seasons": 2,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.3,
+      "el_nino_intensity": "very_strong"
+    },
+    "2015": {
+      "phase": "el_nino",
+      "peak_roni": 2.3,
+      "enso_seasons": 12,
+      "el_nino_seasons": 12,
+      "la_nina_seasons": 0,
+      "intensity": "very_strong",
+      "el_nino_peak_roni": 2.3,
+      "el_nino_intensity": "very_strong"
+    },
+    "2016": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "enso_seasons": 10,
+      "el_nino_seasons": 4,
+      "la_nina_seasons": 6,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.0,
+      "la_nina_intensity": "moderate"
+    },
+    "2017": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "enso_seasons": 6,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 6,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.1,
+      "la_nina_intensity": "moderate"
+    },
+    "2018": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "enso_seasons": 7,
+      "el_nino_seasons": 3,
+      "la_nina_seasons": 4,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.1,
+      "la_nina_intensity": "moderate"
+    },
+    "2019": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "enso_seasons": 4,
+      "el_nino_seasons": 4,
+      "la_nina_seasons": 0,
+      "intensity": "weak",
+      "el_nino_peak_roni": 0.8,
+      "el_nino_intensity": "weak"
+    },
+    "2020": {
+      "phase": "la_nina",
+      "peak_roni": -1.5,
+      "enso_seasons": 8,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 8,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.5,
+      "la_nina_intensity": "strong"
+    },
+    "2021": {
+      "phase": "la_nina",
+      "peak_roni": -1.5,
+      "enso_seasons": 12,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 12,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.5,
+      "la_nina_intensity": "strong"
+    },
+    "2022": {
+      "phase": "la_nina",
+      "peak_roni": -1.5,
+      "enso_seasons": 12,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 12,
+      "intensity": "strong",
+      "la_nina_peak_roni": -1.5,
+      "la_nina_intensity": "strong"
+    },
+    "2023": {
+      "phase": "el_nino",
+      "peak_roni": 1.4,
+      "enso_seasons": 9,
+      "el_nino_seasons": 6,
+      "la_nina_seasons": 3,
+      "intensity": "moderate",
+      "el_nino_peak_roni": 1.4,
+      "el_nino_intensity": "moderate"
+    },
+    "2024": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "enso_seasons": 8,
+      "el_nino_seasons": 2,
+      "la_nina_seasons": 6,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.1,
+      "la_nina_intensity": "moderate"
+    },
+    "2025": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "enso_seasons": 10,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 10,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.1,
+      "la_nina_intensity": "moderate"
+    },
+    "2026": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "enso_seasons": 2,
+      "el_nino_seasons": 0,
+      "la_nina_seasons": 2,
+      "intensity": "moderate",
+      "la_nina_peak_roni": -1.0,
+      "la_nina_intensity": "moderate"
+    }
+  },
+  "quarters": {
+    "1950-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "intensity": "moderate"
+    },
+    "1950-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "1951-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1951-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1951-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1952-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1953-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1953-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "1953-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1953-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1954-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1954-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1955-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "1955-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.3,
+      "intensity": "moderate"
+    },
+    "1957-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1957-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "intensity": "moderate"
+    },
+    "1957-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.5,
+      "intensity": "strong"
+    },
+    "1958-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 1.7,
+      "intensity": "strong"
+    },
+    "1958-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "1959-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1963-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.0,
+      "intensity": "moderate"
+    },
+    "1963-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "intensity": "moderate"
+    },
+    "1964-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1964-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1964-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1964-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1965-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1965-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.5,
+      "intensity": "strong"
+    },
+    "1965-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.9,
+      "intensity": "strong"
+    },
+    "1966-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 1.3,
+      "intensity": "moderate"
+    },
+    "1968-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1968-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "1969-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1969-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1970-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1970-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1971-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "1971-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1972-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1972-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.4,
+      "intensity": "moderate"
+    },
+    "1972-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.9,
+      "intensity": "strong"
+    },
+    "1973-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 1.2,
+      "intensity": "moderate"
+    },
+    "1973-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1973-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "intensity": "moderate"
+    },
+    "1973-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.8,
+      "intensity": "strong"
+    },
+    "1974-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.3,
+      "intensity": "moderate"
+    },
+    "1974-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1975-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1975-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "1975-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "1976-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1976-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1976-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "intensity": "moderate"
+    },
+    "1977-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "1977-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1977-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.0,
+      "intensity": "moderate"
+    },
+    "1978-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1979-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1980-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1982-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1982-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.2,
+      "intensity": "moderate"
+    },
+    "1982-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 2.2,
+      "intensity": "very_strong"
+    },
+    "1983-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 2.1,
+      "intensity": "very_strong"
+    },
+    "1983-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1983-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "1984-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1984-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1984-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "1985-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "1985-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "1986-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1986-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.2,
+      "intensity": "moderate"
+    },
+    "1987-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 1.3,
+      "intensity": "moderate"
+    },
+    "1987-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1987-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.2,
+      "intensity": "moderate"
+    },
+    "1987-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.0,
+      "intensity": "moderate"
+    },
+    "1988-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -1.4,
+      "intensity": "moderate"
+    },
+    "1988-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -1.5,
+      "intensity": "strong"
+    },
+    "1988-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.8,
+      "intensity": "strong"
+    },
+    "1989-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.4,
+      "intensity": "moderate"
+    },
+    "1989-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1991-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1991-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1991-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1991-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.6,
+      "intensity": "strong"
+    },
+    "1992-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 2.0,
+      "intensity": "very_strong"
+    },
+    "1992-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 1.4,
+      "intensity": "moderate"
+    },
+    "1993-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1993-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 1.0,
+      "intensity": "moderate"
+    },
+    "1993-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1994-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1994-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.2,
+      "intensity": "moderate"
+    },
+    "1995-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1995-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1995-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "1996-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "1997-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "1997-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.8,
+      "intensity": "strong"
+    },
+    "1997-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 2.3,
+      "intensity": "very_strong"
+    },
+    "1998-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 1.7,
+      "intensity": "strong"
+    },
+    "1998-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "intensity": "moderate"
+    },
+    "1998-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.5,
+      "intensity": "strong"
+    },
+    "1999-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.3,
+      "intensity": "moderate"
+    },
+    "1999-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "1999-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "1999-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.3,
+      "intensity": "moderate"
+    },
+    "2000-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.3,
+      "intensity": "moderate"
+    },
+    "2000-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2000-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2001-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "2002-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "2002-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.2,
+      "intensity": "moderate"
+    },
+    "2003-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "2004-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "2004-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "2005-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "2006-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "2006-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "2007-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "2007-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.5,
+      "intensity": "strong"
+    },
+    "2008-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.6,
+      "intensity": "strong"
+    },
+    "2008-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "2008-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "2009-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "2009-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.2,
+      "intensity": "moderate"
+    },
+    "2010-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "intensity": "moderate"
+    },
+    "2010-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -1.4,
+      "intensity": "moderate"
+    },
+    "2010-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.6,
+      "intensity": "strong"
+    },
+    "2011-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "intensity": "moderate"
+    },
+    "2011-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "2011-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2012-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "2013-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "2014-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "2015-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "2015-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "2015-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.5,
+      "intensity": "strong"
+    },
+    "2015-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 2.2,
+      "intensity": "very_strong"
+    },
+    "2016-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 1.7,
+      "intensity": "strong"
+    },
+    "2016-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "2016-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2017-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2018-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2018-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "2019-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "2020-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "2020-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "2020-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.4,
+      "intensity": "moderate"
+    },
+    "2021-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "intensity": "moderate"
+    },
+    "2021-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2021-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "2021-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "intensity": "moderate"
+    },
+    "2022-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "intensity": "moderate"
+    },
+    "2022-Q2": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "intensity": "moderate"
+    },
+    "2022-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2022-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "intensity": "moderate"
+    },
+    "2023-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2023-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "2023-Q4": {
+      "phase": "el_nino",
+      "peak_roni": 1.4,
+      "intensity": "moderate"
+    },
+    "2024-Q1": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "2024-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "2024-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "2025-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "2025-Q3": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "2025-Q4": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2026-Q1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2026-Q2": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "2026-Q3": {
+      "phase": "el_nino",
+      "peak_roni": 1.4,
+      "intensity": "moderate"
+    }
+  },
+  "semesters": {
+    "1950-S1": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "1951-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1953-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1953-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1955-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "1957-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1957-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.3,
+      "intensity": "moderate"
+    },
+    "1958-S1": {
+      "phase": "el_nino",
+      "peak_roni": 1.2,
+      "intensity": "moderate"
+    },
+    "1959-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1963-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.0,
+      "intensity": "moderate"
+    },
+    "1964-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1965-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.7,
+      "intensity": "strong"
+    },
+    "1966-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "1968-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1969-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "1969-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1970-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1971-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "1972-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.6,
+      "intensity": "strong"
+    },
+    "1973-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.5,
+      "intensity": "strong"
+    },
+    "1974-S1": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "1975-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "1976-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1977-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "1977-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "1982-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.7,
+      "intensity": "strong"
+    },
+    "1983-S1": {
+      "phase": "el_nino",
+      "peak_roni": 1.5,
+      "intensity": "strong"
+    },
+    "1983-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.6,
+      "intensity": "weak"
+    },
+    "1984-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1984-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1985-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "1986-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1987-S1": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "intensity": "moderate"
+    },
+    "1987-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "intensity": "moderate"
+    },
+    "1988-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "1988-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.7,
+      "intensity": "strong"
+    },
+    "1989-S1": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "1991-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "1991-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.3,
+      "intensity": "moderate"
+    },
+    "1992-S1": {
+      "phase": "el_nino",
+      "peak_roni": 1.7,
+      "intensity": "strong"
+    },
+    "1993-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "1994-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1995-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "1996-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "1997-S2": {
+      "phase": "el_nino",
+      "peak_roni": 2.0,
+      "intensity": "very_strong"
+    },
+    "1998-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "1998-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.3,
+      "intensity": "moderate"
+    },
+    "1999-S1": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "intensity": "moderate"
+    },
+    "1999-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "intensity": "moderate"
+    },
+    "2000-S1": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2000-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "2002-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.0,
+      "intensity": "moderate"
+    },
+    "2004-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "2006-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "2006-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.6,
+      "intensity": "weak"
+    },
+    "2007-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.1,
+      "intensity": "moderate"
+    },
+    "2008-S1": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "intensity": "moderate"
+    },
+    "2009-S2": {
+      "phase": "el_nino",
+      "peak_roni": 0.8,
+      "intensity": "weak"
+    },
+    "2010-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.5,
+      "intensity": "strong"
+    },
+    "2011-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "2011-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2013-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.5,
+      "intensity": "weak"
+    },
+    "2015-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.7,
+      "intensity": "weak"
+    },
+    "2015-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.8,
+      "intensity": "strong"
+    },
+    "2016-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.9,
+      "intensity": "weak"
+    },
+    "2016-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.9,
+      "intensity": "weak"
+    },
+    "2017-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2018-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2019-S1": {
+      "phase": "el_nino",
+      "peak_roni": 0.5,
+      "intensity": "weak"
+    },
+    "2020-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "intensity": "moderate"
+    },
+    "2021-S1": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2021-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2022-S1": {
+      "phase": "la_nina",
+      "peak_roni": -1.2,
+      "intensity": "moderate"
+    },
+    "2022-S2": {
+      "phase": "la_nina",
+      "peak_roni": -1.0,
+      "intensity": "moderate"
+    },
+    "2023-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.1,
+      "intensity": "moderate"
+    },
+    "2024-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "2025-S1": {
+      "phase": "la_nina",
+      "peak_roni": -0.7,
+      "intensity": "weak"
+    },
+    "2025-S2": {
+      "phase": "la_nina",
+      "peak_roni": -0.8,
+      "intensity": "weak"
+    },
+    "2026-S2": {
+      "phase": "el_nino",
+      "peak_roni": 1.4,
+      "intensity": "moderate"
+    }
+  },
+  "intensity_guide": {
+    "weak": {
+      "min_abs_c": 0.5,
+      "max_abs_c": 0.9,
+      "label": "Weak"
+    },
+    "moderate": {
+      "min_abs_c": 1.0,
+      "max_abs_c": 1.4,
+      "label": "Moderate"
+    },
+    "strong": {
+      "min_abs_c": 1.5,
+      "max_abs_c": 1.9,
+      "label": "Strong"
+    },
+    "very_strong": {
+      "min_abs_c": 2.0,
+      "max_abs_c": null,
+      "label": "Very Strong"
+    },
+    "note": "Intensity uses peak |RONI| in \u00b0C. El Ni\u00f1o is positive RONI; La Ni\u00f1a is negative RONI. Episode declaration still requires RONI at or beyond \u00b10.5\u00b0C for at least five consecutive overlapping seasons."
+  }
+}

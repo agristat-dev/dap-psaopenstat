@@ -1,0 +1,32 @@
+{
+  "fetched_at": "2026-11-03T05:58:25.074572+00:00",
+  "api_origin": "https://openstat.psa.gov.ph",
+  "tables": [
+    {
+      "id": "2M/NFG/0032M4AFN11",
+      "title": "Livestock and Poultry (Establishment): Farmgate Prices by Commodity, Province, Region, Monthly, 2010-2026",
+      "path": "2M/NFG/0032M4AFN11.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN11.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Establishment",
+      "observation_count": 317016,
+      "csv": "farmgate_livestock_establishment_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN10",
+      "title": "Livestock and Poultry (Household): Farmgate Prices by Commodity, Province, Region, Monthly, 2010-2026",
+      "path": "2M/NFG/0032M4AFN10.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN10.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Household",
+      "observation_count": 475524,
+      "csv": "farmgate_livestock_household_obs.csv"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "fetched_at": "2026-11-03T04:30:12.989772+00:00",
+  "api_origin": "https://openstat.psa.gov.ph",
+  "year_from": 2010,
+  "volume": {
+    "id": "2E/CS/0082E4EVCP3",
+    "title": "Vegetables and Root Crops: Volume of Production, by Region, Province, Quarter, and Semester, 2010-2026",
+    "path": "2E/CS/0082E4EVCP3.px",
+    "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__CS__0082E4EVCP3.px",
+    "sourceUpdated": null,
+    "retrieved": null,
+    "release": "openstat-live",
+    "unit": "Reported value \u2014 see source for units",
+    "observation_count": 1062160,
+    "csv": "vegetables_volume_obs.csv"
+  },
+  "area": {
+    "id": "2E/CS/0112E4EAHM3",
+    "title": "Vegetables and Root Crops: Area Planted/Harvested, by Region, Province, Quarter, and Semester, 2010-2026",
+    "path": "2E/CS/0112E4EAHM3.px",
+    "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__CS__0112E4EAHM3.px",
+    "sourceUpdated": null,
+    "retrieved": null,
+    "release": "openstat-live",
+    "unit": "Reported value \u2014 see source for units",
+    "observation_count": 897600,
+    "csv": "vegetables_area_obs.csv"
+  }
+}

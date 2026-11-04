@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta
+    name="description"
+    content="Explore Philippine agriculture datasets through data visualization — PSA OpenSTAT production and farmgate prices with charts and province-level drill-down."
+  />
+  <meta name="theme-color" content="#0c1a62" />
+  <title>Data Analytics Platform (PSA OpenSTAT)</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/data-analytics-logo.png?v=2" />
+  <link rel="apple-touch-icon" href="/assets/images/data-analytics-logo.png?v=2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css?v=162" />
+  <link rel="stylesheet" href="/assets/landing.css?v=55" />
+  <link rel="stylesheet" href="/assets/portal.css?v=20" />
+</head>
+<body class="portal-body">
+  <a class="portal-skip-link" href="#main-content">Skip to main content</a>
+  <div class="portal-shell">
+    <header class="app-header portal-header" aria-labelledby="portal-title">
+      <div class="header-start">
+        <div class="header-brand">
+          <div class="brand-mark" aria-hidden="true">
+            <img
+              src="/assets/images/data-analytics-logo.png?v=2"
+              alt=""
+              class="brand-logo"
+              width="44"
+              height="44"
+            />
+          </div>
+          <div class="brand-text">
+            <strong id="portal-title">Data Analytics Platform (PSA OpenSTAT)</strong>
+            <span>Department of Agriculture · Agricultural Statistics NCMO</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div
+          class="portal-header-clock"
+          id="portalClock"
+          aria-live="polite"
+          aria-label="Current date and time, Philippine Time"
+        >
+          <time class="portal-header-clock-face" id="portalClockTime" datetime="">
+            <span class="portal-clock-display" id="portalClockTimeText">--:--:-- --</span>
+            <span class="portal-clock-sep" aria-hidden="true">·</span>
+            <span class="portal-clock-date" id="portalClockDate">Loading…</span>
+            <span class="portal-clock-sep" aria-hidden="true">·</span>
+            <span class="portal-clock-tz" title="Philippine Time (UTC+8)">PHT</span>
+          </time>
+        </div>
+      </div>
+    </header>
+
+    <main class="portal-main" id="main-content">
+      <div class="portal-wrap portal-hero-wrap">
+        <section class="portal-hero" aria-labelledby="portal-hero-title">
+          <div class="portal-hero-copy">
+            <h1 class="portal-hero-title" id="portal-hero-title">
+              <span class="portal-hero-title-primary">
+                Explore Philippine Agriculture Datasets through Visualization
+              </span>
+              <span class="portal-hero-title-secondary">Official PSA OpenSTAT data in interactive charts and dashboards — from national trends to province-level detail</span>
+            </h1>
+            <p class="portal-hero-lead">
+              One place to monitor production of crops, livestock, fisheries, and farmgate prices — with trend charts and filters
+              that scale from nationwide totals to individual provinces.
+            </p>
+            <p class="portal-freshness" id="portalFreshness">
+              <span class="portal-freshness-dot" aria-hidden="true"></span>
+              <span id="portalFreshnessText">Checking latest PSA figures…</span>
+            </p>
+            <ul class="portal-highlights" aria-label="Platform highlights">
+              <li>Official PSA OpenSTAT Data</li>
+              <li>Provincial-level data</li>
+              <li>Commodity Production</li>
+              <li>Farmgate Price</li>
+            </ul>
+            <div class="portal-hero-actions">
+              <a class="portal-btn portal-btn-primary" href="/hub">Explore dashboards</a>
+              <a
+                class="portal-btn portal-btn-secondary"
+                href="https://openstat.psa.gov.ph/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Browse PSA OpenSTAT</a>
+            </div>
+          </div>
+
+          <div class="portal-preview" aria-labelledby="portal-preview-label">
+            <div class="portal-preview-head">
+              <p class="portal-preview-label" id="portal-preview-label">Live dashboard preview</p>
+              <span class="portal-preview-live" aria-hidden="true">
+                <span class="portal-preview-live-dot"></span>
+                Live
+              </span>
+            </div>
+            <div class="portal-preview-stage">
+              <div class="portal-preview-viewport is-loading" id="portalPreviewViewport">
+                <div class="portal-preview-loader" aria-hidden="true">
+                  <span class="portal-preview-loader-bar"></span>
+                </div>
+                <iframe
+                  class="portal-preview-iframe"
+                  id="portalPreviewA"
+                  title="Dashboard preview"
+                  loading="eager"
+                  tabindex="-1"
+                ></iframe>
+                <iframe
+                  class="portal-preview-iframe"
+                  id="portalPreviewB"
+                  title="Dashboard preview"
+                  loading="eager"
+                  tabindex="-1"
+                ></iframe>
+                <div class="portal-preview-shade" aria-hidden="true"></div>
+                <div class="portal-preview-progress" id="portalPreviewProgress" aria-hidden="true">
+                  <span class="portal-preview-progress-bar"></span>
+                </div>
+              </div>
+              <div class="portal-preview-meta">
+                <div class="portal-preview-caption-block">
+                  <span class="portal-preview-kicker">Previewing</span>
+                  <p class="portal-preview-caption" id="portalPreviewCaption" aria-live="polite"></p>
+                </div>
+                <div
+                  class="portal-preview-dots"
+                  id="portalPreviewDots"
+                  role="tablist"
+                  aria-label="Choose preview dashboard"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <a
+          class="portal-hero-explore-more"
+          href="#production-snapshot"
+          aria-label="Scroll to production snapshot"
+        >
+          <span class="portal-hero-explore-more-label">Explore more</span>
+          <span class="portal-hero-explore-more-chevron" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path fill="currentColor" d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <section
+        class="portal-section portal-section--snapshots"
+        id="production-snapshot"
+        aria-labelledby="snapshots-title"
+      >
+        <div class="portal-wrap">
+          <div class="landing-snapshots-section portal-snapshots-panel">
+            <header class="landing-section-head landing-section-head-row portal-snapshots-head">
+              <div class="landing-section-head-copy">
+                <h2 class="landing-section-title" id="snapshots-title">Production snapshot</h2>
+                <p class="landing-section-sub" id="snapshotsSub">Loading production averages…</p>
+              </div>
+              <div class="portal-snapshots-toolbar">
+                <a class="portal-snapshots-hub-link" href="/hub">Dashboard gallery</a>
+                <button
+                  type="button"
+                  class="landing-refresh-btn"
+                  id="snapshotRefreshBtn"
+                  title="Refresh snapshot data"
+                  aria-label="Refresh snapshot data"
+                >
+                  <svg class="landing-refresh-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path
+                      fill="currentColor"
+                      d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08a5.99 5.99 0 0 1-5.65 4c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </header>
+            <div class="landing-snapshot-grid" id="snapshotGrid" aria-busy="true"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="app-footer-inner">
+        <div class="app-footer-left">
+          <span class="app-footer-product" id="footerProductName">Data Analytics Platform (PSA OpenSTAT)</span>
+        </div>
+        <span class="app-footer-org">Source: <a href="https://openstat.psa.gov.ph/" target="_blank" rel="noopener noreferrer">PSA OpenSTAT</a> · <a href="https://statistics.bettergov.ph/" target="_blank" rel="noopener noreferrer">Philippine Statistics Explorer</a></span>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/config.js"></script>
+  <script src="/assets/platform-notice.js?v=3"></script>
+  <script src="/assets/portal.js?v=13"></script>
+  <script src="/assets/landing.js?v=27"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+{
+  "fetched_at": "2026-11-03T05:50:42.796989+00:00",
+  "api_origin": "https://openstat.psa.gov.ph",
+  "tables": [
+    {
+      "id": "2M/NFG/0032M4AFN01",
+      "title": "Cereals: Farmgate Prices by Geolocation, Commodity, Year and Period",
+      "path": "2M/NFG/0032M4AFN01.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN01.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Cereals",
+      "observation_count": 135864,
+      "csv": "farmgate_cereals_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN02",
+      "title": "Rootcrops: Farmgate Prices by Geolocation, Commodity, Year and Period",
+      "path": "2M/NFG/0032M4AFN02.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN02.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Rootcrops",
+      "observation_count": 317016,
+      "csv": "farmgate_rootcrops_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN03",
+      "title": "Beans and Legumes: Farmgate Prices by Geolocation, Commodity, Year and Period",
+      "path": "2M/NFG/0032M4AFN03.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN03.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Beans and Legumes",
+      "observation_count": 430236,
+      "csv": "farmgate_beans_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN04",
+      "title": "Condiments: Farmgate Prices by Geolocation, Commodity, Year and Period",
+      "path": "2M/NFG/0032M4AFN04.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN04.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Condiments",
+      "observation_count": 271728,
+      "csv": "farmgate_condiments_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN05",
+      "title": "Fruit Vegetables: Farmgate Prices by Geolocation, Commodity, Year and Period",
+      "path": "2M/NFG/0032M4AFN05.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN05.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Fruit Vegetables",
+      "observation_count": 339660,
+      "csv": "farmgate_fruit_vegetables_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN06",
+      "title": "Leafy Vegetables: Farmgate Prices by Geolocation, Commodity, Year and Period",
+      "path": "2M/NFG/0032M4AFN06.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN06.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Leafy Vegetables",
+      "observation_count": 452880,
+      "csv": "farmgate_leafy_vegetables_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN07",
+      "title": "Fruits: Farmgate Prices by Commodity, by Region and Province, Monthly, 2010-2026",
+      "path": "2M/NFG/0032M4AFN07.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN07.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Fruits",
+      "observation_count": 1358640,
+      "csv": "farmgate_fruits_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN08",
+      "title": "Commercial Crops: Farmgate Prices by Commodity, Region and Province, Monthly, 2010-2026",
+      "path": "2M/NFG/0032M4AFN08.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN08.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Commercial Crops",
+      "observation_count": 928404,
+      "csv": "farmgate_commercial_obs.csv"
+    },
+    {
+      "id": "2M/NFG/0032M4AFN09",
+      "title": "Cutflowers: Farmgate Prices by Commodity, Region and Province, Monthly, 2010-2026",
+      "path": "2M/NFG/0032M4AFN09.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0032M4AFN09.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Cutflowers",
+      "observation_count": 226440,
+      "csv": "farmgate_cutflowers_obs.csv"
+    }
+  ]
+}

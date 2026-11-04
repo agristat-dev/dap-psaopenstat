@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node scripts/write_api_config.js",
+  "outputDirectory": "static",
+  "rewrites": [
+    { "source": "/dashboards/palay", "destination": "/dashboards/palay.html" },
+    { "source": "/dashboards/corn", "destination": "/dashboards/corn.html" },
+    { "source": "/dashboards/fruits", "destination": "/dashboards/fruits.html" },
+    { "source": "/dashboards/vegetables", "destination": "/dashboards/vegetables.html" },
+    { "source": "/dashboards/industrial", "destination": "/dashboards/industrial.html" },
+    { "source": "/dashboards/livestock", "destination": "/dashboards/livestock.html" },
+    { "source": "/dashboards/fisheries", "destination": "/dashboards/fisheries.html" },
+    { "source": "/dashboards/farmgate-crops", "destination": "/dashboards/farmgate-crops.html" },
+    { "source": "/dashboards/farmgate-fisheries", "destination": "/dashboards/farmgate-fisheries.html" },
+    { "source": "/dashboards/farmgate-livestock", "destination": "/dashboards/farmgate-livestock.html" },
+    { "source": "/dashboards/farmgate", "destination": "/dashboards/farmgate-crops.html" }
+  ]
+}
