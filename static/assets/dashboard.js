@@ -11350,7 +11350,7 @@ function bindGalleryBackLink() {
   const btn = document.getElementById("dashboardGalleryBackBtn");
   if (!btn) return;
   btn.addEventListener("click", () => {
-    requestLeaveDashboard("/hub");
+    requestLeaveDashboard("/dashboards");
   });
 }
 

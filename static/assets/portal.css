@@ -9,17 +9,21 @@ body.portal-body {
   flex-direction: column;
   background-color: #eef3fc;
   background-image:
-    radial-gradient(ellipse 120% 80% at 10% 0%, rgba(42, 79, 212, 0.07) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 60% at 95% 20%, rgba(12, 26, 98, 0.06) 0%, transparent 50%),
     linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.96) 0%,
-      rgba(238, 243, 252, 0.92) 45%,
-      rgba(244, 247, 252, 0.98) 100%
+      165deg,
+      rgba(255, 255, 255, 0.62) 0%,
+      rgba(238, 243, 252, 0.52) 42%,
+      rgba(255, 255, 255, 0.56) 100%
+    ),
+    linear-gradient(
+      165deg,
+      rgba(12, 26, 98, 0.34) 0%,
+      rgba(42, 79, 180, 0.26) 45%,
+      rgba(12, 26, 98, 0.3) 100%
     ),
     url("/assets/images/dap-psa-bg.jpg");
   background-size: cover;
-  background-position: center 15%;
+  background-position: center 20%;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -74,10 +78,11 @@ body.portal-body {
 }
 
 .portal-shell > .app-footer {
-  margin-top: auto;
+  margin-top: 0;
   flex-shrink: 0;
   width: 100%;
-  box-shadow: 0 -1px 0 rgba(213, 222, 239, 0.85);
+  border-top: 1px solid rgba(213, 222, 239, 0.95);
+  box-shadow: none;
 }
 
 .portal-shell > .app-footer .app-footer-inner {
@@ -146,22 +151,27 @@ body.portal-body {
 }
 
 .portal-main {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
   min-height: 0;
-  padding-bottom: clamp(12px, 2vw, 24px);
+  padding-bottom: 0;
 }
 
 .portal-section--snapshots {
   width: 100%;
   margin-top: 0;
-  padding: clamp(20px, 3vw, 36px) 0 clamp(16px, 3vw, 28px);
+  margin-bottom: 0;
+  padding: clamp(20px, 3vw, 36px) 0 clamp(22px, 3.5vw, 36px);
   border-top: 1px solid rgba(213, 222, 239, 0.9);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.35) 100%);
   scroll-margin-top: calc(var(--header-height) + 12px);
+}
+
+.portal-body .portal-section--snapshots .landing-snapshots-section {
+  margin-bottom: 0;
 }
 
 .portal-snapshots-panel.landing-snapshots-section {

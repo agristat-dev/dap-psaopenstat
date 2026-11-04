@@ -2389,22 +2389,43 @@ if STATIC_DIR.exists():
 
 
 def _static_html(name: str, missing_detail: str) -> FileResponse:
-    path = STATIC_DIR / name
-    if not path.exists():
+    path = (STATIC_DIR / name).resolve()
+    static_root = STATIC_DIR.resolve()
+    try:
+        path.relative_to(static_root)
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=missing_detail) from exc
+    if not path.is_file():
         raise HTTPException(status_code=404, detail=missing_detail)
     return FileResponse(path)
+
+
+def _static_html_first(names: tuple[str, ...], missing_detail: str) -> FileResponse:
+    for name in names:
+        path = STATIC_DIR / name
+        if path.is_file():
+            return _static_html(name, missing_detail)
+    raise HTTPException(status_code=404, detail=missing_detail)
 
 
 @app.get("/")
 def portal_landing() -> FileResponse:
     """Public statistics portal (entry landing)."""
-    return _static_html("portal.html", "Portal landing page missing")
+    return _static_html_first(("index.html", "portal.html"), "Landing page missing")
+
+
+@app.get("/dashboards")
+def dashboard_gallery() -> FileResponse:
+    """Dashboard gallery with live previews and favorites."""
+    return _static_html_first(
+        ("dashboards/index.html", "gallery.html"),
+        "Dashboard gallery missing",
+    )
 
 
 @app.get("/hub")
-def dashboard_hub() -> FileResponse:
-    """Dashboard catalog with snapshots and favorites (former index)."""
-    return _static_html("index.html", "Platform dashboard hub missing")
+def dashboard_hub_alias() -> RedirectResponse:
+    return RedirectResponse("/dashboards", status_code=301)
 
 
 @app.get("/portal")
@@ -2415,6 +2436,8 @@ def portal_alias() -> RedirectResponse:
 @app.get("/dashboards/{crop}")
 def crop_dashboard(crop: str):
     slug = crop.lower().strip()
+    if slug in ("index", "gallery"):
+        return RedirectResponse("/dashboards", status_code=301)
     if slug == "farmgate":
         return RedirectResponse("/dashboards/farmgate-crops", status_code=301)
     dashboard_path = STATIC_DIR / "dashboards" / f"{slug}.html"

@@ -369,21 +369,19 @@ function syncPortalFreshnessFromSummary(data) {
     return;
   }
 
-  const yearThrough = data.year_through;
   const onPortal = document.body.classList.contains("portal-body");
+  const latestLine = "Latest figures sourced from the official PSA OpenSTAT";
 
-  if (onPortal && yearThrough != null) {
-    textEl.textContent = `Official OpenSTAT · production through ${yearThrough}`;
-  } else if (yearThrough != null) {
+  if (onPortal) {
+    textEl.textContent = latestLine;
+  } else {
     const ready = data.ready_count;
     const total = data.snapshot_count ?? ready;
     if (ready != null) {
-      textEl.textContent = `Verified against OpenSTAT · production through ${yearThrough} · ${ready} of ${total} snapshot dashboards live`;
+      textEl.textContent = `${latestLine} · ${ready} of ${total} snapshot dashboards live`;
     } else {
-      textEl.textContent = `Verified against OpenSTAT · production through ${yearThrough}`;
+      textEl.textContent = latestLine;
     }
-  } else {
-    textEl.textContent = fallback;
   }
   row?.classList.add("is-ready");
 }
@@ -392,7 +390,6 @@ function updateSnapshotsSubtitle(data) {
   const sub = document.getElementById("snapshotsSub");
   if (!sub) return;
 
-  const yearThrough = data?.year_through;
   const ready = data?.ready_count ?? 0;
 
   if (!ready) {
@@ -400,11 +397,12 @@ function updateSnapshotsSubtitle(data) {
     return;
   }
 
-  const coverage = yearThrough
-    ? `through ${yearThrough}`
-    : `across ${ready} commodit${ready === 1 ? "y" : "ies"}`;
+  const scope =
+    ready === 1
+      ? "for the latest commodity snapshot"
+      : `across ${ready} commodities from the latest PSA OpenSTAT release`;
 
-  sub.textContent = `National five-year production averages ${coverage}. Hover a chart for year-by-year volume.`;
+  sub.textContent = `National five-year production averages ${scope}. Hover a chart for year-by-year volume.`;
 }
 
 function renderSnapshots(data) {
@@ -435,6 +433,84 @@ function renderSnapshotSkeletons() {
     </div>`
     )
     .join("");
+}
+
+function buildDashboardSearchText(wrap) {
+  const category =
+    wrap.closest(".landing-category")?.querySelector(".landing-category-title")?.textContent?.trim() || "";
+  const parts = [
+    wrap.dataset.dashboardId,
+    wrap.querySelector(".landing-card-crop")?.textContent?.trim(),
+    wrap.querySelector(".landing-card-title")?.textContent?.trim(),
+    wrap.querySelector(".landing-card-desc")?.textContent?.trim(),
+    ...[...wrap.querySelectorAll(".landing-tag")].map((tag) => tag.textContent?.trim()),
+    category,
+  ];
+  return parts.filter(Boolean).join(" ").toLowerCase();
+}
+
+function indexGalleryDashboardSearch() {
+  document.querySelectorAll(".landing-card-wrap[data-dashboard-id]").forEach((wrap) => {
+    wrap.dataset.searchText = buildDashboardSearchText(wrap);
+  });
+}
+
+function updateGallerySearchMeta(visible, total, query) {
+  const meta = document.getElementById("dashboardGallerySearchMeta");
+  if (!meta) return;
+  const q = query.trim();
+  if (!q) {
+    meta.textContent = total ? `${total} dashboard${total === 1 ? "" : "s"}` : "";
+    return;
+  }
+  meta.textContent =
+    visible === 0
+      ? `No matches among ${total} dashboard${total === 1 ? "" : "s"}`
+      : `Showing ${visible} of ${total} dashboard${total === 1 ? "" : "s"}`;
+}
+
+function filterGalleryDashboards(rawQuery) {
+  const query = rawQuery.trim().toLowerCase();
+  const wraps = [...document.querySelectorAll(".landing-card-wrap[data-dashboard-id]")];
+  const total = wraps.length;
+  let visible = 0;
+
+  wraps.forEach((wrap) => {
+    const haystack = wrap.dataset.searchText || buildDashboardSearchText(wrap);
+    const match = !query || haystack.includes(query);
+    wrap.hidden = !match;
+    if (match) visible += 1;
+  });
+
+  document.querySelectorAll(".landing-category").forEach((category) => {
+    if (!query) {
+      category.hidden = false;
+      return;
+    }
+    const anyVisible = category.querySelector(".landing-card-wrap[data-dashboard-id]:not([hidden])");
+    category.hidden = !anyVisible;
+  });
+
+  const empty = document.getElementById("dashboardGallerySearchEmpty");
+  if (empty) empty.hidden = visible > 0 || !query;
+
+  updateGallerySearchMeta(visible, total, rawQuery);
+}
+
+function bindGalleryDashboardSearch() {
+  const input = document.getElementById("dashboardGallerySearch");
+  if (!input || !document.querySelector(".landing-card-wrap[data-dashboard-id]")) return;
+
+  indexGalleryDashboardSearch();
+  filterGalleryDashboards("");
+
+  input.addEventListener("input", () => {
+    filterGalleryDashboards(input.value);
+  });
+
+  input.addEventListener("search", () => {
+    filterGalleryDashboards(input.value);
+  });
 }
 
 function sortCatalogCards() {
@@ -510,7 +586,7 @@ async function loadLandingSummary() {
     if (grid) {
       grid.setAttribute("aria-busy", "false");
       const portalHint = document.body.classList.contains("portal-body")
-        ? ' <a href="/hub">Open the dashboard hub</a>.'
+        ? ' <a href="/dashboards">Open the dashboard gallery</a>.'
         : " Dashboard links below still work.";
       grid.innerHTML = `<p class="landing-snapshot-error">Production snapshot requires the backend API.${portalHint}</p>`;
     }
@@ -638,6 +714,8 @@ function initLanding() {
     sortCatalogCards();
     bindPinButtons();
   }
+
+  bindGalleryDashboardSearch();
 
   if (document.getElementById("snapshotGrid")) {
     bindSnapshotRefresh();

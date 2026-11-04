@@ -3,7 +3,12 @@
   "framework": null,
   "buildCommand": "node scripts/write_api_config.js",
   "outputDirectory": "static",
+  "redirects": [
+    { "source": "/hub", "destination": "/dashboards", "permanent": true }
+  ],
   "rewrites": [
+    { "source": "/dashboards", "destination": "/dashboards/index.html" },
+    { "source": "/portal", "destination": "/index.html" },
     { "source": "/dashboards/palay", "destination": "/dashboards/palay.html" },
     { "source": "/dashboards/corn", "destination": "/dashboards/corn.html" },
     { "source": "/dashboards/fruits", "destination": "/dashboards/fruits.html" },
