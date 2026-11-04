@@ -1,0 +1,27 @@
+{
+  "fetched_at": "2026-11-03T03:32:18.063132+00:00",
+  "api_origin": "https://openstat.psa.gov.ph",
+  "year_from": 1990,
+  "volume": {
+    "id": "2E/CS/0012E4EVCP0",
+    "title": "Palay and Corn: Volume of Production in Metric Tons by Ecosystem/Croptype, Quarter, Semester, Region and Province, 1987-2026",
+    "path": "2E/CS/0012E4EVCP0.px",
+    "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__CS__0012E4EVCP0.px",
+    "sourceUpdated": null,
+    "retrieved": null,
+    "release": "openstat-live",
+    "unit": "Reported value \u2014 see source for units",
+    "observation_count": 64528
+  },
+  "area": {
+    "id": "2E/CS/0022E4EAHC0",
+    "title": "Palay and Corn: Area Harvested in Hectares by Ecosystem/Croptype, Quarter, Semester, Region and Province, 1987-2026",
+    "path": "2E/CS/0022E4EAHC0.px",
+    "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__CS__0022E4EAHC0.px",
+    "sourceUpdated": null,
+    "retrieved": null,
+    "release": "openstat-live",
+    "unit": "Reported value \u2014 see source for units",
+    "observation_count": 64528
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "fetched_at": "2026-11-03T04:59:29.606472+00:00",
+  "api_origin": "https://openstat.psa.gov.ph",
+  "tables": [
+    {
+      "id": "2M/NFG/0152M4GFPF0",
+      "title": "Fisheries: Farmgate Price by Geolocation, Species, Year and Quarter",
+      "path": "2M/NFG/0152M4GFPF0.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2M__NFG__0152M4GFPF0.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "classification": "Fisheries",
+      "observation_count": 480216,
+      "csv": "farmgate_fisheries_obs.csv"
+    }
+  ]
+}

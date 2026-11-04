@@ -1,0 +1,62 @@
+{
+  "fetched_at": "2026-11-03T04:54:45.385404+00:00",
+  "api_origin": "https://openstat.psa.gov.ph",
+  "tables": [
+    {
+      "id": "2E/FS/0092E4GVAP1",
+      "title": "Aquaculture: Volume of Production by Species, Geolocation, Year and Quarter",
+      "path": "2E/FS/0092E4GVAP1.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__FS__0092E4GVAP1.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "observation_count": 252092,
+      "csv": "aquaculture_obs.csv",
+      "key": "aquaculture",
+      "subsector": "Aquaculture"
+    },
+    {
+      "id": "2E/FS/0012E4GVCP0",
+      "title": "Commercial Fisheries: Volume of Production by Geolocation, Species, Year and Quarter",
+      "path": "2E/FS/0012E4GVCP0.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__FS__0012E4GVCP0.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "observation_count": 342400,
+      "csv": "commercial_obs.csv",
+      "key": "commercial",
+      "subsector": "Commercial"
+    },
+    {
+      "id": "2E/FS/0032E4GVMP0",
+      "title": "Marine Municipal Fisheries: Volume of Production by Geolocation, Species, Year and Quarter",
+      "path": "2E/FS/0032E4GVMP0.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__FS__0032E4GVMP0.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "observation_count": 342400,
+      "csv": "marine_municipal_obs.csv",
+      "key": "marine_municipal",
+      "subsector": "Marine Municipal"
+    },
+    {
+      "id": "2E/FS/0052E4GVIP0",
+      "title": "Inland Municipal Fisheries: Volume of Production by Geolocation, Species, Year and Quarter",
+      "path": "2E/FS/0052E4GVIP0.px",
+      "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__FS__0052E4GVIP0.px",
+      "sourceUpdated": null,
+      "retrieved": null,
+      "release": "openstat-live",
+      "unit": "Reported value \u2014 see source for units",
+      "observation_count": 363800,
+      "csv": "inland_municipal_obs.csv",
+      "key": "inland_municipal",
+      "subsector": "Inland Municipal"
+    }
+  ]
+}

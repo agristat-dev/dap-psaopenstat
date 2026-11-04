@@ -1,0 +1,29 @@
+{
+  "fetched_at": "2026-11-03T04:44:14.086983+00:00",
+  "api_origin": "https://openstat.psa.gov.ph",
+  "year_from": 2010,
+  "volume": {
+    "id": "2E/CS/0072E4EVCP1",
+    "title": "Non-Food and Industrial Crops: Volume of Production, by Region, Province, Quarter, and Semester, 2010-2026",
+    "path": "2E/CS/0072E4EVCP1.px",
+    "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__CS__0072E4EVCP1.px",
+    "sourceUpdated": null,
+    "retrieved": null,
+    "release": "openstat-live",
+    "unit": "Reported value \u2014 see source for units",
+    "observation_count": 1107040,
+    "csv": "industrial_volume_obs.csv"
+  },
+  "area": {
+    "id": "2E/CS/0092E4EAHM1",
+    "title": "Non-Food and Industrial Crops: Area Planted/Harvested, by Region, Province, Quarter, and Semester, 2010-2026",
+    "path": "2E/CS/0092E4EAHM1.px",
+    "source": "https://openstat.psa.gov.ph/PXWeb/pxweb/en/DB/DB__2E__CS__0092E4EAHM1.px",
+    "sourceUpdated": null,
+    "retrieved": null,
+    "release": "openstat-live",
+    "unit": "Reported value \u2014 see source for units",
+    "observation_count": 942480,
+    "csv": "industrial_area_obs.csv"
+  }
+}

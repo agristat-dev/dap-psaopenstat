@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.env
+.pytest_cache/
+
+# Local runtime / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# SQLite sidecars / local scrape dumps
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/raw/
+
+# Vercel / local tooling
+.vercel/

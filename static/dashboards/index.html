@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/assets/api-hints.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Dashboard gallery · Data Analytics Platform (PSA OpenSTAT)</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/oasis-logo.png?v=2" />
+  <link rel="apple-touch-icon" href="/assets/images/oasis-logo.png?v=2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css?v=238" />
+  <link rel="stylesheet" href="/assets/landing.css?v=73" />
+</head>
+<body class="landing-body">
+  <a class="landing-skip-link" href="#main-content">Skip to main content</a>
+  <div class="landing-shell">
+    <header class="app-header landing-header" aria-labelledby="landing-title">
+      <div class="header-start">
+        <div class="header-brand">
+          <a class="header-brand-home" href="/" aria-label="Return to platform home">
+            <div class="brand-mark">
+              <img
+                src="/assets/images/oasis-logo.png?v=2"
+                alt=""
+                class="brand-logo"
+                width="44"
+                height="44"
+              />
+            </div>
+            <div class="brand-text">
+              <strong id="landing-title">Data Analytics Platform (PSA OpenSTAT)</strong>
+              <span>Department of Agriculture · Agricultural Statistics NCMO</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div
+          class="landing-header-clock"
+          id="landingClock"
+          aria-live="polite"
+          aria-label="Current date and time, Philippine Time"
+        >
+          <time class="landing-header-clock-face" id="landingClockTime" datetime="">
+            <span class="landing-clock-display" id="landingClockTimeText">--:--:-- --</span>
+            <span class="landing-clock-sep" aria-hidden="true">·</span>
+            <span class="landing-clock-date" id="landingClockDate">Loading…</span>
+            <span class="landing-clock-sep" aria-hidden="true">·</span>
+            <span class="landing-clock-tz" title="Philippine Time (UTC+8)">PHT</span>
+          </time>
+        </div>
+      </div>
+    </header>
+
+    <main class="landing-main" id="main-content">
+      <section class="landing-catalog-section" aria-labelledby="catalog-title">
+        <header class="landing-section-head landing-catalog-head landing-catalog-head-row">
+          <div class="landing-section-head-copy">
+            <h2 class="landing-section-title" id="catalog-title">Dashboard gallery</h2>
+            <p class="landing-section-sub">Live previews of each dashboard. Star your favorites to keep them at the top.</p>
+          </div>
+          <div class="landing-catalog-toolbar">
+            <label class="landing-catalog-search" for="dashboardGallerySearch">
+              <span class="landing-catalog-search-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" focusable="false"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+              <input
+                type="search"
+                id="dashboardGallerySearch"
+                class="landing-catalog-search-input"
+                placeholder="Search dashboards…"
+                autocomplete="off"
+                enterkeyhint="search"
+              />
+            </label>
+          </div>
+        </header>
+
+        <p class="landing-catalog-empty" id="dashboardGallerySearchEmpty" hidden>No dashboards match your search. Try another name, crop, or keyword.</p>
+
+        <div class="landing-catalog">
+          <section class="landing-category" aria-labelledby="category-commodity-production">
+          <h3 class="landing-category-title" id="category-commodity-production">Commodity Production</h3>
+          <div class="landing-card-grid">
+            <div class="landing-card-wrap" data-dashboard-id="palay" data-order="1">
+              <button type="button" class="landing-pin-btn" data-pin-id="palay" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/palay">
+                <span class="landing-card-crop">Palay</span>
+                <h3 class="landing-card-title">Palay Production</h3>
+                <p class="landing-card-desc">Volume, area harvested, and yield for irrigated and rainfed palay.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+
+            <div class="landing-card-wrap" data-dashboard-id="corn" data-order="2">
+              <button type="button" class="landing-pin-btn" data-pin-id="corn" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/corn">
+                <span class="landing-card-crop">Corn</span>
+                <h3 class="landing-card-title">Corn Production</h3>
+                <p class="landing-card-desc">Volume, area, and yield for white and yellow corn nationwide.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+
+            <div class="landing-card-wrap" data-dashboard-id="fruits" data-order="3">
+              <button type="button" class="landing-pin-btn" data-pin-id="fruits" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/fruits">
+                <span class="landing-card-crop">Fruits</span>
+                <h3 class="landing-card-title">Fruit Crops Production</h3>
+                <p class="landing-card-desc">Production volume and YoY growth across fruit commodities.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+
+            <div class="landing-card-wrap" data-dashboard-id="vegetables" data-order="4">
+              <button type="button" class="landing-pin-btn" data-pin-id="vegetables" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/vegetables">
+                <span class="landing-card-crop">Vegetables</span>
+                <h3 class="landing-card-title">Vegetables &amp; Root Crops</h3>
+                <p class="landing-card-desc">Volume trends for vegetables and root crops by region and province.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+
+            <div class="landing-card-wrap" data-dashboard-id="industrial" data-order="5">
+              <button type="button" class="landing-pin-btn" data-pin-id="industrial" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/industrial">
+                <span class="landing-card-crop">Industrial</span>
+                <h3 class="landing-card-title">Non-Food &amp; Industrial Crops</h3>
+                <p class="landing-card-desc">Volume trends for coconut, coffee, sugarcane, tobacco, and other industrial crops.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+
+            <div class="landing-card-wrap" data-dashboard-id="livestock" data-order="6">
+              <button type="button" class="landing-pin-btn" data-pin-id="livestock" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/livestock">
+                <span class="landing-card-crop">Livestock</span>
+                <h3 class="landing-card-title">Livestock &amp; Poultry</h3>
+                <p class="landing-card-desc">Production volume for livestock, poultry, and dairy by region, province, and quarter.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+
+            <div class="landing-card-wrap" data-dashboard-id="fisheries" data-order="7">
+              <button type="button" class="landing-pin-btn" data-pin-id="fisheries" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/fisheries">
+                <span class="landing-card-crop">Fisheries</span>
+                <h3 class="landing-card-title">Fisheries Production</h3>
+                <p class="landing-card-desc">Volume by aquaculture, commercial, marine municipal, and inland municipal species.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+          </div>
+          </section>
+
+          <section class="landing-category" aria-labelledby="category-marketing-trade">
+          <h3 class="landing-category-title" id="category-marketing-trade">Marketing &amp; Trade</h3>
+          <div class="landing-card-grid">
+            <div class="landing-card-wrap" data-dashboard-id="farmgate-crops" data-order="8">
+              <button type="button" class="landing-pin-btn" data-pin-id="farmgate-crops" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/farmgate-crops">
+                <span class="landing-card-crop">Crops</span>
+                <h3 class="landing-card-title">Crops Farmgate Prices</h3>
+                <p class="landing-card-desc">Monthly farmgate prices for crops by commodity, family, region, and province — with seasonality and price movement.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">₱/kg</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+            <div class="landing-card-wrap" data-dashboard-id="farmgate-fisheries" data-order="9">
+              <button type="button" class="landing-pin-btn" data-pin-id="farmgate-fisheries" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/farmgate-fisheries">
+                <span class="landing-card-crop">Fisheries</span>
+                <h3 class="landing-card-title">Fisheries Farmgate Prices</h3>
+                <p class="landing-card-desc">Quarterly farmgate prices for fisheries by species, classification, region, and province — with seasonality and price movement.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">₱/kg</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+            <div class="landing-card-wrap" data-dashboard-id="farmgate-livestock" data-order="10">
+              <button type="button" class="landing-pin-btn" data-pin-id="farmgate-livestock" aria-label="Add to favorites" aria-pressed="false" title="Add to favorites">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </button>
+              <a class="landing-card" href="/dashboards/farmgate-livestock">
+                <span class="landing-card-crop">Livestock &amp; Poultry</span>
+                <h3 class="landing-card-title">Livestock and Poultry Farmgate Prices</h3>
+                <p class="landing-card-desc">Monthly farmgate prices for livestock and poultry by commodity, province, and region — switch between establishment and household.</p>
+                <div class="landing-card-footer">
+                  <div class="landing-card-tags">
+                    <span class="landing-tag">PSA OpenSTAT</span>
+                    <span class="landing-tag">₱/kg</span>
+                    <span class="landing-tag">Province-level</span>
+                  </div>
+                  <span class="landing-card-cta">Open <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </div>
+          </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="app-footer-inner">
+        <div class="app-footer-left">
+          <span class="app-footer-product" id="footerProductName">Data Analytics Platform (PSA OpenSTAT)</span>
+        </div>
+        <span class="app-footer-org">Source: <a href="https://openstat.psa.gov.ph/" target="_blank" rel="noopener noreferrer">PSA OpenSTAT</a> · <a href="https://statistics.bettergov.ph/" target="_blank" rel="noopener noreferrer">Philippine Statistics Explorer</a></span>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/config.js"></script>
+  <script src="/assets/landing.js?v=29"></script>
+  <script src="/assets/gallery-previews.js?v=5"></script>
+</body>
+</html>
