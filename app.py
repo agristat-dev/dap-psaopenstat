@@ -10,6 +10,8 @@ Data Analytics Platform (PSA OpenSTAT) — FastAPI backend.
 
 from __future__ import annotations
 
+import csv
+import io
 import os
 import re
 import sqlite3
@@ -21,7 +23,7 @@ from typing import Any, Iterator, Optional
 from apscheduler.schedulers.background import BackgroundScheduler
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, RedirectResponse
+from fastapi.responses import FileResponse, RedirectResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -2359,6 +2361,360 @@ def _landing_snapshot_item(item: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+BROWSE_EXPORT_MAX_ROWS = 250_000
+BROWSE_PAGE_MAX = 1000
+BROWSE_HIDDEN_COLUMNS = frozenset({"is_aggregate"})
+BROWSE_FARMGATE_DATASETS = frozenset({"farmgate", "farmgate_fisheries", "farmgate_livestock"})
+BROWSE_LEADING_COLUMNS = ("crop_group", "crop_subtype", "region", "province")
+BROWSE_LEADING_COLUMNS_BY_DATASET: dict[str, tuple[str, ...]] = {
+    "farmgate": ("crop_subtype", "crop_group", "region", "province"),
+}
+BROWSE_DATASET_EXTRA_HIDDEN: dict[str, frozenset[str]] = {
+    "livestock": frozenset({"crop_subtype"}),
+}
+
+
+def _browse_visible_columns(dataset_key: str, columns: list[str]) -> list[str]:
+    hidden = set(BROWSE_HIDDEN_COLUMNS)
+    hidden.update(BROWSE_DATASET_EXTRA_HIDDEN.get(dataset_key, frozenset()))
+    if dataset_key in BROWSE_FARMGATE_DATASETS:
+        hidden.add("area_ha")
+    return [col for col in columns if col not in hidden]
+
+
+def _browse_display_columns(dataset_key: str, columns: list[str]) -> list[str]:
+    visible = _browse_visible_columns(dataset_key, columns)
+    leading_order = BROWSE_LEADING_COLUMNS_BY_DATASET.get(dataset_key, BROWSE_LEADING_COLUMNS)
+    leading_set = set(leading_order)
+    leading = [col for col in leading_order if col in visible]
+    rest = [col for col in visible if col not in leading_set]
+    return leading + rest
+
+
+def _browse_format_cell_value(dataset_key: str, col: str, value: Any) -> Any:
+    if col != "month" or dataset_key not in BROWSE_FARMGATE_DATASETS or value is None:
+        return value
+    try:
+        month = int(value)
+    except (TypeError, ValueError):
+        return value
+    if 1 <= month <= 12:
+        return _MONTH_LABELS[month - 1]
+    return value
+
+
+def _table_column_names(conn: sqlite3.Connection, table: str) -> list[str]:
+    return [r[1] for r in conn.execute(f"PRAGMA table_info({table})")]
+
+
+def _browse_where(
+    conn: sqlite3.Connection,
+    table: str,
+    *,
+    year_from: Optional[int],
+    year_to: Optional[int],
+    region: Optional[list[str]],
+    province: Optional[list[str]],
+    crop_group: Optional[list[str]],
+    crop_subtype: Optional[list[str]],
+    quarter: Optional[list[int]],
+    semester: Optional[list[int]],
+    month: Optional[list[int]],
+    q: Optional[str],
+) -> tuple[str, list[Any]]:
+    where, params = _filters_sql(
+        year_from=year_from,
+        year_to=year_to,
+        region=region,
+        province=province,
+        crop_group=crop_group,
+        crop_subtype=crop_subtype,
+        quarter=quarter,
+        semester=semester,
+        month=month,
+    )
+    term = (q or "").strip()
+    if not term:
+        return where, params
+    col_names = set(_table_column_names(conn, table))
+    like_parts: list[str] = []
+    like_params: list[Any] = []
+    for col in ("crop_subtype", "crop_group", "province", "region"):
+        if col in col_names:
+            like_parts.append(f"{col} LIKE ?")
+            like_params.append(f"%{term}%")
+    if not like_parts:
+        return where, params
+    extra = "(" + " OR ".join(like_parts) + ")"
+    if where:
+        where = f"{where} AND {extra}"
+    else:
+        where = f" WHERE {extra}"
+    params.extend(like_params)
+    return where, params
+
+
+def _browse_order_sql(col_names: set[str]) -> str:
+    order_bits: list[str] = []
+    for col, direction in (
+        ("year", "DESC"),
+        ("month", "ASC"),
+        ("quarter", "ASC"),
+        ("semester", "ASC"),
+        ("region", "ASC"),
+        ("province", "ASC"),
+        ("crop_group", "ASC"),
+        ("crop_subtype", "ASC"),
+    ):
+        if col in col_names:
+            order_bits.append(f"{col} {direction}")
+    return ", ".join(order_bits) if order_bits else "rowid"
+
+
+def _quarter_year_label(year: int, quarter: int) -> str:
+    return f"Q{int(quarter)} {int(year)}"
+
+
+def _browse_dataset_period_range(
+    conn: sqlite3.Connection, table: str, cfg: dict[str, Any]
+) -> Optional[str]:
+    """Earliest and latest quarter-year (or best equivalent) with rows in the long table."""
+    col_names = set(_table_column_names(conn, table))
+    if "year" not in col_names:
+        return None
+
+    if "quarter" in col_names:
+        row_min = conn.execute(
+            f"""
+            SELECT year, quarter FROM {table}
+            WHERE year IS NOT NULL AND quarter IS NOT NULL
+            ORDER BY year ASC, quarter ASC LIMIT 1
+            """
+        ).fetchone()
+        row_max = conn.execute(
+            f"""
+            SELECT year, quarter FROM {table}
+            WHERE year IS NOT NULL AND quarter IS NOT NULL
+            ORDER BY year DESC, quarter DESC LIMIT 1
+            """
+        ).fetchone()
+        if row_min and row_max:
+            start = _quarter_year_label(int(row_min[0]), int(row_min[1]))
+            end = _quarter_year_label(int(row_max[0]), int(row_max[1]))
+            return start if start == end else f"{start} – {end}"
+
+    if "month" in col_names:
+        row_min = conn.execute(
+            f"""
+            SELECT year, month FROM {table}
+            WHERE year IS NOT NULL AND month IS NOT NULL
+            ORDER BY year ASC, month ASC LIMIT 1
+            """
+        ).fetchone()
+        row_max = conn.execute(
+            f"""
+            SELECT year, month FROM {table}
+            WHERE year IS NOT NULL AND month IS NOT NULL
+            ORDER BY year DESC, month DESC LIMIT 1
+            """
+        ).fetchone()
+        if row_min and row_max:
+            start = _period_label(int(row_min[0]), int(row_min[1]), "quarter")
+            end = _period_label(int(row_max[0]), int(row_max[1]), "quarter")
+            return start if start == end else f"{start} – {end}"
+
+    bounds = conn.execute(
+        f"SELECT MIN(year), MAX(year) FROM {table} WHERE year IS NOT NULL"
+    ).fetchone()
+    if bounds and bounds[0] is not None and bounds[1] is not None:
+        y0, y1 = int(bounds[0]), int(bounds[1])
+        if y0 == y1:
+            return f"Q1 {y0} – Q4 {y0}"
+        return f"Q1 {y0} – Q4 {y1}"
+    return None
+
+
+@app.get("/api/browse/datasets")
+def browse_datasets() -> dict[str, Any]:
+    items: list[dict[str, Any]] = []
+    for key, cfg in DATASETS.items():
+        db_path = Path(cfg["db_path"])
+        if not _is_sqlite_file(db_path):
+            continue
+        try:
+            with db(key) as conn:
+                table = cfg["table"]
+                rows = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+                period_range = _browse_dataset_period_range(conn, table, cfg)
+        except sqlite3.Error:
+            continue
+        items.append(
+            {
+                "id": key,
+                "label": cfg["label"],
+                "rows": int(rows),
+                "period_range": period_range,
+                "value_mode": cfg.get("value_mode") or "sum",
+            }
+        )
+    return {"datasets": items, "page_max": BROWSE_PAGE_MAX}
+
+
+@app.get("/api/browse/rows")
+def browse_rows(
+    dataset: str = Query("palay_corn"),
+    year_from: Optional[int] = None,
+    year_to: Optional[int] = None,
+    region: Optional[list[str]] = Query(None),
+    province: Optional[list[str]] = Query(None),
+    crop_group: Optional[list[str]] = Query(None),
+    crop_subtype: Optional[list[str]] = Query(None),
+    quarter: Optional[list[int]] = Query(None),
+    semester: Optional[list[int]] = Query(None),
+    month: Optional[list[int]] = Query(None),
+    q: Optional[str] = None,
+    limit: int = Query(100, ge=1, le=BROWSE_PAGE_MAX),
+    offset: int = Query(0, ge=0),
+) -> dict[str, Any]:
+    cfg = resolve_dataset(dataset)
+    table = cfg["table"]
+    with db(dataset) as conn:
+        col_names = set(_table_column_names(conn, table))
+        where, params = _browse_where(
+            conn,
+            table,
+            year_from=year_from,
+            year_to=year_to,
+            region=region,
+            province=province,
+            crop_group=crop_group,
+            crop_subtype=crop_subtype,
+            quarter=quarter,
+            semester=semester,
+            month=month,
+            q=q,
+        )
+        total = conn.execute(f"SELECT COUNT(*) FROM {table}{where}", params).fetchone()[0]
+        order_sql = _browse_order_sql(col_names)
+        data_params = [*params, limit, offset]
+        cursor = conn.execute(
+            f"SELECT * FROM {table}{where} ORDER BY {order_sql} LIMIT ? OFFSET ?",
+            data_params,
+        )
+        raw_columns = [d[0] for d in cursor.description or []]
+        columns = _browse_display_columns(cfg["key"], raw_columns)
+        rows = [
+            {
+                col: _browse_format_cell_value(cfg["key"], col, dict(r)[col])
+                for col in columns
+            }
+            for r in cursor.fetchall()
+        ]
+    return {
+        "dataset": cfg["key"],
+        "label": cfg["label"],
+        "columns": columns,
+        "rows": rows,
+        "total": int(total),
+        "limit": limit,
+        "offset": offset,
+        "value_mode": cfg.get("value_mode") or "sum",
+    }
+
+
+@app.get("/api/browse/export")
+def browse_export(
+    dataset: str = Query("palay_corn"),
+    year_from: Optional[int] = None,
+    year_to: Optional[int] = None,
+    region: Optional[list[str]] = Query(None),
+    province: Optional[list[str]] = Query(None),
+    crop_group: Optional[list[str]] = Query(None),
+    crop_subtype: Optional[list[str]] = Query(None),
+    quarter: Optional[list[int]] = Query(None),
+    semester: Optional[list[int]] = Query(None),
+    month: Optional[list[int]] = Query(None),
+    q: Optional[str] = None,
+):
+    cfg = resolve_dataset(dataset)
+    table = cfg["table"]
+    safe_slug = re.sub(r"[^a-z0-9_-]+", "-", cfg["key"].lower()).strip("-") or "dataset"
+
+    with db(dataset) as conn:
+        col_names = set(_table_column_names(conn, table))
+        where, params = _browse_where(
+            conn,
+            table,
+            year_from=year_from,
+            year_to=year_to,
+            region=region,
+            province=province,
+            crop_group=crop_group,
+            crop_subtype=crop_subtype,
+            quarter=quarter,
+            semester=semester,
+            month=month,
+            q=q,
+        )
+        total = int(conn.execute(f"SELECT COUNT(*) FROM {table}{where}", params).fetchone()[0])
+    if total > BROWSE_EXPORT_MAX_ROWS:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                f"Export limited to {BROWSE_EXPORT_MAX_ROWS:,} rows; "
+                f"narrow filters ({total:,} rows match)."
+            ),
+        )
+
+    filter_kwargs = {
+        "year_from": year_from,
+        "year_to": year_to,
+        "region": region,
+        "province": province,
+        "crop_group": crop_group,
+        "crop_subtype": crop_subtype,
+        "quarter": quarter,
+        "semester": semester,
+        "month": month,
+        "q": q,
+    }
+
+    def row_stream():
+        buffer = io.StringIO()
+        writer = csv.writer(buffer)
+        with db(dataset) as conn:
+            col_names = set(_table_column_names(conn, table))
+            where, params = _browse_where(conn, table, **filter_kwargs)
+            order_sql = _browse_order_sql(col_names)
+            cursor = conn.execute(
+                f"SELECT * FROM {table}{where} ORDER BY {order_sql}",
+                params,
+            )
+            raw_columns = [d[0] for d in cursor.description or []]
+            columns = _browse_display_columns(cfg["key"], raw_columns)
+            writer.writerow(columns)
+            yield buffer.getvalue()
+            buffer.seek(0)
+            buffer.truncate(0)
+            for row in cursor:
+                writer.writerow(
+                    [
+                        _browse_format_cell_value(cfg["key"], col, row[col])
+                        for col in columns
+                    ]
+                )
+                yield buffer.getvalue()
+                buffer.seek(0)
+                buffer.truncate(0)
+
+    filename = f"psa-openstat-{safe_slug}.csv"
+    return StreamingResponse(
+        row_stream(),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
 @app.get("/api/landing/summary")
 def landing_summary() -> dict[str, Any]:
     """Aggregated KPIs and freshness metadata for the platform landing page."""
@@ -2412,6 +2768,13 @@ def _static_html_first(names: tuple[str, ...], missing_detail: str) -> FileRespo
 def portal_landing() -> FileResponse:
     """Public statistics portal (entry landing)."""
     return _static_html_first(("index.html", "portal.html"), "Landing page missing")
+
+
+@app.get("/browse")
+@app.get("/browse.html")
+def browse_openstat_data() -> FileResponse:
+    """Tabular browser for locally cached PSA OpenSTAT datasets."""
+    return _static_html("browse.html", "Data browser page missing")
 
 
 @app.get("/dashboards")

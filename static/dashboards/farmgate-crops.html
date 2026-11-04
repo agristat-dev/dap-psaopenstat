@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="/assets/styles.css?v=238" />
+  <link rel="stylesheet" href="/assets/styles.css?v=240" />
 </head>
 <body class="farmgate-page">
   <div class="app-layout" id="appLayout">
@@ -24,9 +24,15 @@
             id="menuToggle"
             aria-expanded="false"
             aria-controls="app-sidebar"
-            aria-label="Expand filters"
+            aria-label="Show filters"
+            title="Show filters"
           >
-            <span class="menu-toggle-icon" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"
+              />
+            </svg>
           </button>
           <a class="header-brand-home" href="/" aria-label="Return to Data Analytics Platform home">
             <div class="brand-mark">
@@ -549,7 +555,7 @@
     };
   </script>
   <script src="/assets/config.js"></script>
-  <script src="/assets/platform-notice.js?v=3"></script>
-  <script src="/assets/dashboard.js?v=242"></script>
+  <script src="/assets/platform-notice.js?v=4"></script>
+  <script src="/assets/dashboard.js?v=244"></script>
 </body>
 </html>

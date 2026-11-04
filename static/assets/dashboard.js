@@ -150,6 +150,7 @@ function resolveDashboardConfig() {
       defaultCrops: "all",
       chartSeriesLimit: 12,
       subtypes: [],
+      previewCommodity: "Tilapia",
     };
   }
   if (path.includes("/fisheries")) {
@@ -211,6 +212,7 @@ function resolveDashboardConfig() {
       defaultCrops: "all",
       chartSeriesLimit: 12,
       subtypes: [],
+      previewCommodity: "Sitao [Stringbeans]",
     };
   }
   if (path.includes("/farmgate-livestock")) {
@@ -252,6 +254,7 @@ function resolveDashboardConfig() {
       defaultCrops: "all",
       chartSeriesLimit: 12,
       subtypes: [],
+      previewCommodity: "Hog for Slaughter",
     };
   }
   if (path.includes("/livestock")) {
@@ -379,6 +382,21 @@ function isPreviewEmbed() {
 
 const PREVIEW_EMBED = isPreviewEmbed();
 let previewReadySignaled = false;
+
+function previewCommodityName() {
+  try {
+    const fromUrl = new URLSearchParams(window.location.search).get("commodity");
+    if (fromUrl?.trim()) return fromUrl.trim();
+  } catch {
+    /* ignore */
+  }
+  const configured = CONFIG.previewCommodity;
+  return typeof configured === "string" && configured.trim() ? configured.trim() : "";
+}
+
+function shouldDeferPreviewReadyForFarmgateOverview() {
+  return PREVIEW_EMBED && hasCommodityBoard() && previewCommodityName() && !selectedFarmgateCommodity;
+}
 
 function signalPreviewReady() {
   if (!PREVIEW_EMBED || previewReadySignaled) return;
@@ -1514,19 +1532,44 @@ async function refreshFarmgateOverview() {
   }));
   renderFarmgateBoard();
   farmgateOverviewReady = true;
-  signalPreviewReady();
+  if (!shouldDeferPreviewReadyForFarmgateOverview()) {
+    signalPreviewReady();
+  }
 }
 
-function selectFarmgateCommodity(name) {
+function selectFarmgateCommodity(name, { scheduleRefresh = true } = {}) {
   const item = farmgateBoardItems.find((row) => row.name === name) || { name, family: farmgateFamilyFor(name) };
   selectedFarmgateCommodity = name;
   selectedFarmgateItem = item;
   setFarmgateView("analysis");
   renderFarmgateHero(item);
   renderFarmgateAnalysisScores(item);
-  requestAnimationFrame(() => {
-    refreshDashboard().catch((err) => console.error("Dashboard refresh failed:", err));
-  });
+  if (scheduleRefresh) {
+    requestAnimationFrame(() => {
+      refreshDashboard().catch((err) => console.error("Dashboard refresh failed:", err));
+    });
+  }
+}
+
+function resolvePreviewFarmgateCommodity() {
+  const target = previewCommodityName();
+  if (!target || !farmgateBoardItems.length) return null;
+  return (
+    farmgateBoardItems.find((row) => row.name === target) ||
+    farmgateBoardItems.find((row) => row.name.toLowerCase().includes(target.toLowerCase())) ||
+    null
+  );
+}
+
+async function openPreviewFarmgateCommodityIfNeeded() {
+  if (!PREVIEW_EMBED || !hasCommodityBoard() || selectedFarmgateCommodity) return;
+  const pick = resolvePreviewFarmgateCommodity();
+  if (!pick) {
+    signalPreviewReady();
+    return;
+  }
+  selectFarmgateCommodity(pick.name, { scheduleRefresh: false });
+  await refreshDashboard();
 }
 
 function clearFarmgateCommodity() {
@@ -11546,7 +11589,8 @@ function bind() {
     if (window.innerWidth <= 900) return;
     const collapsed = layout.classList.contains("sidebar-collapsed");
     menuToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
-    menuToggle.setAttribute("aria-label", collapsed ? "Expand filters" : "Collapse filters");
+    menuToggle.setAttribute("aria-label", collapsed ? "Show filters" : "Hide filters");
+    menuToggle.setAttribute("title", collapsed ? "Show filters" : "Hide filters");
   }
 
   function setSidebarCollapsed(collapsed) {
@@ -11624,7 +11668,9 @@ function bind() {
       backdrop.setAttribute("aria-hidden", open ? "false" : "true");
     }
     menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    menuToggle.setAttribute("aria-label", open ? "Close filters" : "Open filters");
+    const mobileLabel = open ? "Close filters" : "Show filters";
+    menuToggle.setAttribute("aria-label", mobileLabel);
+    menuToggle.setAttribute("title", mobileLabel);
     document.body.classList.toggle("nav-open", open);
   }
 
@@ -11680,6 +11726,7 @@ async function boot() {
     if (dbReady) {
       if (PREVIEW_EMBED) {
         await Promise.all([loadMeta(), refreshDashboard()]);
+        await openPreviewFarmgateCommodityIfNeeded();
       } else {
         await loadEnso();
         await loadMeta();

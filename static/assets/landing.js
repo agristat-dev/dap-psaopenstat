@@ -397,12 +397,12 @@ function updateSnapshotsSubtitle(data) {
     return;
   }
 
-  const scope =
-    ready === 1
-      ? "for the latest commodity snapshot"
-      : `across ${ready} commodities from the latest PSA OpenSTAT release`;
+  const commodityLabel =
+    ready === 1 ? "1 commodity" : `${ready} commodities`;
 
-  sub.textContent = `National five-year production averages ${scope}. Hover a chart for year-by-year volume.`;
+  const line = `National five-year production averages across ${commodityLabel} from the PSA OpenSTAT release. Hover a chart for year-by-year volume.`;
+  sub.textContent = line;
+  sub.title = line;
 }
 
 function renderSnapshots(data) {

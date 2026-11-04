@@ -131,6 +131,7 @@ select {
   outline-offset: 2px;
 }
 
+html.modal-open,
 body.modal-open {
   overflow: hidden;
 }
@@ -142,6 +143,11 @@ body.modal-open {
   display: grid;
   place-items: center;
   padding: var(--space-4);
+}
+
+.app-modal.app-modal-preliminary {
+  z-index: 10050;
+  -webkit-overflow-scrolling: touch;
 }
 
 .app-modal[hidden] {
@@ -1045,6 +1051,18 @@ body.modal-open {
   display: inline-flex;
 }
 
+.menu-toggle svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.menu-toggle[aria-expanded="true"] {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-nav-border-hover);
+}
+
 .menu-toggle-icon {
   display: block;
   width: 18px;
@@ -1682,13 +1700,13 @@ body.modal-open {
   border-radius: var(--radius-sm);
   background: #fff;
   box-shadow: 0 12px 28px rgba(12, 26, 98, 0.14);
-  max-height: 220px;
+  max-height: 240px;
   overflow: auto;
   animation: multiSelectIn 0.14s ease;
 }
 
 .multi-select-panel-tall {
-  max-height: min(280px, 42vh);
+  max-height: min(300px, 44vh);
 }
 
 .multi-select-drop-up .multi-select-panel {

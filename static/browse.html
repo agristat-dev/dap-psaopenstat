@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script src="/assets/api-hints.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta
+    name="description"
+    content="Browse PSA OpenSTAT agriculture datasets in tabular form — filter and download CSV or Excel."
+  />
+  <meta name="theme-color" content="#0c1a62" />
+  <title>Browse PSA OpenSTAT data · Data Analytics Platform</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/oasis-logo.png?v=2" />
+  <link rel="apple-touch-icon" href="/assets/images/oasis-logo.png?v=2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css?v=240" />
+  <link rel="stylesheet" href="/assets/landing.css?v=76" />
+  <link rel="stylesheet" href="/assets/browse.css?v=47" />
+</head>
+<body class="browse-body">
+  <a class="landing-skip-link" href="#main-content">Skip to main content</a>
+  <div class="app-layout browse-app-layout" id="browseLayout">
+    <header class="app-header landing-header" aria-labelledby="browse-page-title">
+      <div class="header-start">
+        <div class="header-brand">
+          <button
+            type="button"
+            class="header-icon-btn browse-filter-toggle"
+            id="menuToggle"
+            aria-expanded="true"
+            aria-controls="app-sidebar"
+            aria-label="Hide filters"
+            title="Hide filters"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"
+              />
+            </svg>
+          </button>
+          <a class="header-brand-home" href="/" aria-label="Return to platform home">
+            <div class="brand-mark">
+              <img src="/assets/images/oasis-logo.png?v=2" alt="" class="brand-logo" width="44" height="44" />
+            </div>
+            <div class="brand-text">
+              <strong id="browse-page-title">Data Analytics Platform (PSA OpenSTAT)</strong>
+              <span>Department of Agriculture · Agricultural Statistics NCMO</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div
+          class="landing-header-clock"
+          id="landingClock"
+          aria-live="polite"
+          aria-label="Current date and time, Philippine Time"
+        >
+          <time class="landing-header-clock-face" id="landingClockTime" datetime="">
+            <span class="landing-clock-display" id="landingClockTimeText">--:--:-- --</span>
+            <span class="landing-clock-sep" aria-hidden="true">·</span>
+            <span class="landing-clock-date" id="landingClockDate">Loading…</span>
+            <span class="landing-clock-sep" aria-hidden="true">·</span>
+            <span class="landing-clock-tz" title="Philippine Time (UTC+8)">PHT</span>
+          </time>
+        </div>
+      </div>
+    </header>
+
+    <div class="app-body browse-app-body">
+      <aside class="app-sidebar browse-sidebar" id="app-sidebar" aria-label="Dataset and filters" aria-expanded="true">
+        <div class="sidebar-nav">
+          <div class="nav-section">
+            <form class="filter-form browse-dataset-form" id="browseDatasetForm" onsubmit="return false;">
+              <div class="filter-field browse-dataset-field">
+                <label class="filter-label-text" for="browseDatasetSelect" id="browse-datasets-heading">Dataset</label>
+                <select id="browseDatasetSelect" disabled aria-busy="true">
+                  <option value="">Loading datasets…</option>
+                </select>
+              </div>
+            </form>
+          </div>
+
+          <div class="nav-section">
+            <form class="filter-form browse-filters-form" id="browseFiltersForm">
+              <div class="filter-field filter-field-year" id="browseYearField">
+                <div class="filter-label-row">
+                  <span class="filter-label-text">Year range</span>
+                  <span class="year-range-count" id="browseYearRangeCount">All years</span>
+                </div>
+                <div class="year-range" id="browseYearRange">
+                  <div class="year-range-slider" aria-label="Select start and end year">
+                    <div class="year-tooltip" id="browseYearTooltip" aria-hidden="true">—</div>
+                    <div class="year-range-rail">
+                      <div class="year-range-track" id="browseYearRangeTrack"></div>
+                    </div>
+                    <input type="range" id="browseYearFrom" name="year_from" step="1" aria-label="Start year" />
+                    <input type="range" id="browseYearTo" name="year_to" step="1" aria-label="End year" />
+                  </div>
+                  <div class="year-range-scale" id="browseYearRangeScale" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="filter-field" id="browseQuarterWrap" hidden>
+                <span class="filter-label-text">Quarter</span>
+                <div
+                  class="multi-select multi-select-drop-up"
+                  id="browseQuarter"
+                  data-all-label="All quarters"
+                >
+                  <button type="button" class="multi-select-toggle" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="multi-select-summary">All quarters</span>
+                  </button>
+                  <div class="multi-select-panel" hidden role="listbox" aria-multiselectable="true" aria-label="Quarter"></div>
+                </div>
+              </div>
+              <div class="filter-field">
+                <span class="filter-label-text">Region</span>
+                <div
+                  class="multi-select multi-select-drop-up"
+                  id="browseRegion"
+                  data-all-label="All regions"
+                  data-searchable="true"
+                  data-search-placeholder="Search regions…"
+                >
+                  <button type="button" class="multi-select-toggle" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="multi-select-summary">All regions</span>
+                  </button>
+                  <div class="multi-select-panel" hidden role="listbox" aria-multiselectable="true" aria-label="Region"></div>
+                </div>
+              </div>
+              <div class="filter-field">
+                <span class="filter-label-text">Province</span>
+                <div
+                  class="multi-select multi-select-drop-up"
+                  id="browseProvince"
+                  data-all-label="All provinces"
+                  data-searchable="true"
+                  data-search-placeholder="Search provinces…"
+                >
+                  <button type="button" class="multi-select-toggle" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="multi-select-summary">All provinces</span>
+                  </button>
+                  <div class="multi-select-panel" hidden role="listbox" aria-multiselectable="true" aria-label="Province"></div>
+                </div>
+              </div>
+
+              <div class="filter-field">
+                <span class="filter-label-text">Crop group</span>
+                <div class="multi-select multi-select-drop-up" id="browseCropGroup" data-all-label="All groups">
+                  <button type="button" class="multi-select-toggle" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="multi-select-summary">All groups</span>
+                  </button>
+                  <div class="multi-select-panel" hidden role="listbox" aria-multiselectable="true" aria-label="Crop group"></div>
+                </div>
+              </div>
+              <div class="filter-field">
+                <span class="filter-label-text">Crop / commodity</span>
+                <div
+                  class="multi-select multi-select-drop-up"
+                  id="browseCropSubtype"
+                  data-all-label="All commodities"
+                  data-searchable="true"
+                  data-search-placeholder="Search commodities…"
+                >
+                  <button type="button" class="multi-select-toggle" aria-expanded="false" aria-haspopup="listbox">
+                    <span class="multi-select-summary">All commodities</span>
+                  </button>
+                  <div
+                    class="multi-select-panel multi-select-panel-tall"
+                    hidden
+                    role="listbox"
+                    aria-multiselectable="true"
+                    aria-label="Crop / commodity"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="browse-filter-actions">
+                <button type="button" class="browse-btn browse-btn-ghost" id="browseResetFilters">Clear all</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </aside>
+
+      <button type="button" class="sidebar-backdrop" id="sidebarBackdrop" hidden aria-label="Close filters"></button>
+
+      <main class="app-main browse-main" id="main-content">
+        <div class="browse-layout">
+          <div class="browse-panel" id="browsePanel">
+          <header class="browse-head" id="browseHead">
+            <div class="browse-head-intro">
+              <h1 class="browse-dataset-title" id="browseDatasetTitle">Browse data</h1>
+              <span class="browse-dataset-meta-sep" id="browseDatasetMetaSep" hidden aria-hidden="true">·</span>
+              <span class="browse-dataset-meta" id="browseDatasetMeta" hidden></span>
+            </div>
+          </header>
+
+          <div class="browse-results" id="browseResults" aria-busy="false">
+            <div class="browse-loading" id="browseLoading" hidden>
+              <div class="browse-loading-card" role="status" aria-live="polite" aria-busy="true">
+                <div class="browse-loading-spinner-wrap" aria-hidden="true">
+                  <span class="browse-loading-spinner"></span>
+                </div>
+                <p class="browse-loading-title" id="browseLoadingLabel">Loading data…</p>
+                <p class="browse-loading-hint" id="browseLoadingHint">Fetching rows from the selected dataset</p>
+                <div class="browse-loading-skeleton" aria-hidden="true">
+                  <span class="browse-loading-skeleton-line"></span>
+                  <span class="browse-loading-skeleton-line"></span>
+                  <span class="browse-loading-skeleton-line browse-loading-skeleton-line-short"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="browse-status" id="browseStatus" role="status" aria-live="polite"></div>
+
+            <div class="browse-grid" id="browseTableShell" hidden>
+              <div class="browse-table-toolbar" role="toolbar" aria-label="Table controls">
+                <div class="browse-toolbar-start">
+                  <div class="browse-tool-group browse-tool-group-downloads">
+                    <button
+                      type="button"
+                      class="browse-tool-btn browse-tool-btn-labeled"
+                      id="browseDownloadCsv"
+                      disabled
+                      aria-busy="false"
+                      aria-label="Download CSV"
+                      title="Download CSV"
+                    >
+                      <svg class="browse-tool-btn-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                        <path
+                          fill="currentColor"
+                          d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 12h8v1.5H8V12zm0 3h8v1.5H8V15z"
+                        />
+                      </svg>
+                      <span>CSV</span>
+                      <span class="browse-tool-spinner" id="browseDownloadCsvSpinner" hidden aria-hidden="true"></span>
+                    </button>
+                    <button
+                      type="button"
+                      class="browse-tool-btn browse-tool-btn-labeled browse-tool-btn-excel"
+                      id="browseDownloadExcel"
+                      disabled
+                      aria-busy="false"
+                      aria-label="Download Excel"
+                      title="Download Excel (.xlsx)"
+                    >
+                      <svg class="browse-tool-btn-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                        <path
+                          fill="currentColor"
+                          d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"
+                        />
+                      </svg>
+                      <span>Excel</span>
+                      <span class="browse-tool-spinner" id="browseDownloadExcelSpinner" hidden aria-hidden="true"></span>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="browse-toolbar-end browse-tool-group browse-tool-group-pager is-inactive"
+                  id="browsePagination"
+                  aria-label="Pagination"
+                >
+                  <label class="browse-toolbar-item">
+                    <select id="browsePageSize" class="browse-tool-select browse-tool-select-rows" aria-label="Rows per page"></select>
+                  </label>
+                  <span class="browse-toolbar-divider" aria-hidden="true"></span>
+                  <div class="browse-page-controls">
+                    <button type="button" class="browse-page-btn" id="browsePrevPage" disabled aria-label="Previous page">
+                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                        <path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                      </svg>
+                    </button>
+                    <span class="browse-page-indicator" id="browsePageIndicator">1 / 1</span>
+                    <button type="button" class="browse-page-btn" id="browseNextPage" disabled aria-label="Next page">
+                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                        <path fill="currentColor" d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="browse-table-wrap" id="browseTableWrap">
+                <table class="browse-table" id="browseTable">
+                  <thead id="browseTableHead"></thead>
+                  <tbody id="browseTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="app-footer browse-footer">
+      <div class="app-footer-inner">
+        <div class="app-footer-left">
+          <span class="app-footer-product">Data Analytics Platform (PSA OpenSTAT)</span>
+        </div>
+        <span class="app-footer-org">
+          Source:
+          <a href="https://openstat.psa.gov.ph/" target="_blank" rel="noopener noreferrer">PSA OpenSTAT</a>
+          ·
+          <a href="https://statistics.bettergov.ph/" target="_blank" rel="noopener noreferrer">Philippine Statistics Explorer</a>
+        </span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/assets/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" crossorigin="anonymous"></script>
+  <script src="/assets/platform-notice.js?v=4"></script>
+  <script src="/assets/landing.js?v=31"></script>
+  <script src="/assets/browse.js?v=44"></script>
+</body>
+</html>
