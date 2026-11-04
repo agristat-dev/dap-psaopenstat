@@ -17,9 +17,9 @@ body.landing-body {
       rgba(42, 79, 180, 0.26) 45%,
       rgba(12, 26, 98, 0.3) 100%
     ),
-    url("/assets/images/dap-psa-bg.jpg");
+    url("/assets/images/dap-psa-bg.jpg?v=5");
   background-size: cover;
-  background-position: center 20%;
+  background-position: center 38%;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -1120,9 +1120,9 @@ body.landing-body {
         rgba(42, 79, 180, 0.26) 45%,
         rgba(12, 26, 98, 0.3) 100%
       ),
-      url("/assets/images/dap-psa-bg.jpg");
+      url("/assets/images/dap-psa-bg.jpg?v=5");
     background-size: cover;
-    background-position: center 20%;
+    background-position: center 38%;
     background-repeat: no-repeat;
   }
 
