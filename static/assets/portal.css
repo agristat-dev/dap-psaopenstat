@@ -30,7 +30,63 @@ body.portal-body {
 
 @media (max-width: 640px) {
   body.portal-body {
-    background-attachment: scroll;
+    background-image: none;
+  }
+
+  body.portal-body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: #eef3fc;
+    background-image:
+      linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.62) 0%,
+        rgba(238, 243, 252, 0.52) 42%,
+        rgba(255, 255, 255, 0.56) 100%
+      ),
+      linear-gradient(
+        165deg,
+        rgba(12, 26, 98, 0.34) 0%,
+        rgba(42, 79, 180, 0.26) 45%,
+        rgba(12, 26, 98, 0.3) 100%
+      ),
+      url("/assets/images/dap-psa-bg.jpg");
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+  }
+
+  .portal-shell > .app-footer {
+    margin-top: auto;
+  }
+
+  .portal-shell > .app-footer .app-footer-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding-top: 0.7rem;
+    padding-bottom: max(0.7rem, env(safe-area-inset-bottom));
+  }
+
+  .portal-shell > .app-footer .app-footer-left {
+    width: 100%;
+  }
+
+  .portal-shell > .app-footer .app-footer-product {
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .portal-shell > .app-footer .app-footer-org {
+    align-self: stretch;
+    width: 100%;
+    max-width: none;
+    text-align: left;
+    font-size: 0.72rem;
+    line-height: 1.45;
   }
 }
 

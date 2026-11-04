@@ -5306,3 +5306,21 @@ body.farmgate-page.is-farmgate-analysis .score-group-compare .score-meta {
   }
 }
 
+
+/* Embedded dashboard previews (landing + gallery iframes) */
+html.dashboard-preview-embed .app-footer,
+html.dashboard-preview-embed .status-bar,
+html.dashboard-preview-embed .header-gallery-btn,
+html.dashboard-preview-embed #smartAnalysisBtn,
+html.dashboard-preview-embed .app-modal {
+  display: none !important;
+}
+
+html.dashboard-preview-embed .app-main {
+  padding-bottom: 12px;
+}
+
+html.dashboard-preview-embed .chart-panel,
+html.dashboard-preview-embed .score-card {
+  animation: none !important;
+}

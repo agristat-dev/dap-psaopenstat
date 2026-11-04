@@ -3,13 +3,36 @@
 
   const PREVIEW_WIDTH = 1280;
   const PREVIEW_HEIGHT = 800;
-  const PREVIEW_LOAD_MIN_MS = 2000;
+  const PREVIEW_READY_TIMEOUT_MS = 20000;
+  const PREVIEW_LOAD_FALLBACK_MS = 5000;
+  const PREVIEW_MAX_CONCURRENT = 2;
 
   const LOADER_STEPS = [
     "Applying dashboard filters",
     "Loading PSA OpenSTAT view",
     "Rendering live preview",
   ];
+
+  let previewInFlight = 0;
+  const previewQueue = [];
+  let galleryPreviewMountIndex = 0;
+
+  function previewPath(path) {
+    const url = new URL(path, window.location.origin);
+    url.searchParams.set("preview", "1");
+    return `${url.pathname}${url.search}`;
+  }
+
+  function prefetchPreviewDocument(path) {
+    const src = previewPath(path);
+    if (document.querySelector(`link[data-preview-doc-prefetch="${src}"]`)) return;
+    const link = document.createElement("link");
+    link.rel = "prefetch";
+    link.as = "document";
+    link.href = src;
+    link.setAttribute("data-preview-doc-prefetch", src);
+    document.head.appendChild(link);
+  }
 
   function fitGalleryPreviewViewport(viewport) {
     if (!viewport) return;
@@ -24,14 +47,36 @@
     return new Promise((resolve) => window.setTimeout(resolve, ms));
   }
 
-  function waitForIframe(iframe) {
+  function waitForGalleryPreview(iframe) {
     return new Promise((resolve) => {
-      if (iframe.contentDocument?.readyState === "complete") {
+      let settled = false;
+      let loadFallbackTimer = null;
+
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        window.removeEventListener("message", onMessage);
+        window.clearTimeout(absoluteTimer);
+        if (loadFallbackTimer) window.clearTimeout(loadFallbackTimer);
         resolve();
-        return;
-      }
-      iframe.addEventListener("load", () => resolve(), { once: true });
-      iframe.addEventListener("error", () => resolve(), { once: true });
+      };
+
+      const onMessage = (event) => {
+        if (event.source !== iframe.contentWindow) return;
+        if (event.data?.type === "dap-dashboard-preview-ready") finish();
+      };
+
+      window.addEventListener("message", onMessage);
+      const absoluteTimer = window.setTimeout(finish, PREVIEW_READY_TIMEOUT_MS);
+
+      iframe.addEventListener(
+        "load",
+        () => {
+          loadFallbackTimer = window.setTimeout(finish, PREVIEW_LOAD_FALLBACK_MS);
+        },
+        { once: true }
+      );
+      iframe.addEventListener("error", () => finish(), { once: true });
     });
   }
 
@@ -39,14 +84,14 @@
     const loader = viewport.querySelector(".gallery-preview-loader");
     const statusEl = viewport.querySelector(".gallery-preview-loader-status");
     const bar = viewport.querySelector(".gallery-preview-loader-bar span");
-    if (!loader) return () => {};
+    if (!loader) return () => Promise.resolve();
 
     viewport.classList.add("is-gallery-preview-loading");
     let stepIndex = 0;
     let progress = 0;
 
     const timer = window.setInterval(() => {
-      progress = Math.min(progress + 4 + Math.random() * 7, 92);
+      progress = Math.min(progress + 6 + Math.random() * 10, 94);
       if (bar) bar.style.width = `${progress}%`;
 
       const nextAt = ((stepIndex + 1) / LOADER_STEPS.length) * 85;
@@ -54,19 +99,41 @@
         stepIndex += 1;
         if (statusEl) statusEl.textContent = `${LOADER_STEPS[stepIndex]}…`;
       }
-    }, 160);
+    }, 120);
 
     return async () => {
       window.clearInterval(timer);
       if (bar) bar.style.width = "100%";
       if (statusEl) statusEl.textContent = "Preview ready";
-      await delay(280);
+      await delay(100);
       loader.classList.add("is-done");
       viewport.classList.remove("is-gallery-preview-loading");
       viewport.classList.add("is-gallery-preview-ready");
-      await delay(320);
+      await delay(140);
       loader.remove();
     };
+  }
+
+  function runPreviewJob(task, priority = 10) {
+    return new Promise((resolve, reject) => {
+      previewQueue.push({ task, priority, resolve, reject });
+      previewQueue.sort((a, b) => a.priority - b.priority);
+      drainPreviewQueue();
+    });
+  }
+
+  function drainPreviewQueue() {
+    while (previewInFlight < PREVIEW_MAX_CONCURRENT && previewQueue.length) {
+      const job = previewQueue.shift();
+      previewInFlight += 1;
+      Promise.resolve()
+        .then(job.task)
+        .then(job.resolve, job.reject)
+        .finally(() => {
+          previewInFlight -= 1;
+          drainPreviewQueue();
+        });
+    }
   }
 
   async function loadPreviewWithEffect(viewport, iframe, path) {
@@ -74,17 +141,21 @@
     iframe.setAttribute("data-loaded", "true");
 
     const finishLoader = startGalleryPreviewLoader(viewport);
-    iframe.src = path;
+    const src = previewPath(path);
+    iframe.src = src;
 
-    await Promise.all([waitForIframe(iframe), delay(PREVIEW_LOAD_MIN_MS)]);
-
+    await waitForGalleryPreview(iframe);
     await finishLoader();
+    viewport.querySelector(".gallery-preview-poster")?.classList.add("is-hidden");
     iframe.classList.add("is-visible");
   }
 
   function mountGalleryPreview(wrap) {
     const link = wrap.querySelector("a.landing-card[href]");
     if (!link || link.querySelector(".landing-card-preview")) return;
+
+    const mountIndex = galleryPreviewMountIndex;
+    galleryPreviewMountIndex += 1;
 
     let path;
     try {
@@ -94,13 +165,27 @@
     }
 
     const titleEl = wrap.querySelector(".landing-card-title");
+    const cropEl = wrap.querySelector(".landing-card-crop");
     const previewTitle = titleEl?.textContent?.trim() || "Dashboard preview";
+    const previewCrop = cropEl?.textContent?.trim() || "";
 
     const preview = document.createElement("div");
     preview.className = "landing-card-preview";
     preview.innerHTML = `
-      <div class="landing-card-preview-viewport is-gallery-preview-loading">
-        <div class="gallery-preview-loader" aria-live="polite" aria-busy="true">
+      <div class="landing-card-preview-viewport">
+        <div class="gallery-preview-poster" aria-hidden="true">
+          <span class="gallery-preview-poster-kicker">${previewCrop.replace(/</g, "")}</span>
+          <span class="gallery-preview-poster-title">${previewTitle.replace(/</g, "")}</span>
+          <span class="gallery-preview-poster-chart">
+            <span class="gallery-preview-poster-bar" style="--h:42%"></span>
+            <span class="gallery-preview-poster-bar" style="--h:68%"></span>
+            <span class="gallery-preview-poster-bar" style="--h:55%"></span>
+            <span class="gallery-preview-poster-bar" style="--h:78%"></span>
+            <span class="gallery-preview-poster-bar" style="--h:61%"></span>
+            <span class="gallery-preview-poster-bar" style="--h:48%"></span>
+          </span>
+        </div>
+        <div class="gallery-preview-loader" aria-live="polite" aria-busy="true" hidden>
           <div class="gallery-preview-loader-visual" aria-hidden="true">
             <span class="gallery-preview-loader-grid"></span>
             <span class="gallery-preview-loader-ring"></span>
@@ -130,32 +215,62 @@
 
     const viewport = preview.querySelector(".landing-card-preview-viewport");
     const iframe = preview.querySelector("iframe");
+    const loader = viewport?.querySelector(".gallery-preview-loader");
     if (!viewport || !iframe) return;
 
-    const beginLoad = () => {
-      loadPreviewWithEffect(viewport, iframe, path).catch(() => {
-        viewport.classList.remove("is-gallery-preview-loading");
-        viewport.querySelector(".gallery-preview-loader")?.remove();
-        iframe.classList.add("is-visible");
-        if (!iframe.getAttribute("src")) iframe.src = path;
-      });
+    let loadQueued = false;
+    const beginLoad = (priority = mountIndex) => {
+      if (loadQueued) return;
+      loadQueued = true;
+      if (loader) loader.hidden = false;
+      viewport.classList.add("is-gallery-preview-loading");
+      return runPreviewJob(
+        () =>
+          loadPreviewWithEffect(viewport, iframe, path).catch(() => {
+            viewport.classList.remove("is-gallery-preview-loading");
+            viewport.querySelector(".gallery-preview-loader")?.remove();
+            viewport.querySelector(".gallery-preview-poster")?.classList.add("is-hidden");
+            iframe.classList.add("is-visible");
+            if (!iframe.getAttribute("src")) iframe.src = previewPath(path);
+          }),
+        priority
+      );
     };
 
+    const boostLoad = () => beginLoad(-1);
+
+    link.addEventListener("mouseenter", boostLoad, { once: true });
+    link.addEventListener("focusin", boostLoad, { once: true });
+
     if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
+      const prefetchObserver = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
             if (entry.isIntersecting) {
-              beginLoad();
-              observer.disconnect();
+              prefetchPreviewDocument(path);
+              prefetchObserver.disconnect();
             }
           }
         },
-        { root: null, rootMargin: "120px 0px", threshold: 0.01 }
+        { root: null, rootMargin: "240px 0px", threshold: 0 }
       );
-      observer.observe(preview);
+      prefetchObserver.observe(preview);
+
+      const loadObserver = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const ratio = entry.intersectionRatio || 0.01;
+            const priority = Math.max(0, mountIndex - Math.round(ratio * 4));
+            beginLoad(priority);
+            loadObserver.disconnect();
+          }
+        },
+        { root: null, rootMargin: "60px 0px", threshold: [0, 0.08, 0.2] }
+      );
+      loadObserver.observe(preview);
     } else {
-      beginLoad();
+      beginLoad(mountIndex);
     }
 
     fitGalleryPreviewViewport(viewport);

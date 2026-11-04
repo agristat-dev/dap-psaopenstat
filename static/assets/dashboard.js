@@ -363,6 +363,36 @@ function resolveDashboardConfig() {
 }
 
 const CONFIG = resolveDashboardConfig();
+
+function isPreviewEmbed() {
+  try {
+    if (new URLSearchParams(window.location.search).get("preview") === "1") return true;
+  } catch {
+    /* ignore */
+  }
+  try {
+    return window.self !== window.top;
+  } catch {
+    return false;
+  }
+}
+
+const PREVIEW_EMBED = isPreviewEmbed();
+let previewReadySignaled = false;
+
+function signalPreviewReady() {
+  if (!PREVIEW_EMBED || previewReadySignaled) return;
+  previewReadySignaled = true;
+  try {
+    window.parent.postMessage(
+      { type: "dap-dashboard-preview-ready", path: window.location.pathname },
+      "*"
+    );
+  } catch {
+    /* ignore */
+  }
+}
+
 const IS_MULTI_CROP = CONFIG.mode === "multiCrop";
 const DATASET = CONFIG.dataset || "palay_corn";
 const MONTH_LABELS = [
@@ -1484,6 +1514,7 @@ async function refreshFarmgateOverview() {
   }));
   renderFarmgateBoard();
   farmgateOverviewReady = true;
+  signalPreviewReady();
 }
 
 function selectFarmgateCommodity(name) {
@@ -4384,6 +4415,15 @@ function prefersReducedMotion() {
 }
 
 function chartAnimOptions({ stagger = true } = {}) {
+  if (PREVIEW_EMBED) {
+    return {
+      animation: false,
+      transitions: {
+        active: { animation: { duration: 0 } },
+        resize: { animation: { duration: 0 } },
+      },
+    };
+  }
   const yFrom = (ctx) => {
     if (ctx.type !== "data") return undefined;
     const axisId = ctx.dataset?.yAxisID || "y";
@@ -6665,6 +6705,7 @@ async function refreshDashboard() {
   const wantsMonthSeasonality = Boolean(document.getElementById("monthSeasonalityChart"));
   const wantsProvinceVolume = Boolean(els.provinceVolumeTableBody);
   const wantsRegionAnnual = Boolean(els.regionAnnualTableBody);
+  const previewLite = PREVIEW_EMBED;
   const seriesParams = wantsVolumeGrowth
     ? { ...base, year_from: Math.max(yearBounds.min, year_from - 1) }
     : base;
@@ -6681,22 +6722,22 @@ async function refreshDashboard() {
       api(`/api/series-by-ecosystem?${qs(base)}`),
       api(`/api/series-by-ecosystem?${qs(compareParams)}`),
       api(`/api/series-by-region?${qs(isPriceMode() ? base : compareParams)}`),
-      wantsRegionEcosystem
+      wantsRegionEcosystem && !previewLite
         ? api(`/api/by-region-ecosystem?${qs(base)}`)
         : Promise.resolve({ rows: [] }),
-      wantsProvinceVolume
+      wantsProvinceVolume && !previewLite
         ? api(`/api/series-by-province?${qs(compareParams)}`)
         : Promise.resolve({ points: [] }),
-      wantsSubsectorVolume
+      wantsSubsectorVolume && !previewLite
         ? api(`/api/series-by-ecosystem?${qs({ ...base, split_by: "crop_subtype" })}`)
         : Promise.resolve({ points: [] }),
-      wantsMonthSeasonality
+      wantsMonthSeasonality && !previewLite
         ? api(`/api/series-by-month?${qs(base)}`)
         : Promise.resolve({ points: [] }),
-      wantsVolumeOverlay()
+      wantsVolumeOverlay() && !previewLite
         ? api(`/api/overlay-volume?${qs(base)}`).catch(() => ({ points: [] }))
         : Promise.resolve({ points: [] }),
-      wantsRegionAnnual
+      wantsRegionAnnual && !previewLite
         ? api(`/api/annual-by-region?${qs(base)}`)
         : Promise.resolve({ years: [], points: [], province_points: [] }),
     ]);
@@ -6985,6 +7026,7 @@ async function refreshDashboard() {
     farmgatePeriod: farmgateBoardPeriod,
     farmgateBoardItems: farmgateBoardItems,
   };
+  signalPreviewReady();
 }
 
 async function pollRefreshStatus() {
@@ -7109,6 +7151,11 @@ function scheduleYearRefresh() {
 }
 
 function applyDashboardConfig() {
+  if (PREVIEW_EMBED) {
+    document.documentElement.classList.add("dashboard-preview-embed");
+    const layout = document.getElementById("appLayout");
+    layout?.classList.add("sidebar-collapsed");
+  }
   document.title = CONFIG.title;
   const titleEl = document.getElementById("dashboardTitle");
   if (titleEl) titleEl.textContent = CONFIG.title;
@@ -11631,10 +11678,14 @@ async function boot() {
     const datasetHealth = health.datasets?.[DATASET];
     const dbReady = datasetHealth?.ready ?? health.db_exists;
     if (dbReady) {
-      await loadEnso();
-      await loadMeta();
-      if (!(hasCommodityBoard() && !selectedFarmgateCommodity && farmgateOverviewReady)) {
-        await refreshDashboard();
+      if (PREVIEW_EMBED) {
+        await Promise.all([loadMeta(), refreshDashboard()]);
+      } else {
+        await loadEnso();
+        await loadMeta();
+        if (!(hasCommodityBoard() && !selectedFarmgateCommodity && farmgateOverviewReady)) {
+          await refreshDashboard();
+        }
       }
     } else {
       renderStatus({ status: "running", message: "First-time PSA fetch…" });

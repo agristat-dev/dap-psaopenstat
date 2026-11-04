@@ -455,24 +455,9 @@ function indexGalleryDashboardSearch() {
   });
 }
 
-function updateGallerySearchMeta(visible, total, query) {
-  const meta = document.getElementById("dashboardGallerySearchMeta");
-  if (!meta) return;
-  const q = query.trim();
-  if (!q) {
-    meta.textContent = total ? `${total} dashboard${total === 1 ? "" : "s"}` : "";
-    return;
-  }
-  meta.textContent =
-    visible === 0
-      ? `No matches among ${total} dashboard${total === 1 ? "" : "s"}`
-      : `Showing ${visible} of ${total} dashboard${total === 1 ? "" : "s"}`;
-}
-
 function filterGalleryDashboards(rawQuery) {
   const query = rawQuery.trim().toLowerCase();
   const wraps = [...document.querySelectorAll(".landing-card-wrap[data-dashboard-id]")];
-  const total = wraps.length;
   let visible = 0;
 
   wraps.forEach((wrap) => {
@@ -493,8 +478,6 @@ function filterGalleryDashboards(rawQuery) {
 
   const empty = document.getElementById("dashboardGallerySearchEmpty");
   if (empty) empty.hidden = visible > 0 || !query;
-
-  updateGallerySearchMeta(visible, total, rawQuery);
 }
 
 function bindGalleryDashboardSearch() {

@@ -5,7 +5,14 @@ const PH_TIMEZONE = "Asia/Manila";
 const PREVIEW_WIDTH = 1280;
 const PREVIEW_HEIGHT = 800;
 const PREVIEW_INTERVAL_MS = 5500;
-const PREVIEW_LOAD_TIMEOUT_MS = 15000;
+const PREVIEW_READY_TIMEOUT_MS = 20000;
+const PREVIEW_LOAD_FALLBACK_MS = 5000;
+
+function previewPath(href) {
+  const url = new URL(href, window.location.origin);
+  url.searchParams.set("preview", "1");
+  return `${url.pathname}${url.search}`;
+}
 
 const PORTAL_PREVIEWS = [
   { href: "/dashboards/palay", label: "Palay Production" },
@@ -98,7 +105,7 @@ function setPreviewBusy(busy) {
     previewBusySafetyTimer = window.setTimeout(() => {
       previewBusy = false;
       setPreviewViewportLoading(false);
-    }, PREVIEW_LOAD_TIMEOUT_MS + 2000);
+    }, PREVIEW_READY_TIMEOUT_MS + 2000);
   }
 }
 
@@ -174,18 +181,30 @@ function frameIsDocumentReady(frame) {
 }
 
 function waitForPreviewFrame(frame, href) {
+  const src = previewPath(href);
   return new Promise((resolve) => {
     let settled = false;
+    let loadFallbackTimer = null;
+
     const finish = () => {
       if (settled) return;
       settled = true;
-      window.clearTimeout(timer);
+      window.clearTimeout(absoluteTimer);
+      if (loadFallbackTimer) window.clearTimeout(loadFallbackTimer);
+      window.removeEventListener("message", onMessage);
       frame.removeEventListener("load", onLoad);
       frame.removeEventListener("error", onError);
       resolve();
     };
-    const onLoad = () => finish();
+    const onLoad = () => {
+      loadFallbackTimer = window.setTimeout(finish, PREVIEW_LOAD_FALLBACK_MS);
+    };
     const onError = () => finish();
+
+    const onMessage = (event) => {
+      if (event.source !== frame.contentWindow) return;
+      if (event.data?.type === "dap-dashboard-preview-ready") finish();
+    };
 
     const needsNavigate = frame.getAttribute("data-src") !== href || !frame.src;
     frame.setAttribute("data-src", href);
@@ -195,17 +214,46 @@ function waitForPreviewFrame(frame, href) {
       return;
     }
 
+    window.addEventListener("message", onMessage);
     frame.addEventListener("load", onLoad);
     frame.addEventListener("error", onError);
-    const timer = window.setTimeout(finish, PREVIEW_LOAD_TIMEOUT_MS);
+    const absoluteTimer = window.setTimeout(finish, PREVIEW_READY_TIMEOUT_MS);
 
-    if (needsNavigate || frame.src !== new URL(href, window.location.origin).href) {
+    const targetHref = new URL(src, window.location.origin).href;
+    if (needsNavigate || frame.src !== targetHref) {
       frame.classList.remove("is-loaded");
-      frame.src = href;
+      frame.src = src;
     } else if (frameIsDocumentReady(frame)) {
       finish();
     }
   });
+}
+
+function prefetchPreviewHref(href) {
+  const src = previewPath(href);
+  let link = document.querySelector(`link[data-preview-prefetch="${src}"]`);
+  if (link) return;
+  link = document.createElement("link");
+  link.rel = "prefetch";
+  link.as = "document";
+  link.href = src;
+  link.setAttribute("data-preview-prefetch", src);
+  document.head.appendChild(link);
+}
+
+function prefetchAllPortalPreviewsIdle() {
+  const schedule = () => {
+    PORTAL_PREVIEWS.forEach((item, index) => {
+      window.setTimeout(() => {
+        if (item?.href) prefetchPreviewHref(item.href);
+      }, index * 350);
+    });
+  };
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(schedule, { timeout: 5000 });
+  } else {
+    window.setTimeout(schedule, 1500);
+  }
 }
 
 async function showPreview(index, { force = false } = {}) {
@@ -233,6 +281,8 @@ async function showPreview(index, { force = false } = {}) {
     incoming.title = `${item.label} preview`;
     outgoing.classList.remove("is-active");
     scheduleFitPreviewScale();
+    const nextItem = PORTAL_PREVIEWS[(index + 1) % PORTAL_PREVIEWS.length];
+    if (nextItem?.href) prefetchPreviewHref(nextItem.href);
   } finally {
     setPreviewViewportLoading(false);
     setPreviewBusy(false);
@@ -330,7 +380,9 @@ function initPortalPreview() {
 
   if (a && PORTAL_PREVIEWS[0]) {
     a.classList.remove("is-active", "is-loaded");
+    if (PORTAL_PREVIEWS[1]?.href) prefetchPreviewHref(PORTAL_PREVIEWS[1].href);
     showPreview(0, { force: true }).then(() => {
+      prefetchAllPortalPreviewsIdle();
       startPreviewRotation();
     });
   } else {
