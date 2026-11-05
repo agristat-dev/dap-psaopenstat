@@ -12,7 +12,7 @@ try:
     from .fetch_livestock import RAW_DIR, TABLES
     from .geo import (
         build_geo_lookup,
-        ordered_unique,
+        geo_labels_in_source_order,
         parse_value,
         quarter_from_period,
         semester_from_quarter,
@@ -22,7 +22,7 @@ except ImportError:
     from fetch_livestock import RAW_DIR, TABLES
     from geo import (
         build_geo_lookup,
-        ordered_unique,
+        geo_labels_in_source_order,
         parse_value,
         quarter_from_period,
         semester_from_quarter,
@@ -112,12 +112,13 @@ def _long_row(year: int, quarter: int, crop_group: str, crop_subtype: str, regio
     }
 
 
-def observations_to_long(rows: list[dict[str, Any]]) -> list[dict]:
-    geo_by_label = build_geo_lookup(ordered_unique([r["geo_label"] for r in rows]))
-    quarterly: dict[tuple, dict] = {}
-    annual: dict[tuple, float | None] = {}
-    quarterly_coverage: set[tuple] = set()
-
+def _ingest_observations(
+    rows: list[dict[str, Any]],
+    geo_by_label: dict[str, dict[str, str]],
+    quarterly: dict[tuple, dict],
+    annual: dict[tuple, float | None],
+    quarterly_coverage: set[tuple],
+) -> None:
     for row in rows:
         crop = classify_crop(row.get("crop_label") or "", row.get("table_key") or "")
         if not crop:
@@ -150,6 +151,21 @@ def observations_to_long(rows: list[dict[str, Any]]) -> list[dict]:
             quarterly_coverage.add(coverage_key)
         else:
             annual[coverage_key] = value
+
+
+def observations_from_paths(csv_paths: list[Path]) -> list[dict]:
+    """Build long rows using PSA geography order from each source file."""
+    quarterly: dict[tuple, dict] = {}
+    annual: dict[tuple, float | None] = {}
+    quarterly_coverage: set[tuple] = set()
+
+    for path in csv_paths:
+        if not path.exists():
+            continue
+        key = path.name.replace("_obs.csv", "")
+        batch = _read_obs_csv(path, key)
+        geo_by_label = build_geo_lookup(geo_labels_in_source_order(path))
+        _ingest_observations(batch, geo_by_label, quarterly, annual, quarterly_coverage)
 
     combined = dict(quarterly)
     for coverage_key, value in annual.items():
@@ -296,13 +312,7 @@ def load_csv_rows(path: Path | None = None) -> list[dict]:
 
 def transform_from_csvs(csv_paths: list[Path] | None = None) -> list[dict]:
     paths = csv_paths or [RAW_DIR / f"{table.key}_obs.csv" for table in TABLES]
-    observations: list[dict[str, Any]] = []
-    for path in paths:
-        if not path.exists():
-            continue
-        key = path.name.replace("_obs.csv", "")
-        observations.extend(_read_obs_csv(path, key))
-    rows = observations_to_long(observations)
+    rows = observations_from_paths(paths)
     if not rows:
         raise RuntimeError("No livestock / poultry / dairy production rows were produced")
     write_sqlite(rows)

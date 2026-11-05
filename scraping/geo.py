@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import csv
 import re
+from pathlib import Path
 
 # Palay dashboard region ids. All other dashboards must resolve to these names.
 REGION_CANONICAL = {
@@ -209,6 +211,21 @@ def parse_value(raw) -> float | None:
     if text in {"", "..", "...", "-", "NA", "N/A"}:
         return None
     return float(text.replace(",", ""))
+
+
+def geo_labels_in_source_order(path: Path | str) -> list[str]:
+    """PSA row order from an observation CSV (region headers before provinces)."""
+    csv_path = Path(path)
+    labels: list[str] = []
+    seen: set[str] = set()
+    with csv_path.open(encoding="utf-8", newline="") as fh:
+        for row in csv.DictReader(fh):
+            label = row.get("geo_label") or ""
+            if label in seen:
+                continue
+            seen.add(label)
+            labels.append(label)
+    return labels
 
 
 def build_geo_lookup(labels: list[str]) -> dict[str, dict[str, str]]:

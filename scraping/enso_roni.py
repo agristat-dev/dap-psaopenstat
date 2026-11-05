@@ -373,19 +373,37 @@ def load_cached() -> dict[str, Any] | None:
 def get_enso(*, refresh_if_missing: bool = True) -> dict[str, Any]:
     cached = load_cached()
     if cached and isinstance(cached.get("quarters"), dict) and isinstance(cached.get("semesters"), dict):
-        return cached
-    if refresh_if_missing:
-        return refresh(force=True)
-    if cached:
-        return cached
-    return {
-        "source": RONI_URL,
-        "source_label": "NOAA CPC Relative Oceanic Niño Index (RONI)",
-        "years": {},
-        "quarters": {},
-        "semesters": {},
-        "message": "ENSO RONI cache missing",
-    }
+        payload = cached
+    elif refresh_if_missing:
+        payload = refresh(force=True)
+    elif cached:
+        payload = cached
+    else:
+        payload = {
+            "source": RONI_URL,
+            "source_label": "NOAA CPC Relative Oceanic Niño Index (RONI)",
+            "years": {},
+            "quarters": {},
+            "semesters": {},
+            "message": "ENSO RONI cache missing",
+        }
+    try:
+        try:
+            from . import enso_roni_outlook as outlook_mod
+        except ImportError:
+            import enso_roni_outlook as outlook_mod  # type: ignore[no-redef]
+
+        # Outlook is fetched live (not stored in the RONI JSON cache).
+        payload["outlook"] = outlook_mod.get_roni_outlook(refresh=True)
+    except Exception:
+        payload.setdefault(
+            "outlook",
+            {
+                "source": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/outlook/",
+                "quarters": {},
+            },
+        )
+    return payload
 
 
 def main() -> None:

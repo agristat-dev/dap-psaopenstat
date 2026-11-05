@@ -9,6 +9,7 @@
   "rewrites": [
     { "source": "/dashboards", "destination": "/dashboards/index.html" },
     { "source": "/portal", "destination": "/index.html" },
+    { "source": "/browse", "destination": "/browse.html" },
     { "source": "/dashboards/palay", "destination": "/dashboards/palay.html" },
     { "source": "/dashboards/corn", "destination": "/dashboards/corn.html" },
     { "source": "/dashboards/fruits", "destination": "/dashboards/fruits.html" },

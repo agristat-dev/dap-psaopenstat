@@ -83,6 +83,21 @@ Double-click `run_dashboard.bat`. Open [http://127.0.0.1:8765](http://127.0.0.1:
 
 The first start will try the API. If CSV backups are already present, dashboards load immediately from those files.
 
+## Render cold starts
+
+On Render’s free/starter tier, the web service **sleeps after about 15 minutes** with no traffic. The first request after that wakes the container and can take **30–90+ seconds** (boot + loading SQLite from disk).
+
+Mitigations used in this project:
+
+| Approach | What it does |
+| --- | --- |
+| **`GET /api/ping`** | Tiny endpoint (no DB) for keep-alive and browser warm-up |
+| **`api-hints.js`** | On the Vercel site, preconnects and fires `/api/ping` as soon as a page loads |
+| **GitHub Action** | [`.github/workflows/render-keep-alive.yml`](.github/workflows/render-keep-alive.yml) pings every 14 minutes (enable Actions on the repo). Optional repo variable **`RENDER_API_URL`** overrides the default `https://dap-psaopenstat.onrender.com`. |
+| **Paid Render plan** | Always-on instance — best fix for production; keep-alive is a workaround, not a guarantee. |
+
+External monitors (UptimeRobot, Better Stack, etc.) can hit `/api/ping` on the same schedule if you prefer not to use GitHub Actions.
+
 ## Refresh
 
 `POST /api/refresh` (or `python -m scraping.pipeline`) pulls the latest tables from OpenSTAT and rewrites the CSV backups. Farmgate tables are always re-downloaded on refresh (no stale CSV skip). `GET /api/health` reports whether each dataset is ready and the last refresh state.

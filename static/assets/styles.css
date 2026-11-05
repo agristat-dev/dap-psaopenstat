@@ -131,6 +131,7 @@ select {
   outline-offset: 2px;
 }
 
+html.modal-open,
 body.modal-open {
   overflow: hidden;
 }
@@ -142,6 +143,11 @@ body.modal-open {
   display: grid;
   place-items: center;
   padding: var(--space-4);
+}
+
+.app-modal.app-modal-preliminary {
+  z-index: 10050;
+  -webkit-overflow-scrolling: touch;
 }
 
 .app-modal[hidden] {
@@ -1045,6 +1051,18 @@ body.modal-open {
   display: inline-flex;
 }
 
+.menu-toggle svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.menu-toggle[aria-expanded="true"] {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-nav-border-hover);
+}
+
 .menu-toggle-icon {
   display: block;
   width: 18px;
@@ -1682,13 +1700,13 @@ body.modal-open {
   border-radius: var(--radius-sm);
   background: #fff;
   box-shadow: 0 12px 28px rgba(12, 26, 98, 0.14);
-  max-height: 220px;
+  max-height: 240px;
   overflow: auto;
   animation: multiSelectIn 0.14s ease;
 }
 
 .multi-select-panel-tall {
-  max-height: min(280px, 42vh);
+  max-height: min(300px, 44vh);
 }
 
 .multi-select-drop-up .multi-select-panel {
@@ -4566,6 +4584,14 @@ body.farmgate-page.is-farmgate-analysis .score-group-compare .score-meta {
   overflow: auto;
 }
 
+.chart-expand-toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
 .chart-expand-toolbar {
   display: inline-flex;
   align-items: center;
@@ -4575,6 +4601,7 @@ body.farmgate-page.is-farmgate-analysis .score-group-compare .score-meta {
   border-radius: 8px;
   background: #f4f8f4;
   width: fit-content;
+  flex: 0 0 auto;
 }
 
 .chart-expand-grain-btn {
@@ -4600,6 +4627,152 @@ body.farmgate-page.is-farmgate-analysis .score-group-compare .score-meta {
   box-shadow: 0 1px 2px rgba(26, 46, 26, 0.12);
 }
 
+.chart-expand-toolbar-sep {
+  width: 1px;
+  height: 22px;
+  margin: 0 4px;
+  background: #c5d5c5;
+}
+
+.chart-expand-forecast-btn.is-active {
+  background: #fff8eb;
+  color: #8a5a08;
+  box-shadow: 0 1px 2px rgba(138, 90, 8, 0.12);
+}
+
+.chart-expand-forecast-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin: 0;
+  margin-left: auto;
+  flex: 0 1 auto;
+}
+
+.chart-expand-forecast-method-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #3f5340;
+}
+
+.chart-expand-forecast-method {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #c5d5c5;
+  border-radius: 6px;
+  background: #fff;
+  color: #06402b;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  max-width: min(100%, 280px);
+}
+
+.chart-expand-forecast-note[hidden],
+.chart-expand-forecast-warnings[hidden],
+.chart-expand-forecast-options[hidden],
+.chart-expand-forecast-analysis-label[hidden],
+.chart-expand-forecast-analysis[hidden] {
+  display: none !important;
+}
+
+.chart-expand-forecast-note {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0 0 8px;
+  padding: 10px 12px;
+  border: 1px solid #d5e3d5;
+  border-radius: 8px;
+  background: #f7fbf7;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #3f5340;
+}
+
+.chart-expand-forecast-note-kicker {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #06402b;
+}
+
+.chart-expand-forecast-note-disclaimer {
+  font-size: 0.72rem;
+  color: #6b7d6c;
+}
+
+.chart-expand-forecast-note-method {
+  color: #3f5340;
+}
+
+.chart-expand-forecast-note-method strong {
+  font-weight: 700;
+  color: #06402b;
+}
+
+.chart-expand-forecast-note-enso {
+  font-size: 0.72rem;
+  color: #5f735f;
+  padding-top: 2px;
+  border-top: 1px solid #e2ece2;
+}
+
+.chart-expand-forecast-analysis-label {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #dde8dd;
+}
+
+.chart-expand-forecast-analysis {
+  margin-top: 6px;
+}
+
+.chart-expand-forecast-warnings {
+  margin: 0 0 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #e8c89a;
+  background: #fff8eb;
+  color: #7a4e08;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.chart-expand-canvas-wrap {
+  position: relative;
+}
+
+.chart-expand-canvas-wrap.is-loading::after {
+  content: "Computing forecast…";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244, 248, 244, 0.82);
+  color: #3f5340;
+  font-size: 0.82rem;
+  font-weight: 600;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+.chart-expand-footer {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #d4e3d4;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 0 0 auto;
+}
+
+.chart-expand-enso {
+  padding-bottom: 0;
+}
+
 .chart-expand-canvas-wrap {
   height: clamp(320px, 46vh, 520px);
   min-height: 300px;
@@ -4610,10 +4783,6 @@ body.farmgate-page.is-farmgate-analysis .score-group-compare .score-meta {
 .chart-expand-analysis {
   margin: 0;
   flex: 0 0 auto;
-}
-
-.chart-expand-enso {
-  margin: 0;
 }
 
 .metric-select {

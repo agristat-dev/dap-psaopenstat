@@ -239,13 +239,9 @@ def check_livestock() -> CheckResult:
     if missing:
         result.fail(f"missing raw: {[p.name for p in missing[:5]]}")
         return result
-    from scraping.reshape_livestock import _read_obs_csv, observations_to_long
+    from scraping.reshape_livestock import observations_from_paths
 
-    observations: list[dict[str, Any]] = []
-    for path in paths:
-        key = path.name.replace("_obs.csv", "")
-        observations.extend(_read_obs_csv(path, key))
-    rebuilt = observations_to_long(observations)
+    rebuilt = observations_from_paths(paths)
     _compare_long_tables(
         result,
         rebuilt=rebuilt,

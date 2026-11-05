@@ -150,6 +150,7 @@ function resolveDashboardConfig() {
       defaultCrops: "all",
       chartSeriesLimit: 12,
       subtypes: [],
+      previewCommodity: "Tilapia",
     };
   }
   if (path.includes("/fisheries")) {
@@ -211,6 +212,7 @@ function resolveDashboardConfig() {
       defaultCrops: "all",
       chartSeriesLimit: 12,
       subtypes: [],
+      previewCommodity: "Sitao [Stringbeans]",
     };
   }
   if (path.includes("/farmgate-livestock")) {
@@ -252,6 +254,7 @@ function resolveDashboardConfig() {
       defaultCrops: "all",
       chartSeriesLimit: 12,
       subtypes: [],
+      previewCommodity: "Hog for Slaughter",
     };
   }
   if (path.includes("/livestock")) {
@@ -379,6 +382,21 @@ function isPreviewEmbed() {
 
 const PREVIEW_EMBED = isPreviewEmbed();
 let previewReadySignaled = false;
+
+function previewCommodityName() {
+  try {
+    const fromUrl = new URLSearchParams(window.location.search).get("commodity");
+    if (fromUrl?.trim()) return fromUrl.trim();
+  } catch {
+    /* ignore */
+  }
+  const configured = CONFIG.previewCommodity;
+  return typeof configured === "string" && configured.trim() ? configured.trim() : "";
+}
+
+function shouldDeferPreviewReadyForFarmgateOverview() {
+  return PREVIEW_EMBED && hasCommodityBoard() && previewCommodityName() && !selectedFarmgateCommodity;
+}
 
 function signalPreviewReady() {
   if (!PREVIEW_EMBED || previewReadySignaled) return;
@@ -683,6 +701,20 @@ function ecosystemChartColors() {
   );
 }
 
+function withAlpha(color, alpha) {
+  const c = String(color || "").trim();
+  if (c.startsWith("rgba(")) return c;
+  const rgb = c.match(/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+  if (rgb) return `rgba(${rgb[1]}, ${rgb[2]}, ${rgb[3]}, ${alpha})`;
+  let hex = c.startsWith("#") ? c.slice(1) : c;
+  if (hex.length === 3) hex = hex.split("").map((ch) => ch + ch).join("");
+  if (/^[0-9a-f]{6}$/i.test(hex)) {
+    const n = parseInt(hex, 16);
+    return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
+  }
+  return color;
+}
+
 const els = {
   yearFrom: document.getElementById("yearFrom"),
   yearTo: document.getElementById("yearTo"),
@@ -754,8 +786,83 @@ let yieldTrendChart;
 let ensoByYear = null;
 let ensoByQuarter = null;
 let ensoBySemester = null;
+let ensoOutlookByQuarter = null;
 let chartExpandModalChart = null;
 let chartExpandPaintSeq = 0;
+let chartExpandShowForecast = false;
+let chartExpandForecastMethod = "seasonal_naive";
+let chartExpandLastForecastWarnings = [];
+let chartExpandLastForecastSnapshot = null;
+
+/** Statistical projection window shown in expanded production trend (quarterly). */
+const CHART_EXPAND_FORECAST_HORIZONS = [
+  { year: 2026, quarter: 4 },
+  { year: 2027, quarter: 1 },
+  { year: 2027, quarter: 2 },
+  { year: 2027, quarter: 3 },
+  { year: 2027, quarter: 4 },
+];
+
+const CHART_EXPAND_FORECAST_METHODS = [
+  {
+    value: "seasonal_naive",
+    label: "Seasonal naive",
+    short: "same quarter baseline + ENSO",
+    methodBlurb:
+      "Each quarter is projected from the latest same-calendar-quarter value under your filters, chaining earlier outlook quarters when PSA has not published that period yet.",
+  },
+  {
+    value: "ets",
+    label: "Exponential smoothing",
+    short: "Holt-Winters ETS + ENSO",
+    methodBlurb:
+      "The statistical baseline comes from Holt–Winters exponential smoothing on your filtered quarterly history (computed on the server).",
+  },
+  {
+    value: "arima",
+    label: "ARIMA",
+    short: "seasonal ARIMA + ENSO",
+    methodBlurb:
+      "The statistical baseline comes from a seasonal ARIMA model on your filtered quarterly history (computed on the server).",
+  },
+];
+
+function normalizeChartExpandForecastMethod(value) {
+  const key = String(value || "").trim();
+  return CHART_EXPAND_FORECAST_METHODS.some((m) => m.value === key)
+    ? key
+    : CHART_EXPAND_FORECAST_METHODS[0].value;
+}
+
+function chartExpandForecastMethodMeta(value = chartExpandForecastMethod) {
+  const normalized = normalizeChartExpandForecastMethod(value);
+  return (
+    CHART_EXPAND_FORECAST_METHODS.find((m) => m.value === normalized) ||
+    CHART_EXPAND_FORECAST_METHODS[0]
+  );
+}
+
+function chartExpandForecastDisclaimerText(meta = chartExpandForecastMethodMeta()) {
+  const method = meta?.label || "Seasonal naive";
+  const blurb = meta?.methodBlurb || meta?.short || "";
+  return (
+    `Exploratory outlook for Q4 2026–Q4 2027. Not an official PSA forecast. ` +
+    `${method}: ${blurb} ` +
+    `El Niño and La Niña adjustments follow NOAA CPC RONI on your current filters (±25% cap).`
+  );
+}
+
+function renderChartExpandForecastNote(noteEl, meta = chartExpandForecastMethodMeta()) {
+  if (!noteEl) return;
+  const method = escapeHtml(meta?.label || "Seasonal naive");
+  const blurb = escapeHtml(meta?.methodBlurb || meta?.short || "");
+  noteEl.innerHTML =
+    '<span class="chart-expand-forecast-note-kicker">Exploratory outlook · Q4 2026–Q4 2027</span>' +
+    '<span class="chart-expand-forecast-note-disclaimer">Not an official PSA forecast.</span>' +
+    `<span class="chart-expand-forecast-note-method"><strong>${method}.</strong> ${blurb}</span>` +
+    '<span class="chart-expand-forecast-note-enso">El Niño and La Niña adjustments use the NOAA CPC RONI outlook on your current filters (±25% cap).</span>';
+}
+
 let ensoSourceLabel = "";
 let ecosystemTrendChart;
 let pollTimer;
@@ -1514,19 +1621,44 @@ async function refreshFarmgateOverview() {
   }));
   renderFarmgateBoard();
   farmgateOverviewReady = true;
-  signalPreviewReady();
+  if (!shouldDeferPreviewReadyForFarmgateOverview()) {
+    signalPreviewReady();
+  }
 }
 
-function selectFarmgateCommodity(name) {
+function selectFarmgateCommodity(name, { scheduleRefresh = true } = {}) {
   const item = farmgateBoardItems.find((row) => row.name === name) || { name, family: farmgateFamilyFor(name) };
   selectedFarmgateCommodity = name;
   selectedFarmgateItem = item;
   setFarmgateView("analysis");
   renderFarmgateHero(item);
   renderFarmgateAnalysisScores(item);
-  requestAnimationFrame(() => {
-    refreshDashboard().catch((err) => console.error("Dashboard refresh failed:", err));
-  });
+  if (scheduleRefresh) {
+    requestAnimationFrame(() => {
+      refreshDashboard().catch((err) => console.error("Dashboard refresh failed:", err));
+    });
+  }
+}
+
+function resolvePreviewFarmgateCommodity() {
+  const target = previewCommodityName();
+  if (!target || !farmgateBoardItems.length) return null;
+  return (
+    farmgateBoardItems.find((row) => row.name === target) ||
+    farmgateBoardItems.find((row) => row.name.toLowerCase().includes(target.toLowerCase())) ||
+    null
+  );
+}
+
+async function openPreviewFarmgateCommodityIfNeeded() {
+  if (!PREVIEW_EMBED || !hasCommodityBoard() || selectedFarmgateCommodity) return;
+  const pick = resolvePreviewFarmgateCommodity();
+  if (!pick) {
+    signalPreviewReady();
+    return;
+  }
+  selectFarmgateCommodity(pick.name, { scheduleRefresh: false });
+  await refreshDashboard();
 }
 
 function clearFarmgateCommodity() {
@@ -5129,7 +5261,7 @@ function drawBarExtremumEmphasis(ctx, chartArea, bar, { rgb, caption, valueIsPos
 const ensoBandsPlugin = {
   id: "ensoBands",
   beforeDatasetsDraw(chart, _args, options) {
-    const opts = options || chart.options?.plugins?.ensoBands;
+    const opts = chart.options?.plugins?.ensoBands || options;
     if (!opts?.enabled) return;
     const grain = opts.grain || "year";
     const byYear = opts.byYear || {};
@@ -5336,7 +5468,12 @@ function formatEnsoPhaseDetail(enso) {
     enso.peak_roni != null
       ? ` · RONI ${enso.peak_roni > 0 ? "+" : ""}${enso.peak_roni}°C`
       : "";
-  return `${phase}${intensityText}${peak}`;
+  const outlookTag = enso.outlook
+    ? enso.outlook_extrapolated
+      ? " · NOAA CPC RONI outlook (extended)"
+      : " · NOAA CPC RONI outlook (50%)"
+    : "";
+  return `${phase}${intensityText}${peak}${outlookTag}`;
 }
 
 function ensoYearTooltipTitle(year, extras = []) {
@@ -5357,14 +5494,60 @@ function ensoPeriodMapForGrain(grain) {
   return {};
 }
 
-function applyEnsoBands(chart, grain = "year", { labelKeys = null } = {}) {
+function buildEnsoOutlookPeriodMap(grain, forecastRows, labelKeys = null) {
+  const map = { ...(ensoPeriodMapForGrain(grain) || {}) };
+  if (!chartExpandShowForecast || !ensoOutlookByQuarter) return map;
+  const keys = new Set();
+  for (const row of forecastRows || []) {
+    if (!row?.isForecast) continue;
+    if (grain === "quarter") {
+      const q = row.period ?? row.quarter;
+      if (q != null) keys.add(`${row.year}-Q${q}`);
+    } else if (grain === "semester") {
+      keys.add(`${row.year}-S${row.period}`);
+      for (const q of QUARTERS_BY_SEMESTER[row.period] || []) {
+        const outlook = ensoOutlookByQuarter[`${row.year}-Q${q}`];
+        if (outlook?.phase) {
+          map[`${row.year}-S${row.period}`] = { ...outlook, outlook: true };
+        }
+      }
+    }
+  }
+  if (grain !== "quarter") {
+    return map;
+  }
+  if (Array.isArray(labelKeys)) {
+    const start =
+      forecastRows?.length && labelKeys.length >= forecastRows.length
+        ? labelKeys.length - forecastRows.length
+        : -1;
+    if (start >= 0) {
+      for (let i = start; i < labelKeys.length; i += 1) {
+        const key = String(labelKeys[i] || "");
+        if (key) keys.add(key);
+      }
+    }
+  }
+  for (const key of keys) {
+    const outlook = ensoOutlookByQuarter[key];
+    if (outlook?.phase) map[key] = { ...outlook, outlook: true };
+  }
+  return map;
+}
+
+function applyEnsoBands(
+  chart,
+  grain = "year",
+  { labelKeys = null, byPeriod = null, byYear = null } = {}
+) {
   if (!chart?.options?.plugins) return;
-  const enabled = wantsEnsoOverlay() && ensoByYear && Object.keys(ensoByYear).length > 0;
+  const baseYears = byYear || ensoByYear || {};
+  const enabled = wantsEnsoOverlay() && Object.keys(baseYears).length > 0;
   chart.options.plugins.ensoBands = {
     enabled,
     grain: grain || "year",
-    byYear: enabled ? ensoByYear : {},
-    byPeriod: enabled ? ensoPeriodMapForGrain(grain) : {},
+    byYear: enabled ? baseYears : {},
+    byPeriod: enabled ? byPeriod || ensoPeriodMapForGrain(grain) : {},
     labelKeys: Array.isArray(labelKeys) ? labelKeys : null,
   };
 }
@@ -5400,9 +5583,15 @@ function ensoLegendHtml({ compact = false } = {}) {
   );
 }
 
+function pruneChartExpandEnsoLegends(modal = document.getElementById("chartExpandModal")) {
+  if (!modal) return;
+  modal.querySelectorAll(".enso-legend:not(.chart-expand-enso)").forEach((el) => el.remove());
+}
+
 function ensureEnsoLegend() {
   if (!wantsEnsoOverlay()) return;
   document.querySelectorAll(".chart-box-trend, .chart-box-growth").forEach((box) => {
+    if (box.closest("#chartExpandModal")) return;
     const panel = box.parentElement;
     if (!panel) return;
     let legend = panel.querySelector(".enso-legend:not(.chart-expand-enso)");
@@ -5537,21 +5726,36 @@ function bindEnsoGuideTriggers(root = document) {
   });
 }
 
-async function loadEnso() {
+let ensoLoadPromise = null;
+
+async function loadEnso({ force = false } = {}) {
   if (!wantsEnsoOverlay()) return;
-  try {
-    const data = await api("/api/enso");
-    ensoByYear = data?.years || {};
-    ensoByQuarter = data?.quarters || {};
-    ensoBySemester = data?.semesters || {};
-    ensoSourceLabel = data?.source_label || "NOAA CPC RONI";
-    ensureEnsoLegend();
-  } catch (err) {
-    console.warn("ENSO overlay unavailable:", err);
-    ensoByYear = {};
-    ensoByQuarter = {};
-    ensoBySemester = {};
-  }
+  const hasCore = ensoByYear && Object.keys(ensoByYear).length > 0;
+  const hasOutlook = ensoOutlookByQuarter && Object.keys(ensoOutlookByQuarter).length > 0;
+  if (!force && hasCore && hasOutlook) return;
+  if (!force && ensoLoadPromise) return ensoLoadPromise;
+
+  ensoLoadPromise = (async () => {
+    try {
+      const data = await api("/api/enso");
+      ensoByYear = data?.years || {};
+      ensoByQuarter = data?.quarters || {};
+      ensoBySemester = data?.semesters || {};
+      ensoOutlookByQuarter = data?.outlook?.quarters || {};
+      ensoSourceLabel = data?.source_label || "NOAA CPC RONI";
+      ensureEnsoLegend();
+      pruneChartExpandEnsoLegends();
+    } catch (err) {
+      console.warn("ENSO overlay unavailable:", err);
+      ensoByYear = {};
+      ensoByQuarter = {};
+      ensoBySemester = {};
+      ensoOutlookByQuarter = {};
+    } finally {
+      ensoLoadPromise = null;
+    }
+  })();
+  return ensoLoadPromise;
 }
 
 const progressiveLineRevealPlugin = {
@@ -9221,6 +9425,1211 @@ function bindSmartAnalysis() {
   });
 }
 
+function chartExpandSupportsProductionForecast(kind) {
+  return (
+    (kind === "trend" || kind === "ecosystem" || kind === "yield") &&
+    !isPriceMode() &&
+    CONFIG.showAreaYield !== false
+  );
+}
+
+function chartExpandForecastGrainSupported(grain) {
+  return grain === "year" || grain === "quarter" || grain === "semester";
+}
+
+function chartExpandForecastActive(kind, grain) {
+  return (
+    chartExpandShowForecast &&
+    chartExpandSupportsProductionForecast(kind) &&
+    chartExpandForecastGrainSupported(grain)
+  );
+}
+
+function chartExpandForecastRangeLabel(grain) {
+  if (grain === "year") return "2026–2027";
+  if (grain === "semester") return "S2 2026–S2 2027";
+  return "Q4 2026–Q4 2027";
+}
+
+function chartExpandPeriodIsBefore(a, b) {
+  if (a.year !== b.year) return a.year < b.year;
+  return a.quarter < b.quarter;
+}
+
+function chartExpandDatasetIsForecast(dataset) {
+  return /forecast/i.test(String(dataset?.label || ""));
+}
+
+function ensoMetaForForecastQuarter(year, quarter) {
+  const key = `${year}-Q${quarter}`;
+  if (ensoOutlookByQuarter?.[key]?.phase) {
+    return { ...ensoOutlookByQuarter[key], outlook: true };
+  }
+  return ensoByQuarter?.[key] || null;
+}
+
+function summarizeEnsoMetasForYear(metas) {
+  if (!metas?.length) return null;
+  let hasEl = false;
+  let hasLa = false;
+  let elPeak = null;
+  let laPeak = null;
+  let elIntensity = null;
+  let laIntensity = null;
+  let anyOutlook = false;
+  for (const m of metas) {
+    if (!m?.phase || m.phase === "neutral") continue;
+    if (m.outlook) anyOutlook = true;
+    const peak = m.peak_roni;
+    if (m.phase === "el_nino") {
+      hasEl = true;
+      if (peak != null && (elPeak == null || peak > elPeak)) {
+        elPeak = peak;
+        elIntensity = m.intensity;
+      }
+    } else if (m.phase === "la_nina") {
+      hasLa = true;
+      if (peak != null && (laPeak == null || peak < laPeak)) {
+        laPeak = peak;
+        laIntensity = m.intensity;
+      }
+    }
+  }
+  if (hasEl && hasLa) {
+    return {
+      phase: "both",
+      outlook: anyOutlook,
+      el_nino_peak_roni: elPeak,
+      la_nina_peak_roni: laPeak,
+      el_nino_intensity: elIntensity,
+      la_nina_intensity: laIntensity,
+      intensity: elIntensity,
+      peak_roni: elPeak,
+    };
+  }
+  if (hasEl) {
+    return {
+      phase: "el_nino",
+      peak_roni: elPeak,
+      intensity: elIntensity || ensoIntensityFromRoni(elPeak),
+      outlook: anyOutlook,
+    };
+  }
+  if (hasLa) {
+    return {
+      phase: "la_nina",
+      peak_roni: laPeak,
+      intensity: laIntensity || ensoIntensityFromRoni(laPeak),
+      outlook: anyOutlook,
+    };
+  }
+  return null;
+}
+
+/** RONI outlook summary for a forecast calendar year (outlook quarters + forecast horizons). */
+function ensoMetaForForecastYear(year) {
+  const y = Number(year);
+  if (!Number.isFinite(y)) return null;
+  const metas = [];
+  const seen = new Set();
+  for (const key of Object.keys(ensoOutlookByQuarter || {})) {
+    if (!key.startsWith(`${y}-Q`)) continue;
+    seen.add(key);
+    const meta = ensoOutlookByQuarter[key];
+    if (meta?.phase) metas.push({ ...meta, outlook: true });
+  }
+  for (const h of CHART_EXPAND_FORECAST_HORIZONS) {
+    if (h.year !== y) continue;
+    const key = `${h.year}-Q${h.quarter}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const meta = ensoMetaForForecastQuarter(h.year, h.quarter);
+    if (meta?.phase && meta.phase !== "neutral") metas.push(meta);
+  }
+  return summarizeEnsoMetasForYear(metas);
+}
+
+function buildEnsoOutlookYearOverrides(forecastRows) {
+  const map = {};
+  if (!chartExpandShowForecast) return map;
+  for (const row of forecastRows || []) {
+    const y = Number(row.year);
+    if (!Number.isFinite(y)) continue;
+    const meta = ensoMetaForForecastYear(y);
+    if (meta?.phase) map[String(y)] = meta;
+  }
+  return map;
+}
+
+const ENSO_FORECAST_INTENSITY_WEIGHT = {
+  weak: 0.35,
+  moderate: 0.55,
+  strong: 0.75,
+  very_strong: 0.9,
+};
+
+function buildEnsoMetricPhaseRatios(historicalRows, metricKey, quarter = null) {
+  const buckets = { el_nino: [], la_nina: [], neutral: [] };
+  const scoped =
+    quarter != null
+      ? historicalRows.filter((r) => r.quarter === quarter)
+      : historicalRows;
+  for (const row of scoped) {
+    const value = row[metricKey];
+    if (!Number.isFinite(value)) continue;
+    const phase = ensoByQuarter?.[`${row.year}-Q${row.quarter}`]?.phase || "neutral";
+    if (phase === "el_nino") buckets.el_nino.push(value);
+    else if (phase === "la_nina") buckets.la_nina.push(value);
+    else buckets.neutral.push(value);
+  }
+  const allValues = scoped.map((r) => r[metricKey]).filter((v) => Number.isFinite(v));
+  const reference = avgFinite(buckets.neutral) ?? avgFinite(allValues);
+  return {
+    reference,
+    nino: avgFinite(buckets.el_nino),
+    nina: avgFinite(buckets.la_nina),
+    sampleQuarter: quarter,
+  };
+}
+
+function ensoForecastMultiplier(phase, intensity, peakRoni, ratios) {
+  if (!phase || phase === "neutral" || phase === "both") return 1;
+  const ref = ratios?.reference;
+  if (!ref || ref <= 0) return 1;
+  const phaseAvg = phase === "el_nino" ? ratios.nino : phase === "la_nina" ? ratios.nina : null;
+  if (phaseAvg == null || !Number.isFinite(phaseAvg)) return 1;
+  const rawRatio = phaseAvg / ref;
+  const intensityKey =
+    intensity || ensoIntensityFromRoni(peakRoni) || "moderate";
+  const weight = ENSO_FORECAST_INTENSITY_WEIGHT[intensityKey] ?? 0.5;
+  const adjusted = 1 + weight * (rawRatio - 1);
+  return Math.max(0.75, Math.min(1.25, adjusted));
+}
+
+function applyEnsoToQuarterlyProjection(projected, horizon, historicalRows, metricKey) {
+  if (projected == null || !Number.isFinite(projected)) {
+    return { projected, ensoMultiplier: 1, ensoNote: "" };
+  }
+  const enso = ensoMetaForForecastQuarter(horizon.year, horizon.quarter);
+  if (!enso?.phase || enso.phase === "neutral" || enso.phase === "both") {
+    return { projected, ensoMultiplier: 1, ensoNote: "" };
+  }
+  let ratios = buildEnsoMetricPhaseRatios(historicalRows, metricKey, horizon.quarter);
+  if (ratios.nino == null && ratios.nina == null) {
+    ratios = buildEnsoMetricPhaseRatios(historicalRows, metricKey, null);
+  }
+  const ensoMultiplier = ensoForecastMultiplier(
+    enso.phase,
+    enso.intensity,
+    enso.peak_roni,
+    ratios
+  );
+  if (Math.abs(ensoMultiplier - 1) < 0.005) {
+    return { projected, ensoMultiplier: 1, ensoNote: "" };
+  }
+  let adjusted = projected * ensoMultiplier;
+  if (adjusted < 0) adjusted = 0;
+  const phaseLabel = ensoPhaseLabel(enso.phase);
+  const ensoNote = ` ENSO factor ×${ensoMultiplier.toFixed(2)} for ${phaseLabel} (same-quarter history vs neutral baseline).`;
+  return { projected: adjusted, ensoMultiplier, ensoNote };
+}
+
+function ensureChartExpandFooter(modal) {
+  const body = modal?.querySelector(".chart-expand-body");
+  if (!body) return null;
+  modal.querySelector("#chartExpandForecastMethodology")?.remove();
+  let footer = body.querySelector(".chart-expand-footer");
+  if (!footer) {
+    footer = document.createElement("div");
+    footer.className = "chart-expand-footer";
+    body.appendChild(footer);
+  }
+  const legend = modal.querySelector("#chartExpandEnsoLegend");
+  if (legend && legend.parentElement !== footer) footer.appendChild(legend);
+  return footer;
+}
+
+function normalizeServerForecastHorizons(horizons) {
+  const byKey = new Map();
+  for (const h of horizons || []) {
+    if (h?.year != null && h?.quarter != null) {
+      byKey.set(`${h.year}-Q${h.quarter}`, h);
+    }
+  }
+  return CHART_EXPAND_FORECAST_HORIZONS.map((target) => {
+    const hit = byKey.get(`${target.year}-Q${target.quarter}`);
+    return (
+      hit || {
+        year: target.year,
+        quarter: target.quarter,
+        volume_mt: null,
+        area_ha: null,
+        skipped: false,
+        volume_skipped: false,
+        area_skipped: false,
+      }
+    );
+  });
+}
+
+function formatForecastWarningText(warning) {
+  return String(warning || "")
+    .replace(/\bvolume_mt\b/g, "production volume")
+    .replace(/\barea_ha\b/g, "area harvested");
+}
+
+function setChartExpandForecastLoading(modal, loading) {
+  const wrap = modal?.querySelector(".chart-expand-canvas-wrap");
+  if (!wrap) return;
+  wrap.classList.toggle("is-loading", Boolean(loading));
+  wrap.setAttribute("aria-busy", loading ? "true" : "false");
+}
+
+function ensureChartExpandForecastWarnings(modal) {
+  if (!modal) return null;
+  let el = modal.querySelector("#chartExpandForecastWarnings");
+  if (!el) {
+    const note = modal.querySelector("#chartExpandForecastNote");
+    el = document.createElement("p");
+    el.id = "chartExpandForecastWarnings";
+    el.className = "chart-expand-forecast-warnings";
+    el.hidden = true;
+    if (note?.parentNode) note.parentNode.insertBefore(el, note.nextSibling);
+    else modal.querySelector(".chart-expand-body")?.appendChild(el);
+  }
+  return el;
+}
+
+function refreshChartExpandForecastPresentation(modal, kind, grain) {
+  syncChartExpandForecastChrome(modal, kind);
+  const sub = modal?.querySelector("#chartExpandSub");
+  const legend = modal?.querySelector("#chartExpandEnsoLegend");
+  const warningsEl = ensureChartExpandForecastWarnings(modal);
+
+  if (!chartExpandForecastActive(kind, grain)) {
+    if (warningsEl) warningsEl.hidden = true;
+    return;
+  }
+
+  const methodMeta = chartExpandForecastMethodMeta();
+  const grainLabel =
+    grain === "year" ? "Annual" : grain === "semester" ? "Semester" : "Quarterly";
+  if (sub) {
+    sub.textContent = `${grainLabel} forecast (${chartExpandForecastRangeLabel(grain)}): ${methodMeta.label} with NOAA RONI El Niño / La Niña adjustment.`;
+  }
+
+  if (warningsEl) {
+    const lines = (chartExpandLastForecastWarnings || []).map(formatForecastWarningText).filter(Boolean);
+    if (lines.length) {
+      warningsEl.hidden = false;
+      warningsEl.textContent = lines.slice(0, 3).join(" ");
+    } else {
+      warningsEl.hidden = true;
+      warningsEl.textContent = "";
+    }
+  }
+
+  if (legend) {
+    let legendHtml = ensoLegendHtml({ compact: true });
+    if (ensoOutlookByQuarter && Object.keys(ensoOutlookByQuarter).length) {
+      legendHtml +=
+        '<p class="enso-legend-note">Forecast shading uses NOAA CPC ' +
+        '<a href="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/outlook/" target="_blank" rel="noopener noreferrer">RONI outlook</a> ' +
+        "for projected 2026–2027 bars (not the observed calendar-year phase). " +
+        "Without forecast, each year uses observed RONI episode rules—for example 2026 is La Niña from early-year conditions, " +
+        "while the outlook window is El Niño. " +
+        `${methodMeta.label}: ${methodMeta.methodBlurb || methodMeta.short}</p>`;
+    } else {
+      legendHtml +=
+        '<p class="enso-legend-note">RONI outlook did not load — ENSO adjustment may be limited until <code>/api/enso</code> includes outlook data.</p>';
+    }
+    legend.innerHTML = legendHtml;
+    bindEnsoGuideTriggers(legend);
+  }
+}
+
+function serverHorizonToPeriod(h, historicalRows, metricKey, metricLabel) {
+  const horizon = { year: h.year, quarter: h.quarter };
+  const skipped = Boolean(metricKey === "volume_mt" ? h.volume_skipped : h.area_skipped);
+  let projected = skipped ? null : h[metricKey];
+  if (projected != null && Number.isFinite(Number(projected)) && wantsEnsoOverlay()) {
+    projected = applyEnsoToQuarterlyProjection(
+      Number(projected),
+      horizon,
+      historicalRows,
+      metricKey
+    ).projected;
+  }
+  return {
+    horizon,
+    fullLabel: `Q${h.quarter} ${h.year}`,
+    quarterLabel: `Q${h.quarter}`,
+    skipped,
+    metricLabel,
+    metricKey,
+    projected,
+    methodNote: chartExpandForecastMethodMeta().short,
+  };
+}
+
+function forecastQuarterlyApiParams(method, cropSubtype = null) {
+  const params = { ...commonParams(), method };
+  if (cropSubtype) {
+    params.crop_subtype = [cropSubtype];
+  }
+  return params;
+}
+
+async function fetchServerForecastPeriods(historicalRows, method, { cropSubtype = null } = {}) {
+  const data = await api(
+    `/api/forecast/quarterly?${qs(forecastQuarterlyApiParams(method, cropSubtype))}`
+  );
+  chartExpandLastForecastWarnings = Array.isArray(data?.warnings) ? data.warnings : [];
+  const horizons = normalizeServerForecastHorizons(data?.horizons || []);
+  const volumePeriods = horizons.map((h) =>
+    serverHorizonToPeriod(h, historicalRows, "volume_mt", "Production volume")
+  );
+  const areaPeriods = horizons.map((h) =>
+    serverHorizonToPeriod(h, historicalRows, "area_ha", "Area harvested")
+  );
+  return { volumePeriods, areaPeriods };
+}
+
+async function buildQuarterlyProductionForecast(
+  quarterlyPoints,
+  { cropSubtype = null, updateGlobalSnapshot = true } = {}
+) {
+  const scopedPoints = cropSubtype
+    ? (quarterlyPoints || []).filter((p) => p.crop_subtype === cropSubtype)
+    : quarterlyPoints || [];
+  const historicalRows = scopedPoints
+    .map((p) => ({
+      year: Number(p.year),
+      quarter: Number(p.quarter),
+      volume_mt: p.volume_mt != null && !Number.isNaN(Number(p.volume_mt)) ? Number(p.volume_mt) : null,
+      area_ha: p.area_ha != null && !Number.isNaN(Number(p.area_ha)) ? Number(p.area_ha) : null,
+    }))
+    .filter((r) => Number.isFinite(r.year) && Number.isFinite(r.quarter));
+
+  if (updateGlobalSnapshot) {
+    chartExpandLastForecastWarnings = [];
+    chartExpandLastForecastSnapshot = null;
+  }
+  let volumePeriods;
+  let areaPeriods;
+  const method = normalizeChartExpandForecastMethod(chartExpandForecastMethod);
+  chartExpandForecastMethod = method;
+  const subtypeNote = cropSubtype ? ` (${cropSubtype})` : "";
+  try {
+    ({ volumePeriods, areaPeriods } = await fetchServerForecastPeriods(historicalRows, method, {
+      cropSubtype,
+    }));
+  } catch (err) {
+    const warnings = [
+      `Could not run ${chartExpandForecastMethodMeta(method).label}${subtypeNote} on the server (${err.message || "error"}).`,
+    ];
+    if (method !== "seasonal_naive") {
+      try {
+        ({ volumePeriods, areaPeriods } = await fetchServerForecastPeriods(
+          historicalRows,
+          "seasonal_naive",
+          { cropSubtype }
+        ));
+        warnings.push(`Showing seasonal naive instead${subtypeNote}.`);
+      } catch (fallbackErr) {
+        warnings.push(fallbackErr.message || "Seasonal naive fallback failed.");
+        volumePeriods = [];
+        areaPeriods = [];
+      }
+    } else {
+      volumePeriods = [];
+      areaPeriods = [];
+    }
+    chartExpandLastForecastWarnings = warnings;
+    if (!volumePeriods?.length && !areaPeriods?.length) {
+      return [];
+    }
+  }
+
+  const forecastRows = CHART_EXPAND_FORECAST_HORIZONS.map((horizon, index) => {
+    const vol = volumePeriods[index];
+    const area = areaPeriods[index];
+    if (vol?.skipped && area?.skipped) return null;
+    return {
+      year: horizon.year,
+      period: horizon.quarter,
+      volume_mt: vol?.skipped ? null : vol?.projected ?? null,
+      area_ha: area?.skipped ? null : area?.projected ?? null,
+      isForecast: true,
+      label: `Q${horizon.quarter}`,
+      fullLabel: `Q${horizon.quarter} ${horizon.year}`,
+      ensoKey: chartExpandPeriodEnsoKey("quarter", horizon.year, horizon.quarter),
+    };
+  }).filter((row) => {
+    if (!row) return false;
+    const hasActual = historicalRows.some(
+      (r) =>
+        r.year === row.year &&
+        r.quarter === row.period &&
+        (r.volume_mt != null || r.area_ha != null)
+    );
+    return !hasActual && (row.volume_mt != null || row.area_ha != null);
+  }).map((row) => (cropSubtype ? { ...row, crop_subtype: cropSubtype } : row));
+
+  if (updateGlobalSnapshot) {
+    chartExpandLastForecastSnapshot = {
+      volumePeriods,
+      areaPeriods,
+      method,
+      forecastRows,
+      historicalRows,
+    };
+  }
+
+  return forecastRows;
+}
+
+function isChartExpandOutlookQuarter(year, quarter) {
+  return CHART_EXPAND_FORECAST_HORIZONS.some(
+    (h) => h.year === Number(year) && h.quarter === Number(quarter)
+  );
+}
+
+function quarterHasPublishedVolume(historicalRows, year, quarter) {
+  return (historicalRows || []).some(
+    (r) =>
+      Number(r.year) === Number(year) &&
+      Number(r.quarter) === Number(quarter) &&
+      r.volume_mt != null &&
+      Number.isFinite(Number(r.volume_mt))
+  );
+}
+
+function quarterHasPublishedArea(historicalRows, year, quarter) {
+  return (historicalRows || []).some(
+    (r) =>
+      Number(r.year) === Number(year) &&
+      Number(r.quarter) === Number(quarter) &&
+      r.area_ha != null &&
+      Number.isFinite(Number(r.area_ha))
+  );
+}
+
+function resolveQuarterVolume(historicalRows, quarterlyForecastRows, year, quarter) {
+  const hist = (historicalRows || []).find(
+    (r) => Number(r.year) === Number(year) && Number(r.quarter) === Number(quarter)
+  );
+  if (hist?.volume_mt != null && Number.isFinite(Number(hist.volume_mt))) {
+    return Number(hist.volume_mt);
+  }
+  const fc = (quarterlyForecastRows || []).find(
+    (r) => Number(r.year) === Number(year) && Number(r.period) === Number(quarter)
+  );
+  if (fc?.volume_mt != null && Number.isFinite(Number(fc.volume_mt))) {
+    return Number(fc.volume_mt);
+  }
+  return null;
+}
+
+function resolveQuarterArea(historicalRows, quarterlyForecastRows, year, quarter) {
+  const hist = (historicalRows || []).find(
+    (r) => Number(r.year) === Number(year) && Number(r.quarter) === Number(quarter)
+  );
+  if (hist?.area_ha != null && Number.isFinite(Number(hist.area_ha))) {
+    return Number(hist.area_ha);
+  }
+  const fc = (quarterlyForecastRows || []).find(
+    (r) => Number(r.year) === Number(year) && Number(r.period) === Number(quarter)
+  );
+  if (fc?.area_ha != null && Number.isFinite(Number(fc.area_ha))) {
+    return Number(fc.area_ha);
+  }
+  return null;
+}
+
+/** Sum quarters the same way as the quarterly chart: PSA actuals + model for outlook gaps. */
+function sumResolvedQuarterMetrics(
+  historicalRows,
+  quarterlyForecastRows,
+  year,
+  quarters,
+  { allowForecastArea = true } = {}
+) {
+  let volume_mt = 0;
+  let area_ha = 0;
+  let hasVol = false;
+  let hasArea = false;
+  let usesOutlookForecast = false;
+  let outlookOnlyVolume = false;
+
+  for (const quarter of quarters) {
+    const hadPublishedVol = quarterHasPublishedVolume(historicalRows, year, quarter);
+    const vol = resolveQuarterVolume(historicalRows, quarterlyForecastRows, year, quarter);
+    if (vol != null) {
+      volume_mt += vol;
+      hasVol = true;
+      if (!hadPublishedVol && isChartExpandOutlookQuarter(year, quarter)) {
+        usesOutlookForecast = true;
+      }
+    }
+
+    if (allowForecastArea || quarterHasPublishedArea(historicalRows, year, quarter)) {
+      const area = resolveQuarterArea(historicalRows, quarterlyForecastRows, year, quarter);
+      if (area != null) {
+        area_ha += area;
+        hasArea = true;
+      }
+    }
+  }
+
+  if (Number(year) >= 2027 && hasVol) {
+    usesOutlookForecast = true;
+  }
+
+  return {
+    volume_mt: hasVol ? volume_mt : null,
+    area_ha: hasArea ? area_ha : null,
+    usesOutlookForecast,
+    outlookOnlyVolume: false,
+  };
+}
+
+function semesterOutlookTargets() {
+  const targets = [];
+  const seen = new Set();
+  for (const { year, quarter } of CHART_EXPAND_FORECAST_HORIZONS) {
+    const semester = SEMESTER_BY_QUARTER[quarter];
+    if (!semester) continue;
+    const key = `${year}-s${semester}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    targets.push({ year, semester });
+  }
+  return targets.sort((a, b) => a.year - b.year || a.semester - b.semester);
+}
+
+function aggregateQuarterlyForecastToSemester(
+  quarterlyForecastRows,
+  historicalRows,
+  semesterDisplayPoints
+) {
+  const out = [];
+  const displayByKey = new Map(
+    (semesterDisplayPoints || []).map((p) => [
+      `${Number(p.year)}-s${Number(p.semester)}`,
+      p,
+    ])
+  );
+
+  for (const { year, semester } of semesterOutlookTargets()) {
+    const quarters = (QUARTERS_BY_SEMESTER[semester] || []).map(Number);
+    const totals = sumResolvedQuarterMetrics(
+      historicalRows,
+      quarterlyForecastRows,
+      year,
+      quarters,
+      { allowForecastArea: true }
+    );
+    if (!totals.usesOutlookForecast || totals.volume_mt == null) continue;
+
+    const displayKey = `${year}-s${semester}`;
+    const displayRow = displayByKey.get(displayKey);
+    let periodForecastNote = "Quarterly actuals plus model for missing quarters in this semester";
+    if (year === 2026 && semester === 2) {
+      periodForecastNote = "Quarterly actuals plus projected Q4 2026 (same method as quarter view)";
+    } else if (year >= 2027) {
+      periodForecastNote = "Projected area and volume from quarterly model (same method as quarter view)";
+    }
+
+    out.push({
+      year,
+      period: semester,
+      volume_mt: totals.volume_mt,
+      area_ha: totals.area_ha,
+      isForecast: true,
+      label: chartExpandPeriodLabel("semester", semester),
+      fullLabel: chartExpandPeriodDisplayLabel("semester", year, semester),
+      ensoKey: chartExpandPeriodEnsoKey("semester", year, semester),
+      periodForecastNote,
+      replacesDisplayRow: Boolean(displayRow),
+    });
+  }
+
+  return out;
+}
+
+function buildQuarterlyChartMergedRows(quarterlyPoints, quarterlyForecastRows) {
+  const flat = flattenPeriodSeries(quarterlyPoints, "quarter");
+  if (!quarterlyForecastRows?.length) return flat.rows;
+  return appendForecastToPeriodTrendFlat(flat, quarterlyForecastRows, "quarter").flat.rows;
+}
+
+/** Roll up calendar-year totals from the same merged quarter series shown on the quarter chart. */
+function sumYearMetricsFromQuarterChartRows(mergedQuarterRows, year) {
+  const byQuarter = new Map();
+  for (const row of mergedQuarterRows || []) {
+    if (Number(row.year) !== Number(year)) continue;
+    byQuarter.set(Number(row.period), row);
+  }
+
+  let volume_mt = 0;
+  let area_ha = 0;
+  let hasVol = false;
+  let hasArea = false;
+  let usesOutlookForecast = false;
+
+  for (const quarter of [1, 2, 3, 4]) {
+    const row = byQuarter.get(quarter);
+    if (!row) continue;
+    if (row.volume_mt != null && Number.isFinite(Number(row.volume_mt))) {
+      volume_mt += Number(row.volume_mt);
+      hasVol = true;
+      if (row.isForecast) usesOutlookForecast = true;
+    }
+    if (row.area_ha != null && Number.isFinite(Number(row.area_ha)) && !row.omitAreaInTooltip) {
+      area_ha += Number(row.area_ha);
+      hasArea = true;
+    }
+  }
+
+  if (Number(year) >= 2027 && hasVol) {
+    usesOutlookForecast = true;
+  }
+
+  return {
+    volume_mt: hasVol ? volume_mt : null,
+    area_ha: hasArea ? area_ha : null,
+    usesOutlookForecast,
+    outlookOnlyVolume: false,
+  };
+}
+
+function aggregateQuarterlyForecastToYear(
+  quarterlyForecastRows,
+  quarterlyPoints,
+  yearDisplayPoints
+) {
+  const out = [];
+  const displayByYear = new Map(
+    (yearDisplayPoints || []).map((p) => [Number(p.year), p])
+  );
+  const mergedQuarterRows = buildQuarterlyChartMergedRows(quarterlyPoints, quarterlyForecastRows);
+  const outlookYears = [...new Set(CHART_EXPAND_FORECAST_HORIZONS.map((h) => h.year))].sort(
+    (a, b) => a - b
+  );
+
+  for (const year of outlookYears) {
+    const totals = sumYearMetricsFromQuarterChartRows(mergedQuarterRows, year);
+    if (!totals.usesOutlookForecast || totals.volume_mt == null) continue;
+
+    let periodForecastNote = "Quarterly actuals plus model for missing quarters in this year";
+    if (year === 2026) {
+      periodForecastNote =
+        "Quarterly actuals plus projected Q4 2026 (same method as quarter view)";
+    } else if (year >= 2027) {
+      periodForecastNote =
+        "Projected area and volume from quarterly model (same method as quarter view)";
+    }
+
+    out.push({
+      year,
+      volume_mt: totals.volume_mt,
+      area_ha: totals.area_ha,
+      isForecast: true,
+      fullLabel: String(year),
+      periodForecastNote,
+      yearForecastNote: periodForecastNote,
+      replacesDisplayRow: Boolean(displayByYear.get(year)),
+    });
+  }
+
+  return out;
+}
+
+async function buildChartExpandProductionForecast(displayGrain, displayPoints) {
+  let quarterlyPoints = displayPoints;
+  if (displayGrain !== "quarter") {
+    const payload = await api(`/api/series?${qs(commonParams({ grain: "quarter" }))}`);
+    quarterlyPoints = payload?.points || [];
+  }
+  const quarterlyForecastRows = await buildQuarterlyProductionForecast(quarterlyPoints);
+  const historicalRows = chartExpandLastForecastSnapshot?.historicalRows || [];
+  let forecastRows = quarterlyForecastRows;
+  if (displayGrain === "semester") {
+    forecastRows = aggregateQuarterlyForecastToSemester(
+      quarterlyForecastRows,
+      historicalRows,
+      displayPoints
+    );
+  } else if (displayGrain === "year") {
+    forecastRows = aggregateQuarterlyForecastToYear(
+      quarterlyForecastRows,
+      quarterlyPoints,
+      displayPoints
+    );
+  }
+  if (chartExpandLastForecastSnapshot) {
+    chartExpandLastForecastSnapshot.displayGrain = displayGrain;
+    chartExpandLastForecastSnapshot.displayForecastRows = forecastRows;
+  }
+  return forecastRows;
+}
+
+function ecosystemForecastPointsFromRows(rows, grain, cropSubtype) {
+  const periodField = grain === "quarter" ? "quarter" : grain === "semester" ? "semester" : null;
+  return (rows || []).map((row) => {
+    const point = {
+      crop_subtype: cropSubtype,
+      year: row.year,
+      volume_mt: row.volume_mt,
+      area_ha: row.area_ha,
+      isForecast: true,
+      periodForecastNote: row.periodForecastNote || row.yearForecastNote,
+    };
+    if (periodField && row.period != null) {
+      point[periodField] = row.period;
+    }
+    if (point.volume_mt != null && point.area_ha > 0) {
+      point.yield_mt_ha = point.volume_mt / point.area_ha;
+    }
+    return point;
+  });
+}
+
+async function buildChartExpandEcosystemForecast(displayGrain, displayPoints) {
+  let quarterlyPoints = displayPoints;
+  if (displayGrain !== "quarter") {
+    const payload = await api(
+      `/api/series-by-ecosystem?${qs(commonParams({ grain: "quarter" }))}`
+    );
+    quarterlyPoints = payload?.points || [];
+  }
+  const subtypes = [
+    ...new Set(
+      (displayPoints || [])
+        .map((p) => p.crop_subtype)
+        .filter(Boolean)
+    ),
+  ].sort();
+  if (!subtypes.length) return [];
+
+  const combined = [];
+  const warnings = [];
+  let snapshot = null;
+
+  for (const subtype of subtypes) {
+    const qPoints = quarterlyPoints.filter((p) => p.crop_subtype === subtype);
+    const displaySubtype = displayPoints.filter((p) => p.crop_subtype === subtype);
+    const quarterlyForecastRows = await buildQuarterlyProductionForecast(qPoints, {
+      cropSubtype: subtype,
+      updateGlobalSnapshot: false,
+    });
+    if (chartExpandLastForecastWarnings?.length) {
+      warnings.push(...chartExpandLastForecastWarnings);
+    }
+    let rows = quarterlyForecastRows;
+    const historicalRows = qPoints
+      .map((p) => ({
+        year: Number(p.year),
+        quarter: Number(p.quarter),
+        volume_mt: p.volume_mt,
+        area_ha: p.area_ha,
+      }))
+      .filter((r) => Number.isFinite(r.year) && Number.isFinite(r.quarter));
+
+    if (displayGrain === "semester") {
+      rows = aggregateQuarterlyForecastToSemester(
+        quarterlyForecastRows,
+        historicalRows,
+        displaySubtype
+      );
+    } else if (displayGrain === "year") {
+      rows = aggregateQuarterlyForecastToYear(
+        quarterlyForecastRows,
+        qPoints,
+        displaySubtype
+      );
+    } else {
+      rows = quarterlyForecastRows;
+    }
+    combined.push(...ecosystemForecastPointsFromRows(rows, displayGrain, subtype));
+    snapshot = {
+      volumePeriods: [],
+      areaPeriods: [],
+      method: chartExpandForecastMethod,
+      forecastRows: quarterlyForecastRows,
+      historicalRows,
+      displayGrain,
+      displayForecastRows: combined,
+      ecosystem: true,
+    };
+  }
+
+  chartExpandLastForecastWarnings = [...new Set(warnings)];
+  chartExpandLastForecastSnapshot = snapshot;
+  return combined;
+}
+
+function ecosystemForecastYearRows(forecastPoints) {
+  const byKey = new Map();
+  for (const p of forecastPoints || []) {
+    if (!p?.isForecast) continue;
+    const y = Number(p.year);
+    if (!Number.isFinite(y)) continue;
+    if (!byKey.has(y)) byKey.set(y, { year: y, isForecast: true });
+  }
+  return [...byKey.values()];
+}
+
+function productionForecastRowsToYieldPoints(forecastRows, grain) {
+  const periodField = grain === "quarter" ? "quarter" : grain === "semester" ? "semester" : null;
+  return (forecastRows || [])
+    .map((row) => {
+      const yield_mt_ha =
+        row.volume_mt != null &&
+        row.area_ha != null &&
+        Number(row.area_ha) > 0 &&
+        Number.isFinite(Number(row.volume_mt))
+          ? Number(row.volume_mt) / Number(row.area_ha)
+          : row.yield_mt_ha != null && Number.isFinite(Number(row.yield_mt_ha))
+            ? Number(row.yield_mt_ha)
+            : null;
+      if (yield_mt_ha == null) return null;
+      const point = {
+        year: row.year,
+        yield_mt_ha,
+        volume_mt: row.volume_mt,
+        area_ha: row.area_ha,
+        isForecast: true,
+        periodForecastNote: row.periodForecastNote || row.yearForecastNote,
+        fullLabel: row.fullLabel,
+        ensoKey: row.ensoKey,
+      };
+      if (periodField != null && row.period != null) point[periodField] = row.period;
+      return point;
+    })
+    .filter(Boolean);
+}
+
+function appendForecastToYieldYearTrend(points, forecastPoints) {
+  if (!forecastPoints?.length) return { points: points || [], forecastStartIndex: -1 };
+  const forecastByYear = new Map(
+    forecastPoints.map((f) => [Number(f.year), f])
+  );
+  const hist = [];
+  const forecastRows = [];
+  for (const p of points || []) {
+    const y = Number(p.year);
+    const fc = forecastByYear.get(y);
+    if (fc) {
+      forecastRows.push({
+        year: y,
+        yield_mt_ha: fc.yield_mt_ha,
+        isForecast: true,
+        periodForecastNote: fc.periodForecastNote,
+        yearForecastNote: fc.periodForecastNote,
+      });
+      forecastByYear.delete(y);
+    } else {
+      hist.push({ ...p, isForecast: false });
+    }
+  }
+  for (const fc of forecastByYear.values()) {
+    forecastRows.push({
+      year: fc.year,
+      yield_mt_ha: fc.yield_mt_ha,
+      isForecast: true,
+      periodForecastNote: fc.periodForecastNote,
+      yearForecastNote: fc.periodForecastNote,
+    });
+  }
+  const combined = [...hist, ...forecastRows].sort((a, b) => Number(a.year) - Number(b.year));
+  const forecastStartIndex = combined.findIndex((r) => r.isForecast);
+  return {
+    points: combined,
+    forecastStartIndex: forecastStartIndex >= 0 ? forecastStartIndex : hist.length,
+  };
+}
+
+function mergeYieldChartPoints(histPoints, forecastPoints, grain) {
+  if (!forecastPoints?.length) return histPoints || [];
+  if (grain === "year") {
+    return appendForecastToYieldYearTrend(histPoints, forecastPoints).points;
+  }
+  const periodField = grain === "quarter" ? "quarter" : "semester";
+  const fcKeys = new Set(
+    forecastPoints.map((p) => `${Number(p.year)}-${Number(p[periodField])}`)
+  );
+  const hist = (histPoints || []).filter((p) => {
+    const key = `${Number(p.year)}-${Number(p[periodField])}`;
+    return !fcKeys.has(key);
+  });
+  return [...hist, ...forecastPoints].sort(
+    (a, b) => Number(a.year) - Number(b.year) || Number(a[periodField]) - Number(b[periodField])
+  );
+}
+
+function ensureChartExpandForecastAnalysis(modal) {
+  if (!modal) return null;
+  const aside = modal.querySelector(".chart-expand-analysis");
+  let label = modal.querySelector("#chartExpandForecastAnalysisLabel");
+  let el = modal.querySelector("#chartExpandForecastAnalysis");
+  if (!label && aside) {
+    label = document.createElement("span");
+    label.id = "chartExpandForecastAnalysisLabel";
+    label.className = "trend-insight-label chart-expand-forecast-analysis-label";
+    label.textContent = "Forecast analysis";
+    label.hidden = true;
+    aside.appendChild(label);
+  }
+  if (!el && aside) {
+    el = document.createElement("p");
+    el.id = "chartExpandForecastAnalysis";
+    el.className = "trend-insight-text chart-expand-forecast-analysis";
+    el.hidden = true;
+    aside.appendChild(el);
+  }
+  return { label, text: el };
+}
+
+function syncChartExpandForecastAnalysis(modal, kind, grain) {
+  const parts = ensureChartExpandForecastAnalysis(modal);
+  const label = parts?.label;
+  const el = parts?.text;
+  if (!el) return;
+  const show = false;
+  if (!show) {
+    if (label) label.hidden = true;
+    el.hidden = true;
+    el.textContent = "";
+    return;
+  }
+  if (label) label.hidden = false;
+  el.hidden = false;
+  el.textContent = buildChartExpandForecastAnalysis(chartExpandLastForecastSnapshot);
+}
+
+function forecastProjectedPoints(periods) {
+  return (periods || []).filter(
+    (p) => !p.skipped && p.projected != null && Number.isFinite(Number(p.projected))
+  );
+}
+
+function forecastMetricTrendSummary(points, periodUnit = "quarter") {
+  if (!points?.length) return null;
+  const unit = periodUnit === "year" ? "year" : periodUnit === "semester" ? "semester" : "quarter";
+  if (points.length === 1) {
+    return {
+      first: points[0],
+      last: points[0],
+      peak: points[0],
+      trough: points[0],
+      overallPct: null,
+      pathLabel: `single projected ${unit}`,
+      largestStep: null,
+      steps: [],
+      periodUnit: unit,
+    };
+  }
+  const steps = [];
+  for (let i = 1; i < points.length; i += 1) {
+    const from = points[i - 1];
+    const to = points[i];
+    const pct = pctChange(from.projected, to.projected);
+    steps.push({
+      from,
+      to,
+      pct,
+      absPct: pct != null ? Math.abs(pct) : 0,
+    });
+  }
+  const ups = steps.filter((s) => s.pct != null && s.pct > 0.5).length;
+  const downs = steps.filter((s) => s.pct != null && s.pct < -0.5).length;
+  let pathLabel = `moves unevenly from ${unit} to ${unit}`;
+  if (ups === steps.length) pathLabel = `increases each ${unit}`;
+  else if (downs === steps.length) pathLabel = `decreases each ${unit}`;
+  else if (ups === 0 && downs === 0) pathLabel = `is nearly flat ${unit} to ${unit}`;
+
+  let peak = points[0];
+  let trough = points[0];
+  for (const p of points) {
+    if (Number(p.projected) > Number(peak.projected)) peak = p;
+    if (Number(p.projected) < Number(trough.projected)) trough = p;
+  }
+  const largestStep =
+    steps.length > 0
+      ? steps.reduce((best, step) => (step.absPct > best.absPct ? step : best), steps[0])
+      : null;
+
+  return {
+    first: points[0],
+    last: points[points.length - 1],
+    peak,
+    trough,
+    overallPct: pctChange(points[0].projected, points[points.length - 1].projected),
+    pathLabel,
+    largestStep,
+    steps,
+    periodUnit: unit,
+  };
+}
+
+function forecastTrendPhrase(pathLabel) {
+  if (pathLabel.includes("increases each")) return pathLabel.replace("increases each", "trends upward each");
+  if (pathLabel.includes("decreases each")) return pathLabel.replace("decreases each", "trends downward each");
+  if (pathLabel.includes("nearly flat")) return pathLabel.replace("is nearly flat", "stays relatively flat");
+  if (pathLabel.includes("unevenly")) return pathLabel.replace("moves unevenly", "varies");
+  return pathLabel;
+}
+
+function forecastRowsToMetricPoints(rows, grain) {
+  return (rows || [])
+    .filter((r) => r.volume_mt != null && Number.isFinite(Number(r.volume_mt)))
+    .map((r) => ({
+      projected: Number(r.volume_mt),
+      fullLabel:
+        r.fullLabel ||
+        (grain === "year"
+          ? String(r.year)
+          : chartExpandPeriodDisplayLabel(grain, r.year, r.period)),
+    }));
+}
+
+function buildChartExpandForecastAnalysis(snapshot) {
+  if (!snapshot) return "";
+  const meta = chartExpandForecastMethodMeta(snapshot.method);
+  const grain = snapshot.displayGrain || "quarter";
+  const periodUnit = grain === "year" ? "year" : grain === "semester" ? "semester" : "quarter";
+  const displayRows = snapshot.displayForecastRows || snapshot.forecastRows || [];
+  const volPoints = forecastRowsToMetricPoints(displayRows, grain);
+  if (!volPoints.length) {
+    return "Forecast periods could not be summarized for the current filters.";
+  }
+
+  const volTrend = forecastMetricTrendSummary(volPoints, periodUnit);
+  if (!volTrend?.first || !volTrend?.last) return "";
+
+  const rangeLabel = chartExpandForecastRangeLabel(grain);
+  const windowChange = describeChange(volTrend.overallPct);
+  let text =
+    `${meta.label} projects production volume to ${forecastTrendPhrase(volTrend.pathLabel)} ` +
+    `from ${volTrend.first.fullLabel} (${fmt.score(volTrend.first.projected)} MT) to ${volTrend.last.fullLabel} (${fmt.score(volTrend.last.projected)} MT)` +
+    (windowChange ? `, ${windowChange} over ${rangeLabel}` : "") +
+    `. The outlook peak is ${volTrend.peak.fullLabel} (${fmt.score(volTrend.peak.projected)} MT)` +
+    (volTrend.peak !== volTrend.trough
+      ? ` and the low is ${volTrend.trough.fullLabel} (${fmt.score(volTrend.trough.projected)} MT)`
+      : "") +
+    ".";
+
+  if (volTrend.largestStep && volTrend.steps.length > 1 && volTrend.pathLabel.includes("unevenly")) {
+    const stepText = describeChange(volTrend.largestStep.pct);
+    if (stepText) {
+      text +=
+        ` The largest move is ${stepText} from ${volTrend.largestStep.from.fullLabel} to ${volTrend.largestStep.to.fullLabel}.`;
+    }
+  }
+
+  if (CONFIG.showAreaYield !== false) {
+    const areaPoints = (displayRows || [])
+      .filter((r) => r.area_ha != null && Number.isFinite(Number(r.area_ha)))
+      .map((r) => ({
+        projected: Number(r.area_ha),
+        fullLabel:
+          r.fullLabel ||
+          (grain === "year"
+            ? String(r.year)
+            : chartExpandPeriodDisplayLabel(grain, r.year, r.period)),
+      }));
+    const areaTrend = forecastMetricTrendSummary(areaPoints, periodUnit);
+    if (areaTrend?.first && areaTrend?.last) {
+      const areaChange = describeChange(areaTrend.overallPct);
+      text +=
+        ` Area harvested ${forecastTrendPhrase(areaTrend.pathLabel)}` +
+        (areaChange ? ` (${areaChange} overall)` : "") +
+        ` over the same window.`;
+    }
+  }
+
+  return text;
+}
+
+function ensureChartExpandToolbarRow(modal) {
+  if (!modal) return null;
+  const toolbar = modal.querySelector(".chart-expand-toolbar");
+  if (!toolbar) return null;
+  let row = modal.querySelector(".chart-expand-toolbar-row");
+  if (!row) {
+    row = document.createElement("div");
+    row.className = "chart-expand-toolbar-row";
+    toolbar.parentNode.insertBefore(row, toolbar);
+    row.appendChild(toolbar);
+  } else if (toolbar.parentNode !== row) {
+    row.appendChild(toolbar);
+  }
+  return row;
+}
+
+function ensureChartExpandForecastMethodSelect(modal) {
+  if (!modal) return null;
+  const row = ensureChartExpandToolbarRow(modal);
+  let wrap = modal.querySelector("#chartExpandForecastOptions");
+  if (!wrap) {
+    wrap = document.createElement("div");
+    wrap.className = "chart-expand-forecast-options";
+    wrap.id = "chartExpandForecastOptions";
+    wrap.hidden = true;
+    wrap.innerHTML =
+      '<label class="chart-expand-forecast-method-label" for="chartExpandForecastMethod">Forecast method</label>' +
+      `<select id="chartExpandForecastMethod" class="chart-expand-forecast-method" aria-label="Forecast method">
+        ${CHART_EXPAND_FORECAST_METHODS.map(
+          (m) =>
+            `<option value="${m.value}" title="${escapeHtml(m.methodBlurb || m.short)}">${m.label}</option>`
+        ).join("")}
+      </select>`;
+    if (row) row.appendChild(wrap);
+    else modal.querySelector(".chart-expand-body")?.prepend(wrap);
+  } else if (row && wrap.parentNode !== row) {
+    row.appendChild(wrap);
+  }
+  const select = wrap.querySelector("#chartExpandForecastMethod");
+  if (select) select.value = normalizeChartExpandForecastMethod(chartExpandForecastMethod);
+  return select;
+}
+
+function syncChartExpandForecastChrome(modal, kind) {
+  const supported = chartExpandSupportsProductionForecast(kind);
+  const showForecast = supported && chartExpandShowForecast;
+  const btn = modal?.querySelector("#chartExpandForecastBtn");
+  const sep = modal?.querySelector("#chartExpandForecastSep");
+  const note = modal?.querySelector("#chartExpandForecastNote");
+  const options = modal?.querySelector("#chartExpandForecastOptions");
+  const warningsEl = modal?.querySelector("#chartExpandForecastWarnings");
+  const methodSelect = ensureChartExpandForecastMethodSelect(modal);
+  const meta = chartExpandForecastMethodMeta();
+  modal.querySelector("#chartExpandForecastMethodHelp")?.remove();
+  if (btn) {
+    btn.hidden = !supported;
+    btn.classList.toggle("is-active", showForecast);
+    btn.setAttribute("aria-pressed", showForecast ? "true" : "false");
+    btn.textContent = chartExpandShowForecast ? "Hide production forecast" : "Show production forecast";
+  }
+  if (sep) sep.hidden = !supported;
+  if (options) options.hidden = !showForecast;
+  if (methodSelect) methodSelect.value = normalizeChartExpandForecastMethod(chartExpandForecastMethod);
+  if (note) {
+    note.hidden = !showForecast;
+    if (showForecast) {
+      renderChartExpandForecastNote(note, meta);
+    } else {
+      note.innerHTML = "";
+    }
+  }
+  if (warningsEl && !showForecast) {
+    warningsEl.hidden = true;
+    warningsEl.textContent = "";
+  }
+}
+
 const CHART_EXPAND_META = {
   trendChart: {
     title: "Production volume and area harvested",
@@ -9265,8 +10674,28 @@ function chartExpandPeriodLabel(grain, period) {
   return grain === "quarter" ? `Q${period}` : `S${period}`;
 }
 
-function chartExpandEnsoTitle(year, extras = []) {
-  return ensoYearTooltipTitle(year, extras);
+function chartExpandEnsoTitle(year, extras = [], { isForecast = false } = {}) {
+  const bits = [`Year ${year}`, ...extras.filter(Boolean)];
+  const observed = ensoMetaForYear(year);
+  const enso =
+    isForecast && chartExpandShowForecast
+      ? ensoMetaForForecastYear(year) || observed
+      : observed;
+  const detail = formatEnsoPhaseDetail(enso);
+  if (detail) bits.push(detail);
+  if (
+    isForecast &&
+    chartExpandShowForecast &&
+    observed?.phase &&
+    enso?.phase &&
+    observed.phase !== enso.phase
+  ) {
+    const observedDetail = formatEnsoPhaseDetail({ ...observed, outlook: false });
+    if (observedDetail) {
+      bits.push(`Observed calendar ${year}: ${observedDetail}`);
+    }
+  }
+  return bits.join(" · ");
 }
 
 function chartExpandMixedLegendLabels(chart) {
@@ -9331,6 +10760,30 @@ function ensureChartExpandModal() {
       if (legend?.parentNode) legend.parentNode.insertBefore(analysis, legend);
       else modal.querySelector(".chart-expand-body")?.appendChild(analysis);
     }
+    const toolbar = modal.querySelector(".chart-expand-toolbar");
+    if (toolbar && !modal.querySelector("#chartExpandForecastBtn")) {
+      toolbar.insertAdjacentHTML(
+        "beforeend",
+        '<span class="chart-expand-toolbar-sep" id="chartExpandForecastSep" hidden aria-hidden="true"></span>' +
+          '<button type="button" class="chart-expand-grain-btn chart-expand-forecast-btn" id="chartExpandForecastBtn" hidden aria-pressed="false">Show production forecast</button>'
+      );
+    }
+    if (!modal.querySelector("#chartExpandForecastNote")) {
+      const body = modal.querySelector(".chart-expand-body");
+      const canvasWrap = modal.querySelector(".chart-expand-canvas-wrap");
+      const note = document.createElement("p");
+      note.className = "chart-expand-forecast-note";
+      note.id = "chartExpandForecastNote";
+      note.hidden = true;
+      renderChartExpandForecastNote(note);
+      if (canvasWrap?.parentNode) canvasWrap.parentNode.insertBefore(note, canvasWrap);
+      else body?.prepend(note);
+    }
+    ensureChartExpandToolbarRow(modal);
+    ensureChartExpandForecastMethodSelect(modal);
+    ensureChartExpandForecastAnalysis(modal);
+    ensureChartExpandFooter(modal);
+    pruneChartExpandEnsoLegends(modal);
     return modal;
   }
   modal = document.createElement("div");
@@ -9351,19 +10804,36 @@ function ensureChartExpandModal() {
         <button type="button" class="app-modal-close" data-chart-expand-dismiss="true" aria-label="Close chart">×</button>
       </div>
       <div class="app-modal-analysis-body chart-expand-body">
-        <div class="chart-expand-toolbar" role="group" aria-label="Trend grain">
-          <button type="button" class="chart-expand-grain-btn is-active" data-chart-grain="year">Year</button>
-          <button type="button" class="chart-expand-grain-btn" data-chart-grain="quarter">Quarter</button>
-          <button type="button" class="chart-expand-grain-btn" data-chart-grain="semester">Semester</button>
+        <div class="chart-expand-toolbar-row">
+          <div class="chart-expand-toolbar" role="group" aria-label="Trend grain">
+            <button type="button" class="chart-expand-grain-btn is-active" data-chart-grain="year">Year</button>
+            <button type="button" class="chart-expand-grain-btn" data-chart-grain="quarter">Quarter</button>
+            <button type="button" class="chart-expand-grain-btn" data-chart-grain="semester">Semester</button>
+            <span class="chart-expand-toolbar-sep" id="chartExpandForecastSep" hidden aria-hidden="true"></span>
+            <button type="button" class="chart-expand-grain-btn chart-expand-forecast-btn" id="chartExpandForecastBtn" hidden aria-pressed="false">Show production forecast</button>
+          </div>
+          <div class="chart-expand-forecast-options" id="chartExpandForecastOptions" hidden>
+            <label class="chart-expand-forecast-method-label" for="chartExpandForecastMethod">Forecast method</label>
+            <select id="chartExpandForecastMethod" class="chart-expand-forecast-method" aria-label="Forecast method">
+              <option value="seasonal_naive">Seasonal naive</option>
+              <option value="ets">Exponential smoothing</option>
+              <option value="arima">ARIMA</option>
+            </select>
+          </div>
         </div>
+        <p class="chart-expand-forecast-note" id="chartExpandForecastNote" hidden></p>
         <div class="chart-box chart-box-trend chart-expand-canvas-wrap">
           <canvas id="chartExpandCanvas"></canvas>
         </div>
         <aside class="trend-insight chart-expand-analysis" aria-live="polite">
           <span class="trend-insight-label">Analysis</span>
           <p id="chartExpandAnalysis" class="trend-insight-text">Analyzing selected range…</p>
+          <span class="trend-insight-label chart-expand-forecast-analysis-label" id="chartExpandForecastAnalysisLabel" hidden>Forecast analysis</span>
+          <p id="chartExpandForecastAnalysis" class="trend-insight-text chart-expand-forecast-analysis" hidden></p>
         </aside>
-        <div class="enso-legend chart-expand-enso" id="chartExpandEnsoLegend"></div>
+        <div class="chart-expand-footer">
+          <div class="enso-legend chart-expand-enso" id="chartExpandEnsoLegend"></div>
+        </div>
       </div>
       <div class="app-modal-analysis-footer">
         <button type="button" class="app-modal-btn app-modal-btn-secondary" data-chart-expand-dismiss="true">Close</button>
@@ -9400,14 +10870,17 @@ function chartExpandPeriodEnsoKey(grain, year, period) {
   return `${year}-${chartExpandPeriodLabel(grain, period)}`;
 }
 
-function ensoMetaForPeriodKey(ensoKey) {
+function ensoMetaForPeriodKey(ensoKey, { isForecast = false } = {}) {
   if (!ensoKey) return null;
+  if (isForecast && chartExpandShowForecast && ensoOutlookByQuarter?.[ensoKey]) {
+    return ensoOutlookByQuarter[ensoKey];
+  }
   return ensoByQuarter?.[ensoKey] || ensoBySemester?.[ensoKey] || null;
 }
 
-function chartExpandPeriodEnsoTitle(displayLabel, ensoKey, extras = []) {
+function chartExpandPeriodEnsoTitle(displayLabel, ensoKey, extras = [], { isForecast = false } = {}) {
   const bits = [displayLabel, ...extras.filter(Boolean)];
-  const detail = formatEnsoPhaseDetail(ensoMetaForPeriodKey(ensoKey));
+  const detail = formatEnsoPhaseDetail(ensoMetaForPeriodKey(ensoKey, { isForecast }));
   if (detail) bits.push(detail);
   return bits.join(" · ");
 }
@@ -9426,6 +10899,8 @@ function flattenPeriodSeries(points, grain) {
         area_ha: p.area_ha,
         yield_mt_ha: yieldForPoint(p),
         crop_subtype: p.crop_subtype,
+        isForecast: Boolean(p.isForecast),
+        periodForecastNote: p.periodForecastNote,
         label: chartExpandPeriodLabel(grain, period),
         fullLabel: chartExpandPeriodDisplayLabel(grain, year, period),
         ensoKey: chartExpandPeriodEnsoKey(grain, year, period),
@@ -9778,13 +11253,178 @@ async function fetchChartExpandSeries(kind, grain) {
   return api(`/api/series?${qs(params)}`);
 }
 
-function renderChartExpandYearTrend(canvas, points) {
+const CHART_EXPAND_YEAR_AREA_BAR = {
+  maxBarThickness: 24,
+  categoryPercentage: 0.68,
+  barPercentage: 0.88,
+};
+
+function chartExpandYearOmitsArea(row) {
+  if (!row) return false;
+  return Boolean(row.omitAreaBar || row.omitAreaInTooltip);
+}
+
+/** One bar per year (centered); forecast years use forecast styling. */
+function buildChartExpandYearUnifiedAreaBars(rows) {
+  const data = [];
+  const backgroundColor = [];
+  const hoverBackgroundColor = [];
+  const borderColor = [];
+  const borderWidth = [];
+  let hasHistArea = false;
+  let hasForecastArea = false;
+
+  for (const r of rows || []) {
+    if (chartExpandYearOmitsArea(r) || r.area_ha == null || !Number.isFinite(Number(r.area_ha))) {
+      data.push(null);
+      backgroundColor.push("rgba(0,0,0,0)");
+      hoverBackgroundColor.push("rgba(0,0,0,0)");
+      borderColor.push("rgba(0,0,0,0)");
+      borderWidth.push(0);
+      continue;
+    }
+    data.push(Number(r.area_ha));
+    if (r.isForecast) {
+      hasForecastArea = true;
+      backgroundColor.push("rgba(154, 232, 86, 0.42)");
+      hoverBackgroundColor.push("rgba(154, 232, 86, 0.58)");
+      borderColor.push("#5aaf28");
+      borderWidth.push(1);
+    } else {
+      hasHistArea = true;
+      backgroundColor.push("#9ae856");
+      hoverBackgroundColor.push("#9ae856");
+      borderColor.push("#9ae856");
+      borderWidth.push(0);
+    }
+  }
+
+  return {
+    data,
+    backgroundColor,
+    hoverBackgroundColor,
+    borderColor,
+    borderWidth,
+    hasHistArea,
+    hasForecastArea,
+  };
+}
+
+function chartExpandYearTrendLegendLabels(chart) {
+  const items = [];
+  chart.data.datasets.forEach((ds, i) => {
+    const hidden = chart.getDatasetMeta(i).hidden;
+    if (ds.areaUnified) {
+      if (ds.areaLegendFlags?.hasHist) {
+        items.push({
+          text: "Area harvested (ha)",
+          datasetIndex: i,
+          hidden: Boolean(hidden),
+          pointStyle: "rect",
+          fillStyle: "#9ae856",
+          strokeStyle: "#9ae856",
+          lineWidth: 0,
+          fontColor: "#4a5578",
+        });
+      }
+      if (ds.areaLegendFlags?.hasForecast) {
+        items.push({
+          text: "Area harvested forecast (ha)",
+          datasetIndex: i,
+          hidden: Boolean(hidden),
+          pointStyle: "rect",
+          fillStyle: "rgba(154, 232, 86, 0.42)",
+          strokeStyle: "#5aaf28",
+          lineWidth: 0,
+          fontColor: "#4a5578",
+        });
+      }
+      return;
+    }
+    const isLine = ds.type === "line";
+    items.push({
+      text: ds.label,
+      datasetIndex: i,
+      hidden: Boolean(hidden),
+      pointStyle: isLine ? "line" : "rect",
+      fillStyle: isLine ? ds.borderColor || "#09663f" : ds.backgroundColor || "#9ae856",
+      strokeStyle: isLine
+        ? ds.borderColor || "#09663f"
+        : ds.borderColor || ds.backgroundColor || "#9ae856",
+      lineWidth: isLine ? 2.5 : 0,
+      fontColor: "#4a5578",
+    });
+  });
+  return items;
+}
+
+function appendForecastToYearTrend(points, forecastRows) {
+  if (!forecastRows?.length) return { points: points || [], forecastStartIndex: -1 };
+  const forecastByYear = new Map(
+    forecastRows.map((f) => [Number(f.year), f])
+  );
+  const hist = [];
+  const forecastPoints = [];
+  for (const p of points || []) {
+    const y = Number(p.year);
+    const fc = forecastByYear.get(y);
+    if (fc) {
+      forecastPoints.push({
+        year: y,
+        volume_mt: fc.volume_mt,
+        area_ha: chartExpandYearOmitsArea(fc) ? null : fc.area_ha,
+        isForecast: true,
+        omitAreaInTooltip: fc.omitAreaInTooltip,
+        omitAreaBar: fc.omitAreaBar,
+        yearForecastNote: fc.yearForecastNote || fc.periodForecastNote,
+        periodForecastNote: fc.periodForecastNote || fc.yearForecastNote,
+        fullLabel: fc.fullLabel || String(y),
+      });
+      forecastByYear.delete(y);
+    } else {
+      hist.push({ ...p, isForecast: false });
+    }
+  }
+  for (const fc of forecastByYear.values()) {
+    forecastPoints.push({
+      year: fc.year,
+      volume_mt: fc.volume_mt,
+      area_ha: chartExpandYearOmitsArea(fc) ? null : fc.area_ha,
+      isForecast: true,
+      omitAreaInTooltip: fc.omitAreaInTooltip,
+      omitAreaBar: fc.omitAreaBar,
+      yearForecastNote: fc.yearForecastNote || fc.periodForecastNote,
+      periodForecastNote: fc.periodForecastNote || fc.yearForecastNote,
+      fullLabel: fc.fullLabel || String(fc.year),
+    });
+  }
+  const combined = [...hist, ...forecastPoints].sort(
+    (a, b) => Number(a.year) - Number(b.year)
+  );
+  const forecastStartIndex = combined.findIndex((r) => r.isForecast);
+  return {
+    points: combined,
+    forecastStartIndex: forecastStartIndex >= 0 ? forecastStartIndex : hist.length,
+  };
+}
+
+function renderChartExpandYearTrend(canvas, points, forecastRows = null) {
   const volumeOnly = CONFIG.showAreaYield === false;
-  const years = points.map((p) => p.year);
-  const volumes = points.map((p) => p.volume_mt);
-  const peakIndex = peakValueIndex(volumes);
-  const lowIndex = lowValueIndex(volumes);
-  const pointCount = points.length;
+  let series = (points || []).map((p) => ({ ...p, isForecast: false }));
+  let forecastStartIndex = -1;
+  if (forecastRows?.length) {
+    const merged = appendForecastToYearTrend(series, forecastRows);
+    series = merged.points;
+    forecastStartIndex = merged.forecastStartIndex;
+  }
+  const years = series.map((p) => String(p.year));
+  const rows = series;
+  const volumes = rows.map((p) => p.volume_mt);
+  const histVolumeSlice =
+    forecastStartIndex >= 0 ? volumes.slice(0, forecastStartIndex) : volumes;
+  const peakIndex = peakValueIndex(histVolumeSlice);
+  const lowIndex = lowValueIndex(histVolumeSlice);
+  const pointCount = rows.length;
   let datasets;
   if (volumeOnly) {
     datasets = [
@@ -9804,20 +11444,80 @@ function renderChartExpandYearTrend(canvas, points) {
         yAxisID: "y",
       },
     ];
+  } else if (forecastStartIndex >= 0) {
+    const histEnd = Math.max(forecastStartIndex, 0);
+    const areaBars = buildChartExpandYearUnifiedAreaBars(rows);
+    const histVolumes = rows.map((r, i) => (i < histEnd ? r.volume_mt : null));
+    const forecastVolumes = rows.map((r, i) => {
+      if (histEnd <= 0) return i >= histEnd ? r.volume_mt : null;
+      if (i < histEnd - 1) return null;
+      if (i === histEnd - 1) return rows[histEnd - 1].volume_mt;
+      return r.volume_mt;
+    });
+    const histPointCount = Math.max(histEnd, 0);
+    datasets = [
+      {
+        type: "bar",
+        label: "Area harvested (ha)",
+        data: areaBars.data,
+        backgroundColor: areaBars.backgroundColor,
+        hoverBackgroundColor: areaBars.hoverBackgroundColor,
+        borderColor: areaBars.borderColor,
+        borderWidth: areaBars.borderWidth,
+        borderRadius: 3,
+        ...CHART_EXPAND_YEAR_AREA_BAR,
+        areaUnified: true,
+        areaLegendFlags: {
+          hasHist: areaBars.hasHistArea,
+          hasForecast: areaBars.hasForecastArea,
+        },
+        yAxisID: "y1",
+        order: 2,
+      },
+      {
+        type: "line",
+        label: "Volume (MT)",
+        data: histVolumes,
+        borderColor: "#09663f",
+        backgroundColor: "rgba(9, 102, 63, 0.12)",
+        tension: 0.25,
+        fill: false,
+        peakIndex,
+        lowIndex,
+        ...yearMarkerStyle("#09663f", { pointCount: histPointCount, peakIndex }),
+        borderWidth: 2,
+        yAxisID: "y",
+        order: 0,
+      },
+      {
+        type: "line",
+        label: "Volume forecast (MT)",
+        data: forecastVolumes,
+        borderColor: "#c98512",
+        backgroundColor: "rgba(201, 133, 18, 0.08)",
+        borderDash: [7, 5],
+        tension: 0.2,
+        fill: false,
+        spanGaps: true,
+        pointRadius: rows.map((r, i) => (i >= histEnd ? 4 : i === histEnd - 1 ? 3 : 0)),
+        pointHoverRadius: rows.map((r, i) => (i >= histEnd - 1 ? 5 : 0)),
+        borderWidth: 2,
+        yAxisID: "y",
+        order: 1,
+      },
+    ];
   } else {
     datasets = [
       {
         type: "bar",
         label: "Area harvested (ha)",
-        data: points.map((p) => p.area_ha),
+        data: rows.map((p) => p.area_ha),
         backgroundColor: "#9ae856",
         hoverBackgroundColor: "#9ae856",
         borderColor: "#9ae856",
         borderWidth: 0,
         borderRadius: 3,
-        maxBarThickness: 22,
-        categoryPercentage: 0.7,
-        barPercentage: 0.85,
+        ...CHART_EXPAND_YEAR_AREA_BAR,
         yAxisID: "y1",
         order: 1,
       },
@@ -9853,10 +11553,28 @@ function renderChartExpandYearTrend(canvas, points) {
         display: !volumeOnly,
         labels: {
           ...chartExpandSharedLegend().labels,
-          generateLabels: mixedTrendLegendLabels,
+          generateLabels:
+            !volumeOnly && forecastStartIndex >= 0
+              ? chartExpandYearTrendLegendLabels
+              : mixedTrendLegendLabels,
         },
       },
       tooltip: chartExpandSharedTooltip({
+        filter:
+          !volumeOnly && forecastStartIndex >= 0
+            ? (item) => {
+                const row = rows[item.dataIndex];
+                const value = item.parsed?.y;
+                if (item.dataset?.areaUnified) {
+                  if (chartExpandYearOmitsArea(row)) return false;
+                  return value != null && !Number.isNaN(value);
+                }
+                const isForecastPeriod = Boolean(row?.isForecast);
+                const isForecastDataset = chartExpandDatasetIsForecast(item.dataset);
+                if (isForecastPeriod) return isForecastDataset;
+                return !isForecastDataset;
+              }
+            : undefined,
         callbacks: volumeOnly
           ? {
               ...volumeTimeSeriesTooltipCallbacks,
@@ -9866,21 +11584,81 @@ function renderChartExpandYearTrend(canvas, points) {
                 const extras = [];
                 if (item.dataset?.peakIndex === item.dataIndex) extras.push("Peak");
                 if (item.dataset?.lowIndex === item.dataIndex) extras.push("Lowest");
-                return chartExpandEnsoTitle(item.label, extras);
+                return chartExpandEnsoTitle(item.label, extras, {
+                  isForecast: Boolean(rows[item.dataIndex]?.isForecast),
+                });
               },
             }
-          : {
-              ...mixedTrendTooltipCallbacks,
-              title(items) {
-                const item = items?.[0];
-                if (!item) return "";
-                const extras = [];
-                if (items.some((i) => i.dataset?.peakIndex === i.dataIndex)) extras.push("Peak");
-                if (items.some((i) => i.dataset?.lowIndex === i.dataIndex)) extras.push("Lowest");
-                return chartExpandEnsoTitle(item.label, extras);
+          : forecastStartIndex >= 0
+            ? {
+                ...mixedTrendTooltipCallbacks,
+                title(items) {
+                  const item = items?.[0];
+                  if (!item) return "";
+                  const extras = [];
+                  if (items.some((i) => i.dataset?.peakIndex === i.dataIndex)) extras.push("Peak");
+                  if (items.some((i) => i.dataset?.lowIndex === i.dataIndex)) extras.push("Lowest");
+                  const row = rows[item.dataIndex];
+                  const note = row?.periodForecastNote || row?.yearForecastNote;
+                  if (note) extras.push(note);
+                  return chartExpandEnsoTitle(item.label, extras, {
+                    isForecast: Boolean(row?.isForecast),
+                  });
+                },
+                label(ctx) {
+                  const row = rows[ctx.dataIndex];
+                  if (ctx.dataset?.areaUnified) {
+                    if (chartExpandYearOmitsArea(row)) return null;
+                    const v = ctx.parsed?.y;
+                    if (v == null || Number.isNaN(v)) return null;
+                    const areaLabel = row?.isForecast
+                      ? "Area harvested forecast (ha)"
+                      : "Area harvested (ha)";
+                    return `${areaLabel}: ${fmt.score(v, { compact: false })} ha`;
+                  }
+                  return mixedTrendTooltipCallbacks.label(ctx);
+                },
+                labelPointStyle(ctx) {
+                  if (ctx.dataset?.areaUnified) {
+                    const row = rows[ctx.dataIndex];
+                    const isFc = Boolean(row?.isForecast);
+                    const color = isFc ? "rgba(154, 232, 86, 0.55)" : "#9ae856";
+                    return { pointStyle: "rect", rotation: 0, borderColor: color, backgroundColor: color };
+                  }
+                  return mixedTrendTooltipCallbacks.labelPointStyle(ctx);
+                },
+                labelColor(ctx) {
+                  if (ctx.dataset?.areaUnified) {
+                    const row = rows[ctx.dataIndex];
+                    const isFc = Boolean(row?.isForecast);
+                    const color = isFc ? "#5aaf28" : "#9ae856";
+                    return { borderColor: color, backgroundColor: color, borderWidth: isFc ? 1 : 0 };
+                  }
+                  return mixedTrendTooltipCallbacks.labelColor(ctx);
+                },
+              }
+            : {
+                ...mixedTrendTooltipCallbacks,
+                title(items) {
+                  const item = items?.[0];
+                  if (!item) return "";
+                  const extras = [];
+                  if (items.some((i) => i.dataset?.peakIndex === i.dataIndex)) extras.push("Peak");
+                  if (items.some((i) => i.dataset?.lowIndex === i.dataIndex)) extras.push("Lowest");
+                  const row = rows[item.dataIndex];
+                const note = row?.periodForecastNote || row?.yearForecastNote;
+                if (note) extras.push(note);
+                return chartExpandEnsoTitle(item.label, extras, {
+                  isForecast: Boolean(row?.isForecast),
+                });
               },
             },
       }),
+    },
+    datasets: {
+      bar: {
+        ...CHART_EXPAND_YEAR_AREA_BAR,
+      },
     },
     scales: {
       y: {
@@ -9919,6 +11697,7 @@ function renderChartExpandYearTrend(canvas, points) {
       },
       x: {
         border: { display: false },
+        offset: !volumeOnly,
         grid: volumeOnly
           ? { color: "rgba(26, 46, 26, 0.04)", drawBorder: false }
           : { display: false },
@@ -9949,14 +11728,59 @@ function renderChartExpandYearTrend(canvas, points) {
   });
 }
 
-function renderChartExpandPeriodTrend(canvas, points, grain) {
+function appendForecastToPeriodTrendFlat(flat, forecastRows, grain) {
+  if (!forecastRows?.length) return { flat, forecastStartIndex: -1 };
+  const periodField = grain === "quarter" ? "quarter" : "semester";
+  const histRows = flat.rows.filter(
+    (row) =>
+      !forecastRows.some((f) => f.year === row.year && f.period === row.period)
+  );
+  const mergedRows = [
+    ...histRows,
+    ...forecastRows.map((f) => ({
+      year: f.year,
+      period: f.period,
+      volume_mt: f.volume_mt,
+      area_ha: f.area_ha,
+      yield_mt_ha: null,
+      crop_subtype: null,
+      label: f.label || chartExpandPeriodLabel(grain, f.period),
+      fullLabel: f.fullLabel || chartExpandPeriodDisplayLabel(grain, f.year, f.period),
+      ensoKey: f.ensoKey || chartExpandPeriodEnsoKey(grain, f.year, f.period),
+      isForecast: true,
+      omitAreaInTooltip: f.omitAreaInTooltip,
+      periodForecastNote: f.periodForecastNote || f.yearForecastNote,
+    })),
+  ].sort((a, b) => a.year - b.year || a.period - b.period);
+  const forecastStartIndex = mergedRows.findIndex((r) => r.isForecast);
+  return {
+    forecastStartIndex: forecastStartIndex >= 0 ? forecastStartIndex : histRows.length,
+    flat: {
+      rows: mergedRows,
+      labels: mergedRows.map((r) => r.label),
+      fullLabels: mergedRows.map((r) => r.fullLabel),
+      years: mergedRows.map((r) => r.year),
+      ensoKeys: mergedRows.map((r) => r.ensoKey),
+    },
+  };
+}
+
+function renderChartExpandPeriodTrend(canvas, points, grain, forecastRows = null) {
   const volumeOnly = CONFIG.showAreaYield === false;
-  const flat = flattenPeriodSeries(points, grain);
+  let flat = flattenPeriodSeries(points, grain);
+  let forecastStartIndex = -1;
+  if (forecastRows?.length) {
+    const merged = appendForecastToPeriodTrendFlat(flat, forecastRows, grain);
+    flat = merged.flat;
+    forecastStartIndex = merged.forecastStartIndex;
+  }
   const { labels, fullLabels, years: periodYears, ensoKeys, rows } = flat;
   const { grid, tick } = chartExpandGridTick();
   const volumes = rows.map((r) => r.volume_mt);
-  const peakIndex = peakValueIndex(volumes);
-  const lowIndex = lowValueIndex(volumes);
+  const histVolumeSlice =
+    forecastStartIndex >= 0 ? volumes.slice(0, forecastStartIndex) : volumes;
+  const peakIndex = peakValueIndex(histVolumeSlice);
+  const lowIndex = lowValueIndex(histVolumeSlice);
   const pointCount = rows.length;
   const bottomPad = periodChartBottomPad();
 
@@ -9969,7 +11793,8 @@ function renderChartExpandPeriodTrend(canvas, points, grain) {
       return chartExpandPeriodEnsoTitle(
         fullLabels[idx] || labels[idx] || item.label,
         ensoKeys[idx],
-        extras
+        extras,
+        { isForecast: Boolean(rows[idx]?.isForecast) }
       );
     },
   });
@@ -9991,6 +11816,85 @@ function renderChartExpandPeriodTrend(canvas, points, grain) {
         ...yearMarkerStyle("#09663f", { pointCount, peakIndex }),
         borderWidth: 2.5,
         yAxisID: "y",
+      },
+    ];
+  } else if (forecastStartIndex >= 0) {
+    const histEnd = forecastStartIndex;
+    const histAreas = rows.map((r, i) => (i < histEnd ? r.area_ha : null));
+    const forecastAreas = rows.map((r, i) => {
+      if (i < histEnd) return null;
+      if (r.omitAreaInTooltip || r.area_ha == null) return null;
+      return r.area_ha;
+    });
+    const histVolumes = rows.map((r, i) => (i < histEnd ? r.volume_mt : null));
+    const forecastVolumes = rows.map((r, i) => {
+      if (histEnd <= 0) return i >= histEnd ? r.volume_mt : null;
+      if (i < histEnd - 1) return null;
+      if (i === histEnd - 1) return rows[histEnd - 1].volume_mt;
+      return r.volume_mt;
+    });
+    const histPointCount = Math.max(histEnd, 0);
+    datasets = [
+      {
+        type: "bar",
+        label: "Area harvested (ha)",
+        data: histAreas,
+        backgroundColor: "#9ae856",
+        hoverBackgroundColor: "#9ae856",
+        borderColor: "#9ae856",
+        borderWidth: 0,
+        borderRadius: 3,
+        maxBarThickness: 22,
+        categoryPercentage: 0.7,
+        barPercentage: 0.85,
+        yAxisID: "y1",
+        order: 2,
+      },
+      {
+        type: "bar",
+        label: "Area harvested forecast (ha)",
+        data: forecastAreas,
+        backgroundColor: "rgba(154, 232, 86, 0.42)",
+        hoverBackgroundColor: "rgba(154, 232, 86, 0.58)",
+        borderColor: "#5aaf28",
+        borderWidth: 1,
+        borderRadius: 3,
+        maxBarThickness: 22,
+        categoryPercentage: 0.7,
+        barPercentage: 0.85,
+        yAxisID: "y1",
+        order: 3,
+      },
+      {
+        type: "line",
+        label: "Volume (MT)",
+        data: histVolumes,
+        borderColor: "#09663f",
+        backgroundColor: "rgba(9, 102, 63, 0.12)",
+        tension: 0.25,
+        fill: false,
+        peakIndex,
+        lowIndex,
+        ...yearMarkerStyle("#09663f", { pointCount: histPointCount, peakIndex }),
+        borderWidth: 2,
+        yAxisID: "y",
+        order: 0,
+      },
+      {
+        type: "line",
+        label: "Volume forecast (MT)",
+        data: forecastVolumes,
+        borderColor: "#c98512",
+        backgroundColor: "rgba(201, 133, 18, 0.08)",
+        borderDash: [7, 5],
+        tension: 0.2,
+        fill: false,
+        spanGaps: true,
+        pointRadius: rows.map((r, i) => (i >= histEnd ? 4 : i === histEnd - 1 ? 3 : 0)),
+        pointHoverRadius: rows.map((r, i) => (i >= histEnd - 1 ? 5 : 0)),
+        borderWidth: 2,
+        yAxisID: "y",
+        order: 1,
       },
     ];
   } else {
@@ -10040,6 +11944,18 @@ function renderChartExpandPeriodTrend(canvas, points, grain) {
         display: !volumeOnly,
       }),
       tooltip: chartExpandSharedTooltip({
+        filter:
+          forecastStartIndex >= 0 && !volumeOnly
+            ? (item) => {
+                const row = rows[item.dataIndex];
+                const label = String(item.dataset?.label || "").toLowerCase();
+                if (row?.omitAreaInTooltip && label.includes("area")) return false;
+                const isForecastPeriod = Boolean(row?.isForecast);
+                const isForecastDataset = chartExpandDatasetIsForecast(item.dataset);
+                if (isForecastPeriod) return isForecastDataset;
+                return !isForecastDataset;
+              }
+            : undefined,
         callbacks: volumeOnly
           ? {
               ...volumeTimeSeriesTooltipCallbacks,
@@ -10059,15 +11975,55 @@ function renderChartExpandPeriodTrend(canvas, points, grain) {
                 return base;
               },
             }
-          : {
-              ...mixedTrendTooltipCallbacks,
-              ...periodTitleCallbacks((items) => {
-                const extras = [];
-                if (items.some((i) => i.dataset?.peakIndex === i.dataIndex)) extras.push("Peak");
-                if (items.some((i) => i.dataset?.lowIndex === i.dataIndex)) extras.push("Lowest");
-                return extras;
-              }),
-            },
+          : forecastStartIndex >= 0
+            ? {
+                ...periodTitleCallbacks((items) => {
+                  const idx = items?.[0]?.dataIndex;
+                  const row = rows[idx];
+                  if (row?.isForecast) {
+                    const extras = [];
+                    if (row.periodForecastNote) extras.push(row.periodForecastNote);
+                    return extras;
+                  }
+                  const extras = [];
+                  if (items.some((i) => i.dataset?.peakIndex === i.dataIndex)) extras.push("Peak");
+                  if (items.some((i) => i.dataset?.lowIndex === i.dataIndex)) extras.push("Lowest");
+                  return extras;
+                }),
+                label(ctx) {
+                  const v = ctx.parsed.y;
+                  if (v == null || Number.isNaN(v)) return undefined;
+                  const label = ctx.dataset.label || "";
+                  const unit = /area/i.test(label) ? "ha" : "MT";
+                  const amount = fmt.score(v, { compact: false });
+                  const base = `${label}: ${amount} ${unit}`;
+                  if (rows[ctx.dataIndex]?.isForecast) return base;
+                  if (ctx.dataset?.peakIndex === ctx.dataIndex) return `${base} · highest in range`;
+                  if (ctx.dataset?.lowIndex === ctx.dataIndex) return `${base} · lowest in range`;
+                  return base;
+                },
+                labelPointStyle(ctx) {
+                  const style = mixedTrendMarkerStyle(ctx);
+                  return { pointStyle: style.pointStyle, rotation: 0 };
+                },
+                labelColor(ctx) {
+                  const style = mixedTrendMarkerStyle(ctx);
+                  return {
+                    borderColor: style.borderColor,
+                    backgroundColor: style.backgroundColor,
+                    borderWidth: style.borderWidth,
+                  };
+                },
+              }
+            : {
+                ...mixedTrendTooltipCallbacks,
+                ...periodTitleCallbacks((items) => {
+                  const extras = [];
+                  if (items.some((i) => i.dataset?.peakIndex === i.dataIndex)) extras.push("Peak");
+                  if (items.some((i) => i.dataset?.lowIndex === i.dataIndex)) extras.push("Lowest");
+                  return extras;
+                }),
+              },
       }),
     },
     scales: {
@@ -10124,12 +12080,82 @@ function renderChartExpandPeriodTrend(canvas, points, grain) {
   );
 }
 
-function renderChartExpandYield(canvas, points, grain) {
+function renderChartExpandYield(canvas, points, grain, forecastPoints = null) {
   const { grid, tick } = chartExpandGridTick();
+  const rows = mergeYieldChartPoints(points, forecastPoints, grain);
+  let forecastStartIndex = -1;
+  if (grain === "year" && forecastPoints?.length) {
+    forecastStartIndex = appendForecastToYieldYearTrend(points, forecastPoints).forecastStartIndex;
+  } else if (forecastPoints?.length) {
+    forecastStartIndex = rows.findIndex((r) => r.isForecast);
+    if (forecastStartIndex < 0) forecastStartIndex = rows.length;
+  }
+
   if (grain === "year") {
-    const yields = points.map((p) => yieldForPoint(p));
-    const peakIndex = peakValueIndex(yields);
-    const lowIndex = lowValueIndex(yields);
+    const labels = rows.map((p) => String(p.year));
+    const yields = rows.map((p) => yieldForPoint(p));
+    const histEnd = forecastStartIndex >= 0 ? forecastStartIndex : rows.length;
+    const histYields = rows.map((r, i) => (i < histEnd ? yieldForPoint(r) : null));
+    const forecastYields = rows.map((r, i) => {
+      if (forecastStartIndex < 0) return null;
+      if (histEnd <= 0) return i >= histEnd ? yieldForPoint(r) : null;
+      if (i < histEnd - 1) return null;
+      if (i === histEnd - 1) return yieldForPoint(rows[histEnd - 1]);
+      return yieldForPoint(r);
+    });
+    const histVolumeSlice =
+      forecastStartIndex >= 0 ? yields.slice(0, forecastStartIndex) : yields;
+    const peakIndex = peakValueIndex(histVolumeSlice);
+    const lowIndex = lowValueIndex(histVolumeSlice);
+    const histPointCount = Math.max(histEnd, 0);
+    const hasForecastLine = forecastStartIndex >= 0 && forecastStartIndex < rows.length;
+
+    const datasets = hasForecastLine
+      ? [
+          {
+            type: "line",
+            label: "Yield (MT/ha)",
+            data: histYields,
+            borderColor: "#06402b",
+            backgroundColor: "rgba(6, 64, 43, 0.12)",
+            tension: 0.25,
+            fill: true,
+            peakIndex,
+            lowIndex,
+            ...yearMarkerStyle("#06402b", { pointCount: histPointCount, peakIndex }),
+            borderWidth: 2,
+          },
+          {
+            type: "line",
+            label: "Yield forecast (MT/ha)",
+            data: forecastYields,
+            borderColor: "#c98512",
+            backgroundColor: "rgba(201, 133, 18, 0.08)",
+            borderDash: [7, 5],
+            tension: 0.2,
+            fill: false,
+            spanGaps: true,
+            pointRadius: rows.map((r, i) => (i >= histEnd ? 4 : i === histEnd - 1 ? 3 : 0)),
+            pointHoverRadius: rows.map((r, i) => (i >= histEnd - 1 ? 5 : 0)),
+            borderWidth: 2,
+          },
+        ]
+      : [
+          {
+            type: "line",
+            label: "Yield (MT/ha)",
+            data: yields,
+            borderColor: "#06402b",
+            backgroundColor: "rgba(6, 64, 43, 0.12)",
+            tension: 0.25,
+            fill: true,
+            peakIndex,
+            lowIndex,
+            ...yearMarkerStyle("#06402b", { pointCount: rows.length, peakIndex }),
+            borderWidth: 2,
+          },
+        ];
+
     const options = chartExpandBaseOptions("year", {
       plugins: {
         peakYearEffect: { enabled: true, animate: false },
@@ -10137,19 +12163,33 @@ function renderChartExpandYield(canvas, points, grain) {
           ...chartExpandSharedLegend(),
           labels: {
             ...chartExpandSharedLegend().labels,
-            generateLabels: lineLegendLabels,
+            generateLabels: hasForecastLine ? mixedTrendLegendLabels : lineLegendLabels,
           },
         },
         tooltip: chartExpandSharedTooltip({
+          filter: hasForecastLine
+            ? (item) => {
+                const row = rows[item.dataIndex];
+                const isForecastPeriod = Boolean(row?.isForecast);
+                const isForecastDataset = chartExpandDatasetIsForecast(item.dataset);
+                if (isForecastPeriod) return isForecastDataset;
+                return !isForecastDataset;
+              }
+            : undefined,
           callbacks: {
             ...lineTooltipCallbacks,
             title(items) {
               const item = items?.[0];
               if (!item) return "";
               const extras = [];
-              if (item.dataset?.peakIndex === item.dataIndex) extras.push("Peak");
-              if (item.dataset?.lowIndex === item.dataIndex) extras.push("Lowest");
-              return chartExpandEnsoTitle(item.label, extras);
+              if (items.some((i) => i.dataset?.peakIndex === i.dataIndex)) extras.push("Peak");
+              if (items.some((i) => i.dataset?.lowIndex === i.dataIndex)) extras.push("Lowest");
+              const row = rows[item.dataIndex];
+              const note = row?.periodForecastNote || row?.yearForecastNote;
+              if (note) extras.push(note);
+              return chartExpandEnsoTitle(item.label, extras, {
+                isForecast: Boolean(row?.isForecast),
+              });
             },
             label(ctx) {
               const v = ctx.parsed.y;
@@ -10182,37 +12222,92 @@ function renderChartExpandYield(canvas, points, grain) {
     });
     return new Chart(canvas, {
       type: "line",
-      data: {
-        labels: points.map((p) => p.year),
-        datasets: [
-          {
-            type: "line",
-            label: "Yield (MT/ha)",
-            data: yields,
-            borderColor: "#06402b",
-            backgroundColor: "rgba(6, 64, 43, 0.12)",
-            tension: 0.25,
-            fill: true,
-            peakIndex,
-            lowIndex,
-            ...yearMarkerStyle("#06402b", { pointCount: points.length, peakIndex }),
-            borderWidth: 2,
-          },
-        ],
-      },
+      data: { labels, datasets },
       options,
     });
   }
 
-  const flat = buildFlatPeriodMetricSeries(points, grain, "yield_mt_ha");
-  const peakIndex = peakValueIndex(flat.data);
-  const lowIndex = lowValueIndex(flat.data);
+  const flat = buildFlatPeriodMetricSeries(rows, grain, "yield_mt_ha");
+  const flatRows = flat.rows || [];
+  const periodForecastStart =
+    forecastStartIndex >= 0 ? forecastStartIndex : flatRows.findIndex((r) => r.isForecast);
+  const histEnd = periodForecastStart >= 0 ? periodForecastStart : flatRows.length;
+  const hasPeriodForecast = periodForecastStart >= 0 && periodForecastStart < flatRows.length;
+  const histData = flat.data.map((v, i) => (i < histEnd ? v : null));
+  const forecastData = flat.data.map((v, i) => {
+    if (!hasPeriodForecast) return null;
+    if (histEnd <= 0) return i >= histEnd ? v : null;
+    if (i < histEnd - 1) return null;
+    if (i === histEnd - 1) return flat.data[histEnd - 1];
+    return v;
+  });
+  const histVolumeSlice =
+    hasPeriodForecast ? flat.data.slice(0, periodForecastStart) : flat.data;
+  const peakIndex = peakValueIndex(histVolumeSlice);
+  const lowIndex = lowValueIndex(histVolumeSlice);
+  const histPointCount = Math.max(histEnd, 0);
+
+  const periodDatasets = hasPeriodForecast
+    ? [
+        {
+          type: "line",
+          label: "Yield (MT/ha)",
+          data: histData,
+          borderColor: "#06402b",
+          backgroundColor: "rgba(6, 64, 43, 0.12)",
+          tension: 0.25,
+          fill: true,
+          peakIndex,
+          lowIndex,
+          ...yearMarkerStyle("#06402b", { pointCount: histPointCount, peakIndex }),
+          borderWidth: 2,
+        },
+        {
+          type: "line",
+          label: "Yield forecast (MT/ha)",
+          data: forecastData,
+          borderColor: "#c98512",
+          backgroundColor: "rgba(201, 133, 18, 0.08)",
+          borderDash: [7, 5],
+          tension: 0.2,
+          fill: false,
+          spanGaps: true,
+          pointRadius: flatRows.map((r, i) => (i >= histEnd ? 4 : i === histEnd - 1 ? 3 : 0)),
+          pointHoverRadius: flatRows.map((r, i) => (i >= histEnd - 1 ? 5 : 0)),
+          borderWidth: 2,
+        },
+      ]
+    : [
+        {
+          type: "line",
+          label: "Yield (MT/ha)",
+          data: flat.data,
+          borderColor: "#06402b",
+          backgroundColor: "rgba(6, 64, 43, 0.12)",
+          tension: 0.25,
+          fill: true,
+          peakIndex,
+          lowIndex,
+          ...yearMarkerStyle("#06402b", { pointCount: flat.labels.length, peakIndex }),
+          borderWidth: 2,
+        },
+      ];
+
   const options = chartExpandBaseOptions(grain, {
     layout: { padding: { top: 8, right: 2, bottom: periodChartBottomPad(), left: 2 } },
     plugins: {
       peakYearEffect: { enabled: true, animate: false },
-      legend: periodExpandLegend(lineLegendLabels),
+      legend: periodExpandLegend(hasPeriodForecast ? mixedTrendLegendLabels : lineLegendLabels),
       tooltip: chartExpandSharedTooltip({
+        filter: hasPeriodForecast
+          ? (item) => {
+              const row = flatRows[item.dataIndex];
+              const isForecastPeriod = Boolean(row?.isForecast);
+              const isForecastDataset = chartExpandDatasetIsForecast(item.dataset);
+              if (isForecastPeriod) return isForecastDataset;
+              return !isForecastDataset;
+            }
+          : undefined,
         callbacks: {
           ...lineTooltipCallbacks,
           title(items) {
@@ -10222,10 +12317,13 @@ function renderChartExpandYield(canvas, points, grain) {
             const extras = [];
             if (item.dataset?.peakIndex === idx) extras.push("Peak");
             if (item.dataset?.lowIndex === idx) extras.push("Lowest");
+            const row = flatRows[idx];
+            if (row?.periodForecastNote) extras.push(row.periodForecastNote);
             return chartExpandPeriodEnsoTitle(
               flat.fullLabels[idx] || flat.labels[idx] || item.label,
               flat.ensoKeys[idx],
-              extras
+              extras,
+              { isForecast: Boolean(row?.isForecast) }
             );
           },
           label(ctx) {
@@ -10263,21 +12361,7 @@ function renderChartExpandYield(canvas, points, grain) {
       type: "line",
       data: {
         labels: flat.labels,
-        datasets: [
-          {
-            type: "line",
-            label: "Yield (MT/ha)",
-            data: flat.data,
-            borderColor: "#06402b",
-            backgroundColor: "rgba(6, 64, 43, 0.12)",
-            tension: 0.25,
-            fill: true,
-            peakIndex,
-            lowIndex,
-            ...yearMarkerStyle("#06402b", { pointCount: flat.labels.length, peakIndex }),
-            borderWidth: 2,
-          },
-        ],
+        datasets: periodDatasets,
       },
       options,
     }),
@@ -10560,14 +12644,37 @@ function renderChartExpandGrowth(canvas, points, grain) {
   );
 }
 
-function renderChartExpandEcosystem(canvas, points, grain, metricKey) {
+function ecosystemForecastLookup(forecastPoints, grain) {
+  const bySubtypeYear = new Map();
+  const bySubtypePeriod = new Map();
+  for (const p of forecastPoints || []) {
+    if (!p?.isForecast || !p.crop_subtype) continue;
+    const y = Number(p.year);
+    if (!Number.isFinite(y)) continue;
+    bySubtypeYear.set(`${p.crop_subtype}|${y}`, p);
+    if (grain === "quarter" && p.quarter != null) {
+      bySubtypePeriod.set(`${p.crop_subtype}|${y}|${p.quarter}`, p);
+    } else if (grain === "semester" && p.semester != null) {
+      bySubtypePeriod.set(`${p.crop_subtype}|${y}|${p.semester}`, p);
+    }
+  }
+  return { bySubtypeYear, bySubtypePeriod };
+}
+
+function renderChartExpandEcosystem(canvas, points, grain, metricKey, forecastPoints = null) {
   const metric = metricKey || els.ecosystemMetric?.value || "yield_mt_ha";
   const meta = ECOSYSTEM_METRICS[metric] || ECOSYSTEM_METRICS.yield_mt_ha;
   const { grid, tick } = chartExpandGridTick();
   const colors = ecosystemChartColors();
+  const forecastLookup = ecosystemForecastLookup(forecastPoints, grain);
+  const hasForecast = Boolean(forecastPoints?.length);
 
   if (grain === "year") {
-    const years = [...new Set(points.map((p) => Number(p.year)))].sort((a, b) => a - b);
+    const histYears = [...new Set(points.map((p) => Number(p.year)))].sort((a, b) => a - b);
+    const fcYears = [
+      ...new Set((forecastPoints || []).map((p) => Number(p.year)).filter(Number.isFinite)),
+    ].sort((a, b) => a - b);
+    const years = [...new Set([...histYears, ...fcYears])].sort((a, b) => a - b);
     const names = chartSeriesValues().filter((name) =>
       points.some((p) => p.crop_subtype === name)
     );
@@ -10577,22 +12684,34 @@ function renderChartExpandEcosystem(canvas, points, grain, metricKey) {
     const datasets = fallbackNames.map((name) => {
       const byYear = new Map(
         points
-          .filter((p) => p.crop_subtype === name)
+          .filter((p) => p.crop_subtype === name && !p.isForecast)
           .map((p) => [Number(p.year), ecosystemMetricValue(p, metric)])
       );
       const swatch = colors[name] || { bg: "#09663f", hover: "#09663f", border: "#09663f" };
+      const data = years.map((y) => {
+        const fc = forecastLookup.bySubtypeYear.get(`${name}|${y}`);
+        if (fc) return ecosystemMetricValue(fc, metric);
+        return byYear.get(y) ?? null;
+      });
+      const isForecastYear = years.map((y) =>
+        Boolean(forecastLookup.bySubtypeYear.get(`${name}|${y}`))
+      );
       return {
         type: "bar",
         label: name,
-        data: years.map((y) => byYear.get(y) ?? null),
-        backgroundColor: swatch.bg,
-        hoverBackgroundColor: swatch.hover,
-        borderColor: swatch.border,
-        borderWidth: 0,
+        data,
+        backgroundColor: years.map((y, i) =>
+          isForecastYear[i] ? withAlpha(swatch.bg, 0.42) : swatch.bg
+        ),
+        hoverBackgroundColor: years.map((y, i) =>
+          isForecastYear[i] ? withAlpha(swatch.hover, 0.58) : swatch.hover
+        ),
+        borderColor: years.map((y, i) => (isForecastYear[i] ? swatch.border : swatch.bg)),
+        borderWidth: years.map((y, i) => (isForecastYear[i] ? 2 : 0)),
         borderRadius: 3,
         maxBarThickness: 18,
         categoryPercentage: 0.7,
-        barPercentage: 0.85,
+        barPercentage: hasForecast ? 0.88 : 0.85,
       };
     });
     const options = chartExpandBaseOptions("year", {
@@ -10608,13 +12727,24 @@ function renderChartExpandEcosystem(canvas, points, grain, metricKey) {
           callbacks: {
             ...ecosystemTooltipCallbacks,
             title(items) {
-              const year = items?.[0]?.label;
-              return year ? chartExpandEnsoTitle(year) : "";
+              const item = items?.[0];
+              const year = item?.label;
+              if (!year) return "";
+              const extras = [];
+              const idx = item.dataIndex;
+              const name = item.dataset?.label;
+              const fc = name ? forecastLookup.bySubtypeYear.get(`${name}|${Number(year)}`) : null;
+              if (fc?.periodForecastNote) extras.push(fc.periodForecastNote);
+              return chartExpandEnsoTitle(year, extras, { isForecast: Boolean(fc) });
             },
             label(ctx) {
               const v = ctx.parsed.y;
+              const name = ctx.dataset.label;
+              const y = Number(ctx.label);
+              const fc = forecastLookup.bySubtypeYear.get(`${name}|${y}`);
+              const suffix = fc ? " (forecast)" : "";
               if (v == null || Number.isNaN(v)) return `${ctx.dataset.label}: —`;
-              return `${ctx.dataset.label}: ${fmt.score(v, { compact: meta.compact })} ${meta.unit}`;
+              return `${ctx.dataset.label}: ${fmt.score(v, { compact: meta.compact })} ${meta.unit}${suffix}`;
             },
           },
         }),
@@ -10669,6 +12799,21 @@ function renderChartExpandEcosystem(canvas, points, grain, metricKey) {
     ).values(),
   ].sort((a, b) => a.year - b.year || a.period - b.period);
 
+  for (const fp of forecastPoints || []) {
+    const year = Number(fp.year);
+    const period = Number(fp[periodField]);
+    if (!Number.isFinite(year) || !Number.isFinite(period)) continue;
+    if (periodSlots.some((s) => s.year === year && s.period === period)) continue;
+    periodSlots.push({
+      year,
+      period,
+      label: chartExpandPeriodLabel(grain, period),
+      fullLabel: chartExpandPeriodDisplayLabel(grain, year, period),
+      ensoKey: chartExpandPeriodEnsoKey(grain, year, period),
+    });
+  }
+  periodSlots.sort((a, b) => a.year - b.year || a.period - b.period);
+
   const labels = periodSlots.map((s) => s.label);
   const fullLabels = periodSlots.map((s) => s.fullLabel);
   const periodYears = periodSlots.map((s) => s.year);
@@ -10681,7 +12826,7 @@ function renderChartExpandEcosystem(canvas, points, grain, metricKey) {
     : [...new Set(points.map((p) => p.crop_subtype).filter(Boolean))];
 
   // Avoid subtype × period overload: if many series, show period totals instead.
-  const useTotals = fallbackNames.length > 4;
+  const useTotals = fallbackNames.length > 4 && !hasForecast;
   let datasets;
   if (useTotals) {
     const totalsByKey = new Map();
@@ -10721,7 +12866,7 @@ function renderChartExpandEcosystem(canvas, points, grain, metricKey) {
     datasets = fallbackNames.map((name) => {
       const byKey = new Map(
         points
-          .filter((p) => p.crop_subtype === name)
+          .filter((p) => p.crop_subtype === name && !p.isForecast)
           .map((p) => {
             const year = Number(p.year);
             const period = Number(p[periodField]);
@@ -10729,18 +12874,32 @@ function renderChartExpandEcosystem(canvas, points, grain, metricKey) {
           })
       );
       const swatch = colors[name] || { bg: "#09663f", hover: "#09663f", border: "#09663f" };
+      const data = periodSlots.map((s) => {
+        const fc = forecastLookup.bySubtypePeriod.get(`${name}|${s.year}|${s.period}`);
+        if (fc) return ecosystemMetricValue(fc, metric);
+        return byKey.get(`${s.year}-${s.period}`) ?? null;
+      });
+      const isForecastPeriod = periodSlots.map((s) =>
+        Boolean(forecastLookup.bySubtypePeriod.get(`${name}|${s.year}|${s.period}`))
+      );
       return {
         type: "bar",
         label: name,
-        data: periodSlots.map((s) => byKey.get(`${s.year}-${s.period}`) ?? null),
-        backgroundColor: swatch.bg,
-        hoverBackgroundColor: swatch.hover,
-        borderColor: swatch.border,
-        borderWidth: 0,
+        data,
+        backgroundColor: periodSlots.map((s, i) =>
+          isForecastPeriod[i] ? withAlpha(swatch.bg, 0.42) : swatch.bg
+        ),
+        hoverBackgroundColor: periodSlots.map((s, i) =>
+          isForecastPeriod[i] ? withAlpha(swatch.hover, 0.58) : swatch.hover
+        ),
+        borderColor: periodSlots.map((s, i) =>
+          isForecastPeriod[i] ? swatch.border : swatch.bg
+        ),
+        borderWidth: periodSlots.map((s, i) => (isForecastPeriod[i] ? 2 : 0)),
         borderRadius: 3,
         maxBarThickness: 18,
         categoryPercentage: 0.7,
-        barPercentage: 0.85,
+        barPercentage: hasForecast ? 0.88 : 0.85,
       };
     });
   }
@@ -10756,15 +12915,30 @@ function renderChartExpandEcosystem(canvas, points, grain, metricKey) {
             const item = items?.[0];
             if (!item) return "";
             const idx = item.dataIndex;
+            const slot = periodSlots[idx];
+            const name = item.dataset?.label;
+            const fc =
+              name && slot
+                ? forecastLookup.bySubtypePeriod.get(`${name}|${slot.year}|${slot.period}`)
+                : null;
+            const extras = fc?.periodForecastNote ? [fc.periodForecastNote] : [];
             return chartExpandPeriodEnsoTitle(
               fullLabels[idx] || labels[idx] || item.label,
-              ensoKeys[idx]
+              ensoKeys[idx],
+              extras,
+              { isForecast: Boolean(fc) }
             );
           },
           label(ctx) {
             const v = ctx.parsed.y;
+            const idx = ctx.dataIndex;
+            const slot = periodSlots[idx];
+            const fc = forecastLookup.bySubtypePeriod.get(
+              `${ctx.dataset.label}|${slot?.year}|${slot?.period}`
+            );
+            const suffix = fc ? " (forecast)" : "";
             if (v == null || Number.isNaN(v)) return `${ctx.dataset.label}: —`;
-            return `${ctx.dataset.label}: ${fmt.score(v, { compact: meta.compact })} ${meta.unit}`;
+            return `${ctx.dataset.label}: ${fmt.score(v, { compact: meta.compact })} ${meta.unit}${suffix}`;
           },
         },
       }),
@@ -11111,6 +13285,8 @@ function buildChartExpandAnalysis(kind, grain, points) {
 async function paintChartExpandModal(kind, grain) {
   const paintSeq = ++chartExpandPaintSeq;
   const modal = ensureChartExpandModal();
+  pruneChartExpandEnsoLegends(modal);
+  ensureChartExpandFooter(modal);
   const sub = modal.querySelector("#chartExpandSub");
   const legend = modal.querySelector("#chartExpandEnsoLegend");
 
@@ -11121,7 +13297,7 @@ async function paintChartExpandModal(kind, grain) {
   modal.querySelectorAll("[data-chart-grain]").forEach((btn) => {
     btn.classList.toggle("is-active", btn.getAttribute("data-chart-grain") === grain);
   });
-  if (sub) {
+  if (sub && !chartExpandForecastActive(kind, grain)) {
     sub.textContent =
       grain === "year"
         ? "Annual trend with El Niño / La Niña year shading"
@@ -11129,7 +13305,8 @@ async function paintChartExpandModal(kind, grain) {
           ? "One point per quarter · ENSO shaded by quarter"
           : "One point per semester · ENSO shaded by semester";
   }
-  if (legend) {
+  syncChartExpandForecastChrome(modal, kind);
+  if (legend && !chartExpandForecastActive(kind, grain)) {
     legend.innerHTML = ensoLegendHtml({ compact: true });
     bindEnsoGuideTriggers(legend);
   }
@@ -11185,13 +13362,54 @@ async function paintChartExpandModal(kind, grain) {
     return;
   }
 
+  let forecastRows = null;
+  let ecosystemForecastPoints = null;
+  let yieldForecastPoints = null;
+  if (chartExpandForecastActive(kind, grain)) {
+    setChartExpandForecastLoading(modal, true);
+    const cropLabel = CONFIG.cropGroup || "production";
+    if (sub) sub.textContent = `Computing ${cropLabel} production forecast…`;
+    try {
+      if (kind === "ecosystem") {
+        ecosystemForecastPoints = await buildChartExpandEcosystemForecast(grain, points);
+        forecastRows = ecosystemForecastYearRows(ecosystemForecastPoints);
+      } else {
+        forecastRows = await buildChartExpandProductionForecast(grain, points);
+        if (kind === "yield") {
+          yieldForecastPoints = productionForecastRowsToYieldPoints(forecastRows, grain);
+        }
+      }
+    } catch (err) {
+      chartExpandLastForecastWarnings = [err.message || "Forecast failed."];
+      forecastRows = [];
+      ecosystemForecastPoints = [];
+      yieldForecastPoints = [];
+    } finally {
+      setChartExpandForecastLoading(modal, false);
+    }
+    refreshChartExpandForecastPresentation(modal, kind, grain);
+    const forecastEmpty =
+      kind === "ecosystem"
+        ? !ecosystemForecastPoints?.length
+        : kind === "yield"
+          ? !yieldForecastPoints?.length
+          : !forecastRows?.length;
+    if (forecastEmpty && sub) {
+      sub.textContent =
+        "Not enough history under the current filters to project the Q4 2026 – Q4 2027 outlook window.";
+    }
+  } else {
+    const warningsEl = ensureChartExpandForecastWarnings(modal);
+    if (warningsEl) warningsEl.hidden = true;
+  }
+
   if (kind === "trend") {
     chartExpandModalChart =
       grain === "year"
-        ? renderChartExpandYearTrend(canvas, points)
-        : renderChartExpandPeriodTrend(canvas, points, grain);
+        ? renderChartExpandYearTrend(canvas, points, forecastRows)
+        : renderChartExpandPeriodTrend(canvas, points, grain, forecastRows);
   } else if (kind === "yield") {
-    chartExpandModalChart = renderChartExpandYield(canvas, points, grain);
+    chartExpandModalChart = renderChartExpandYield(canvas, points, grain, yieldForecastPoints);
   } else if (kind === "growth") {
     chartExpandModalChart = renderChartExpandGrowth(canvas, points, grain);
   } else if (kind === "ecosystem") {
@@ -11199,7 +13417,8 @@ async function paintChartExpandModal(kind, grain) {
       canvas,
       points,
       grain,
-      els.ecosystemMetric?.value || "yield_mt_ha"
+      els.ecosystemMetric?.value || "yield_mt_ha",
+      ecosystemForecastPoints
     );
   } else {
     chartExpandModalChart = renderChartExpandYearTrend(canvas, points);
@@ -11208,8 +13427,36 @@ async function paintChartExpandModal(kind, grain) {
     destroyChartExpandModalChart();
     return;
   }
+  const expandLabelKeys = chartExpandModalChart?.$ensoLabelKeys || null;
+  let byYearForBands = ensoByYear || {};
+  const ensoForecastRows =
+    kind === "ecosystem" && ecosystemForecastPoints?.length
+      ? ecosystemForecastPoints.map((p) => ({
+          ...p,
+          period: p.quarter ?? p.semester ?? p.period,
+          isForecast: true,
+        }))
+      : kind === "yield" && yieldForecastPoints?.length
+        ? yieldForecastPoints.map((p) => ({
+            ...p,
+            period: p.quarter ?? p.semester ?? p.period,
+            isForecast: true,
+          }))
+        : forecastRows;
+  if (
+    grain === "year" &&
+    chartExpandForecastActive(kind, grain) &&
+    (forecastRows?.length || ecosystemForecastPoints?.length)
+  ) {
+    byYearForBands = {
+      ...byYearForBands,
+      ...buildEnsoOutlookYearOverrides(forecastRows),
+    };
+  }
   applyEnsoBands(chartExpandModalChart, grain, {
-    labelKeys: chartExpandModalChart?.$ensoLabelKeys || null,
+    labelKeys: expandLabelKeys,
+    byPeriod: buildEnsoOutlookPeriodMap(grain, ensoForecastRows, expandLabelKeys),
+    byYear: byYearForBands,
   });
   chartExpandModalChart.update();
 
@@ -11217,6 +13464,7 @@ async function paintChartExpandModal(kind, grain) {
   if (analysisEl) {
     analysisEl.textContent = buildChartExpandAnalysis(kind, grain, points);
   }
+  syncChartExpandForecastAnalysis(modal, kind, grain);
 }
 
 async function openChartExpandModal(chartId) {
@@ -11228,6 +13476,8 @@ async function openChartExpandModal(chartId) {
   const modal = ensureChartExpandModal();
   if (!modal.hidden) return;
 
+  chartExpandShowForecast = false;
+  chartExpandLastForecastSnapshot = null;
   const title = modal.querySelector("#chartExpandTitle");
   const expandBtn = document.querySelector(`[data-chart-expand="${chartId}"]`);
   const sourceTitle =
@@ -11235,7 +13485,10 @@ async function openChartExpandModal(chartId) {
     meta.title;
   const previouslyFocused = document.activeElement;
   const closeBtn = modal.querySelector(".app-modal-close");
+  const forecastBtn = modal.querySelector("#chartExpandForecastBtn");
+  const forecastMethodSelect = ensureChartExpandForecastMethodSelect(modal);
   let grain = "year";
+  syncChartExpandForecastChrome(modal, meta.kind);
 
   if (title) {
     title.textContent = sourceTitle;
@@ -11252,6 +13505,8 @@ async function openChartExpandModal(chartId) {
     modal.querySelectorAll("[data-chart-grain]").forEach((el) => {
       el.removeEventListener("click", onGrainClick);
     });
+    forecastBtn?.removeEventListener("click", onForecastClick);
+    forecastMethodSelect?.removeEventListener("change", onForecastMethodChange);
     if (previouslyFocused && typeof previouslyFocused.focus === "function") {
       previouslyFocused.focus();
     }
@@ -11269,6 +13524,32 @@ async function openChartExpandModal(chartId) {
     const next = btn.getAttribute("data-chart-grain") || "year";
     if (next === grain) return;
     grain = next;
+    syncChartExpandForecastChrome(modal, meta.kind);
+    paintChartExpandModal(meta.kind, grain).catch((err) => {
+      console.warn("Chart expand failed:", err);
+    });
+  };
+  const onForecastClick = () => {
+    if (!chartExpandSupportsProductionForecast(meta.kind)) return;
+    chartExpandShowForecast = !chartExpandShowForecast;
+    syncChartExpandForecastChrome(modal, meta.kind);
+    const needOutlook =
+      chartExpandShowForecast &&
+      (!ensoOutlookByQuarter || !Object.keys(ensoOutlookByQuarter).length);
+    const paint = () =>
+      paintChartExpandModal(meta.kind, grain).catch((err) => {
+        console.warn("Chart expand failed:", err);
+      });
+    if (needOutlook) {
+      loadEnso({ force: true }).then(paint);
+    } else {
+      paint();
+    }
+  };
+  const onForecastMethodChange = () => {
+    chartExpandForecastMethod = normalizeChartExpandForecastMethod(forecastMethodSelect?.value);
+    syncChartExpandForecastChrome(modal, meta.kind);
+    if (!chartExpandShowForecast) return;
     paintChartExpandModal(meta.kind, grain).catch((err) => {
       console.warn("Chart expand failed:", err);
     });
@@ -11280,6 +13561,8 @@ async function openChartExpandModal(chartId) {
   modal.querySelectorAll("[data-chart-grain]").forEach((el) => {
     el.addEventListener("click", onGrainClick);
   });
+  forecastBtn?.addEventListener("click", onForecastClick);
+  forecastMethodSelect?.addEventListener("change", onForecastMethodChange);
   modal.addEventListener("keydown", onKeyDown);
 
   modal.hidden = false;
@@ -11546,7 +13829,8 @@ function bind() {
     if (window.innerWidth <= 900) return;
     const collapsed = layout.classList.contains("sidebar-collapsed");
     menuToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
-    menuToggle.setAttribute("aria-label", collapsed ? "Expand filters" : "Collapse filters");
+    menuToggle.setAttribute("aria-label", collapsed ? "Show filters" : "Hide filters");
+    menuToggle.setAttribute("title", collapsed ? "Show filters" : "Hide filters");
   }
 
   function setSidebarCollapsed(collapsed) {
@@ -11624,7 +13908,9 @@ function bind() {
       backdrop.setAttribute("aria-hidden", open ? "false" : "true");
     }
     menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    menuToggle.setAttribute("aria-label", open ? "Close filters" : "Open filters");
+    const mobileLabel = open ? "Close filters" : "Show filters";
+    menuToggle.setAttribute("aria-label", mobileLabel);
+    menuToggle.setAttribute("title", mobileLabel);
     document.body.classList.toggle("nav-open", open);
   }
 
@@ -11680,6 +13966,7 @@ async function boot() {
     if (dbReady) {
       if (PREVIEW_EMBED) {
         await Promise.all([loadMeta(), refreshDashboard()]);
+        await openPreviewFarmgateCommodityIfNeeded();
       } else {
         await loadEnso();
         await loadMeta();

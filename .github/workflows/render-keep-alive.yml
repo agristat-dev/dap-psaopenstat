@@ -1,0 +1,23 @@
+# Render free/starter web services spin down after ~15 minutes idle.
+# A lightweight ping every 14 minutes keeps the API warm between user visits.
+# For production SLA, use a paid Render instance (always on) instead of relying on pings.
+name: Render API keep-alive
+
+on:
+  schedule:
+    - cron: "*/14 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wake Render API
+        env:
+          RENDER_API_URL: ${{ vars.RENDER_API_URL }}
+        run: |
+          BASE="${RENDER_API_URL:-https://dap-psaopenstat.onrender.com}"
+          BASE="${BASE%/}"
+          echo "Pinging ${BASE}/api/ping"
+          curl -fsS --retry 3 --retry-delay 10 --max-time 120 "${BASE}/api/ping"

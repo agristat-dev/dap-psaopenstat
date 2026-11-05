@@ -1,6 +1,16 @@
 (() => {
   "use strict";
 
+  function isPreliminaryNoticeOpen() {
+    const modal = document.getElementById("preliminaryDataNoticeModal");
+    return Boolean(modal && !modal.hidden);
+  }
+
+  function setModalOpenState(open) {
+    document.documentElement.classList.toggle("modal-open", open);
+    document.body.classList.toggle("modal-open", open);
+  }
+
   function ensurePreliminaryNoticeModal() {
     let modal = document.getElementById("preliminaryDataNoticeModal");
     if (modal) return modal;
@@ -28,7 +38,7 @@
       </div>
     </div>
   `;
-    document.body.appendChild(modal);
+    (document.body || document.documentElement).appendChild(modal);
     return modal;
   }
 
@@ -43,7 +53,7 @@
 
     const close = () => {
       modal.hidden = true;
-      document.body.classList.remove("modal-open");
+      setModalOpenState(false);
       modal.removeEventListener("keydown", onKeyDown);
       confirmBtn?.removeEventListener("click", onConfirm);
       modal.querySelectorAll("[data-notice-dismiss]").forEach((el) => {
@@ -71,19 +81,31 @@
     confirmBtn?.addEventListener("click", onConfirm);
     modal.addEventListener("keydown", onKeyDown);
 
+    document.body.appendChild(modal);
+
     modal.hidden = false;
-    document.body.classList.add("modal-open");
+    setModalOpenState(true);
     requestAnimationFrame(() => {
-      confirmBtn?.focus();
+      confirmBtn?.focus({ preventScroll: true });
+    });
+  }
+
+  function schedulePreliminaryDataNotice() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        showPreliminaryDataNotice();
+      });
     });
   }
 
   function initPreliminaryDataNotice() {
-    showPreliminaryDataNotice();
+    schedulePreliminaryDataNotice();
   }
 
+  window.isPreliminaryNoticeOpen = isPreliminaryNoticeOpen;
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initPreliminaryDataNotice);
+    document.addEventListener("DOMContentLoaded", initPreliminaryDataNotice, { once: true });
   } else {
     initPreliminaryDataNotice();
   }

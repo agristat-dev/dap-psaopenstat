@@ -3,25 +3,7 @@ body.landing-body {
   height: auto;
   display: flex;
   flex-direction: column;
-  background-color: #eef3fc;
-  background-image:
-    linear-gradient(
-      165deg,
-      rgba(255, 255, 255, 0.62) 0%,
-      rgba(238, 243, 252, 0.52) 42%,
-      rgba(255, 255, 255, 0.56) 100%
-    ),
-    linear-gradient(
-      165deg,
-      rgba(12, 26, 98, 0.34) 0%,
-      rgba(42, 79, 180, 0.26) 45%,
-      rgba(12, 26, 98, 0.3) 100%
-    ),
-    url("/assets/images/dap-psa-bg.jpg");
-  background-size: cover;
-  background-position: center 20%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: var(--color-canvas);
 }
 
 .landing-skip-link {
@@ -1095,37 +1077,6 @@ body.landing-body {
 }
 
 @media (max-width: 640px) {
-  /* Fixed background layer (reliable on mobile; body background-attachment: fixed is ignored on iOS). */
-  body.landing-body {
-    background-image: none;
-  }
-
-  body.landing-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-color: #eef3fc;
-    background-image:
-      linear-gradient(
-        165deg,
-        rgba(255, 255, 255, 0.62) 0%,
-        rgba(238, 243, 252, 0.52) 42%,
-        rgba(255, 255, 255, 0.56) 100%
-      ),
-      linear-gradient(
-        165deg,
-        rgba(12, 26, 98, 0.34) 0%,
-        rgba(42, 79, 180, 0.26) 45%,
-        rgba(12, 26, 98, 0.3) 100%
-      ),
-      url("/assets/images/dap-psa-bg.jpg");
-    background-size: cover;
-    background-position: center 20%;
-    background-repeat: no-repeat;
-  }
-
   .landing-shell > .app-footer .app-footer-inner {
     flex-direction: column;
     align-items: stretch;
@@ -1283,7 +1234,7 @@ body.landing-body {
   }
 }
 
-.landing-card-preview-iframe {
+.landing-card-preview-shot {
   position: absolute;
   top: 0;
   left: 0;
@@ -1296,10 +1247,29 @@ body.landing-body {
   transform-origin: top left;
   opacity: 0;
   transition: opacity 0.28s ease;
+  background-color: #eef3fc;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-.landing-card-preview-iframe.is-visible {
+.landing-card-preview-shot.is-visible {
   opacity: 1;
+}
+
+.preview-shot-guard {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  user-select: none;
+}
+
+.preview-shot-protected {
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .gallery-preview-loader {

@@ -17,8 +17,9 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/styles.css?v=162" />
-  <link rel="stylesheet" href="/assets/landing.css?v=73" />
-  <link rel="stylesheet" href="/assets/portal.css?v=29" />
+  <link rel="stylesheet" href="/assets/landing.css?v=76" />
+  <link rel="preload" href="/assets/images/landing-bg-agri-data.png?v=1" as="image" />
+  <link rel="stylesheet" href="/assets/portal.css?v=35" />
 </head>
 <body class="portal-body">
   <a class="portal-skip-link" href="#main-content">Skip to main content</a>
@@ -84,43 +85,35 @@
               <li>Farmgate Price</li>
             </ul>
             <div class="portal-hero-actions">
-              <a class="portal-btn portal-btn-primary" href="/dashboards">Explore dashboards</a>
-              <a
-                class="portal-btn portal-btn-secondary"
-                href="https://openstat.psa.gov.ph/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Browse PSA OpenSTAT</a>
+              <a class="portal-btn portal-btn-primary" href="/dashboards">Explore Dashboards</a>
+              <a class="portal-btn portal-btn-secondary" href="/browse">Browse Datasets</a>
             </div>
           </div>
 
           <div class="portal-preview" aria-labelledby="portal-preview-label">
             <div class="portal-preview-head">
-              <p class="portal-preview-label" id="portal-preview-label">Live dashboard preview</p>
-              <span class="portal-preview-live" aria-hidden="true">
-                <span class="portal-preview-live-dot"></span>
-                Live
-              </span>
+              <p class="portal-preview-label" id="portal-preview-label">Dashboard preview</p>
             </div>
             <div class="portal-preview-stage">
               <div class="portal-preview-viewport is-loading" id="portalPreviewViewport">
                 <div class="portal-preview-loader" aria-hidden="true">
                   <span class="portal-preview-loader-bar"></span>
                 </div>
-                <iframe
-                  class="portal-preview-iframe"
+                <div
+                  class="portal-preview-shot preview-shot-protected"
                   id="portalPreviewA"
-                  title="Dashboard preview"
-                  loading="eager"
+                  role="img"
+                  aria-label="Dashboard preview snapshot"
                   tabindex="-1"
-                ></iframe>
-                <iframe
-                  class="portal-preview-iframe"
+                ></div>
+                <div
+                  class="portal-preview-shot preview-shot-protected"
                   id="portalPreviewB"
-                  title="Dashboard preview"
-                  loading="eager"
+                  role="img"
+                  aria-hidden="true"
                   tabindex="-1"
-                ></iframe>
+                ></div>
+                <div class="preview-shot-guard" aria-hidden="true"></div>
                 <div class="portal-preview-shade" aria-hidden="true"></div>
                 <div class="portal-preview-progress" id="portalPreviewProgress" aria-hidden="true">
                   <span class="portal-preview-progress-bar"></span>
@@ -162,13 +155,11 @@
       >
         <div class="portal-wrap">
           <div class="landing-snapshots-section portal-snapshots-panel">
-            <header class="landing-section-head landing-section-head-row portal-snapshots-head">
-              <div class="landing-section-head-copy">
+            <header class="landing-section-head portal-snapshots-head">
+              <div class="portal-snapshots-head-row">
                 <h2 class="landing-section-title" id="snapshots-title">Production snapshot</h2>
-                <p class="landing-section-sub" id="snapshotsSub">Loading production averages…</p>
-              </div>
-              <div class="portal-snapshots-toolbar">
-                <a class="portal-snapshots-hub-link" href="/dashboards">Dashboard gallery</a>
+                <div class="portal-snapshots-toolbar">
+                <a class="portal-snapshots-hub-link" href="/dashboards">View All Dashboards</a>
                 <button
                   type="button"
                   class="landing-refresh-btn"
@@ -183,7 +174,9 @@
                     />
                   </svg>
                 </button>
+                </div>
               </div>
+              <p class="landing-section-sub portal-snapshots-sub" id="snapshotsSub">Loading production averages…</p>
             </header>
             <div class="landing-snapshot-grid" id="snapshotGrid" aria-busy="true"></div>
           </div>
@@ -201,8 +194,9 @@
     </footer>
   </div>
   <script src="/assets/config.js"></script>
-  <script src="/assets/platform-notice.js?v=3"></script>
-  <script src="/assets/portal.js?v=15"></script>
-  <script src="/assets/landing.js?v=29"></script>
+  <script src="/assets/dashboard-preview-shots.js?v=2"></script>
+  <script src="/assets/platform-notice.js?v=4"></script>
+  <script src="/assets/portal.js?v=16"></script>
+  <script src="/assets/landing.js?v=31"></script>
 </body>
 </html>
