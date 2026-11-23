@@ -203,7 +203,14 @@ async function showPreview(index, { force = false } = {}) {
   restartPreviewProgress();
 
   try {
-    await applyPreviewShot(incoming, item.href);
+    let ok = await applyPreviewShot(incoming, item.href);
+    if (!ok) {
+      prefetchPreviewShot(item.href);
+      ok = await applyPreviewShot(incoming, item.href);
+    }
+    if (!ok) {
+      return;
+    }
     incoming.classList.add("is-loaded");
     incoming.classList.add("is-active");
     incoming.setAttribute("aria-label", `${item.label} dashboard preview snapshot`);

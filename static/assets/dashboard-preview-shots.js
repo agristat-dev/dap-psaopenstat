@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = 2;
+  const VERSION = 3;
   const BASE = "/assets/images/dashboard-previews";
   const EXT = "webp";
 
@@ -23,12 +23,35 @@
     return `${BASE}/${encodeURIComponent(slug)}.${EXT}?v=${VERSION}`;
   }
 
-  function revokeElementBlob(el) {
-    const prev = el?.dataset?.blobUrl;
-    if (prev) {
-      URL.revokeObjectURL(prev);
-      delete el.dataset.blobUrl;
+  function isCachedBlobUrl(blobUrl) {
+    for (const cached of blobCache.values()) {
+      if (cached === blobUrl) return true;
     }
+    return false;
+  }
+
+  /** Detach an element from its blob background without revoking shared cache URLs. */
+  function clearElementBlob(el) {
+    const prev = el?.dataset?.blobUrl;
+    if (!prev) return;
+    delete el.dataset.blobUrl;
+    if (!isCachedBlobUrl(prev)) {
+      try {
+        URL.revokeObjectURL(prev);
+      } catch {
+        /* ignore */
+      }
+    }
+    if (el.style) el.style.backgroundImage = "";
+  }
+
+  async function loadBlobUrl(url) {
+    const res = await fetch(url, { credentials: "same-origin", cache: "force-cache" });
+    if (!res.ok) return "";
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    blobCache.set(url, blobUrl);
+    return blobUrl;
   }
 
   async function applyProtectedBackground(el, slug) {
@@ -36,27 +59,22 @@
     const url = assetUrl(slug);
     if (!url) return false;
 
-    if (blobCache.has(url)) {
-      revokeElementBlob(el);
-      const blobUrl = blobCache.get(url);
-      el.dataset.blobUrl = blobUrl;
-      el.style.backgroundImage = `url("${blobUrl}")`;
-      return true;
+    clearElementBlob(el);
+
+    let blobUrl = blobCache.get(url) || "";
+    if (!blobUrl) {
+      try {
+        blobUrl = await loadBlobUrl(url);
+      } catch {
+        blobUrl = "";
+      }
     }
 
-    try {
-      const res = await fetch(url, { credentials: "same-origin", cache: "force-cache" });
-      if (!res.ok) return false;
-      const blob = await res.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      blobCache.set(url, blobUrl);
-      revokeElementBlob(el);
-      el.dataset.blobUrl = blobUrl;
-      el.style.backgroundImage = `url("${blobUrl}")`;
-      return true;
-    } catch {
-      return false;
-    }
+    if (!blobUrl) return false;
+
+    el.dataset.blobUrl = blobUrl;
+    el.style.backgroundImage = `url("${blobUrl}")`;
+    return true;
   }
 
   function prefetchSlug(slug) {
