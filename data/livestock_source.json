@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-03T04:46:33.115134+00:00",
+  "fetched_at": "2026-11-23T03:53:30.409758+00:00",
   "api_origin": "https://openstat.psa.gov.ph",
   "tables": [
     {
@@ -167,7 +167,7 @@
       "retrieved": null,
       "release": "openstat-live",
       "unit": "Reported value \u2014 see source for units",
-      "observation_count": 1776,
+      "observation_count": 1696,
       "csv": "dairy_province_obs.csv",
       "key": "dairy_province"
     }

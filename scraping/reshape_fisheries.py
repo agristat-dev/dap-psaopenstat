@@ -10,23 +10,13 @@ from typing import Any
 
 try:
     from .fetch_fisheries import RAW_DIR, SKIP_SPECIES, TABLES
-    from .geo import (
-        build_geo_lookup,
-        ordered_unique,
-        parse_value,
-        quarter_from_period,
-        semester_from_quarter,
-    )
+    from .geo import parse_value, quarter_from_period, semester_from_quarter
+    from .geo_rollup import build_geo_lookup_from_obs
     from .paths import DATA_DIR, ensure_data_dirs
 except ImportError:
     from fetch_fisheries import RAW_DIR, SKIP_SPECIES, TABLES
-    from geo import (
-        build_geo_lookup,
-        ordered_unique,
-        parse_value,
-        quarter_from_period,
-        semester_from_quarter,
-    )
+    from geo import parse_value, quarter_from_period, semester_from_quarter
+    from geo_rollup import build_geo_lookup_from_obs
     from paths import DATA_DIR, ensure_data_dirs
 
 ensure_data_dirs()
@@ -94,7 +84,7 @@ def _read_obs_csv(path: Path, table_key: str) -> list[dict[str, Any]]:
 
 
 def observations_to_long(rows: list[dict[str, Any]]) -> list[dict]:
-    geo_by_label = build_geo_lookup(ordered_unique([r["geo_label"] for r in rows]))
+    geo_by_label = build_geo_lookup_from_obs(rows)
     regions_with_provinces = {
         geo["region"]
         for geo in geo_by_label.values()

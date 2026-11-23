@@ -133037,7 +133037,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2014,3,2,Pangi,Pangi,0,Region X,Bukidnon,,
 2014,3,2,Papaya,Hawaiian,0,Region X,Bukidnon,600.0,
 2014,3,2,Papaya,Native,0,Region X,Bukidnon,10.0,
-2014,3,2,Papaya,Solo,0,Region X,Bukidnon,20.0,
+2014,3,2,Papaya,Solo,0,Region X,Bukidnon,22.0,
 2014,3,2,Passion Fruit,Passion Fruit,0,Region X,Bukidnon,0.5,
 2014,3,2,Pears,Pears,0,Region X,Bukidnon,,
 2014,3,2,Persimmon,Persimmon,0,Region X,Bukidnon,,
@@ -133114,7 +133114,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2014,3,2,Pangi,Pangi,0,Region X,Camiguin,,
 2014,3,2,Papaya,Hawaiian,0,Region X,Camiguin,,
 2014,3,2,Papaya,Native,0,Region X,Camiguin,18.45,
-2014,3,2,Papaya,Solo,0,Region X,Camiguin,7.0,
+2014,3,2,Papaya,Solo,0,Region X,Camiguin,9.0,
 2014,3,2,Passion Fruit,Passion Fruit,0,Region X,Camiguin,1.2,
 2014,3,2,Pears,Pears,0,Region X,Camiguin,,
 2014,3,2,Persimmon,Persimmon,0,Region X,Camiguin,,
@@ -133191,7 +133191,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2014,3,2,Pangi,Pangi,0,Region X,Lanao del Norte,,
 2014,3,2,Papaya,Hawaiian,0,Region X,Lanao del Norte,55.0,
 2014,3,2,Papaya,Native,0,Region X,Lanao del Norte,48.0,
-2014,3,2,Papaya,Solo,0,Region X,Lanao del Norte,38.0,
+2014,3,2,Papaya,Solo,0,Region X,Lanao del Norte,40.0,
 2014,3,2,Passion Fruit,Passion Fruit,0,Region X,Lanao del Norte,,
 2014,3,2,Pears,Pears,0,Region X,Lanao del Norte,,
 2014,3,2,Persimmon,Persimmon,0,Region X,Lanao del Norte,,
@@ -133268,7 +133268,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2014,3,2,Pangi,Pangi,0,Region X,Misamis Occidental,,
 2014,3,2,Papaya,Hawaiian,0,Region X,Misamis Occidental,9.85,
 2014,3,2,Papaya,Native,0,Region X,Misamis Occidental,7.0,
-2014,3,2,Papaya,Solo,0,Region X,Misamis Occidental,4.75,
+2014,3,2,Papaya,Solo,0,Region X,Misamis Occidental,6.75,
 2014,3,2,Passion Fruit,Passion Fruit,0,Region X,Misamis Occidental,,
 2014,3,2,Pears,Pears,0,Region X,Misamis Occidental,,
 2014,3,2,Persimmon,Persimmon,0,Region X,Misamis Occidental,,
@@ -133345,7 +133345,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2014,3,2,Pangi,Pangi,0,Region X,Misamis Oriental,,
 2014,3,2,Papaya,Hawaiian,0,Region X,Misamis Oriental,6300.0,
 2014,3,2,Papaya,Native,0,Region X,Misamis Oriental,120.0,
-2014,3,2,Papaya,Solo,0,Region X,Misamis Oriental,1.0,
+2014,3,2,Papaya,Solo,0,Region X,Misamis Oriental,3.0,
 2014,3,2,Passion Fruit,Passion Fruit,0,Region X,Misamis Oriental,,
 2014,3,2,Pears,Pears,0,Region X,Misamis Oriental,,
 2014,3,2,Persimmon,Persimmon,0,Region X,Misamis Oriental,,
@@ -140198,7 +140198,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2014,4,2,Pangi,Pangi,0,Region X,Camiguin,,
 2014,4,2,Papaya,Hawaiian,0,Region X,Camiguin,,
 2014,4,2,Papaya,Native,0,Region X,Camiguin,15.24,
-2014,4,2,Papaya,Solo,0,Region X,Camiguin,,
+2014,4,2,Papaya,Solo,0,Region X,Camiguin,15.0,
 2014,4,2,Passion Fruit,Passion Fruit,0,Region X,Camiguin,0.12,
 2014,4,2,Pears,Pears,0,Region X,Camiguin,,
 2014,4,2,Persimmon,Persimmon,0,Region X,Camiguin,,
@@ -153027,7 +153027,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Granada,Granada,0,Region VI,Aklan,,
 2015,2,1,Grapes,green,0,Region VI,Aklan,,
 2015,2,1,Grapes,red,0,Region VI,Aklan,,
-2015,2,1,Guava,Guapple,0,Region VI,Aklan,0.56,
+2015,2,1,Guava,Guapple,0,Region VI,Aklan,0.5600000000000005,
 2015,2,1,Guava,Native,0,Region VI,Aklan,11.35,
 2015,2,1,Guyabano,Guyabano,0,Region VI,Aklan,5.62,
 2015,2,1,Hevi,Hevi,0,Region VI,Aklan,,
@@ -153049,8 +153049,8 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Mangosteen,Mangosteen,0,Region VI,Aklan,,
 2015,2,1,Manguelas (June Plum),Manguelas (June Plum),0,Region VI,Aklan,,
 2015,2,1,Marang,Marang,0,Region VI,Aklan,,
-2015,2,1,Melon,Honey-dew,0,Region VI,Aklan,,
-2015,2,1,Melon,Muskmelon,0,Region VI,Aklan,,
+2015,2,1,Melon,Honey-dew,0,Region VI,Aklan,1.62533333333334,
+2015,2,1,Melon,Muskmelon,0,Region VI,Aklan,4.063333333333321,
 2015,2,1,Miracle Fruit,Miracle Fruit,0,Region VI,Aklan,,
 2015,2,1,Mulberry,Mulberry,0,Region VI,Aklan,,
 2015,2,1,Orange,Orange,0,Region VI,Aklan,,
@@ -153104,8 +153104,8 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Granada,Granada,0,Region VI,Antique,,
 2015,2,1,Grapes,green,0,Region VI,Antique,,
 2015,2,1,Grapes,red,0,Region VI,Antique,,
-2015,2,1,Guava,Guapple,0,Region VI,Antique,0.77,
-2015,2,1,Guava,Native,0,Region VI,Antique,0.29,
+2015,2,1,Guava,Guapple,0,Region VI,Antique,0.7700000000000005,
+2015,2,1,Guava,Native,0,Region VI,Antique,0.29000000000000004,
 2015,2,1,Guyabano,Guyabano,0,Region VI,Antique,11.95,
 2015,2,1,Hevi,Hevi,0,Region VI,Antique,,
 2015,2,1,"Jackfruit, ripe","Jackfruit, ripe",0,Region VI,Antique,65.95,
@@ -153126,8 +153126,8 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Mangosteen,Mangosteen,0,Region VI,Antique,,
 2015,2,1,Manguelas (June Plum),Manguelas (June Plum),0,Region VI,Antique,,
 2015,2,1,Marang,Marang,0,Region VI,Antique,,
-2015,2,1,Melon,Honey-dew,0,Region VI,Antique,,
-2015,2,1,Melon,Muskmelon,0,Region VI,Antique,2.5,
+2015,2,1,Melon,Honey-dew,0,Region VI,Antique,1.62533333333334,
+2015,2,1,Melon,Muskmelon,0,Region VI,Antique,1.6873333333332994,
 2015,2,1,Miracle Fruit,Miracle Fruit,0,Region VI,Antique,,
 2015,2,1,Mulberry,Mulberry,0,Region VI,Antique,,
 2015,2,1,Orange,Orange,0,Region VI,Antique,,
@@ -153181,7 +153181,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Granada,Granada,0,Region VI,Capiz,,
 2015,2,1,Grapes,green,0,Region VI,Capiz,,
 2015,2,1,Grapes,red,0,Region VI,Capiz,,
-2015,2,1,Guava,Guapple,0,Region VI,Capiz,27.2,
+2015,2,1,Guava,Guapple,0,Region VI,Capiz,27.200000000000003,
 2015,2,1,Guava,Native,0,Region VI,Capiz,25.23,
 2015,2,1,Guyabano,Guyabano,0,Region VI,Capiz,10.13,
 2015,2,1,Hevi,Hevi,0,Region VI,Capiz,,
@@ -153203,8 +153203,8 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Mangosteen,Mangosteen,0,Region VI,Capiz,,
 2015,2,1,Manguelas (June Plum),Manguelas (June Plum),0,Region VI,Capiz,,
 2015,2,1,Marang,Marang,0,Region VI,Capiz,4.78,
-2015,2,1,Melon,Honey-dew,0,Region VI,Capiz,27.2,
-2015,2,1,Melon,Muskmelon,0,Region VI,Capiz,27.2,
+2015,2,1,Melon,Honey-dew,0,Region VI,Capiz,23.949333333333318,
+2015,2,1,Melon,Muskmelon,0,Region VI,Capiz,26.3873333333333,
 2015,2,1,Miracle Fruit,Miracle Fruit,0,Region VI,Capiz,,
 2015,2,1,Mulberry,Mulberry,0,Region VI,Capiz,,
 2015,2,1,Orange,Orange,0,Region VI,Capiz,,
@@ -153258,8 +153258,8 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Granada,Granada,0,Region VI,Guimaras,,
 2015,2,1,Grapes,green,0,Region VI,Guimaras,,
 2015,2,1,Grapes,red,0,Region VI,Guimaras,,
-2015,2,1,Guava,Guapple,0,Region VI,Guimaras,1.8,
-2015,2,1,Guava,Native,0,Region VI,Guimaras,0.2,
+2015,2,1,Guava,Guapple,0,Region VI,Guimaras,1.8000000000000005,
+2015,2,1,Guava,Native,0,Region VI,Guimaras,0.19999999999999996,
 2015,2,1,Guyabano,Guyabano,0,Region VI,Guimaras,4.0,
 2015,2,1,Hevi,Hevi,0,Region VI,Guimaras,,
 2015,2,1,"Jackfruit, ripe","Jackfruit, ripe",0,Region VI,Guimaras,85.0,
@@ -153280,8 +153280,8 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Mangosteen,Mangosteen,0,Region VI,Guimaras,,
 2015,2,1,Manguelas (June Plum),Manguelas (June Plum),0,Region VI,Guimaras,,
 2015,2,1,Marang,Marang,0,Region VI,Guimaras,0.8,
-2015,2,1,Melon,Honey-dew,0,Region VI,Guimaras,,
-2015,2,1,Melon,Muskmelon,0,Region VI,Guimaras,0.1,
+2015,2,1,Melon,Honey-dew,0,Region VI,Guimaras,1.62533333333334,
+2015,2,1,Melon,Muskmelon,0,Region VI,Guimaras,-0.7126666666667006,
 2015,2,1,Miracle Fruit,Miracle Fruit,0,Region VI,Guimaras,,
 2015,2,1,Mulberry,Mulberry,0,Region VI,Guimaras,,
 2015,2,1,Orange,Orange,0,Region VI,Guimaras,,
@@ -153335,7 +153335,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Granada,Granada,0,Region VI,Iloilo,,
 2015,2,1,Grapes,green,0,Region VI,Iloilo,,
 2015,2,1,Grapes,red,0,Region VI,Iloilo,,
-2015,2,1,Guava,Guapple,0,Region VI,Iloilo,4.8,
+2015,2,1,Guava,Guapple,0,Region VI,Iloilo,4.800000000000001,
 2015,2,1,Guava,Native,0,Region VI,Iloilo,1.8,
 2015,2,1,Guyabano,Guyabano,0,Region VI,Iloilo,57.0,
 2015,2,1,Hevi,Hevi,0,Region VI,Iloilo,,
@@ -153357,8 +153357,8 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Mangosteen,Mangosteen,0,Region VI,Iloilo,,
 2015,2,1,Manguelas (June Plum),Manguelas (June Plum),0,Region VI,Iloilo,,
 2015,2,1,Marang,Marang,0,Region VI,Iloilo,,
-2015,2,1,Melon,Honey-dew,0,Region VI,Iloilo,28.0,
-2015,2,1,Melon,Muskmelon,0,Region VI,Iloilo,2725.0,
+2015,2,1,Melon,Honey-dew,0,Region VI,Iloilo,24.74933333333332,
+2015,2,1,Melon,Muskmelon,0,Region VI,Iloilo,2724.1873333333333,
 2015,2,1,Miracle Fruit,Miracle Fruit,0,Region VI,Iloilo,,
 2015,2,1,Mulberry,Mulberry,0,Region VI,Iloilo,,
 2015,2,1,Orange,Orange,0,Region VI,Iloilo,,
@@ -153412,7 +153412,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Granada,Granada,0,Region VI,Negros Occidental,,
 2015,2,1,Grapes,green,0,Region VI,Negros Occidental,,
 2015,2,1,Grapes,red,0,Region VI,Negros Occidental,,
-2015,2,1,Guava,Guapple,0,Region VI,Negros Occidental,4.36,
+2015,2,1,Guava,Guapple,0,Region VI,Negros Occidental,4.360000000000001,
 2015,2,1,Guava,Native,0,Region VI,Negros Occidental,9.03,
 2015,2,1,Guyabano,Guyabano,0,Region VI,Negros Occidental,13.25,
 2015,2,1,Hevi,Hevi,0,Region VI,Negros Occidental,,
@@ -153434,8 +153434,8 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2015,2,1,Mangosteen,Mangosteen,0,Region VI,Negros Occidental,,
 2015,2,1,Manguelas (June Plum),Manguelas (June Plum),0,Region VI,Negros Occidental,,
 2015,2,1,Marang,Marang,0,Region VI,Negros Occidental,,
-2015,2,1,Melon,Honey-dew,0,Region VI,Negros Occidental,,
-2015,2,1,Melon,Muskmelon,0,Region VI,Negros Occidental,124.99,
+2015,2,1,Melon,Honey-dew,0,Region VI,Negros Occidental,1.62533333333334,
+2015,2,1,Melon,Muskmelon,0,Region VI,Negros Occidental,124.1773333333333,
 2015,2,1,Miracle Fruit,Miracle Fruit,0,Region VI,Negros Occidental,,
 2015,2,1,Mulberry,Mulberry,0,Region VI,Negros Occidental,,
 2015,2,1,Orange,Orange,0,Region VI,Negros Occidental,,
@@ -396711,12 +396711,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Atis,Atis,0,BARMM,Basilan,,
 2024,1,1,Avocado,Avocado,0,BARMM,Basilan,0.99,
 2024,1,1,Balimbing,Balimbing,0,BARMM,Basilan,,
-2024,1,1,Banana,Bungulan,0,BARMM,Basilan,408.22,
-2024,1,1,Banana,Cavendish,0,BARMM,Basilan,,
-2024,1,1,Banana,Lakatan,0,BARMM,Basilan,199.58,
-2024,1,1,Banana,Latundan,0,BARMM,Basilan,39.74,
-2024,1,1,Banana,Others,0,BARMM,Basilan,668.1,
-2024,1,1,Banana,Saba,0,BARMM,Basilan,2927.3,
+2024,1,1,Banana,Bungulan,0,BARMM,Basilan,404.54495238095234,
+2024,1,1,Banana,Cavendish,0,BARMM,Basilan,3.6750476190480104,
+2024,1,1,Banana,Lakatan,0,BARMM,Basilan,195.90495238095258,
+2024,1,1,Banana,Latundan,0,BARMM,Basilan,36.06495238095232,
+2024,1,1,Banana,Others,0,BARMM,Basilan,664.4249523809524,
+2024,1,1,Banana,Saba,0,BARMM,Basilan,2951.18780952381,
 2024,1,1,Batwan,Batwan,0,BARMM,Basilan,,
 2024,1,1,Bignay,Bignay,0,BARMM,Basilan,,
 2024,1,1,Breadfruit,Breadfruit,0,BARMM,Basilan,,
@@ -396747,10 +396747,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Mabolo,Mabolo,0,BARMM,Basilan,,
 2024,1,1,Makopa,Makopa,0,BARMM,Basilan,7.78,
 2024,1,1,Mandarin,Mandarin,0,BARMM,Basilan,,
-2024,1,1,Mango,Carabao,0,BARMM,Basilan,0.3,
-2024,1,1,Mango,Indian,0,BARMM,Basilan,,
-2024,1,1,Mango,Others,0,BARMM,Basilan,0.97,
-2024,1,1,Mango,Piko,0,BARMM,Basilan,,
+2024,1,1,Mango,Carabao,0,BARMM,Basilan,-0.9013445378151261,
+2024,1,1,Mango,Indian,0,BARMM,Basilan,0.6006722689075634,
+2024,1,1,Mango,Others,0,BARMM,Basilan,1.3793277310924372,
+2024,1,1,Mango,Piko,0,BARMM,Basilan,4.396050420168067,
 2024,1,1,Mangosteen,Mangosteen,0,BARMM,Basilan,,
 2024,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Basilan,,
 2024,1,1,Marang,Marang,0,BARMM,Basilan,5.53,
@@ -396788,12 +396788,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Atis,Atis,0,BARMM,Lanao del Sur,,
 2024,1,1,Avocado,Avocado,0,BARMM,Lanao del Sur,13.29,
 2024,1,1,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,
-2024,1,1,Banana,Bungulan,0,BARMM,Lanao del Sur,8554.85,
-2024,1,1,Banana,Cavendish,0,BARMM,Lanao del Sur,555.0,
-2024,1,1,Banana,Lakatan,0,BARMM,Lanao del Sur,13922.16,
-2024,1,1,Banana,Latundan,0,BARMM,Lanao del Sur,2642.09,
-2024,1,1,Banana,Others,0,BARMM,Lanao del Sur,1132.0,
-2024,1,1,Banana,Saba,0,BARMM,Lanao del Sur,9722.18,
+2024,1,1,Banana,Bungulan,0,BARMM,Lanao del Sur,8551.174952380952,
+2024,1,1,Banana,Cavendish,0,BARMM,Lanao del Sur,545.8123809523812,
+2024,1,1,Banana,Lakatan,0,BARMM,Lanao del Sur,13918.484952380952,
+2024,1,1,Banana,Latundan,0,BARMM,Lanao del Sur,2638.4149523809524,
+2024,1,1,Banana,Others,0,BARMM,Lanao del Sur,1128.3249523809525,
+2024,1,1,Banana,Saba,0,BARMM,Lanao del Sur,9746.067809523809,
 2024,1,1,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2024,1,1,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2024,1,1,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -396824,10 +396824,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Mabolo,Mabolo,0,BARMM,Lanao del Sur,,
 2024,1,1,Makopa,Makopa,0,BARMM,Lanao del Sur,,
 2024,1,1,Mandarin,Mandarin,0,BARMM,Lanao del Sur,0.54,
-2024,1,1,Mango,Carabao,0,BARMM,Lanao del Sur,,
-2024,1,1,Mango,Indian,0,BARMM,Lanao del Sur,,
-2024,1,1,Mango,Others,0,BARMM,Lanao del Sur,2.23,
-2024,1,1,Mango,Piko,0,BARMM,Lanao del Sur,,
+2024,1,1,Mango,Carabao,0,BARMM,Lanao del Sur,0.901008403361345,
+2024,1,1,Mango,Indian,0,BARMM,Lanao del Sur,0.6006722689075634,
+2024,1,1,Mango,Others,0,BARMM,Lanao del Sur,2.639327731092437,
+2024,1,1,Mango,Piko,0,BARMM,Lanao del Sur,4.396050420168067,
 2024,1,1,Mangosteen,Mangosteen,0,BARMM,Lanao del Sur,,
 2024,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Lanao del Sur,,
 2024,1,1,Marang,Marang,0,BARMM,Lanao del Sur,2.0,
@@ -396865,12 +396865,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Atis,Atis,0,BARMM,Maguindanao,,
 2024,1,1,Avocado,Avocado,0,BARMM,Maguindanao,50.53,
 2024,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao,,
-2024,1,1,Banana,Bungulan,0,BARMM,Maguindanao,200.0,
-2024,1,1,Banana,Cavendish,0,BARMM,Maguindanao,41796.7,
-2024,1,1,Banana,Lakatan,0,BARMM,Maguindanao,16032.14,
-2024,1,1,Banana,Latundan,0,BARMM,Maguindanao,2352.46,
-2024,1,1,Banana,Others,0,BARMM,Maguindanao,238.93,
-2024,1,1,Banana,Saba,0,BARMM,Maguindanao,26433.79,
+2024,1,1,Banana,Bungulan,0,BARMM,Maguindanao,196.3249523809523,
+2024,1,1,Banana,Cavendish,0,BARMM,Maguindanao,41787.51238095238,
+2024,1,1,Banana,Lakatan,0,BARMM,Maguindanao,16028.464952380951,
+2024,1,1,Banana,Latundan,0,BARMM,Maguindanao,2348.7849523809523,
+2024,1,1,Banana,Others,0,BARMM,Maguindanao,235.2549523809524,
+2024,1,1,Banana,Saba,0,BARMM,Maguindanao,26457.67780952381,
 2024,1,1,Batwan,Batwan,0,BARMM,Maguindanao,,
 2024,1,1,Bignay,Bignay,0,BARMM,Maguindanao,,
 2024,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -396901,10 +396901,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao,,
 2024,1,1,Makopa,Makopa,0,BARMM,Maguindanao,,
 2024,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao,,
-2024,1,1,Mango,Carabao,0,BARMM,Maguindanao,4.72,
-2024,1,1,Mango,Indian,0,BARMM,Maguindanao,12.0,
-2024,1,1,Mango,Others,0,BARMM,Maguindanao,16.0,
-2024,1,1,Mango,Piko,0,BARMM,Maguindanao,1.96,
+2024,1,1,Mango,Carabao,0,BARMM,Maguindanao,3.5186554621848734,
+2024,1,1,Mango,Indian,0,BARMM,Maguindanao,10.498319327731092,
+2024,1,1,Mango,Others,0,BARMM,Maguindanao,16.409327731092436,
+2024,1,1,Mango,Piko,0,BARMM,Maguindanao,4.253697478991596,
 2024,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao,,
 2024,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao,,
 2024,1,1,Marang,Marang,0,BARMM,Maguindanao,1.0,
@@ -396942,12 +396942,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2024,1,1,Avocado,Avocado,0,BARMM,Maguindanao del Norte,,
 2024,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Banana,Others,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Banana,Saba,0,BARMM,Maguindanao del Norte,,
+2024,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,9.18761904761914,
+2024,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,3.6750476190480104,
+2024,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,9.187619047619402,
+2024,1,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,9.18761904761914,
+2024,1,1,Banana,Others,0,BARMM,Maguindanao del Norte,9.187619047619206,
+2024,1,1,Banana,Saba,0,BARMM,Maguindanao del Norte,36.750476190476355,
 2024,1,1,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2024,1,1,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2024,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -396978,10 +396978,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Norte,,
 2024,1,1,Makopa,Makopa,0,BARMM,Maguindanao del Norte,,
 2024,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Mango,Indian,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Mango,Others,0,BARMM,Maguindanao del Norte,,
-2024,1,1,Mango,Piko,0,BARMM,Maguindanao del Norte,,
+2024,1,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,0.901008403361345,
+2024,1,1,Mango,Indian,0,BARMM,Maguindanao del Norte,0.6006722689075634,
+2024,1,1,Mango,Others,0,BARMM,Maguindanao del Norte,2.5116806722689082,
+2024,1,1,Mango,Piko,0,BARMM,Maguindanao del Norte,4.396050420168067,
 2024,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Norte,,
 2024,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Norte,,
 2024,1,1,Marang,Marang,0,BARMM,Maguindanao del Norte,,
@@ -397019,12 +397019,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Atis,Atis,0,BARMM,Maguindanao del Sur,,
 2024,1,1,Avocado,Avocado,0,BARMM,Maguindanao del Sur,,
 2024,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Banana,Others,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Banana,Saba,0,BARMM,Maguindanao del Sur,,
+2024,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,9.18761904761914,
+2024,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,3.6750476190480104,
+2024,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,9.187619047619402,
+2024,1,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,9.18761904761914,
+2024,1,1,Banana,Others,0,BARMM,Maguindanao del Sur,9.187619047619206,
+2024,1,1,Banana,Saba,0,BARMM,Maguindanao del Sur,36.750476190476355,
 2024,1,1,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2024,1,1,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2024,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -397055,10 +397055,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Sur,,
 2024,1,1,Makopa,Makopa,0,BARMM,Maguindanao del Sur,,
 2024,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Mango,Indian,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Mango,Others,0,BARMM,Maguindanao del Sur,,
-2024,1,1,Mango,Piko,0,BARMM,Maguindanao del Sur,,
+2024,1,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,0.901008403361345,
+2024,1,1,Mango,Indian,0,BARMM,Maguindanao del Sur,0.6006722689075634,
+2024,1,1,Mango,Others,0,BARMM,Maguindanao del Sur,2.5116806722689082,
+2024,1,1,Mango,Piko,0,BARMM,Maguindanao del Sur,4.396050420168067,
 2024,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Sur,,
 2024,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Sur,,
 2024,1,1,Marang,Marang,0,BARMM,Maguindanao del Sur,,
@@ -397096,12 +397096,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Atis,Atis,0,BARMM,Sulu,0.76,
 2024,1,1,Avocado,Avocado,0,BARMM,Sulu,1.6,
 2024,1,1,Balimbing,Balimbing,0,BARMM,Sulu,0.29,
-2024,1,1,Banana,Bungulan,0,BARMM,Sulu,308.0,
-2024,1,1,Banana,Cavendish,0,BARMM,Sulu,,
-2024,1,1,Banana,Lakatan,0,BARMM,Sulu,101.0,
-2024,1,1,Banana,Latundan,0,BARMM,Sulu,170.0,
-2024,1,1,Banana,Others,0,BARMM,Sulu,418.0,
-2024,1,1,Banana,Saba,0,BARMM,Sulu,1710.0,
+2024,1,1,Banana,Bungulan,0,BARMM,Sulu,304.3249523809523,
+2024,1,1,Banana,Cavendish,0,BARMM,Sulu,3.6750476190480104,
+2024,1,1,Banana,Lakatan,0,BARMM,Sulu,97.32495238095258,
+2024,1,1,Banana,Latundan,0,BARMM,Sulu,166.3249523809523,
+2024,1,1,Banana,Others,0,BARMM,Sulu,414.32495238095237,
+2024,1,1,Banana,Saba,0,BARMM,Sulu,1733.8878095238094,
 2024,1,1,Batwan,Batwan,0,BARMM,Sulu,,
 2024,1,1,Bignay,Bignay,0,BARMM,Sulu,,
 2024,1,1,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -397132,10 +397132,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Mabolo,Mabolo,0,BARMM,Sulu,,
 2024,1,1,Makopa,Makopa,0,BARMM,Sulu,2.11,
 2024,1,1,Mandarin,Mandarin,0,BARMM,Sulu,,
-2024,1,1,Mango,Carabao,0,BARMM,Sulu,,
-2024,1,1,Mango,Indian,0,BARMM,Sulu,0.81,
-2024,1,1,Mango,Others,0,BARMM,Sulu,4.18,
-2024,1,1,Mango,Piko,0,BARMM,Sulu,,
+2024,1,1,Mango,Carabao,0,BARMM,Sulu,0.901008403361345,
+2024,1,1,Mango,Indian,0,BARMM,Sulu,-0.6916806722689077,
+2024,1,1,Mango,Others,0,BARMM,Sulu,4.589327731092437,
+2024,1,1,Mango,Piko,0,BARMM,Sulu,4.396050420168067,
 2024,1,1,Mangosteen,Mangosteen,0,BARMM,Sulu,,
 2024,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Sulu,,
 2024,1,1,Marang,Marang,0,BARMM,Sulu,,
@@ -397173,12 +397173,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Atis,Atis,0,BARMM,Tawi-Tawi,,
 2024,1,1,Avocado,Avocado,0,BARMM,Tawi-Tawi,0.55,
 2024,1,1,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,0.7,
-2024,1,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,214.0,
-2024,1,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2024,1,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,176.0,
-2024,1,1,Banana,Latundan,0,BARMM,Tawi-Tawi,703.0,
-2024,1,1,Banana,Others,0,BARMM,Tawi-Tawi,19.0,
-2024,1,1,Banana,Saba,0,BARMM,Tawi-Tawi,730.0,
+2024,1,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,210.3249523809523,
+2024,1,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,3.6750476190480104,
+2024,1,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,172.32495238095257,
+2024,1,1,Banana,Latundan,0,BARMM,Tawi-Tawi,699.3249523809524,
+2024,1,1,Banana,Others,0,BARMM,Tawi-Tawi,15.324952380952384,
+2024,1,1,Banana,Saba,0,BARMM,Tawi-Tawi,753.8878095238096,
 2024,1,1,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2024,1,1,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2024,1,1,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,0.65,
@@ -397209,10 +397209,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,1,1,Mabolo,Mabolo,0,BARMM,Tawi-Tawi,,
 2024,1,1,Makopa,Makopa,0,BARMM,Tawi-Tawi,0.2,
 2024,1,1,Mandarin,Mandarin,0,BARMM,Tawi-Tawi,,
-2024,1,1,Mango,Carabao,0,BARMM,Tawi-Tawi,20.0,
-2024,1,1,Mango,Indian,0,BARMM,Tawi-Tawi,,
-2024,1,1,Mango,Others,0,BARMM,Tawi-Tawi,2.9,
-2024,1,1,Mango,Piko,0,BARMM,Tawi-Tawi,,
+2024,1,1,Mango,Carabao,0,BARMM,Tawi-Tawi,18.798655462184875,
+2024,1,1,Mango,Indian,0,BARMM,Tawi-Tawi,0.6006722689075634,
+2024,1,1,Mango,Others,0,BARMM,Tawi-Tawi,3.309327731092437,
+2024,1,1,Mango,Piko,0,BARMM,Tawi-Tawi,4.396050420168067,
 2024,1,1,Mangosteen,Mangosteen,0,BARMM,Tawi-Tawi,,
 2024,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Tawi-Tawi,,
 2024,1,1,Marang,Marang,0,BARMM,Tawi-Tawi,,
@@ -403795,12 +403795,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,2,1,Atis,Atis,0,BARMM,Basilan,,
 2024,2,1,Avocado,Avocado,0,BARMM,Basilan,12.77,
 2024,2,1,Balimbing,Balimbing,0,BARMM,Basilan,,
-2024,2,1,Banana,Bungulan,0,BARMM,Basilan,504.4,
-2024,2,1,Banana,Cavendish,0,BARMM,Basilan,,
-2024,2,1,Banana,Lakatan,0,BARMM,Basilan,311.96,
-2024,2,1,Banana,Latundan,0,BARMM,Basilan,1105.72,
-2024,2,1,Banana,Others,0,BARMM,Basilan,994.14,
-2024,2,1,Banana,Saba,0,BARMM,Basilan,4380.75,
+2024,2,1,Banana,Bungulan,0,BARMM,Basilan,484.20057142857144,
+2024,2,1,Banana,Cavendish,0,BARMM,Basilan,20.19942857142842,
+2024,2,1,Banana,Lakatan,0,BARMM,Basilan,291.7605714285713,
+2024,2,1,Banana,Latundan,0,BARMM,Basilan,1085.5205714285714,
+2024,2,1,Banana,Others,0,BARMM,Basilan,973.9405714285714,
+2024,2,1,Banana,Saba,0,BARMM,Basilan,4512.046285714286,
 2024,2,1,Batwan,Batwan,0,BARMM,Basilan,,
 2024,2,1,Bignay,Bignay,0,BARMM,Basilan,,
 2024,2,1,Breadfruit,Breadfruit,0,BARMM,Basilan,,
@@ -403872,12 +403872,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,2,1,Atis,Atis,0,BARMM,Lanao del Sur,,
 2024,2,1,Avocado,Avocado,0,BARMM,Lanao del Sur,6.4,
 2024,2,1,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,
-2024,2,1,Banana,Bungulan,0,BARMM,Lanao del Sur,6164.0,
-2024,2,1,Banana,Cavendish,0,BARMM,Lanao del Sur,18.0,
-2024,2,1,Banana,Lakatan,0,BARMM,Lanao del Sur,8641.0,
-2024,2,1,Banana,Latundan,0,BARMM,Lanao del Sur,2813.0,
-2024,2,1,Banana,Others,0,BARMM,Lanao del Sur,1455.0,
-2024,2,1,Banana,Saba,0,BARMM,Lanao del Sur,7198.0,
+2024,2,1,Banana,Bungulan,0,BARMM,Lanao del Sur,6143.800571428572,
+2024,2,1,Banana,Cavendish,0,BARMM,Lanao del Sur,-32.49857142857166,
+2024,2,1,Banana,Lakatan,0,BARMM,Lanao del Sur,8620.800571428572,
+2024,2,1,Banana,Latundan,0,BARMM,Lanao del Sur,2792.8005714285714,
+2024,2,1,Banana,Others,0,BARMM,Lanao del Sur,1434.8005714285714,
+2024,2,1,Banana,Saba,0,BARMM,Lanao del Sur,7329.296285714286,
 2024,2,1,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2024,2,1,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2024,2,1,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -403949,12 +403949,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,2,1,Atis,Atis,0,BARMM,Maguindanao,7.38,
 2024,2,1,Avocado,Avocado,0,BARMM,Maguindanao,651.0,
 2024,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao,1.04,
-2024,2,1,Banana,Bungulan,0,BARMM,Maguindanao,329.0,
-2024,2,1,Banana,Cavendish,0,BARMM,Maguindanao,25987.0,
-2024,2,1,Banana,Lakatan,0,BARMM,Maguindanao,12365.0,
-2024,2,1,Banana,Latundan,0,BARMM,Maguindanao,2158.0,
-2024,2,1,Banana,Others,0,BARMM,Maguindanao,529.85,
-2024,2,1,Banana,Saba,0,BARMM,Maguindanao,42285.0,
+2024,2,1,Banana,Bungulan,0,BARMM,Maguindanao,308.80057142857146,
+2024,2,1,Banana,Cavendish,0,BARMM,Maguindanao,25936.501428571428,
+2024,2,1,Banana,Lakatan,0,BARMM,Maguindanao,12344.800571428572,
+2024,2,1,Banana,Latundan,0,BARMM,Maguindanao,2137.8005714285714,
+2024,2,1,Banana,Others,0,BARMM,Maguindanao,509.6505714285714,
+2024,2,1,Banana,Saba,0,BARMM,Maguindanao,42416.296285714285,
 2024,2,1,Batwan,Batwan,0,BARMM,Maguindanao,,
 2024,2,1,Bignay,Bignay,0,BARMM,Maguindanao,,
 2024,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -404026,12 +404026,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,2,1,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2024,2,1,Avocado,Avocado,0,BARMM,Maguindanao del Norte,,
 2024,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,
-2024,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,,
-2024,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,,
-2024,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,,
-2024,2,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,,
-2024,2,1,Banana,Others,0,BARMM,Maguindanao del Norte,,
-2024,2,1,Banana,Saba,0,BARMM,Maguindanao del Norte,,
+2024,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,50.498571428571545,
+2024,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,20.19942857142842,
+2024,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,50.49857142857142,
+2024,2,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,50.498571428571545,
+2024,2,1,Banana,Others,0,BARMM,Maguindanao del Norte,50.49857142857148,
+2024,2,1,Banana,Saba,0,BARMM,Maguindanao del Norte,201.99428571428587,
 2024,2,1,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2024,2,1,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2024,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -404103,12 +404103,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,2,1,Atis,Atis,0,BARMM,Maguindanao del Sur,,
 2024,2,1,Avocado,Avocado,0,BARMM,Maguindanao del Sur,,
 2024,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2024,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,,
-2024,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,,
-2024,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,,
-2024,2,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,,
-2024,2,1,Banana,Others,0,BARMM,Maguindanao del Sur,,
-2024,2,1,Banana,Saba,0,BARMM,Maguindanao del Sur,,
+2024,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,50.498571428571545,
+2024,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,20.19942857142842,
+2024,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,50.49857142857142,
+2024,2,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,50.498571428571545,
+2024,2,1,Banana,Others,0,BARMM,Maguindanao del Sur,50.49857142857148,
+2024,2,1,Banana,Saba,0,BARMM,Maguindanao del Sur,201.99428571428587,
 2024,2,1,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2024,2,1,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2024,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -404180,12 +404180,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,2,1,Atis,Atis,0,BARMM,Sulu,122.0,
 2024,2,1,Avocado,Avocado,0,BARMM,Sulu,42.0,
 2024,2,1,Balimbing,Balimbing,0,BARMM,Sulu,0.65,
-2024,2,1,Banana,Bungulan,0,BARMM,Sulu,460.0,
-2024,2,1,Banana,Cavendish,0,BARMM,Sulu,,
-2024,2,1,Banana,Lakatan,0,BARMM,Sulu,185.0,
-2024,2,1,Banana,Latundan,0,BARMM,Sulu,278.0,
-2024,2,1,Banana,Others,0,BARMM,Sulu,307.0,
-2024,2,1,Banana,Saba,0,BARMM,Sulu,2720.0,
+2024,2,1,Banana,Bungulan,0,BARMM,Sulu,439.80057142857146,
+2024,2,1,Banana,Cavendish,0,BARMM,Sulu,20.19942857142842,
+2024,2,1,Banana,Lakatan,0,BARMM,Sulu,164.80057142857135,
+2024,2,1,Banana,Latundan,0,BARMM,Sulu,257.80057142857146,
+2024,2,1,Banana,Others,0,BARMM,Sulu,286.8005714285714,
+2024,2,1,Banana,Saba,0,BARMM,Sulu,2851.2962857142857,
 2024,2,1,Batwan,Batwan,0,BARMM,Sulu,,
 2024,2,1,Bignay,Bignay,0,BARMM,Sulu,,
 2024,2,1,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -404257,12 +404257,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,2,1,Atis,Atis,0,BARMM,Tawi-Tawi,,
 2024,2,1,Avocado,Avocado,0,BARMM,Tawi-Tawi,1.8,
 2024,2,1,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,0.75,
-2024,2,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,125.6,
-2024,2,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2024,2,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,106.0,
-2024,2,1,Banana,Latundan,0,BARMM,Tawi-Tawi,355.0,
-2024,2,1,Banana,Others,0,BARMM,Tawi-Tawi,29.0,
-2024,2,1,Banana,Saba,0,BARMM,Tawi-Tawi,982.0,
+2024,2,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,105.40057142857145,
+2024,2,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,20.19942857142842,
+2024,2,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,85.80057142857135,
+2024,2,1,Banana,Latundan,0,BARMM,Tawi-Tawi,334.80057142857146,
+2024,2,1,Banana,Others,0,BARMM,Tawi-Tawi,8.800571428571402,
+2024,2,1,Banana,Saba,0,BARMM,Tawi-Tawi,1113.296285714286,
 2024,2,1,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2024,2,1,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2024,2,1,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,0.9,
@@ -410879,12 +410879,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,3,2,Atis,Atis,0,BARMM,Basilan,,
 2024,3,2,Avocado,Avocado,0,BARMM,Basilan,1.07,
 2024,3,2,Balimbing,Balimbing,0,BARMM,Basilan,,
-2024,3,2,Banana,Bungulan,0,BARMM,Basilan,600.0,
-2024,3,2,Banana,Cavendish,0,BARMM,Basilan,,
-2024,3,2,Banana,Lakatan,0,BARMM,Basilan,500.66,
-2024,3,2,Banana,Latundan,0,BARMM,Basilan,532.71,
-2024,3,2,Banana,Others,0,BARMM,Basilan,615.17,
-2024,3,2,Banana,Saba,0,BARMM,Basilan,2258.45,
+2024,3,2,Banana,Bungulan,0,BARMM,Basilan,589.6380952380953,
+2024,3,2,Banana,Cavendish,0,BARMM,Basilan,10.361904761904416,
+2024,3,2,Banana,Lakatan,0,BARMM,Basilan,490.29809523809536,
+2024,3,2,Banana,Latundan,0,BARMM,Basilan,522.3480952380952,
+2024,3,2,Banana,Others,0,BARMM,Basilan,604.8080952380952,
+2024,3,2,Banana,Saba,0,BARMM,Basilan,2325.8023809523806,
 2024,3,2,Batwan,Batwan,0,BARMM,Basilan,,
 2024,3,2,Bignay,Bignay,0,BARMM,Basilan,,
 2024,3,2,Breadfruit,Breadfruit,0,BARMM,Basilan,,
@@ -410956,12 +410956,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,3,2,Atis,Atis,0,BARMM,Lanao del Sur,,
 2024,3,2,Avocado,Avocado,0,BARMM,Lanao del Sur,22.53,
 2024,3,2,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,
-2024,3,2,Banana,Bungulan,0,BARMM,Lanao del Sur,5941.1,
-2024,3,2,Banana,Cavendish,0,BARMM,Lanao del Sur,41.1,
-2024,3,2,Banana,Lakatan,0,BARMM,Lanao del Sur,7041.0,
-2024,3,2,Banana,Latundan,0,BARMM,Lanao del Sur,2531.7,
-2024,3,2,Banana,Others,0,BARMM,Lanao del Sur,1426.2,
-2024,3,2,Banana,Saba,0,BARMM,Lanao del Sur,7120.0,
+2024,3,2,Banana,Bungulan,0,BARMM,Lanao del Sur,5930.738095238095,
+2024,3,2,Banana,Cavendish,0,BARMM,Lanao del Sur,15.195238095237752,
+2024,3,2,Banana,Lakatan,0,BARMM,Lanao del Sur,7030.638095238095,
+2024,3,2,Banana,Latundan,0,BARMM,Lanao del Sur,2521.338095238095,
+2024,3,2,Banana,Others,0,BARMM,Lanao del Sur,1415.8380952380953,
+2024,3,2,Banana,Saba,0,BARMM,Lanao del Sur,7187.352380952381,
 2024,3,2,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2024,3,2,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2024,3,2,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -411033,12 +411033,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,3,2,Atis,Atis,0,BARMM,Maguindanao,,
 2024,3,2,Avocado,Avocado,0,BARMM,Maguindanao,296.62,
 2024,3,2,Balimbing,Balimbing,0,BARMM,Maguindanao,,
-2024,3,2,Banana,Bungulan,0,BARMM,Maguindanao,550.74,
-2024,3,2,Banana,Cavendish,0,BARMM,Maguindanao,46080.0,
-2024,3,2,Banana,Lakatan,0,BARMM,Maguindanao,27345.5,
-2024,3,2,Banana,Latundan,0,BARMM,Maguindanao,1998.5,
-2024,3,2,Banana,Others,0,BARMM,Maguindanao,361.92,
-2024,3,2,Banana,Saba,0,BARMM,Maguindanao,23250.88,
+2024,3,2,Banana,Bungulan,0,BARMM,Maguindanao,540.3780952380953,
+2024,3,2,Banana,Cavendish,0,BARMM,Maguindanao,46054.09523809524,
+2024,3,2,Banana,Lakatan,0,BARMM,Maguindanao,27335.138095238097,
+2024,3,2,Banana,Latundan,0,BARMM,Maguindanao,1988.1380952380953,
+2024,3,2,Banana,Others,0,BARMM,Maguindanao,351.55809523809523,
+2024,3,2,Banana,Saba,0,BARMM,Maguindanao,23318.23238095238,
 2024,3,2,Batwan,Batwan,0,BARMM,Maguindanao,,
 2024,3,2,Bignay,Bignay,0,BARMM,Maguindanao,,
 2024,3,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -411110,12 +411110,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,3,2,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2024,3,2,Avocado,Avocado,0,BARMM,Maguindanao del Norte,,
 2024,3,2,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,
-2024,3,2,Banana,Bungulan,0,BARMM,Maguindanao del Norte,,
-2024,3,2,Banana,Cavendish,0,BARMM,Maguindanao del Norte,,
-2024,3,2,Banana,Lakatan,0,BARMM,Maguindanao del Norte,,
-2024,3,2,Banana,Latundan,0,BARMM,Maguindanao del Norte,,
-2024,3,2,Banana,Others,0,BARMM,Maguindanao del Norte,,
-2024,3,2,Banana,Saba,0,BARMM,Maguindanao del Norte,,
+2024,3,2,Banana,Bungulan,0,BARMM,Maguindanao del Norte,25.904761904761973,
+2024,3,2,Banana,Cavendish,0,BARMM,Maguindanao del Norte,10.361904761904416,
+2024,3,2,Banana,Lakatan,0,BARMM,Maguindanao del Norte,25.904761904761973,
+2024,3,2,Banana,Latundan,0,BARMM,Maguindanao del Norte,25.90476190476184,
+2024,3,2,Banana,Others,0,BARMM,Maguindanao del Norte,25.90476190476191,
+2024,3,2,Banana,Saba,0,BARMM,Maguindanao del Norte,103.61904761904769,
 2024,3,2,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2024,3,2,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2024,3,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -411187,12 +411187,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,3,2,Atis,Atis,0,BARMM,Maguindanao del Sur,,
 2024,3,2,Avocado,Avocado,0,BARMM,Maguindanao del Sur,,
 2024,3,2,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2024,3,2,Banana,Bungulan,0,BARMM,Maguindanao del Sur,,
-2024,3,2,Banana,Cavendish,0,BARMM,Maguindanao del Sur,,
-2024,3,2,Banana,Lakatan,0,BARMM,Maguindanao del Sur,,
-2024,3,2,Banana,Latundan,0,BARMM,Maguindanao del Sur,,
-2024,3,2,Banana,Others,0,BARMM,Maguindanao del Sur,,
-2024,3,2,Banana,Saba,0,BARMM,Maguindanao del Sur,,
+2024,3,2,Banana,Bungulan,0,BARMM,Maguindanao del Sur,25.904761904761973,
+2024,3,2,Banana,Cavendish,0,BARMM,Maguindanao del Sur,10.361904761904416,
+2024,3,2,Banana,Lakatan,0,BARMM,Maguindanao del Sur,25.904761904761973,
+2024,3,2,Banana,Latundan,0,BARMM,Maguindanao del Sur,25.90476190476184,
+2024,3,2,Banana,Others,0,BARMM,Maguindanao del Sur,25.90476190476191,
+2024,3,2,Banana,Saba,0,BARMM,Maguindanao del Sur,103.61904761904769,
 2024,3,2,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2024,3,2,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2024,3,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -411264,12 +411264,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,3,2,Atis,Atis,0,BARMM,Sulu,0.17,
 2024,3,2,Avocado,Avocado,0,BARMM,Sulu,2.5,
 2024,3,2,Balimbing,Balimbing,0,BARMM,Sulu,,
-2024,3,2,Banana,Bungulan,0,BARMM,Sulu,805.0,
-2024,3,2,Banana,Cavendish,0,BARMM,Sulu,,
-2024,3,2,Banana,Lakatan,0,BARMM,Sulu,179.0,
-2024,3,2,Banana,Latundan,0,BARMM,Sulu,295.0,
-2024,3,2,Banana,Others,0,BARMM,Sulu,430.0,
-2024,3,2,Banana,Saba,0,BARMM,Sulu,1250.0,
+2024,3,2,Banana,Bungulan,0,BARMM,Sulu,794.6380952380953,
+2024,3,2,Banana,Cavendish,0,BARMM,Sulu,10.361904761904416,
+2024,3,2,Banana,Lakatan,0,BARMM,Sulu,168.6380952380953,
+2024,3,2,Banana,Latundan,0,BARMM,Sulu,284.63809523809516,
+2024,3,2,Banana,Others,0,BARMM,Sulu,419.6380952380952,
+2024,3,2,Banana,Saba,0,BARMM,Sulu,1317.352380952381,
 2024,3,2,Batwan,Batwan,0,BARMM,Sulu,,
 2024,3,2,Bignay,Bignay,0,BARMM,Sulu,,
 2024,3,2,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -411341,12 +411341,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,3,2,Atis,Atis,0,BARMM,Tawi-Tawi,1.2,
 2024,3,2,Avocado,Avocado,0,BARMM,Tawi-Tawi,1.6,
 2024,3,2,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,2.0,
-2024,3,2,Banana,Bungulan,0,BARMM,Tawi-Tawi,315.0,
-2024,3,2,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2024,3,2,Banana,Lakatan,0,BARMM,Tawi-Tawi,256.0,
-2024,3,2,Banana,Latundan,0,BARMM,Tawi-Tawi,1265.0,
-2024,3,2,Banana,Others,0,BARMM,Tawi-Tawi,65.0,
-2024,3,2,Banana,Saba,0,BARMM,Tawi-Tawi,1310.0,
+2024,3,2,Banana,Bungulan,0,BARMM,Tawi-Tawi,304.63809523809533,
+2024,3,2,Banana,Cavendish,0,BARMM,Tawi-Tawi,10.361904761904416,
+2024,3,2,Banana,Lakatan,0,BARMM,Tawi-Tawi,245.6380952380953,
+2024,3,2,Banana,Latundan,0,BARMM,Tawi-Tawi,1254.6380952380953,
+2024,3,2,Banana,Others,0,BARMM,Tawi-Tawi,54.63809523809525,
+2024,3,2,Banana,Saba,0,BARMM,Tawi-Tawi,1377.352380952381,
 2024,3,2,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2024,3,2,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2024,3,2,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,0.85,
@@ -417963,12 +417963,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Atis,Atis,0,BARMM,Basilan,0.05,
 2024,4,2,Avocado,Avocado,0,BARMM,Basilan,,
 2024,4,2,Balimbing,Balimbing,0,BARMM,Basilan,,
-2024,4,2,Banana,Bungulan,0,BARMM,Basilan,850.96,
-2024,4,2,Banana,Cavendish,0,BARMM,Basilan,,
-2024,4,2,Banana,Lakatan,0,BARMM,Basilan,317.26,
-2024,4,2,Banana,Latundan,0,BARMM,Basilan,67.59,
-2024,4,2,Banana,Others,0,BARMM,Basilan,200.68,
-2024,4,2,Banana,Saba,0,BARMM,Basilan,1856.72,
+2024,4,2,Banana,Bungulan,0,BARMM,Basilan,845.6224761904762,
+2024,4,2,Banana,Cavendish,0,BARMM,Basilan,5.3375238095240025,
+2024,4,2,Banana,Lakatan,0,BARMM,Basilan,311.922476190476,
+2024,4,2,Banana,Latundan,0,BARMM,Basilan,62.28390476190477,
+2024,4,2,Banana,Others,0,BARMM,Basilan,195.34247619047616,
+2024,4,2,Banana,Saba,0,BARMM,Basilan,1891.3824761904762,
 2024,4,2,Batwan,Batwan,0,BARMM,Basilan,,
 2024,4,2,Bignay,Bignay,0,BARMM,Basilan,,
 2024,4,2,Breadfruit,Breadfruit,0,BARMM,Basilan,,
@@ -418014,7 +418014,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Pangi,Pangi,0,BARMM,Basilan,,
 2024,4,2,Papaya,Hawaiian,0,BARMM,Basilan,5.0,
 2024,4,2,Papaya,Native,0,BARMM,Basilan,0.11,
-2024,4,2,Papaya,Solo,0,BARMM,Basilan,,
+2024,4,2,Papaya,Solo,0,BARMM,Basilan,0.005999999999994543,
 2024,4,2,Passion Fruit,Passion Fruit,0,BARMM,Basilan,,
 2024,4,2,Pears,Pears,0,BARMM,Basilan,,
 2024,4,2,Persimmon,Persimmon,0,BARMM,Basilan,,
@@ -418040,12 +418040,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Atis,Atis,0,BARMM,Lanao del Sur,,
 2024,4,2,Avocado,Avocado,0,BARMM,Lanao del Sur,1.23,
 2024,4,2,Balimbing,Balimbing,0,BARMM,Lanao del Sur,1.52,
-2024,4,2,Banana,Bungulan,0,BARMM,Lanao del Sur,4871.0,
-2024,4,2,Banana,Cavendish,0,BARMM,Lanao del Sur,50.07,
-2024,4,2,Banana,Lakatan,0,BARMM,Lanao del Sur,13590.0,
-2024,4,2,Banana,Latundan,0,BARMM,Lanao del Sur,2134.0,
-2024,4,2,Banana,Others,0,BARMM,Lanao del Sur,982.7,
-2024,4,2,Banana,Saba,0,BARMM,Lanao del Sur,5248.0,
+2024,4,2,Banana,Bungulan,0,BARMM,Lanao del Sur,4865.662476190476,
+2024,4,2,Banana,Cavendish,0,BARMM,Lanao del Sur,36.726190476190595,
+2024,4,2,Banana,Lakatan,0,BARMM,Lanao del Sur,13584.662476190477,
+2024,4,2,Banana,Latundan,0,BARMM,Lanao del Sur,2128.693904761905,
+2024,4,2,Banana,Others,0,BARMM,Lanao del Sur,977.3624761904762,
+2024,4,2,Banana,Saba,0,BARMM,Lanao del Sur,5282.662476190476,
 2024,4,2,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2024,4,2,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2024,4,2,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -418117,12 +418117,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Atis,Atis,0,BARMM,Maguindanao,,
 2024,4,2,Avocado,Avocado,0,BARMM,Maguindanao,39.05,
 2024,4,2,Balimbing,Balimbing,0,BARMM,Maguindanao,9.87,
-2024,4,2,Banana,Bungulan,0,BARMM,Maguindanao,360.75,
-2024,4,2,Banana,Cavendish,0,BARMM,Maguindanao,31674.2,
-2024,4,2,Banana,Lakatan,0,BARMM,Maguindanao,18810.42,
-2024,4,2,Banana,Latundan,0,BARMM,Maguindanao,1315.0,
-2024,4,2,Banana,Others,0,BARMM,Maguindanao,377.49,
-2024,4,2,Banana,Saba,0,BARMM,Maguindanao,24576.0,
+2024,4,2,Banana,Bungulan,0,BARMM,Maguindanao,355.4124761904762,
+2024,4,2,Banana,Cavendish,0,BARMM,Maguindanao,31660.856190476192,
+2024,4,2,Banana,Lakatan,0,BARMM,Maguindanao,18805.082476190473,
+2024,4,2,Banana,Latundan,0,BARMM,Maguindanao,1309.6939047619048,
+2024,4,2,Banana,Others,0,BARMM,Maguindanao,372.1524761904762,
+2024,4,2,Banana,Saba,0,BARMM,Maguindanao,24610.662476190475,
 2024,4,2,Batwan,Batwan,0,BARMM,Maguindanao,,
 2024,4,2,Bignay,Bignay,0,BARMM,Maguindanao,,
 2024,4,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -418194,12 +418194,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2024,4,2,Avocado,Avocado,0,BARMM,Maguindanao del Norte,,
 2024,4,2,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Banana,Bungulan,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Banana,Cavendish,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Banana,Lakatan,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Banana,Latundan,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Banana,Others,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Banana,Saba,0,BARMM,Maguindanao del Norte,,
+2024,4,2,Banana,Bungulan,0,BARMM,Maguindanao del Norte,13.343809523809568,
+2024,4,2,Banana,Cavendish,0,BARMM,Maguindanao del Norte,5.3375238095240025,
+2024,4,2,Banana,Lakatan,0,BARMM,Maguindanao del Norte,13.343809523809439,
+2024,4,2,Banana,Latundan,0,BARMM,Maguindanao del Norte,13.375238095238178,
+2024,4,2,Banana,Others,0,BARMM,Maguindanao del Norte,13.343809523809568,
+2024,4,2,Banana,Saba,0,BARMM,Maguindanao del Norte,53.34380952380944,
 2024,4,2,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2024,4,2,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2024,4,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -418243,9 +418243,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Mulberry,Mulberry,0,BARMM,Maguindanao del Norte,,
 2024,4,2,Orange,Orange,0,BARMM,Maguindanao del Norte,,
 2024,4,2,Pangi,Pangi,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Papaya,Native,0,BARMM,Maguindanao del Norte,,
-2024,4,2,Papaya,Solo,0,BARMM,Maguindanao del Norte,,
+2024,4,2,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,0.005999999999994543,
+2024,4,2,Papaya,Native,0,BARMM,Maguindanao del Norte,0.005999999999994543,
+2024,4,2,Papaya,Solo,0,BARMM,Maguindanao del Norte,0.005999999999994543,
 2024,4,2,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Norte,,
 2024,4,2,Pears,Pears,0,BARMM,Maguindanao del Norte,,
 2024,4,2,Persimmon,Persimmon,0,BARMM,Maguindanao del Norte,,
@@ -418271,12 +418271,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Atis,Atis,0,BARMM,Maguindanao del Sur,,
 2024,4,2,Avocado,Avocado,0,BARMM,Maguindanao del Sur,,
 2024,4,2,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Banana,Bungulan,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Banana,Cavendish,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Banana,Lakatan,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Banana,Latundan,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Banana,Others,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Banana,Saba,0,BARMM,Maguindanao del Sur,,
+2024,4,2,Banana,Bungulan,0,BARMM,Maguindanao del Sur,13.343809523809568,
+2024,4,2,Banana,Cavendish,0,BARMM,Maguindanao del Sur,5.3375238095240025,
+2024,4,2,Banana,Lakatan,0,BARMM,Maguindanao del Sur,13.343809523809439,
+2024,4,2,Banana,Latundan,0,BARMM,Maguindanao del Sur,13.375238095238178,
+2024,4,2,Banana,Others,0,BARMM,Maguindanao del Sur,13.343809523809568,
+2024,4,2,Banana,Saba,0,BARMM,Maguindanao del Sur,53.34380952380944,
 2024,4,2,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2024,4,2,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2024,4,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -418320,9 +418320,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Mulberry,Mulberry,0,BARMM,Maguindanao del Sur,,
 2024,4,2,Orange,Orange,0,BARMM,Maguindanao del Sur,,
 2024,4,2,Pangi,Pangi,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Papaya,Native,0,BARMM,Maguindanao del Sur,,
-2024,4,2,Papaya,Solo,0,BARMM,Maguindanao del Sur,,
+2024,4,2,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,0.005999999999994543,
+2024,4,2,Papaya,Native,0,BARMM,Maguindanao del Sur,0.005999999999994543,
+2024,4,2,Papaya,Solo,0,BARMM,Maguindanao del Sur,0.005999999999994543,
 2024,4,2,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Sur,,
 2024,4,2,Pears,Pears,0,BARMM,Maguindanao del Sur,,
 2024,4,2,Persimmon,Persimmon,0,BARMM,Maguindanao del Sur,,
@@ -418348,12 +418348,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Atis,Atis,0,BARMM,Sulu,20.5,
 2024,4,2,Avocado,Avocado,0,BARMM,Sulu,8.2,
 2024,4,2,Balimbing,Balimbing,0,BARMM,Sulu,0.26,
-2024,4,2,Banana,Bungulan,0,BARMM,Sulu,1400.0,
-2024,4,2,Banana,Cavendish,0,BARMM,Sulu,,
-2024,4,2,Banana,Lakatan,0,BARMM,Sulu,271.0,
-2024,4,2,Banana,Latundan,0,BARMM,Sulu,552.0,
-2024,4,2,Banana,Others,0,BARMM,Sulu,732.0,
-2024,4,2,Banana,Saba,0,BARMM,Sulu,3410.0,
+2024,4,2,Banana,Bungulan,0,BARMM,Sulu,1394.6624761904761,
+2024,4,2,Banana,Cavendish,0,BARMM,Sulu,5.3375238095240025,
+2024,4,2,Banana,Lakatan,0,BARMM,Sulu,265.662476190476,
+2024,4,2,Banana,Latundan,0,BARMM,Sulu,546.6939047619047,
+2024,4,2,Banana,Others,0,BARMM,Sulu,726.6624761904761,
+2024,4,2,Banana,Saba,0,BARMM,Sulu,3444.662476190476,
 2024,4,2,Batwan,Batwan,0,BARMM,Sulu,,
 2024,4,2,Bignay,Bignay,0,BARMM,Sulu,,
 2024,4,2,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -418397,9 +418397,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Mulberry,Mulberry,0,BARMM,Sulu,,
 2024,4,2,Orange,Orange,0,BARMM,Sulu,,
 2024,4,2,Pangi,Pangi,0,BARMM,Sulu,,
-2024,4,2,Papaya,Hawaiian,0,BARMM,Sulu,,
+2024,4,2,Papaya,Hawaiian,0,BARMM,Sulu,0.005999999999994543,
 2024,4,2,Papaya,Native,0,BARMM,Sulu,322.0,
-2024,4,2,Papaya,Solo,0,BARMM,Sulu,,
+2024,4,2,Papaya,Solo,0,BARMM,Sulu,0.005999999999994543,
 2024,4,2,Passion Fruit,Passion Fruit,0,BARMM,Sulu,,
 2024,4,2,Pears,Pears,0,BARMM,Sulu,,
 2024,4,2,Persimmon,Persimmon,0,BARMM,Sulu,,
@@ -418425,12 +418425,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Atis,Atis,0,BARMM,Tawi-Tawi,1.45,
 2024,4,2,Avocado,Avocado,0,BARMM,Tawi-Tawi,0.8,
 2024,4,2,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,0.5,
-2024,4,2,Banana,Bungulan,0,BARMM,Tawi-Tawi,245.0,
-2024,4,2,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2024,4,2,Banana,Lakatan,0,BARMM,Tawi-Tawi,281.0,
-2024,4,2,Banana,Latundan,0,BARMM,Tawi-Tawi,481.0,
-2024,4,2,Banana,Others,0,BARMM,Tawi-Tawi,89.0,
-2024,4,2,Banana,Saba,0,BARMM,Tawi-Tawi,912.0,
+2024,4,2,Banana,Bungulan,0,BARMM,Tawi-Tawi,239.66247619047616,
+2024,4,2,Banana,Cavendish,0,BARMM,Tawi-Tawi,5.3375238095240025,
+2024,4,2,Banana,Lakatan,0,BARMM,Tawi-Tawi,275.662476190476,
+2024,4,2,Banana,Latundan,0,BARMM,Tawi-Tawi,475.6939047619048,
+2024,4,2,Banana,Others,0,BARMM,Tawi-Tawi,83.66247619047616,
+2024,4,2,Banana,Saba,0,BARMM,Tawi-Tawi,946.662476190476,
 2024,4,2,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2024,4,2,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2024,4,2,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,1.2,
@@ -418476,7 +418476,7 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2024,4,2,Pangi,Pangi,0,BARMM,Tawi-Tawi,,
 2024,4,2,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,150.0,
 2024,4,2,Papaya,Native,0,BARMM,Tawi-Tawi,40.0,
-2024,4,2,Papaya,Solo,0,BARMM,Tawi-Tawi,,
+2024,4,2,Papaya,Solo,0,BARMM,Tawi-Tawi,0.005999999999994543,
 2024,4,2,Passion Fruit,Passion Fruit,0,BARMM,Tawi-Tawi,,
 2024,4,2,Pears,Pears,0,BARMM,Tawi-Tawi,,
 2024,4,2,Persimmon,Persimmon,0,BARMM,Tawi-Tawi,,
@@ -425047,12 +425047,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Atis,Atis,0,BARMM,Basilan,,3.0
 2025,1,1,Avocado,Avocado,0,BARMM,Basilan,2.39,14.61
 2025,1,1,Balimbing,Balimbing,0,BARMM,Basilan,3.09,0.14
-2025,1,1,Banana,Bungulan,0,BARMM,Basilan,392.7,832.17
-2025,1,1,Banana,Cavendish,0,BARMM,Basilan,,
-2025,1,1,Banana,Lakatan,0,BARMM,Basilan,192.8,516.8
-2025,1,1,Banana,Latundan,0,BARMM,Basilan,38.85,839.86
-2025,1,1,Banana,Others,0,BARMM,Basilan,606.54,831.5
-2025,1,1,Banana,Saba,0,BARMM,Basilan,2887.3,3536.93
+2025,1,1,Banana,Bungulan,0,BARMM,Basilan,389.1165079365079,826.9499999999999
+2025,1,1,Banana,Cavendish,0,BARMM,Basilan,10.750476190477098,15.660000000000085
+2025,1,1,Banana,Lakatan,0,BARMM,Basilan,189.21650793650792,511.58
+2025,1,1,Banana,Latundan,0,BARMM,Basilan,35.303650793650796,834.9257142857143
+2025,1,1,Banana,Others,0,BARMM,Basilan,602.9565079365077,826.28
+2025,1,1,Banana,Saba,0,BARMM,Basilan,2915.930793650794,3578.404285714286
 2025,1,1,Batwan,Batwan,0,BARMM,Basilan,,
 2025,1,1,Bignay,Bignay,0,BARMM,Basilan,,
 2025,1,1,Breadfruit,Breadfruit,0,BARMM,Basilan,,0.5
@@ -425083,10 +425083,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mabolo,Mabolo,0,BARMM,Basilan,,
 2025,1,1,Makopa,Makopa,0,BARMM,Basilan,8.02,0.5
 2025,1,1,Mandarin,Mandarin,0,BARMM,Basilan,8.9,3.0
-2025,1,1,Mango,Carabao,0,BARMM,Basilan,,20.0
-2025,1,1,Mango,Indian,0,BARMM,Basilan,,3.65
-2025,1,1,Mango,Others,0,BARMM,Basilan,0.92,65.0
-2025,1,1,Mango,Piko,0,BARMM,Basilan,,8.0
+2025,1,1,Mango,Carabao,0,BARMM,Basilan,,19.512653061224487
+2025,1,1,Mango,Indian,0,BARMM,Basilan,,3.162653061224508
+2025,1,1,Mango,Others,0,BARMM,Basilan,0.92,65.64346938775518
+2025,1,1,Mango,Piko,0,BARMM,Basilan,,8.331224489795934
 2025,1,1,Mangosteen,Mangosteen,0,BARMM,Basilan,,13.0
 2025,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Basilan,,
 2025,1,1,Marang,Marang,0,BARMM,Basilan,,4.68
@@ -425096,9 +425096,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mulberry,Mulberry,0,BARMM,Basilan,,
 2025,1,1,Orange,Orange,0,BARMM,Basilan,,
 2025,1,1,Pangi,Pangi,0,BARMM,Basilan,,
-2025,1,1,Papaya,Hawaiian,0,BARMM,Basilan,28.9,5.0
-2025,1,1,Papaya,Native,0,BARMM,Basilan,75.6,20.0
-2025,1,1,Papaya,Solo,0,BARMM,Basilan,,0.53
+2025,1,1,Papaya,Hawaiian,0,BARMM,Basilan,28.9,4.904761904761904
+2025,1,1,Papaya,Native,0,BARMM,Basilan,75.6075,20.238095238095237
+2025,1,1,Papaya,Solo,0,BARMM,Basilan,0.007500000000000284,0.3871428571428572
 2025,1,1,Passion Fruit,Passion Fruit,0,BARMM,Basilan,,
 2025,1,1,Pears,Pears,0,BARMM,Basilan,,
 2025,1,1,Persimmon,Persimmon,0,BARMM,Basilan,,
@@ -425124,12 +425124,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Atis,Atis,0,BARMM,Lanao del Sur,0.15,0.01
 2025,1,1,Avocado,Avocado,0,BARMM,Lanao del Sur,16.74,8.1
 2025,1,1,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,1.9
-2025,1,1,Banana,Bungulan,0,BARMM,Lanao del Sur,8558.4,1550.0
-2025,1,1,Banana,Cavendish,0,BARMM,Lanao del Sur,556.0,425.0
-2025,1,1,Banana,Lakatan,0,BARMM,Lanao del Sur,13990.0,1200.0
-2025,1,1,Banana,Latundan,0,BARMM,Lanao del Sur,2589.0,754.0
-2025,1,1,Banana,Others,0,BARMM,Lanao del Sur,1115.02,256.0
-2025,1,1,Banana,Saba,0,BARMM,Lanao del Sur,9868.0,1390.0
+2025,1,1,Banana,Bungulan,0,BARMM,Lanao del Sur,8554.816507936508,1544.78
+2025,1,1,Banana,Cavendish,0,BARMM,Lanao del Sur,541.6660317460316,404.12
+2025,1,1,Banana,Lakatan,0,BARMM,Lanao del Sur,13986.416507936508,1194.78
+2025,1,1,Banana,Latundan,0,BARMM,Lanao del Sur,2585.453650793651,749.0657142857143
+2025,1,1,Banana,Others,0,BARMM,Lanao del Sur,1111.4365079365077,250.78
+2025,1,1,Banana,Saba,0,BARMM,Lanao del Sur,9896.630793650793,1431.474285714286
 2025,1,1,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2025,1,1,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2025,1,1,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -425160,10 +425160,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mabolo,Mabolo,0,BARMM,Lanao del Sur,,
 2025,1,1,Makopa,Makopa,0,BARMM,Lanao del Sur,,
 2025,1,1,Mandarin,Mandarin,0,BARMM,Lanao del Sur,,1.97
-2025,1,1,Mango,Carabao,0,BARMM,Lanao del Sur,69.79,21.0
-2025,1,1,Mango,Indian,0,BARMM,Lanao del Sur,0.24,5.37
-2025,1,1,Mango,Others,0,BARMM,Lanao del Sur,1.0,16.3
-2025,1,1,Mango,Piko,0,BARMM,Lanao del Sur,4.15,5.0
+2025,1,1,Mango,Carabao,0,BARMM,Lanao del Sur,69.79,20.512653061224487
+2025,1,1,Mango,Indian,0,BARMM,Lanao del Sur,0.24,4.882653061224508
+2025,1,1,Mango,Others,0,BARMM,Lanao del Sur,1.0,16.943469387755172
+2025,1,1,Mango,Piko,0,BARMM,Lanao del Sur,4.15,5.331224489795935
 2025,1,1,Mangosteen,Mangosteen,0,BARMM,Lanao del Sur,,6.0
 2025,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Lanao del Sur,,
 2025,1,1,Marang,Marang,0,BARMM,Lanao del Sur,1.2,340.2
@@ -425173,9 +425173,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mulberry,Mulberry,0,BARMM,Lanao del Sur,,
 2025,1,1,Orange,Orange,0,BARMM,Lanao del Sur,,
 2025,1,1,Pangi,Pangi,0,BARMM,Lanao del Sur,,
-2025,1,1,Papaya,Hawaiian,0,BARMM,Lanao del Sur,10.1,7.04
-2025,1,1,Papaya,Native,0,BARMM,Lanao del Sur,12.8,5.23
-2025,1,1,Papaya,Solo,0,BARMM,Lanao del Sur,10.0,4.03
+2025,1,1,Papaya,Hawaiian,0,BARMM,Lanao del Sur,10.1,6.944761904761904
+2025,1,1,Papaya,Native,0,BARMM,Lanao del Sur,12.807500000000003,5.4680952380952395
+2025,1,1,Papaya,Solo,0,BARMM,Lanao del Sur,10.0,3.8871428571428575
 2025,1,1,Passion Fruit,Passion Fruit,0,BARMM,Lanao del Sur,,
 2025,1,1,Pears,Pears,0,BARMM,Lanao del Sur,,
 2025,1,1,Persimmon,Persimmon,0,BARMM,Lanao del Sur,,
@@ -425201,12 +425201,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Atis,Atis,0,BARMM,Maguindanao,,
 2025,1,1,Avocado,Avocado,0,BARMM,Maguindanao,,
 2025,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao,,
-2025,1,1,Banana,Bungulan,0,BARMM,Maguindanao,,
-2025,1,1,Banana,Cavendish,0,BARMM,Maguindanao,,
-2025,1,1,Banana,Lakatan,0,BARMM,Maguindanao,,
-2025,1,1,Banana,Latundan,0,BARMM,Maguindanao,,
-2025,1,1,Banana,Others,0,BARMM,Maguindanao,,
-2025,1,1,Banana,Saba,0,BARMM,Maguindanao,,
+2025,1,1,Banana,Bungulan,0,BARMM,Maguindanao,21.500952380953386,31.320000000000068
+2025,1,1,Banana,Cavendish,0,BARMM,Maguindanao,10.750476190477098,15.660000000000085
+2025,1,1,Banana,Lakatan,0,BARMM,Maguindanao,21.500952380953386,31.320000000000068
+2025,1,1,Banana,Latundan,0,BARMM,Maguindanao,21.538095238096272,31.60571428571432
+2025,1,1,Banana,Others,0,BARMM,Maguindanao,21.500952380953255,31.320000000000068
+2025,1,1,Banana,Saba,0,BARMM,Maguindanao,53.7152380952391,78.01428571428599
 2025,1,1,Batwan,Batwan,0,BARMM,Maguindanao,,
 2025,1,1,Bignay,Bignay,0,BARMM,Maguindanao,,
 2025,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -425237,10 +425237,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao,,
 2025,1,1,Makopa,Makopa,0,BARMM,Maguindanao,,
 2025,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao,,
-2025,1,1,Mango,Carabao,0,BARMM,Maguindanao,,
-2025,1,1,Mango,Indian,0,BARMM,Maguindanao,,
-2025,1,1,Mango,Others,0,BARMM,Maguindanao,,
-2025,1,1,Mango,Piko,0,BARMM,Maguindanao,,
+2025,1,1,Mango,Carabao,0,BARMM,Maguindanao,,1.218367346938716
+2025,1,1,Mango,Indian,0,BARMM,Maguindanao,,1.2183673469387364
+2025,1,1,Mango,Others,0,BARMM,Maguindanao,,2.3491836734693994
+2025,1,1,Mango,Piko,0,BARMM,Maguindanao,,2.0369387755101633
 2025,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao,,
 2025,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao,,
 2025,1,1,Marang,Marang,0,BARMM,Maguindanao,,
@@ -425250,9 +425250,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mulberry,Mulberry,0,BARMM,Maguindanao,,
 2025,1,1,Orange,Orange,0,BARMM,Maguindanao,,
 2025,1,1,Pangi,Pangi,0,BARMM,Maguindanao,,
-2025,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao,,
-2025,1,1,Papaya,Native,0,BARMM,Maguindanao,,
-2025,1,1,Papaya,Solo,0,BARMM,Maguindanao,,
+2025,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao,0.007500000000000284,0.23809523809523792
+2025,1,1,Papaya,Native,0,BARMM,Maguindanao,0.015000000000001583,0.5714285714285721
+2025,1,1,Papaya,Solo,0,BARMM,Maguindanao,0.007500000000000284,0.19047619047619047
 2025,1,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao,,
 2025,1,1,Pears,Pears,0,BARMM,Maguindanao,,
 2025,1,1,Persimmon,Persimmon,0,BARMM,Maguindanao,,
@@ -425278,12 +425278,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2025,1,1,Avocado,Avocado,0,BARMM,Maguindanao del Norte,20.75,22.55
 2025,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,0.16
-2025,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,150.0,200.25
-2025,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,11500.0,2074.5
-2025,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,13250.0,1764.0
-2025,1,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,973.0,114.75
-2025,1,1,Banana,Others,0,BARMM,Maguindanao del Norte,285.0,170.0
-2025,1,1,Banana,Saba,0,BARMM,Maguindanao del Norte,11424.65,3825.0
+2025,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,146.4165079365079,195.03
+2025,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,11485.666031746032,2053.62
+2025,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,13246.416507936508,1758.78
+2025,1,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,969.4536507936508,109.81571428571426
+2025,1,1,Banana,Others,0,BARMM,Maguindanao del Norte,281.4165079365078,164.78
+2025,1,1,Banana,Saba,0,BARMM,Maguindanao del Norte,11453.280793650792,3866.474285714286
 2025,1,1,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2025,1,1,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2025,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -425314,10 +425314,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Norte,,
 2025,1,1,Makopa,Makopa,0,BARMM,Maguindanao del Norte,,0.3
 2025,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Norte,,
-2025,1,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,2.01,1487.25
-2025,1,1,Mango,Indian,0,BARMM,Maguindanao del Norte,8.0,22.0
-2025,1,1,Mango,Others,0,BARMM,Maguindanao del Norte,10.0,1155.0
-2025,1,1,Mango,Piko,0,BARMM,Maguindanao del Norte,2.12,24.0
+2025,1,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,2.01,1486.7626530612245
+2025,1,1,Mango,Indian,0,BARMM,Maguindanao del Norte,8.0,21.51265306122451
+2025,1,1,Mango,Others,0,BARMM,Maguindanao del Norte,10.0,1155.6434693877552
+2025,1,1,Mango,Piko,0,BARMM,Maguindanao del Norte,2.12,24.331224489795936
 2025,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Norte,25.08,0.8
 2025,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Norte,,
 2025,1,1,Marang,Marang,0,BARMM,Maguindanao del Norte,24.52,220.2
@@ -425327,9 +425327,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mulberry,Mulberry,0,BARMM,Maguindanao del Norte,,
 2025,1,1,Orange,Orange,0,BARMM,Maguindanao del Norte,,
 2025,1,1,Pangi,Pangi,0,BARMM,Maguindanao del Norte,,
-2025,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,15.2,7.2
-2025,1,1,Papaya,Native,0,BARMM,Maguindanao del Norte,75.74,3.0
-2025,1,1,Papaya,Solo,0,BARMM,Maguindanao del Norte,,15.6
+2025,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,15.2,7.104761904761904
+2025,1,1,Papaya,Native,0,BARMM,Maguindanao del Norte,75.7475,3.2380952380952386
+2025,1,1,Papaya,Solo,0,BARMM,Maguindanao del Norte,0.007500000000000284,15.457142857142857
 2025,1,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Norte,,
 2025,1,1,Pears,Pears,0,BARMM,Maguindanao del Norte,,
 2025,1,1,Persimmon,Persimmon,0,BARMM,Maguindanao del Norte,,
@@ -425355,12 +425355,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Atis,Atis,0,BARMM,Maguindanao del Sur,,0.5
 2025,1,1,Avocado,Avocado,0,BARMM,Maguindanao del Sur,13.18,18.45
 2025,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2025,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,233.0,244.75
-2025,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,23220.0,2535.5
-2025,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,14792.0,2156.0
-2025,1,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,6010.26,140.25
-2025,1,1,Banana,Others,0,BARMM,Maguindanao del Sur,200.0,255.0
-2025,1,1,Banana,Saba,0,BARMM,Maguindanao del Sur,17115.25,4675.0
+2025,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,229.4165079365079,239.53
+2025,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,23205.66603174603,2514.62
+2025,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,14788.416507936508,2150.78
+2025,1,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,6006.713650793651,135.31571428571425
+2025,1,1,Banana,Others,0,BARMM,Maguindanao del Sur,196.41650793650777,249.78
+2025,1,1,Banana,Saba,0,BARMM,Maguindanao del Sur,17143.880793650795,4716.4742857142855
 2025,1,1,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2025,1,1,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2025,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -425391,10 +425391,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Sur,,
 2025,1,1,Makopa,Makopa,0,BARMM,Maguindanao del Sur,0.04,2.0
 2025,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Sur,,
-2025,1,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,4.12,1817.75
-2025,1,1,Mango,Indian,0,BARMM,Maguindanao del Sur,5.0,33.0
-2025,1,1,Mango,Others,0,BARMM,Maguindanao del Sur,8.0,945.0
-2025,1,1,Mango,Piko,0,BARMM,Maguindanao del Sur,1.03,36.0
+2025,1,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,4.12,1817.2626530612245
+2025,1,1,Mango,Indian,0,BARMM,Maguindanao del Sur,5.0,32.512653061224505
+2025,1,1,Mango,Others,0,BARMM,Maguindanao del Sur,8.0,945.6434693877552
+2025,1,1,Mango,Piko,0,BARMM,Maguindanao del Sur,1.03,36.331224489795936
 2025,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Sur,0.38,1.2
 2025,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Sur,,
 2025,1,1,Marang,Marang,0,BARMM,Maguindanao del Sur,25.0,146.8
@@ -425404,9 +425404,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mulberry,Mulberry,0,BARMM,Maguindanao del Sur,,
 2025,1,1,Orange,Orange,0,BARMM,Maguindanao del Sur,,
 2025,1,1,Pangi,Pangi,0,BARMM,Maguindanao del Sur,,
-2025,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,22.0,4.8
-2025,1,1,Papaya,Native,0,BARMM,Maguindanao del Sur,28.0,2.0
-2025,1,1,Papaya,Solo,0,BARMM,Maguindanao del Sur,68.0,10.4
+2025,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,22.0,4.704761904761904
+2025,1,1,Papaya,Native,0,BARMM,Maguindanao del Sur,28.0075,2.2380952380952386
+2025,1,1,Papaya,Solo,0,BARMM,Maguindanao del Sur,68.0,10.257142857142858
 2025,1,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Sur,,
 2025,1,1,Pears,Pears,0,BARMM,Maguindanao del Sur,,
 2025,1,1,Persimmon,Persimmon,0,BARMM,Maguindanao del Sur,,
@@ -425432,12 +425432,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Atis,Atis,0,BARMM,Sulu,0.77,4.23
 2025,1,1,Avocado,Avocado,0,BARMM,Sulu,1.62,0.13
 2025,1,1,Balimbing,Balimbing,0,BARMM,Sulu,0.3,7.0
-2025,1,1,Banana,Bungulan,0,BARMM,Sulu,320.0,475.0
-2025,1,1,Banana,Cavendish,0,BARMM,Sulu,,
-2025,1,1,Banana,Lakatan,0,BARMM,Sulu,110.0,118.0
-2025,1,1,Banana,Latundan,0,BARMM,Sulu,174.0,130.0
-2025,1,1,Banana,Others,0,BARMM,Sulu,420.0,255.0
-2025,1,1,Banana,Saba,0,BARMM,Sulu,1750.0,1600.0
+2025,1,1,Banana,Bungulan,0,BARMM,Sulu,316.4165079365079,469.78000000000003
+2025,1,1,Banana,Cavendish,0,BARMM,Sulu,10.750476190477098,15.660000000000085
+2025,1,1,Banana,Lakatan,0,BARMM,Sulu,106.4165079365079,112.78
+2025,1,1,Banana,Latundan,0,BARMM,Sulu,170.45365079365078,125.06571428571426
+2025,1,1,Banana,Others,0,BARMM,Sulu,416.4165079365078,249.78
+2025,1,1,Banana,Saba,0,BARMM,Sulu,1778.6307936507935,1641.474285714286
 2025,1,1,Batwan,Batwan,0,BARMM,Sulu,,
 2025,1,1,Bignay,Bignay,0,BARMM,Sulu,,
 2025,1,1,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -425468,10 +425468,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mabolo,Mabolo,0,BARMM,Sulu,,
 2025,1,1,Makopa,Makopa,0,BARMM,Sulu,2.13,1.0
 2025,1,1,Mandarin,Mandarin,0,BARMM,Sulu,,
-2025,1,1,Mango,Carabao,0,BARMM,Sulu,,
-2025,1,1,Mango,Indian,0,BARMM,Sulu,,2.02
-2025,1,1,Mango,Others,0,BARMM,Sulu,4.25,1350.0
-2025,1,1,Mango,Piko,0,BARMM,Sulu,,
+2025,1,1,Mango,Carabao,0,BARMM,Sulu,,1.218367346938716
+2025,1,1,Mango,Indian,0,BARMM,Sulu,,1.532653061224508
+2025,1,1,Mango,Others,0,BARMM,Sulu,4.25,1350.6434693877552
+2025,1,1,Mango,Piko,0,BARMM,Sulu,,2.0369387755101633
 2025,1,1,Mangosteen,Mangosteen,0,BARMM,Sulu,,
 2025,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Sulu,,
 2025,1,1,Marang,Marang,0,BARMM,Sulu,,
@@ -425481,9 +425481,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mulberry,Mulberry,0,BARMM,Sulu,,
 2025,1,1,Orange,Orange,0,BARMM,Sulu,,
 2025,1,1,Pangi,Pangi,0,BARMM,Sulu,,
-2025,1,1,Papaya,Hawaiian,0,BARMM,Sulu,,
-2025,1,1,Papaya,Native,0,BARMM,Sulu,98.0,48.0
-2025,1,1,Papaya,Solo,0,BARMM,Sulu,,
+2025,1,1,Papaya,Hawaiian,0,BARMM,Sulu,0.007500000000000284,0.23809523809523792
+2025,1,1,Papaya,Native,0,BARMM,Sulu,98.00750000000001,48.23809523809524
+2025,1,1,Papaya,Solo,0,BARMM,Sulu,0.007500000000000284,0.19047619047619047
 2025,1,1,Passion Fruit,Passion Fruit,0,BARMM,Sulu,,
 2025,1,1,Pears,Pears,0,BARMM,Sulu,,
 2025,1,1,Persimmon,Persimmon,0,BARMM,Sulu,,
@@ -425509,12 +425509,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Atis,Atis,0,BARMM,Tawi-Tawi,0.61,3.5
 2025,1,1,Avocado,Avocado,0,BARMM,Tawi-Tawi,0.11,15.75
 2025,1,1,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,0.08,1.9
-2025,1,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,250.0,739.0
-2025,1,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2025,1,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,220.0,80.0
-2025,1,1,Banana,Latundan,0,BARMM,Tawi-Tawi,560.0,56.0
-2025,1,1,Banana,Others,0,BARMM,Tawi-Tawi,28.0,371.0
-2025,1,1,Banana,Saba,0,BARMM,Tawi-Tawi,845.0,216.5
+2025,1,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,246.4165079365079,733.78
+2025,1,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,10.750476190477098,15.660000000000085
+2025,1,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,216.4165079365079,74.78
+2025,1,1,Banana,Latundan,0,BARMM,Tawi-Tawi,556.4536507936508,51.06571428571426
+2025,1,1,Banana,Others,0,BARMM,Tawi-Tawi,24.416507936507774,365.78000000000003
+2025,1,1,Banana,Saba,0,BARMM,Tawi-Tawi,873.6307936507936,257.97428571428594
 2025,1,1,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2025,1,1,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2025,1,1,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,1.2,1.3
@@ -425545,10 +425545,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mabolo,Mabolo,0,BARMM,Tawi-Tawi,,
 2025,1,1,Makopa,Makopa,0,BARMM,Tawi-Tawi,0.28,0.85
 2025,1,1,Mandarin,Mandarin,0,BARMM,Tawi-Tawi,,10.0
-2025,1,1,Mango,Carabao,0,BARMM,Tawi-Tawi,30.0,58.0
-2025,1,1,Mango,Indian,0,BARMM,Tawi-Tawi,,
-2025,1,1,Mango,Others,0,BARMM,Tawi-Tawi,2.5,340.0
-2025,1,1,Mango,Piko,0,BARMM,Tawi-Tawi,,0.38
+2025,1,1,Mango,Carabao,0,BARMM,Tawi-Tawi,30.0,57.51265306122449
+2025,1,1,Mango,Indian,0,BARMM,Tawi-Tawi,,1.2183673469387364
+2025,1,1,Mango,Others,0,BARMM,Tawi-Tawi,2.5,340.64346938775515
+2025,1,1,Mango,Piko,0,BARMM,Tawi-Tawi,,0.711224489795935
 2025,1,1,Mangosteen,Mangosteen,0,BARMM,Tawi-Tawi,0.11,3.0
 2025,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Tawi-Tawi,,
 2025,1,1,Marang,Marang,0,BARMM,Tawi-Tawi,0.38,176.0
@@ -425558,9 +425558,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,1,1,Mulberry,Mulberry,0,BARMM,Tawi-Tawi,,
 2025,1,1,Orange,Orange,0,BARMM,Tawi-Tawi,,
 2025,1,1,Pangi,Pangi,0,BARMM,Tawi-Tawi,,
-2025,1,1,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,2.47,7.25
-2025,1,1,Papaya,Native,0,BARMM,Tawi-Tawi,3.49,20.5
-2025,1,1,Papaya,Solo,0,BARMM,Tawi-Tawi,,
+2025,1,1,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,2.47,7.154761904761904
+2025,1,1,Papaya,Native,0,BARMM,Tawi-Tawi,3.4975000000000014,20.738095238095237
+2025,1,1,Papaya,Solo,0,BARMM,Tawi-Tawi,0.007500000000000284,0.19047619047619047
 2025,1,1,Passion Fruit,Passion Fruit,0,BARMM,Tawi-Tawi,,
 2025,1,1,Pears,Pears,0,BARMM,Tawi-Tawi,,
 2025,1,1,Persimmon,Persimmon,0,BARMM,Tawi-Tawi,,
@@ -432131,12 +432131,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Atis,Atis,0,BARMM,Basilan,,3.0
 2025,2,1,Avocado,Avocado,0,BARMM,Basilan,52.59,14.61
 2025,2,1,Balimbing,Balimbing,0,BARMM,Basilan,,0.14
-2025,2,1,Banana,Bungulan,0,BARMM,Basilan,448.5,832.17
-2025,2,1,Banana,Cavendish,0,BARMM,Basilan,,
-2025,2,1,Banana,Lakatan,0,BARMM,Basilan,199.92,516.8
-2025,2,1,Banana,Latundan,0,BARMM,Basilan,1154.37,839.86
-2025,2,1,Banana,Others,0,BARMM,Basilan,884.12,831.5
-2025,2,1,Banana,Saba,0,BARMM,Basilan,4519.82,3536.93
+2025,2,1,Banana,Bungulan,0,BARMM,Basilan,430.92285714285725,826.9499999999999
+2025,2,1,Banana,Cavendish,0,BARMM,Basilan,52.73142857142807,15.660000000000085
+2025,2,1,Banana,Lakatan,0,BARMM,Basilan,182.34428571428586,511.58
+2025,2,1,Banana,Latundan,0,BARMM,Basilan,1136.837142857143,834.9257142857143
+2025,2,1,Banana,Others,0,BARMM,Basilan,866.5428571428574,826.28
+2025,2,1,Banana,Saba,0,BARMM,Basilan,4660.394285714286,3578.4042857142854
 2025,2,1,Batwan,Batwan,0,BARMM,Basilan,,
 2025,2,1,Bignay,Bignay,0,BARMM,Basilan,,
 2025,2,1,Breadfruit,Breadfruit,0,BARMM,Basilan,,0.5
@@ -432167,10 +432167,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mabolo,Mabolo,0,BARMM,Basilan,,
 2025,2,1,Makopa,Makopa,0,BARMM,Basilan,,0.5
 2025,2,1,Mandarin,Mandarin,0,BARMM,Basilan,,3.0
-2025,2,1,Mango,Carabao,0,BARMM,Basilan,50.0,20.0
-2025,2,1,Mango,Indian,0,BARMM,Basilan,,3.65
-2025,2,1,Mango,Others,0,BARMM,Basilan,30.0,65.0
-2025,2,1,Mango,Piko,0,BARMM,Basilan,1.68,8.0
+2025,2,1,Mango,Carabao,0,BARMM,Basilan,50.0,19.43142857142857
+2025,2,1,Mango,Indian,0,BARMM,Basilan,,3.365714285714274
+2025,2,1,Mango,Others,0,BARMM,Basilan,30.0,65.60285714285705
+2025,2,1,Mango,Piko,0,BARMM,Basilan,1.68,8.249999999999975
 2025,2,1,Mangosteen,Mangosteen,0,BARMM,Basilan,,13.0
 2025,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Basilan,,
 2025,2,1,Marang,Marang,0,BARMM,Basilan,,4.68
@@ -432180,9 +432180,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mulberry,Mulberry,0,BARMM,Basilan,,
 2025,2,1,Orange,Orange,0,BARMM,Basilan,,
 2025,2,1,Pangi,Pangi,0,BARMM,Basilan,,
-2025,2,1,Papaya,Hawaiian,0,BARMM,Basilan,25.0,5.0
-2025,2,1,Papaya,Native,0,BARMM,Basilan,42.24,20.0
-2025,2,1,Papaya,Solo,0,BARMM,Basilan,0.2,0.53
+2025,2,1,Papaya,Hawaiian,0,BARMM,Basilan,25.0,4.904761904761904
+2025,2,1,Papaya,Native,0,BARMM,Basilan,42.25071428571429,20.238095238095237
+2025,2,1,Papaya,Solo,0,BARMM,Basilan,0.2,0.3871428571428572
 2025,2,1,Passion Fruit,Passion Fruit,0,BARMM,Basilan,,
 2025,2,1,Pears,Pears,0,BARMM,Basilan,,
 2025,2,1,Persimmon,Persimmon,0,BARMM,Basilan,,
@@ -432208,12 +432208,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Atis,Atis,0,BARMM,Lanao del Sur,0.65,0.1
 2025,2,1,Avocado,Avocado,0,BARMM,Lanao del Sur,11.03,8.1
 2025,2,1,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,1.9
-2025,2,1,Banana,Bungulan,0,BARMM,Lanao del Sur,6168.0,1550.0
-2025,2,1,Banana,Cavendish,0,BARMM,Lanao del Sur,56.0,425.0
-2025,2,1,Banana,Lakatan,0,BARMM,Lanao del Sur,8645.0,1200.0
-2025,2,1,Banana,Latundan,0,BARMM,Lanao del Sur,2814.0,754.0
-2025,2,1,Banana,Others,0,BARMM,Lanao del Sur,1456.0,256.0
-2025,2,1,Banana,Saba,0,BARMM,Lanao del Sur,7200.0,1390.0
+2025,2,1,Banana,Bungulan,0,BARMM,Lanao del Sur,6150.4228571428575,1544.78
+2025,2,1,Banana,Cavendish,0,BARMM,Lanao del Sur,-14.308571428570374,404.12
+2025,2,1,Banana,Lakatan,0,BARMM,Lanao del Sur,8627.424285714285,1194.78
+2025,2,1,Banana,Latundan,0,BARMM,Lanao del Sur,2796.4671428571432,749.0657142857143
+2025,2,1,Banana,Others,0,BARMM,Lanao del Sur,1438.4228571428573,250.78
+2025,2,1,Banana,Saba,0,BARMM,Lanao del Sur,7340.574285714286,1431.4742857142858
 2025,2,1,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2025,2,1,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2025,2,1,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -432244,10 +432244,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mabolo,Mabolo,0,BARMM,Lanao del Sur,,
 2025,2,1,Makopa,Makopa,0,BARMM,Lanao del Sur,,
 2025,2,1,Mandarin,Mandarin,0,BARMM,Lanao del Sur,,1.97
-2025,2,1,Mango,Carabao,0,BARMM,Lanao del Sur,16.5,21.0
-2025,2,1,Mango,Indian,0,BARMM,Lanao del Sur,24.0,5.37
-2025,2,1,Mango,Others,0,BARMM,Lanao del Sur,52.1,16.3
-2025,2,1,Mango,Piko,0,BARMM,Lanao del Sur,2.17,5.0
+2025,2,1,Mango,Carabao,0,BARMM,Lanao del Sur,16.5,20.43142857142857
+2025,2,1,Mango,Indian,0,BARMM,Lanao del Sur,24.0,5.085714285714275
+2025,2,1,Mango,Others,0,BARMM,Lanao del Sur,52.1,16.90285714285705
+2025,2,1,Mango,Piko,0,BARMM,Lanao del Sur,2.17,5.249999999999976
 2025,2,1,Mangosteen,Mangosteen,0,BARMM,Lanao del Sur,,6.0
 2025,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Lanao del Sur,,
 2025,2,1,Marang,Marang,0,BARMM,Lanao del Sur,181.3,340.2
@@ -432257,9 +432257,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mulberry,Mulberry,0,BARMM,Lanao del Sur,,
 2025,2,1,Orange,Orange,0,BARMM,Lanao del Sur,,
 2025,2,1,Pangi,Pangi,0,BARMM,Lanao del Sur,,
-2025,2,1,Papaya,Hawaiian,0,BARMM,Lanao del Sur,11.2,7.04
-2025,2,1,Papaya,Native,0,BARMM,Lanao del Sur,16.1,5.23
-2025,2,1,Papaya,Solo,0,BARMM,Lanao del Sur,9.4,4.03
+2025,2,1,Papaya,Hawaiian,0,BARMM,Lanao del Sur,11.2,6.944761904761904
+2025,2,1,Papaya,Native,0,BARMM,Lanao del Sur,16.110714285714284,5.4680952380952395
+2025,2,1,Papaya,Solo,0,BARMM,Lanao del Sur,9.4,3.8871428571428575
 2025,2,1,Passion Fruit,Passion Fruit,0,BARMM,Lanao del Sur,,
 2025,2,1,Pears,Pears,0,BARMM,Lanao del Sur,,
 2025,2,1,Persimmon,Persimmon,0,BARMM,Lanao del Sur,,
@@ -432285,12 +432285,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Atis,Atis,0,BARMM,Maguindanao,,
 2025,2,1,Avocado,Avocado,0,BARMM,Maguindanao,,
 2025,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao,,
-2025,2,1,Banana,Bungulan,0,BARMM,Maguindanao,,
-2025,2,1,Banana,Cavendish,0,BARMM,Maguindanao,,
-2025,2,1,Banana,Lakatan,0,BARMM,Maguindanao,,
-2025,2,1,Banana,Latundan,0,BARMM,Maguindanao,,
-2025,2,1,Banana,Others,0,BARMM,Maguindanao,,
-2025,2,1,Banana,Saba,0,BARMM,Maguindanao,,
+2025,2,1,Banana,Bungulan,0,BARMM,Maguindanao,105.46285714285573,31.320000000000068
+2025,2,1,Banana,Cavendish,0,BARMM,Maguindanao,52.73142857142807,15.660000000000085
+2025,2,1,Banana,Lakatan,0,BARMM,Maguindanao,105.46428571428433,31.320000000000068
+2025,2,1,Banana,Latundan,0,BARMM,Maguindanao,105.50714285714149,31.60571428571432
+2025,2,1,Banana,Others,0,BARMM,Maguindanao,105.46285714285585,31.320000000000068
+2025,2,1,Banana,Saba,0,BARMM,Maguindanao,263.61428571428473,78.01428571428573
 2025,2,1,Batwan,Batwan,0,BARMM,Maguindanao,,
 2025,2,1,Bignay,Bignay,0,BARMM,Maguindanao,,
 2025,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -432321,10 +432321,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mabolo,Mabolo,0,BARMM,Maguindanao,,
 2025,2,1,Makopa,Makopa,0,BARMM,Maguindanao,,
 2025,2,1,Mandarin,Mandarin,0,BARMM,Maguindanao,,
-2025,2,1,Mango,Carabao,0,BARMM,Maguindanao,,
-2025,2,1,Mango,Indian,0,BARMM,Maguindanao,,
-2025,2,1,Mango,Others,0,BARMM,Maguindanao,,
-2025,2,1,Mango,Piko,0,BARMM,Maguindanao,,
+2025,2,1,Mango,Carabao,0,BARMM,Maguindanao,,1.4214285714286536
+2025,2,1,Mango,Indian,0,BARMM,Maguindanao,,1.705714285714359
+2025,2,1,Mango,Others,0,BARMM,Maguindanao,,2.592857142857134
+2025,2,1,Mango,Piko,0,BARMM,Maguindanao,,2.2400000000000606
 2025,2,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao,,
 2025,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao,,
 2025,2,1,Marang,Marang,0,BARMM,Maguindanao,,
@@ -432334,9 +432334,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mulberry,Mulberry,0,BARMM,Maguindanao,,
 2025,2,1,Orange,Orange,0,BARMM,Maguindanao,,
 2025,2,1,Pangi,Pangi,0,BARMM,Maguindanao,,
-2025,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao,,
-2025,2,1,Papaya,Native,0,BARMM,Maguindanao,,
-2025,2,1,Papaya,Solo,0,BARMM,Maguindanao,,
+2025,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao,0.014999999999986358,0.23809523809523792
+2025,2,1,Papaya,Native,0,BARMM,Maguindanao,0.025714285714270448,0.5714285714285721
+2025,2,1,Papaya,Solo,0,BARMM,Maguindanao,0.014999999999986358,0.19047619047619047
 2025,2,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao,,
 2025,2,1,Pears,Pears,0,BARMM,Maguindanao,,
 2025,2,1,Persimmon,Persimmon,0,BARMM,Maguindanao,,
@@ -432362,12 +432362,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2025,2,1,Avocado,Avocado,0,BARMM,Maguindanao del Norte,470.25,2.56
 2025,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,0.16
-2025,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,152.0,200.25
-2025,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,11722.0,2074.5
-2025,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,6446.97,1764.0
-2025,2,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,975.5,114.75
-2025,2,1,Banana,Others,0,BARMM,Maguindanao del Norte,220.0,170.0
-2025,2,1,Banana,Saba,0,BARMM,Maguindanao del Norte,19659.63,3821.65
+2025,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,134.42285714285728,195.03
+2025,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,11651.69142857143,2053.62
+2025,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,6429.3942857142865,1758.78
+2025,2,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,957.967142857143,109.81571428571426
+2025,2,1,Banana,Others,0,BARMM,Maguindanao del Norte,202.4228571428574,164.78
+2025,2,1,Banana,Saba,0,BARMM,Maguindanao del Norte,19800.204285714288,3863.1242857142856
 2025,2,1,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2025,2,1,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2025,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -432398,10 +432398,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Norte,,
 2025,2,1,Makopa,Makopa,0,BARMM,Maguindanao del Norte,,0.3
 2025,2,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Norte,,
-2025,2,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,3354.75,1487.25
-2025,2,1,Mango,Indian,0,BARMM,Maguindanao del Norte,15.0,22.0
-2025,2,1,Mango,Others,0,BARMM,Maguindanao del Norte,2587.12,2807.48
-2025,2,1,Mango,Piko,0,BARMM,Maguindanao del Norte,402.2,59.0
+2025,2,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,3354.75,1486.6814285714286
+2025,2,1,Mango,Indian,0,BARMM,Maguindanao del Norte,15.0,21.715714285714274
+2025,2,1,Mango,Others,0,BARMM,Maguindanao del Norte,2587.12,2808.082857142857
+2025,2,1,Mango,Piko,0,BARMM,Maguindanao del Norte,402.2,59.24999999999998
 2025,2,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Norte,68.17,1.26
 2025,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Norte,,
 2025,2,1,Marang,Marang,0,BARMM,Maguindanao del Norte,8.0,220.2
@@ -432411,9 +432411,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mulberry,Mulberry,0,BARMM,Maguindanao del Norte,,
 2025,2,1,Orange,Orange,0,BARMM,Maguindanao del Norte,,
 2025,2,1,Pangi,Pangi,0,BARMM,Maguindanao del Norte,,
-2025,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,30.51,7.2
-2025,2,1,Papaya,Native,0,BARMM,Maguindanao del Norte,34.35,18.9
-2025,2,1,Papaya,Solo,0,BARMM,Maguindanao del Norte,90.0,15.6
+2025,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,30.51,7.104761904761904
+2025,2,1,Papaya,Native,0,BARMM,Maguindanao del Norte,34.36071428571429,19.138095238095236
+2025,2,1,Papaya,Solo,0,BARMM,Maguindanao del Norte,90.0,15.457142857142857
 2025,2,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Norte,,
 2025,2,1,Pears,Pears,0,BARMM,Maguindanao del Norte,,
 2025,2,1,Persimmon,Persimmon,0,BARMM,Maguindanao del Norte,,
@@ -432439,12 +432439,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Atis,Atis,0,BARMM,Maguindanao del Sur,,0.5
 2025,2,1,Avocado,Avocado,0,BARMM,Maguindanao del Sur,292.95,18.45
 2025,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2025,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,240.0,244.75
-2025,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,19249.15,2535.5
-2025,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,7356.0,2156.0
-2025,2,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,1628.5,140.25
-2025,2,1,Banana,Others,0,BARMM,Maguindanao del Sur,300.0,255.0
-2025,2,1,Banana,Saba,0,BARMM,Maguindanao del Sur,25139.17,4675.0
+2025,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,222.42285714285728,239.53
+2025,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,19178.84142857143,2514.62
+2025,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,7338.424285714286,2150.78
+2025,2,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,1610.967142857143,135.31571428571425
+2025,2,1,Banana,Others,0,BARMM,Maguindanao del Sur,282.4228571428574,249.78
+2025,2,1,Banana,Saba,0,BARMM,Maguindanao del Sur,25279.744285714285,4716.4742857142855
 2025,2,1,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2025,2,1,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2025,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -432475,10 +432475,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Sur,,
 2025,2,1,Makopa,Makopa,0,BARMM,Maguindanao del Sur,0.05,2.0
 2025,2,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Sur,,
-2025,2,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,4127.83,1817.75
-2025,2,1,Mango,Indian,0,BARMM,Maguindanao del Sur,57.79,33.0
-2025,2,1,Mango,Others,0,BARMM,Maguindanao del Sur,1850.4,945.0
-2025,2,1,Mango,Piko,0,BARMM,Maguindanao del Sur,519.0,36.0
+2025,2,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,4127.83,1817.1814285714286
+2025,2,1,Mango,Indian,0,BARMM,Maguindanao del Sur,57.79,32.71571428571428
+2025,2,1,Mango,Others,0,BARMM,Maguindanao del Sur,1850.4,945.602857142857
+2025,2,1,Mango,Piko,0,BARMM,Maguindanao del Sur,519.0,36.24999999999998
 2025,2,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Sur,0.42,1.2
 2025,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Sur,,
 2025,2,1,Marang,Marang,0,BARMM,Maguindanao del Sur,5.0,146.8
@@ -432488,9 +432488,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mulberry,Mulberry,0,BARMM,Maguindanao del Sur,,
 2025,2,1,Orange,Orange,0,BARMM,Maguindanao del Sur,,
 2025,2,1,Pangi,Pangi,0,BARMM,Maguindanao del Sur,,
-2025,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,25.0,4.8
-2025,2,1,Papaya,Native,0,BARMM,Maguindanao del Sur,30.0,2.0
-2025,2,1,Papaya,Solo,0,BARMM,Maguindanao del Sur,70.0,10.4
+2025,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,25.0,4.704761904761904
+2025,2,1,Papaya,Native,0,BARMM,Maguindanao del Sur,30.010714285714283,2.2380952380952386
+2025,2,1,Papaya,Solo,0,BARMM,Maguindanao del Sur,70.0,10.257142857142858
 2025,2,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Sur,,
 2025,2,1,Pears,Pears,0,BARMM,Maguindanao del Sur,,
 2025,2,1,Persimmon,Persimmon,0,BARMM,Maguindanao del Sur,,
@@ -432516,12 +432516,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Atis,Atis,0,BARMM,Sulu,121.27,4.23
 2025,2,1,Avocado,Avocado,0,BARMM,Sulu,44.3,5.07
 2025,2,1,Balimbing,Balimbing,0,BARMM,Sulu,0.69,7.0
-2025,2,1,Banana,Bungulan,0,BARMM,Sulu,505.57,475.0
-2025,2,1,Banana,Cavendish,0,BARMM,Sulu,,
-2025,2,1,Banana,Lakatan,0,BARMM,Sulu,190.6,118.0
-2025,2,1,Banana,Latundan,0,BARMM,Sulu,284.82,130.0
-2025,2,1,Banana,Others,0,BARMM,Sulu,314.13,255.0
-2025,2,1,Banana,Saba,0,BARMM,Sulu,2817.61,1600.0
+2025,2,1,Banana,Bungulan,0,BARMM,Sulu,487.99285714285725,469.78000000000003
+2025,2,1,Banana,Cavendish,0,BARMM,Sulu,52.73142857142807,15.660000000000085
+2025,2,1,Banana,Lakatan,0,BARMM,Sulu,173.02428571428587,112.78
+2025,2,1,Banana,Latundan,0,BARMM,Sulu,267.28714285714307,125.06571428571426
+2025,2,1,Banana,Others,0,BARMM,Sulu,296.5528571428574,249.78
+2025,2,1,Banana,Saba,0,BARMM,Sulu,2958.1842857142865,1641.4742857142858
 2025,2,1,Batwan,Batwan,0,BARMM,Sulu,,
 2025,2,1,Bignay,Bignay,0,BARMM,Sulu,,
 2025,2,1,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -432552,10 +432552,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mabolo,Mabolo,0,BARMM,Sulu,,
 2025,2,1,Makopa,Makopa,0,BARMM,Sulu,2.18,2.34
 2025,2,1,Mandarin,Mandarin,0,BARMM,Sulu,,
-2025,2,1,Mango,Carabao,0,BARMM,Sulu,,
-2025,2,1,Mango,Indian,0,BARMM,Sulu,,2.02
-2025,2,1,Mango,Others,0,BARMM,Sulu,14.45,1350.0
-2025,2,1,Mango,Piko,0,BARMM,Sulu,,
+2025,2,1,Mango,Carabao,0,BARMM,Sulu,,1.4214285714286536
+2025,2,1,Mango,Indian,0,BARMM,Sulu,,1.7357142857142742
+2025,2,1,Mango,Others,0,BARMM,Sulu,14.45,1350.6028571428571
+2025,2,1,Mango,Piko,0,BARMM,Sulu,,2.2400000000000606
 2025,2,1,Mangosteen,Mangosteen,0,BARMM,Sulu,,
 2025,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Sulu,,
 2025,2,1,Marang,Marang,0,BARMM,Sulu,,
@@ -432565,9 +432565,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mulberry,Mulberry,0,BARMM,Sulu,,
 2025,2,1,Orange,Orange,0,BARMM,Sulu,,
 2025,2,1,Pangi,Pangi,0,BARMM,Sulu,,
-2025,2,1,Papaya,Hawaiian,0,BARMM,Sulu,,
-2025,2,1,Papaya,Native,0,BARMM,Sulu,120.87,48.32
-2025,2,1,Papaya,Solo,0,BARMM,Sulu,,
+2025,2,1,Papaya,Hawaiian,0,BARMM,Sulu,0.014999999999986358,0.23809523809523792
+2025,2,1,Papaya,Native,0,BARMM,Sulu,120.88071428571429,48.55809523809524
+2025,2,1,Papaya,Solo,0,BARMM,Sulu,0.014999999999986358,0.19047619047619047
 2025,2,1,Passion Fruit,Passion Fruit,0,BARMM,Sulu,,
 2025,2,1,Pears,Pears,0,BARMM,Sulu,,
 2025,2,1,Persimmon,Persimmon,0,BARMM,Sulu,,
@@ -432593,12 +432593,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Atis,Atis,0,BARMM,Tawi-Tawi,1.82,3.5
 2025,2,1,Avocado,Avocado,0,BARMM,Tawi-Tawi,0.8,15.75
 2025,2,1,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,0.4,1.9
-2025,2,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,158.0,739.0
-2025,2,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2025,2,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,125.0,80.7
-2025,2,1,Banana,Latundan,0,BARMM,Tawi-Tawi,395.0,56.0
-2025,2,1,Banana,Others,0,BARMM,Tawi-Tawi,60.88,371.0
-2025,2,1,Banana,Saba,0,BARMM,Tawi-Tawi,988.0,233.36
+2025,2,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,140.42285714285728,733.78
+2025,2,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,52.73142857142807,15.660000000000085
+2025,2,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,107.42428571428587,75.48
+2025,2,1,Banana,Latundan,0,BARMM,Tawi-Tawi,377.4671428571431,51.06571428571426
+2025,2,1,Banana,Others,0,BARMM,Tawi-Tawi,43.302857142857405,365.78000000000003
+2025,2,1,Banana,Saba,0,BARMM,Tawi-Tawi,1128.5742857142864,274.83428571428567
 2025,2,1,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2025,2,1,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2025,2,1,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,2.44,1.35
@@ -432629,10 +432629,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mabolo,Mabolo,0,BARMM,Tawi-Tawi,,
 2025,2,1,Makopa,Makopa,0,BARMM,Tawi-Tawi,1.81,0.9
 2025,2,1,Mandarin,Mandarin,0,BARMM,Tawi-Tawi,,10.0
-2025,2,1,Mango,Carabao,0,BARMM,Tawi-Tawi,70.0,58.0
-2025,2,1,Mango,Indian,0,BARMM,Tawi-Tawi,0.39,0.8
-2025,2,1,Mango,Others,0,BARMM,Tawi-Tawi,268.0,340.0
-2025,2,1,Mango,Piko,0,BARMM,Tawi-Tawi,,0.38
+2025,2,1,Mango,Carabao,0,BARMM,Tawi-Tawi,70.0,57.43142857142857
+2025,2,1,Mango,Indian,0,BARMM,Tawi-Tawi,0.39,0.5157142857142742
+2025,2,1,Mango,Others,0,BARMM,Tawi-Tawi,268.0,340.60285714285703
+2025,2,1,Mango,Piko,0,BARMM,Tawi-Tawi,,0.6299999999999757
 2025,2,1,Mangosteen,Mangosteen,0,BARMM,Tawi-Tawi,,3.0
 2025,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Tawi-Tawi,,
 2025,2,1,Marang,Marang,0,BARMM,Tawi-Tawi,,176.0
@@ -432642,9 +432642,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,2,1,Mulberry,Mulberry,0,BARMM,Tawi-Tawi,,
 2025,2,1,Orange,Orange,0,BARMM,Tawi-Tawi,,
 2025,2,1,Pangi,Pangi,0,BARMM,Tawi-Tawi,,
-2025,2,1,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,5.64,7.0
-2025,2,1,Papaya,Native,0,BARMM,Tawi-Tawi,4.83,20.0
-2025,2,1,Papaya,Solo,0,BARMM,Tawi-Tawi,,
+2025,2,1,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,5.64,6.904761904761904
+2025,2,1,Papaya,Native,0,BARMM,Tawi-Tawi,4.840714285714284,20.238095238095237
+2025,2,1,Papaya,Solo,0,BARMM,Tawi-Tawi,0.014999999999986358,0.19047619047619047
 2025,2,1,Passion Fruit,Passion Fruit,0,BARMM,Tawi-Tawi,,
 2025,2,1,Pears,Pears,0,BARMM,Tawi-Tawi,,
 2025,2,1,Persimmon,Persimmon,0,BARMM,Tawi-Tawi,,
@@ -439215,12 +439215,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,3,2,Atis,Atis,0,BARMM,Basilan,,3.0
 2025,3,2,Avocado,Avocado,0,BARMM,Basilan,2.08,14.61
 2025,3,2,Balimbing,Balimbing,0,BARMM,Basilan,,0.14
-2025,3,2,Banana,Bungulan,0,BARMM,Basilan,512.71,832.17
-2025,3,2,Banana,Cavendish,0,BARMM,Basilan,,
-2025,3,2,Banana,Lakatan,0,BARMM,Basilan,495.18,516.8
-2025,3,2,Banana,Latundan,0,BARMM,Basilan,501.76,839.86
-2025,3,2,Banana,Others,0,BARMM,Basilan,596.23,831.5
-2025,3,2,Banana,Saba,0,BARMM,Basilan,2369.0,3536.93
+2025,3,2,Banana,Bungulan,0,BARMM,Basilan,499.0749206349205,832.17
+2025,3,2,Banana,Cavendish,0,BARMM,Basilan,40.90523809523785,
+2025,3,2,Banana,Lakatan,0,BARMM,Basilan,481.5463492063492,516.8
+2025,3,2,Banana,Latundan,0,BARMM,Basilan,488.12492063492044,839.86
+2025,3,2,Banana,Others,0,BARMM,Basilan,582.5949206349204,831.5
+2025,3,2,Banana,Saba,0,BARMM,Basilan,2478.0777777777776,3536.93
 2025,3,2,Batwan,Batwan,0,BARMM,Basilan,,
 2025,3,2,Bignay,Bignay,0,BARMM,Basilan,,
 2025,3,2,Breadfruit,Breadfruit,0,BARMM,Basilan,,0.5
@@ -439292,12 +439292,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,3,2,Atis,Atis,0,BARMM,Lanao del Sur,,0.1
 2025,3,2,Avocado,Avocado,0,BARMM,Lanao del Sur,21.27,9.3
 2025,3,2,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,1.9
-2025,3,2,Banana,Bungulan,0,BARMM,Lanao del Sur,5968.5,1412.0
-2025,3,2,Banana,Cavendish,0,BARMM,Lanao del Sur,52.8,418.9
-2025,3,2,Banana,Lakatan,0,BARMM,Lanao del Sur,7059.0,1160.0
-2025,3,2,Banana,Latundan,0,BARMM,Lanao del Sur,2532.7,754.0
-2025,3,2,Banana,Others,0,BARMM,Lanao del Sur,1431.4,259.0
-2025,3,2,Banana,Saba,0,BARMM,Lanao del Sur,7195.0,1319.5
+2025,3,2,Banana,Bungulan,0,BARMM,Lanao del Sur,5954.86492063492,1412.0
+2025,3,2,Banana,Cavendish,0,BARMM,Lanao del Sur,-1.7403174603187495,418.9
+2025,3,2,Banana,Lakatan,0,BARMM,Lanao del Sur,7045.366349206349,1160.0
+2025,3,2,Banana,Latundan,0,BARMM,Lanao del Sur,2519.0649206349203,754.0
+2025,3,2,Banana,Others,0,BARMM,Lanao del Sur,1417.7649206349206,259.0
+2025,3,2,Banana,Saba,0,BARMM,Lanao del Sur,7304.077777777778,1319.5
 2025,3,2,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2025,3,2,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2025,3,2,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -439369,12 +439369,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,3,2,Atis,Atis,0,BARMM,Maguindanao,,
 2025,3,2,Avocado,Avocado,0,BARMM,Maguindanao,,
 2025,3,2,Balimbing,Balimbing,0,BARMM,Maguindanao,,
-2025,3,2,Banana,Bungulan,0,BARMM,Maguindanao,,
-2025,3,2,Banana,Cavendish,0,BARMM,Maguindanao,,
-2025,3,2,Banana,Lakatan,0,BARMM,Maguindanao,,
-2025,3,2,Banana,Latundan,0,BARMM,Maguindanao,,
-2025,3,2,Banana,Others,0,BARMM,Maguindanao,,
-2025,3,2,Banana,Saba,0,BARMM,Maguindanao,,
+2025,3,2,Banana,Bungulan,0,BARMM,Maguindanao,81.81047619047703,
+2025,3,2,Banana,Cavendish,0,BARMM,Maguindanao,40.90523809523785,
+2025,3,2,Banana,Lakatan,0,BARMM,Maguindanao,81.81190476190577,
+2025,3,2,Banana,Latundan,0,BARMM,Maguindanao,81.81047619047703,
+2025,3,2,Banana,Others,0,BARMM,Maguindanao,81.81047619047703,
+2025,3,2,Banana,Saba,0,BARMM,Maguindanao,204.52333333333428,
 2025,3,2,Batwan,Batwan,0,BARMM,Maguindanao,,
 2025,3,2,Bignay,Bignay,0,BARMM,Maguindanao,,
 2025,3,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -439446,12 +439446,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,3,2,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2025,3,2,Avocado,Avocado,0,BARMM,Maguindanao del Norte,480.0,2.56
 2025,3,2,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,0.16
-2025,3,2,Banana,Bungulan,0,BARMM,Maguindanao del Norte,254.0,200.25
-2025,3,2,Banana,Cavendish,0,BARMM,Maguindanao del Norte,11810.0,2074.5
-2025,3,2,Banana,Lakatan,0,BARMM,Maguindanao del Norte,10762.97,1764.0
-2025,3,2,Banana,Latundan,0,BARMM,Maguindanao del Norte,1092.04,114.75
-2025,3,2,Banana,Others,0,BARMM,Maguindanao del Norte,235.0,170.0
-2025,3,2,Banana,Saba,0,BARMM,Maguindanao del Norte,24875.71,3821.65
+2025,3,2,Banana,Bungulan,0,BARMM,Maguindanao del Norte,240.36492063492045,200.25
+2025,3,2,Banana,Cavendish,0,BARMM,Maguindanao del Norte,11755.459682539682,2074.5
+2025,3,2,Banana,Lakatan,0,BARMM,Maguindanao del Norte,10749.336349206349,1764.0
+2025,3,2,Banana,Latundan,0,BARMM,Maguindanao del Norte,1078.4049206349205,114.75
+2025,3,2,Banana,Others,0,BARMM,Maguindanao del Norte,221.36492063492045,170.0
+2025,3,2,Banana,Saba,0,BARMM,Maguindanao del Norte,24984.787777777776,3821.65
 2025,3,2,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2025,3,2,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2025,3,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -439523,12 +439523,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,3,2,Atis,Atis,0,BARMM,Maguindanao del Sur,,0.5
 2025,3,2,Avocado,Avocado,0,BARMM,Maguindanao del Sur,92.5,18.45
 2025,3,2,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2025,3,2,Banana,Bungulan,0,BARMM,Maguindanao del Sur,250.0,244.75
-2025,3,2,Banana,Cavendish,0,BARMM,Maguindanao del Sur,23249.15,2535.5
-2025,3,2,Banana,Lakatan,0,BARMM,Maguindanao del Sur,13214.89,2156.0
-2025,3,2,Banana,Latundan,0,BARMM,Maguindanao del Sur,903.76,140.25
-2025,3,2,Banana,Others,0,BARMM,Maguindanao del Sur,300.0,255.0
-2025,3,2,Banana,Saba,0,BARMM,Maguindanao del Sur,11229.87,4675.0
+2025,3,2,Banana,Bungulan,0,BARMM,Maguindanao del Sur,236.36492063492045,244.75
+2025,3,2,Banana,Cavendish,0,BARMM,Maguindanao del Sur,23194.60968253968,2535.5
+2025,3,2,Banana,Lakatan,0,BARMM,Maguindanao del Sur,13201.25634920635,2156.0
+2025,3,2,Banana,Latundan,0,BARMM,Maguindanao del Sur,890.1249206349204,140.25
+2025,3,2,Banana,Others,0,BARMM,Maguindanao del Sur,286.36492063492045,255.0
+2025,3,2,Banana,Saba,0,BARMM,Maguindanao del Sur,11338.94777777778,4675.0
 2025,3,2,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2025,3,2,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2025,3,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -439600,12 +439600,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,3,2,Atis,Atis,0,BARMM,Sulu,0.19,4.23
 2025,3,2,Avocado,Avocado,0,BARMM,Sulu,2.65,5.07
 2025,3,2,Balimbing,Balimbing,0,BARMM,Sulu,,7.0
-2025,3,2,Banana,Bungulan,0,BARMM,Sulu,869.48,475.0
-2025,3,2,Banana,Cavendish,0,BARMM,Sulu,,
-2025,3,2,Banana,Lakatan,0,BARMM,Sulu,187.49,118.0
-2025,3,2,Banana,Latundan,0,BARMM,Sulu,306.98,130.0
-2025,3,2,Banana,Others,0,BARMM,Sulu,454.82,255.0
-2025,3,2,Banana,Saba,0,BARMM,Sulu,1272.84,1600.0
+2025,3,2,Banana,Bungulan,0,BARMM,Sulu,855.8449206349204,475.0
+2025,3,2,Banana,Cavendish,0,BARMM,Sulu,40.90523809523785,
+2025,3,2,Banana,Lakatan,0,BARMM,Sulu,173.8563492063492,118.0
+2025,3,2,Banana,Latundan,0,BARMM,Sulu,293.34492063492047,130.0
+2025,3,2,Banana,Others,0,BARMM,Sulu,441.18492063492045,255.0
+2025,3,2,Banana,Saba,0,BARMM,Sulu,1381.9177777777777,1600.0
 2025,3,2,Batwan,Batwan,0,BARMM,Sulu,,
 2025,3,2,Bignay,Bignay,0,BARMM,Sulu,,
 2025,3,2,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -439677,12 +439677,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,3,2,Atis,Atis,0,BARMM,Tawi-Tawi,2.4,3.5
 2025,3,2,Avocado,Avocado,0,BARMM,Tawi-Tawi,4.07,15.75
 2025,3,2,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,0.71,1.8
-2025,3,2,Banana,Bungulan,0,BARMM,Tawi-Tawi,320.0,739.0
-2025,3,2,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2025,3,2,Banana,Lakatan,0,BARMM,Tawi-Tawi,267.0,80.7
-2025,3,2,Banana,Latundan,0,BARMM,Tawi-Tawi,1270.0,56.0
-2025,3,2,Banana,Others,0,BARMM,Tawi-Tawi,67.0,371.0
-2025,3,2,Banana,Saba,0,BARMM,Tawi-Tawi,1315.0,233.36
+2025,3,2,Banana,Bungulan,0,BARMM,Tawi-Tawi,306.36492063492045,739.0
+2025,3,2,Banana,Cavendish,0,BARMM,Tawi-Tawi,40.90523809523785,
+2025,3,2,Banana,Lakatan,0,BARMM,Tawi-Tawi,253.36634920634918,80.7
+2025,3,2,Banana,Latundan,0,BARMM,Tawi-Tawi,1256.3649206349205,56.0
+2025,3,2,Banana,Others,0,BARMM,Tawi-Tawi,53.364920634920445,371.0
+2025,3,2,Banana,Saba,0,BARMM,Tawi-Tawi,1424.0777777777778,233.36
 2025,3,2,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2025,3,2,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2025,3,2,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,3.24,1.35
@@ -446299,12 +446299,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Atis,Atis,0,BARMM,Basilan,0.05,3.0
 2025,4,2,Avocado,Avocado,0,BARMM,Basilan,1.0,14.61
 2025,4,2,Balimbing,Balimbing,0,BARMM,Basilan,0.14,0.14
-2025,4,2,Banana,Bungulan,0,BARMM,Basilan,794.63,832.17
-2025,4,2,Banana,Cavendish,0,BARMM,Basilan,,
-2025,4,2,Banana,Lakatan,0,BARMM,Basilan,298.26,516.8
-2025,4,2,Banana,Latundan,0,BARMM,Basilan,67.36,839.86
-2025,4,2,Banana,Others,0,BARMM,Basilan,181.37,831.5
-2025,4,2,Banana,Saba,0,BARMM,Basilan,1740.86,3536.93
+2025,4,2,Banana,Bungulan,0,BARMM,Basilan,794.63,827.6553968253967
+2025,4,2,Banana,Cavendish,0,BARMM,Basilan,,13.543809523809845
+2025,4,2,Banana,Lakatan,0,BARMM,Basilan,298.26,512.2853968253967
+2025,4,2,Banana,Latundan,0,BARMM,Basilan,67.36,835.3453968253967
+2025,4,2,Banana,Others,0,BARMM,Basilan,181.37,826.9853968253967
+2025,4,2,Banana,Saba,0,BARMM,Basilan,1740.86,3573.046825396825
 2025,4,2,Batwan,Batwan,0,BARMM,Basilan,,
 2025,4,2,Bignay,Bignay,0,BARMM,Basilan,,
 2025,4,2,Breadfruit,Breadfruit,0,BARMM,Basilan,,0.5
@@ -446335,10 +446335,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Mabolo,Mabolo,0,BARMM,Basilan,,
 2025,4,2,Makopa,Makopa,0,BARMM,Basilan,0.96,0.5
 2025,4,2,Mandarin,Mandarin,0,BARMM,Basilan,,3.0
-2025,4,2,Mango,Carabao,0,BARMM,Basilan,0.01,20.0
-2025,4,2,Mango,Indian,0,BARMM,Basilan,0.04,3.65
-2025,4,2,Mango,Others,0,BARMM,Basilan,0.44,65.0
-2025,4,2,Mango,Piko,0,BARMM,Basilan,0.05,8.0
+2025,4,2,Mango,Carabao,0,BARMM,Basilan,0.01,19.43142857142857
+2025,4,2,Mango,Indian,0,BARMM,Basilan,0.04,3.3657142857142723
+2025,4,2,Mango,Others,0,BARMM,Basilan,0.44,65.60285714285705
+2025,4,2,Mango,Piko,0,BARMM,Basilan,0.05,8.249999999999975
 2025,4,2,Mangosteen,Mangosteen,0,BARMM,Basilan,,13.0
 2025,4,2,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Basilan,,
 2025,4,2,Marang,Marang,0,BARMM,Basilan,3.0,4.68
@@ -446376,12 +446376,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Atis,Atis,0,BARMM,Lanao del Sur,,0.1
 2025,4,2,Avocado,Avocado,0,BARMM,Lanao del Sur,1.82,9.3
 2025,4,2,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,1.9
-2025,4,2,Banana,Bungulan,0,BARMM,Lanao del Sur,4900.5,1412.0
-2025,4,2,Banana,Cavendish,0,BARMM,Lanao del Sur,65.7,417.0
-2025,4,2,Banana,Lakatan,0,BARMM,Lanao del Sur,13850.0,1160.0
-2025,4,2,Banana,Latundan,0,BARMM,Lanao del Sur,2135.2,754.0
-2025,4,2,Banana,Others,0,BARMM,Lanao del Sur,1010.3,256.0
-2025,4,2,Banana,Saba,0,BARMM,Lanao del Sur,5407.6,1319.5
+2025,4,2,Banana,Bungulan,0,BARMM,Lanao del Sur,4900.5,1407.4853968253967
+2025,4,2,Banana,Cavendish,0,BARMM,Lanao del Sur,65.7,398.941587301587
+2025,4,2,Banana,Lakatan,0,BARMM,Lanao del Sur,13850.0,1155.4853968253967
+2025,4,2,Banana,Latundan,0,BARMM,Lanao del Sur,2135.2,749.4853968253967
+2025,4,2,Banana,Others,0,BARMM,Lanao del Sur,1010.3,251.48539682539675
+2025,4,2,Banana,Saba,0,BARMM,Lanao del Sur,5407.6,1355.616825396825
 2025,4,2,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2025,4,2,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2025,4,2,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -446412,10 +446412,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Mabolo,Mabolo,0,BARMM,Lanao del Sur,,
 2025,4,2,Makopa,Makopa,0,BARMM,Lanao del Sur,,0.04
 2025,4,2,Mandarin,Mandarin,0,BARMM,Lanao del Sur,0.1,1.97
-2025,4,2,Mango,Carabao,0,BARMM,Lanao del Sur,,21.0
-2025,4,2,Mango,Indian,0,BARMM,Lanao del Sur,,5.37
-2025,4,2,Mango,Others,0,BARMM,Lanao del Sur,,16.3
-2025,4,2,Mango,Piko,0,BARMM,Lanao del Sur,4.6,5.0
+2025,4,2,Mango,Carabao,0,BARMM,Lanao del Sur,,20.43142857142857
+2025,4,2,Mango,Indian,0,BARMM,Lanao del Sur,,5.085714285714272
+2025,4,2,Mango,Others,0,BARMM,Lanao del Sur,,16.90285714285705
+2025,4,2,Mango,Piko,0,BARMM,Lanao del Sur,4.6,5.249999999999976
 2025,4,2,Mangosteen,Mangosteen,0,BARMM,Lanao del Sur,63.2,6.0
 2025,4,2,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Lanao del Sur,,
 2025,4,2,Marang,Marang,0,BARMM,Lanao del Sur,79.5,340.2
@@ -446453,12 +446453,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Atis,Atis,0,BARMM,Maguindanao,,
 2025,4,2,Avocado,Avocado,0,BARMM,Maguindanao,,
 2025,4,2,Balimbing,Balimbing,0,BARMM,Maguindanao,,
-2025,4,2,Banana,Bungulan,0,BARMM,Maguindanao,,
-2025,4,2,Banana,Cavendish,0,BARMM,Maguindanao,,
-2025,4,2,Banana,Lakatan,0,BARMM,Maguindanao,,
-2025,4,2,Banana,Latundan,0,BARMM,Maguindanao,,
-2025,4,2,Banana,Others,0,BARMM,Maguindanao,,
-2025,4,2,Banana,Saba,0,BARMM,Maguindanao,,
+2025,4,2,Banana,Bungulan,0,BARMM,Maguindanao,,27.087619047619587
+2025,4,2,Banana,Cavendish,0,BARMM,Maguindanao,,13.543809523809845
+2025,4,2,Banana,Lakatan,0,BARMM,Maguindanao,,27.087619047619587
+2025,4,2,Banana,Latundan,0,BARMM,Maguindanao,,27.087619047619555
+2025,4,2,Banana,Others,0,BARMM,Maguindanao,,27.087619047619587
+2025,4,2,Banana,Saba,0,BARMM,Maguindanao,,67.71904761904804
 2025,4,2,Batwan,Batwan,0,BARMM,Maguindanao,,
 2025,4,2,Bignay,Bignay,0,BARMM,Maguindanao,,
 2025,4,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -446489,10 +446489,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Mabolo,Mabolo,0,BARMM,Maguindanao,,
 2025,4,2,Makopa,Makopa,0,BARMM,Maguindanao,,
 2025,4,2,Mandarin,Mandarin,0,BARMM,Maguindanao,,
-2025,4,2,Mango,Carabao,0,BARMM,Maguindanao,,
-2025,4,2,Mango,Indian,0,BARMM,Maguindanao,,
-2025,4,2,Mango,Others,0,BARMM,Maguindanao,,
-2025,4,2,Mango,Piko,0,BARMM,Maguindanao,,
+2025,4,2,Mango,Carabao,0,BARMM,Maguindanao,,1.4214285714286536
+2025,4,2,Mango,Indian,0,BARMM,Maguindanao,,1.705714285714357
+2025,4,2,Mango,Others,0,BARMM,Maguindanao,,2.592857142857134
+2025,4,2,Mango,Piko,0,BARMM,Maguindanao,,2.2400000000000606
 2025,4,2,Mangosteen,Mangosteen,0,BARMM,Maguindanao,,
 2025,4,2,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao,,
 2025,4,2,Marang,Marang,0,BARMM,Maguindanao,,
@@ -446530,12 +446530,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2025,4,2,Avocado,Avocado,0,BARMM,Maguindanao del Norte,325.0,2.56
 2025,4,2,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,0.16
-2025,4,2,Banana,Bungulan,0,BARMM,Maguindanao del Norte,250.0,200.25
-2025,4,2,Banana,Cavendish,0,BARMM,Maguindanao del Norte,9042.23,2074.5
-2025,4,2,Banana,Lakatan,0,BARMM,Maguindanao del Norte,6351.37,1764.0
-2025,4,2,Banana,Latundan,0,BARMM,Maguindanao del Norte,550.0,114.75
-2025,4,2,Banana,Others,0,BARMM,Maguindanao del Norte,198.0,170.0
-2025,4,2,Banana,Saba,0,BARMM,Maguindanao del Norte,19390.17,3821.65
+2025,4,2,Banana,Bungulan,0,BARMM,Maguindanao del Norte,250.0,195.73539682539675
+2025,4,2,Banana,Cavendish,0,BARMM,Maguindanao del Norte,9042.23,2056.441587301587
+2025,4,2,Banana,Lakatan,0,BARMM,Maguindanao del Norte,6351.37,1759.4853968253967
+2025,4,2,Banana,Latundan,0,BARMM,Maguindanao del Norte,550.0,110.23539682539672
+2025,4,2,Banana,Others,0,BARMM,Maguindanao del Norte,198.0,165.48539682539675
+2025,4,2,Banana,Saba,0,BARMM,Maguindanao del Norte,19390.17,3857.7668253968254
 2025,4,2,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2025,4,2,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2025,4,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -446566,10 +446566,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Mabolo,Mabolo,0,BARMM,Maguindanao del Norte,,
 2025,4,2,Makopa,Makopa,0,BARMM,Maguindanao del Norte,,0.3
 2025,4,2,Mandarin,Mandarin,0,BARMM,Maguindanao del Norte,,
-2025,4,2,Mango,Carabao,0,BARMM,Maguindanao del Norte,23.28,1487.25
-2025,4,2,Mango,Indian,0,BARMM,Maguindanao del Norte,30.0,22.0
-2025,4,2,Mango,Others,0,BARMM,Maguindanao del Norte,619.02,2807.48
-2025,4,2,Mango,Piko,0,BARMM,Maguindanao del Norte,69.85,59.0
+2025,4,2,Mango,Carabao,0,BARMM,Maguindanao del Norte,23.28,1486.6814285714286
+2025,4,2,Mango,Indian,0,BARMM,Maguindanao del Norte,30.0,21.715714285714274
+2025,4,2,Mango,Others,0,BARMM,Maguindanao del Norte,619.02,2808.082857142857
+2025,4,2,Mango,Piko,0,BARMM,Maguindanao del Norte,69.85,59.24999999999998
 2025,4,2,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Norte,75.24,1.26
 2025,4,2,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Norte,,
 2025,4,2,Marang,Marang,0,BARMM,Maguindanao del Norte,180.0,220.2
@@ -446607,12 +446607,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Atis,Atis,0,BARMM,Maguindanao del Sur,,0.5
 2025,4,2,Avocado,Avocado,0,BARMM,Maguindanao del Sur,42.5,18.45
 2025,4,2,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2025,4,2,Banana,Bungulan,0,BARMM,Maguindanao del Sur,255.0,244.75
-2025,4,2,Banana,Cavendish,0,BARMM,Maguindanao del Sur,22500.0,2535.5
-2025,4,2,Banana,Lakatan,0,BARMM,Maguindanao del Sur,13195.69,2156.0
-2025,4,2,Banana,Latundan,0,BARMM,Maguindanao del Sur,820.0,140.25
-2025,4,2,Banana,Others,0,BARMM,Maguindanao del Sur,180.0,255.0
-2025,4,2,Banana,Saba,0,BARMM,Maguindanao del Sur,17028.39,4675.0
+2025,4,2,Banana,Bungulan,0,BARMM,Maguindanao del Sur,255.0,240.23539682539675
+2025,4,2,Banana,Cavendish,0,BARMM,Maguindanao del Sur,22500.0,2517.441587301587
+2025,4,2,Banana,Lakatan,0,BARMM,Maguindanao del Sur,13195.69,2151.485396825397
+2025,4,2,Banana,Latundan,0,BARMM,Maguindanao del Sur,820.0,135.73539682539672
+2025,4,2,Banana,Others,0,BARMM,Maguindanao del Sur,180.0,250.48539682539675
+2025,4,2,Banana,Saba,0,BARMM,Maguindanao del Sur,17028.39,4711.116825396825
 2025,4,2,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2025,4,2,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2025,4,2,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -446643,10 +446643,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Mabolo,Mabolo,0,BARMM,Maguindanao del Sur,,
 2025,4,2,Makopa,Makopa,0,BARMM,Maguindanao del Sur,0.06,2.0
 2025,4,2,Mandarin,Mandarin,0,BARMM,Maguindanao del Sur,,
-2025,4,2,Mango,Carabao,0,BARMM,Maguindanao del Sur,18.91,1817.75
-2025,4,2,Mango,Indian,0,BARMM,Maguindanao del Sur,,33.0
-2025,4,2,Mango,Others,0,BARMM,Maguindanao del Sur,326.96,945.0
-2025,4,2,Mango,Piko,0,BARMM,Maguindanao del Sur,,36.0
+2025,4,2,Mango,Carabao,0,BARMM,Maguindanao del Sur,18.91,1817.1814285714286
+2025,4,2,Mango,Indian,0,BARMM,Maguindanao del Sur,,32.71571428571427
+2025,4,2,Mango,Others,0,BARMM,Maguindanao del Sur,326.96,945.602857142857
+2025,4,2,Mango,Piko,0,BARMM,Maguindanao del Sur,,36.24999999999998
 2025,4,2,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Sur,0.5,1.2
 2025,4,2,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Sur,,
 2025,4,2,Marang,Marang,0,BARMM,Maguindanao del Sur,50.0,146.8
@@ -446684,12 +446684,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Atis,Atis,0,BARMM,Sulu,18.47,4.23
 2025,4,2,Avocado,Avocado,0,BARMM,Sulu,7.41,5.07
 2025,4,2,Balimbing,Balimbing,0,BARMM,Sulu,,7.0
-2025,4,2,Banana,Bungulan,0,BARMM,Sulu,1427.25,475.0
-2025,4,2,Banana,Cavendish,0,BARMM,Sulu,,
-2025,4,2,Banana,Lakatan,0,BARMM,Sulu,277.88,118.0
-2025,4,2,Banana,Latundan,0,BARMM,Sulu,576.19,130.0
-2025,4,2,Banana,Others,0,BARMM,Sulu,746.69,255.0
-2025,4,2,Banana,Saba,0,BARMM,Sulu,3847.46,1600.0
+2025,4,2,Banana,Bungulan,0,BARMM,Sulu,1427.25,470.4853968253968
+2025,4,2,Banana,Cavendish,0,BARMM,Sulu,,13.543809523809845
+2025,4,2,Banana,Lakatan,0,BARMM,Sulu,277.88,113.48539682539675
+2025,4,2,Banana,Latundan,0,BARMM,Sulu,576.19,125.48539682539672
+2025,4,2,Banana,Others,0,BARMM,Sulu,746.69,250.48539682539675
+2025,4,2,Banana,Saba,0,BARMM,Sulu,3847.46,1636.116825396825
 2025,4,2,Batwan,Batwan,0,BARMM,Sulu,,
 2025,4,2,Bignay,Bignay,0,BARMM,Sulu,,
 2025,4,2,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -446720,10 +446720,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Mabolo,Mabolo,0,BARMM,Sulu,,
 2025,4,2,Makopa,Makopa,0,BARMM,Sulu,3.43,2.34
 2025,4,2,Mandarin,Mandarin,0,BARMM,Sulu,,
-2025,4,2,Mango,Carabao,0,BARMM,Sulu,,
-2025,4,2,Mango,Indian,0,BARMM,Sulu,,2.02
-2025,4,2,Mango,Others,0,BARMM,Sulu,685.46,1352.0
-2025,4,2,Mango,Piko,0,BARMM,Sulu,,
+2025,4,2,Mango,Carabao,0,BARMM,Sulu,,1.4214285714286536
+2025,4,2,Mango,Indian,0,BARMM,Sulu,,1.7357142857142722
+2025,4,2,Mango,Others,0,BARMM,Sulu,685.46,1352.6028571428571
+2025,4,2,Mango,Piko,0,BARMM,Sulu,,2.2400000000000606
 2025,4,2,Mangosteen,Mangosteen,0,BARMM,Sulu,,910.0
 2025,4,2,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Sulu,,
 2025,4,2,Marang,Marang,0,BARMM,Sulu,1.43,380.0
@@ -446761,12 +446761,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Atis,Atis,0,BARMM,Tawi-Tawi,1.02,3.5
 2025,4,2,Avocado,Avocado,0,BARMM,Tawi-Tawi,,15.7
 2025,4,2,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,0.44,1.8
-2025,4,2,Banana,Bungulan,0,BARMM,Tawi-Tawi,325.0,739.0
-2025,4,2,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2025,4,2,Banana,Lakatan,0,BARMM,Tawi-Tawi,300.0,81.0
-2025,4,2,Banana,Latundan,0,BARMM,Tawi-Tawi,680.0,56.0
-2025,4,2,Banana,Others,0,BARMM,Tawi-Tawi,99.0,371.5
-2025,4,2,Banana,Saba,0,BARMM,Tawi-Tawi,980.0,233.4
+2025,4,2,Banana,Bungulan,0,BARMM,Tawi-Tawi,325.0,734.4853968253967
+2025,4,2,Banana,Cavendish,0,BARMM,Tawi-Tawi,,13.543809523809845
+2025,4,2,Banana,Lakatan,0,BARMM,Tawi-Tawi,300.0,76.48539682539675
+2025,4,2,Banana,Latundan,0,BARMM,Tawi-Tawi,680.0,51.48539682539672
+2025,4,2,Banana,Others,0,BARMM,Tawi-Tawi,99.0,366.9853968253968
+2025,4,2,Banana,Saba,0,BARMM,Tawi-Tawi,980.0,269.5168253968252
 2025,4,2,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2025,4,2,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2025,4,2,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,5.09,1.3
@@ -446797,10 +446797,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2025,4,2,Mabolo,Mabolo,0,BARMM,Tawi-Tawi,,
 2025,4,2,Makopa,Makopa,0,BARMM,Tawi-Tawi,1.0,0.9
 2025,4,2,Mandarin,Mandarin,0,BARMM,Tawi-Tawi,,9.25
-2025,4,2,Mango,Carabao,0,BARMM,Tawi-Tawi,72.0,65.0
-2025,4,2,Mango,Indian,0,BARMM,Tawi-Tawi,55.65,5.09
-2025,4,2,Mango,Others,0,BARMM,Tawi-Tawi,195.0,340.0
-2025,4,2,Mango,Piko,0,BARMM,Tawi-Tawi,,0.4
+2025,4,2,Mango,Carabao,0,BARMM,Tawi-Tawi,72.0,64.43142857142857
+2025,4,2,Mango,Indian,0,BARMM,Tawi-Tawi,55.65,4.805714285714272
+2025,4,2,Mango,Others,0,BARMM,Tawi-Tawi,195.0,340.60285714285703
+2025,4,2,Mango,Piko,0,BARMM,Tawi-Tawi,,0.6499999999999757
 2025,4,2,Mangosteen,Mangosteen,0,BARMM,Tawi-Tawi,,2.8
 2025,4,2,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Tawi-Tawi,,
 2025,4,2,Marang,Marang,0,BARMM,Tawi-Tawi,20.4,176.0
@@ -453383,12 +453383,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Atis,Atis,0,BARMM,Basilan,,3.0
 2026,1,1,Avocado,Avocado,0,BARMM,Basilan,5.12,14.61
 2026,1,1,Balimbing,Balimbing,0,BARMM,Basilan,,0.14
-2026,1,1,Banana,Bungulan,0,BARMM,Basilan,371.73,832.17
-2026,1,1,Banana,Cavendish,0,BARMM,Basilan,,
-2026,1,1,Banana,Lakatan,0,BARMM,Basilan,181.5,516.8
-2026,1,1,Banana,Latundan,0,BARMM,Basilan,34.67,839.86
-2026,1,1,Banana,Others,0,BARMM,Basilan,575.04,831.5
-2026,1,1,Banana,Saba,0,BARMM,Basilan,2768.11,3536.93
+2026,1,1,Banana,Bungulan,0,BARMM,Basilan,367.61999999999995,809.3991836734693
+2026,1,1,Banana,Cavendish,0,BARMM,Basilan,6.167142857142608,34.15622448979593
+2026,1,1,Banana,Lakatan,0,BARMM,Basilan,192.5800000000007,511.7306122448979
+2026,1,1,Banana,Latundan,0,BARMM,Basilan,30.598571428571432,837.1563265306122
+2026,1,1,Banana,Others,0,BARMM,Basilan,570.9285714285716,808.7291836734694
+2026,1,1,Banana,Saba,0,BARMM,Basilan,2777.5471428571436,3635.7877551020406
 2026,1,1,Batwan,Batwan,0,BARMM,Basilan,,
 2026,1,1,Bignay,Bignay,0,BARMM,Basilan,,
 2026,1,1,Breadfruit,Breadfruit,0,BARMM,Basilan,,0.5
@@ -453419,10 +453419,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mabolo,Mabolo,0,BARMM,Basilan,,
 2026,1,1,Makopa,Makopa,0,BARMM,Basilan,,0.5
 2026,1,1,Mandarin,Mandarin,0,BARMM,Basilan,,3.0
-2026,1,1,Mango,Carabao,0,BARMM,Basilan,5.5,20.0
-2026,1,1,Mango,Indian,0,BARMM,Basilan,2.86,6.67
-2026,1,1,Mango,Others,0,BARMM,Basilan,13.02,65.0
-2026,1,1,Mango,Piko,0,BARMM,Basilan,,8.0
+2026,1,1,Mango,Carabao,0,BARMM,Basilan,3.681818181818179,-41.47392857142859
+2026,1,1,Mango,Indian,0,BARMM,Basilan,0.13272727272727014,-54.80392857142855
+2026,1,1,Mango,Others,0,BARMM,Basilan,12.073246753246751,8.37035714285711
+2026,1,1,Mango,Piko,0,BARMM,Basilan,11.85727272727273,187.5789285714286
 2026,1,1,Mangosteen,Mangosteen,0,BARMM,Basilan,,13.0
 2026,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Basilan,,
 2026,1,1,Marang,Marang,0,BARMM,Basilan,4.3,4.68
@@ -453432,9 +453432,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mulberry,Mulberry,0,BARMM,Basilan,,
 2026,1,1,Orange,Orange,0,BARMM,Basilan,,
 2026,1,1,Pangi,Pangi,0,BARMM,Basilan,,
-2026,1,1,Papaya,Hawaiian,0,BARMM,Basilan,3.54,5.0
-2026,1,1,Papaya,Native,0,BARMM,Basilan,1.51,20.0
-2026,1,1,Papaya,Solo,0,BARMM,Basilan,,0.53
+2026,1,1,Papaya,Hawaiian,0,BARMM,Basilan,3.54,4.918367346938775
+2026,1,1,Papaya,Native,0,BARMM,Basilan,1.51,20.20408163265306
+2026,1,1,Papaya,Solo,0,BARMM,Basilan,,0.4075510204081632
 2026,1,1,Passion Fruit,Passion Fruit,0,BARMM,Basilan,,
 2026,1,1,Pears,Pears,0,BARMM,Basilan,,
 2026,1,1,Persimmon,Persimmon,0,BARMM,Basilan,,
@@ -453460,12 +453460,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Atis,Atis,0,BARMM,Lanao del Sur,0.14,0.1
 2026,1,1,Avocado,Avocado,0,BARMM,Lanao del Sur,16.7,8.1
 2026,1,1,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,1.9
-2026,1,1,Banana,Bungulan,0,BARMM,Lanao del Sur,8569.7,1550.0
-2026,1,1,Banana,Cavendish,0,BARMM,Lanao del Sur,609.0,465.0
-2026,1,1,Banana,Lakatan,0,BARMM,Lanao del Sur,13992.4,1200.0
-2026,1,1,Banana,Latundan,0,BARMM,Lanao del Sur,2589.7,754.0
-2026,1,1,Banana,Others,0,BARMM,Lanao del Sur,1115.9,256.0
-2026,1,1,Banana,Saba,0,BARMM,Lanao del Sur,9889.0,1390.0
+2026,1,1,Banana,Bungulan,0,BARMM,Lanao del Sur,8565.59,1527.2291836734694
+2026,1,1,Banana,Cavendish,0,BARMM,Lanao del Sur,600.7771428571432,419.45836734693876
+2026,1,1,Banana,Lakatan,0,BARMM,Lanao del Sur,14003.48,1194.930612244898
+2026,1,1,Banana,Latundan,0,BARMM,Lanao del Sur,2585.6285714285714,751.2963265306122
+2026,1,1,Banana,Others,0,BARMM,Lanao del Sur,1111.7885714285717,233.22918367346938
+2026,1,1,Banana,Saba,0,BARMM,Lanao del Sur,9898.437142857143,1488.8577551020408
 2026,1,1,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2026,1,1,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2026,1,1,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -453496,10 +453496,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mabolo,Mabolo,0,BARMM,Lanao del Sur,,
 2026,1,1,Makopa,Makopa,0,BARMM,Lanao del Sur,,0.04
 2026,1,1,Mandarin,Mandarin,0,BARMM,Lanao del Sur,0.15,1.79
-2026,1,1,Mango,Carabao,0,BARMM,Lanao del Sur,67.5,21.0
-2026,1,1,Mango,Indian,0,BARMM,Lanao del Sur,0.24,5.37
-2026,1,1,Mango,Others,0,BARMM,Lanao del Sur,1.08,16.3
-2026,1,1,Mango,Piko,0,BARMM,Lanao del Sur,4.09,5.0
+2026,1,1,Mango,Carabao,0,BARMM,Lanao del Sur,65.68181818181817,-40.47392857142859
+2026,1,1,Mango,Indian,0,BARMM,Lanao del Sur,-2.48727272727273,-56.103928571428554
+2026,1,1,Mango,Others,0,BARMM,Lanao del Sur,0.13324675324675161,-40.329642857142886
+2026,1,1,Mango,Piko,0,BARMM,Lanao del Sur,9.583636363636362,184.5789285714286
 2026,1,1,Mangosteen,Mangosteen,0,BARMM,Lanao del Sur,,6.0
 2026,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Lanao del Sur,,
 2026,1,1,Marang,Marang,0,BARMM,Lanao del Sur,1.42,340.2
@@ -453509,9 +453509,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mulberry,Mulberry,0,BARMM,Lanao del Sur,,
 2026,1,1,Orange,Orange,0,BARMM,Lanao del Sur,,
 2026,1,1,Pangi,Pangi,0,BARMM,Lanao del Sur,,
-2026,1,1,Papaya,Hawaiian,0,BARMM,Lanao del Sur,10.0,7.04
-2026,1,1,Papaya,Native,0,BARMM,Lanao del Sur,12.95,5.23
-2026,1,1,Papaya,Solo,0,BARMM,Lanao del Sur,9.45,4.03
+2026,1,1,Papaya,Hawaiian,0,BARMM,Lanao del Sur,10.0,6.9583673469387755
+2026,1,1,Papaya,Native,0,BARMM,Lanao del Sur,12.95,5.434081632653062
+2026,1,1,Papaya,Solo,0,BARMM,Lanao del Sur,9.45,3.9075510204081634
 2026,1,1,Passion Fruit,Passion Fruit,0,BARMM,Lanao del Sur,,
 2026,1,1,Pears,Pears,0,BARMM,Lanao del Sur,,
 2026,1,1,Persimmon,Persimmon,0,BARMM,Lanao del Sur,,
@@ -453537,12 +453537,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Atis,Atis,0,BARMM,Maguindanao,,
 2026,1,1,Avocado,Avocado,0,BARMM,Maguindanao,,
 2026,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao,,
-2026,1,1,Banana,Bungulan,0,BARMM,Maguindanao,,
-2026,1,1,Banana,Cavendish,0,BARMM,Maguindanao,,
-2026,1,1,Banana,Lakatan,0,BARMM,Maguindanao,,
-2026,1,1,Banana,Latundan,0,BARMM,Maguindanao,,
-2026,1,1,Banana,Others,0,BARMM,Maguindanao,,
-2026,1,1,Banana,Saba,0,BARMM,Maguindanao,,
+2026,1,1,Banana,Bungulan,0,BARMM,Maguindanao,10.279999999999355,56.92704081632655
+2026,1,1,Banana,Cavendish,0,BARMM,Maguindanao,6.167142857142608,34.15622448979593
+2026,1,1,Banana,Lakatan,0,BARMM,Maguindanao,25.470000000000127,74.6284693877551
+2026,1,1,Banana,Latundan,0,BARMM,Maguindanao,10.318571428570847,76.99418367346938
+2026,1,1,Banana,Others,0,BARMM,Maguindanao,10.278571428571013,56.92704081632655
+2026,1,1,Banana,Saba,0,BARMM,Maguindanao,23.82714285714298,178.55561224489793
 2026,1,1,Batwan,Batwan,0,BARMM,Maguindanao,,
 2026,1,1,Bignay,Bignay,0,BARMM,Maguindanao,,
 2026,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -453573,10 +453573,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao,,
 2026,1,1,Makopa,Makopa,0,BARMM,Maguindanao,,
 2026,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao,,
-2026,1,1,Mango,Carabao,0,BARMM,Maguindanao,,
-2026,1,1,Mango,Indian,0,BARMM,Maguindanao,,
-2026,1,1,Mango,Others,0,BARMM,Maguindanao,,
-2026,1,1,Mango,Piko,0,BARMM,Maguindanao,,
+2026,1,1,Mango,Carabao,0,BARMM,Maguindanao,4.545454545454548,153.68482142857135
+2026,1,1,Mango,Indian,0,BARMM,Maguindanao,3.636363636363639,153.68482142857138
+2026,1,1,Mango,Others,0,BARMM,Maguindanao,5.41688311688312,158.52910714285704
+2026,1,1,Mango,Piko,0,BARMM,Maguindanao,11.85727272727273,394.73767857142855
 2026,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao,,
 2026,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao,,
 2026,1,1,Marang,Marang,0,BARMM,Maguindanao,,
@@ -453586,9 +453586,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mulberry,Mulberry,0,BARMM,Maguindanao,,
 2026,1,1,Orange,Orange,0,BARMM,Maguindanao,,
 2026,1,1,Pangi,Pangi,0,BARMM,Maguindanao,,
-2026,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao,,
-2026,1,1,Papaya,Native,0,BARMM,Maguindanao,,
-2026,1,1,Papaya,Solo,0,BARMM,Maguindanao,,
+2026,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao,,0.2040816326530615
+2026,1,1,Papaya,Native,0,BARMM,Maguindanao,,0.4897959183673472
+2026,1,1,Papaya,Solo,0,BARMM,Maguindanao,,0.16326530612244888
 2026,1,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao,,
 2026,1,1,Pears,Pears,0,BARMM,Maguindanao,,
 2026,1,1,Persimmon,Persimmon,0,BARMM,Maguindanao,,
@@ -453614,12 +453614,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2026,1,1,Avocado,Avocado,0,BARMM,Maguindanao del Norte,20.0,2.56
 2026,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,0.16
-2026,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,200.0,200.25
-2026,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,10500.0,2074.5
-2026,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,12700.0,1764.0
-2026,1,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,900.0,114.75
-2026,1,1,Banana,Others,0,BARMM,Maguindanao del Norte,295.0,170.0
-2026,1,1,Banana,Saba,0,BARMM,Maguindanao del Norte,10803.73,3821.65
+2026,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,195.88999999999993,177.47918367346938
+2026,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,10491.777142857143,2028.9583673469388
+2026,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,12711.08,1758.930612244898
+2026,1,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,895.9285714285714,112.0463265306122
+2026,1,1,Banana,Others,0,BARMM,Maguindanao del Norte,290.8885714285716,147.22918367346938
+2026,1,1,Banana,Saba,0,BARMM,Maguindanao del Norte,10813.167142857143,3920.507755102041
 2026,1,1,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2026,1,1,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2026,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -453650,10 +453650,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Norte,,
 2026,1,1,Makopa,Makopa,0,BARMM,Maguindanao del Norte,,0.3
 2026,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Norte,,
-2026,1,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,9.05,1487.25
-2026,1,1,Mango,Indian,0,BARMM,Maguindanao del Norte,23.1,22.0
-2026,1,1,Mango,Others,0,BARMM,Maguindanao del Norte,18.79,2807.48
-2026,1,1,Mango,Piko,0,BARMM,Maguindanao del Norte,8.79,59.0
+2026,1,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,7.23181818181818,1425.7760714285714
+2026,1,1,Mango,Indian,0,BARMM,Maguindanao del Norte,20.37272727272727,-39.47392857142855
+2026,1,1,Mango,Others,0,BARMM,Maguindanao del Norte,17.84324675324675,2750.8503571428573
+2026,1,1,Mango,Piko,0,BARMM,Maguindanao del Norte,14.283636363636361,238.5789285714286
 2026,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Norte,20.0,1.26
 2026,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Norte,,
 2026,1,1,Marang,Marang,0,BARMM,Maguindanao del Norte,30.0,220.2
@@ -453663,9 +453663,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mulberry,Mulberry,0,BARMM,Maguindanao del Norte,,
 2026,1,1,Orange,Orange,0,BARMM,Maguindanao del Norte,,
 2026,1,1,Pangi,Pangi,0,BARMM,Maguindanao del Norte,,
-2026,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,,7.2
-2026,1,1,Papaya,Native,0,BARMM,Maguindanao del Norte,124.78,18.9
-2026,1,1,Papaya,Solo,0,BARMM,Maguindanao del Norte,,15.6
+2026,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,,7.118367346938776
+2026,1,1,Papaya,Native,0,BARMM,Maguindanao del Norte,124.78,19.10408163265306
+2026,1,1,Papaya,Solo,0,BARMM,Maguindanao del Norte,,15.477551020408162
 2026,1,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Norte,,
 2026,1,1,Pears,Pears,0,BARMM,Maguindanao del Norte,,
 2026,1,1,Persimmon,Persimmon,0,BARMM,Maguindanao del Norte,,
@@ -453691,12 +453691,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Atis,Atis,0,BARMM,Maguindanao del Sur,,0.5
 2026,1,1,Avocado,Avocado,0,BARMM,Maguindanao del Sur,2.19,18.45
 2026,1,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2026,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,300.0,244.75
-2026,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,22000.0,2535.5
-2026,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,13213.69,2156.0
-2026,1,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,5500.0,140.25
-2026,1,1,Banana,Others,0,BARMM,Maguindanao del Sur,195.0,255.0
-2026,1,1,Banana,Saba,0,BARMM,Maguindanao del Sur,19525.75,4675.0
+2026,1,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,295.88999999999993,221.97918367346938
+2026,1,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,21991.777142857143,2489.9583673469388
+2026,1,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,13224.77,2150.930612244898
+2026,1,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,5495.928571428572,137.54632653061222
+2026,1,1,Banana,Others,0,BARMM,Maguindanao del Sur,190.8885714285716,232.22918367346938
+2026,1,1,Banana,Saba,0,BARMM,Maguindanao del Sur,19535.187142857143,4773.857755102041
 2026,1,1,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2026,1,1,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2026,1,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -453727,10 +453727,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Sur,,
 2026,1,1,Makopa,Makopa,0,BARMM,Maguindanao del Sur,0.05,2.0
 2026,1,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Sur,,
-2026,1,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,9.28,1817.75
-2026,1,1,Mango,Indian,0,BARMM,Maguindanao del Sur,8.76,33.0
-2026,1,1,Mango,Others,0,BARMM,Maguindanao del Sur,12.76,945.0
-2026,1,1,Mango,Piko,0,BARMM,Maguindanao del Sur,4.35,36.0
+2026,1,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,7.461818181818178,1756.2760714285714
+2026,1,1,Mango,Indian,0,BARMM,Maguindanao del Sur,6.03272727272727,-28.47392857142855
+2026,1,1,Mango,Others,0,BARMM,Maguindanao del Sur,11.813246753246752,888.3703571428571
+2026,1,1,Mango,Piko,0,BARMM,Maguindanao del Sur,9.84363636363636,215.5789285714286
 2026,1,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Sur,0.45,1.2
 2026,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Sur,,
 2026,1,1,Marang,Marang,0,BARMM,Maguindanao del Sur,35.0,146.8
@@ -453740,9 +453740,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mulberry,Mulberry,0,BARMM,Maguindanao del Sur,,
 2026,1,1,Orange,Orange,0,BARMM,Maguindanao del Sur,,
 2026,1,1,Pangi,Pangi,0,BARMM,Maguindanao del Sur,,
-2026,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,25.0,4.8
-2026,1,1,Papaya,Native,0,BARMM,Maguindanao del Sur,30.0,2.0
-2026,1,1,Papaya,Solo,0,BARMM,Maguindanao del Sur,75.0,10.4
+2026,1,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,25.0,4.718367346938775
+2026,1,1,Papaya,Native,0,BARMM,Maguindanao del Sur,30.0,2.2040816326530615
+2026,1,1,Papaya,Solo,0,BARMM,Maguindanao del Sur,75.0,10.277551020408163
 2026,1,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Sur,,
 2026,1,1,Pears,Pears,0,BARMM,Maguindanao del Sur,,
 2026,1,1,Persimmon,Persimmon,0,BARMM,Maguindanao del Sur,,
@@ -453768,12 +453768,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Atis,Atis,0,BARMM,Sulu,,
 2026,1,1,Avocado,Avocado,0,BARMM,Sulu,,
 2026,1,1,Balimbing,Balimbing,0,BARMM,Sulu,,
-2026,1,1,Banana,Bungulan,0,BARMM,Sulu,,
-2026,1,1,Banana,Cavendish,0,BARMM,Sulu,,
-2026,1,1,Banana,Lakatan,0,BARMM,Sulu,,
-2026,1,1,Banana,Latundan,0,BARMM,Sulu,,
-2026,1,1,Banana,Others,0,BARMM,Sulu,,
-2026,1,1,Banana,Saba,0,BARMM,Sulu,,
+2026,1,1,Banana,Bungulan,0,BARMM,Sulu,10.279999999999355,56.92704081632655
+2026,1,1,Banana,Cavendish,0,BARMM,Sulu,6.167142857142608,34.15622448979593
+2026,1,1,Banana,Lakatan,0,BARMM,Sulu,25.470000000000127,74.6284693877551
+2026,1,1,Banana,Latundan,0,BARMM,Sulu,10.318571428570847,76.99418367346938
+2026,1,1,Banana,Others,0,BARMM,Sulu,10.278571428571013,56.92704081632655
+2026,1,1,Banana,Saba,0,BARMM,Sulu,23.82714285714298,178.55561224489793
 2026,1,1,Batwan,Batwan,0,BARMM,Sulu,,
 2026,1,1,Bignay,Bignay,0,BARMM,Sulu,,
 2026,1,1,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -453804,10 +453804,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mabolo,Mabolo,0,BARMM,Sulu,,
 2026,1,1,Makopa,Makopa,0,BARMM,Sulu,,
 2026,1,1,Mandarin,Mandarin,0,BARMM,Sulu,,
-2026,1,1,Mango,Carabao,0,BARMM,Sulu,,
-2026,1,1,Mango,Indian,0,BARMM,Sulu,,
-2026,1,1,Mango,Others,0,BARMM,Sulu,,
-2026,1,1,Mango,Piko,0,BARMM,Sulu,,
+2026,1,1,Mango,Carabao,0,BARMM,Sulu,4.545454545454548,153.68482142857135
+2026,1,1,Mango,Indian,0,BARMM,Sulu,3.636363636363639,153.68482142857138
+2026,1,1,Mango,Others,0,BARMM,Sulu,5.41688311688312,158.52910714285704
+2026,1,1,Mango,Piko,0,BARMM,Sulu,11.85727272727273,394.73767857142855
 2026,1,1,Mangosteen,Mangosteen,0,BARMM,Sulu,,
 2026,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Sulu,,
 2026,1,1,Marang,Marang,0,BARMM,Sulu,,
@@ -453817,9 +453817,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mulberry,Mulberry,0,BARMM,Sulu,,
 2026,1,1,Orange,Orange,0,BARMM,Sulu,,
 2026,1,1,Pangi,Pangi,0,BARMM,Sulu,,
-2026,1,1,Papaya,Hawaiian,0,BARMM,Sulu,,
-2026,1,1,Papaya,Native,0,BARMM,Sulu,,
-2026,1,1,Papaya,Solo,0,BARMM,Sulu,,
+2026,1,1,Papaya,Hawaiian,0,BARMM,Sulu,,0.2040816326530615
+2026,1,1,Papaya,Native,0,BARMM,Sulu,,0.4897959183673472
+2026,1,1,Papaya,Solo,0,BARMM,Sulu,,0.16326530612244888
 2026,1,1,Passion Fruit,Passion Fruit,0,BARMM,Sulu,,
 2026,1,1,Pears,Pears,0,BARMM,Sulu,,
 2026,1,1,Persimmon,Persimmon,0,BARMM,Sulu,,
@@ -453845,12 +453845,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Atis,Atis,0,BARMM,Tawi-Tawi,1.26,3.5
 2026,1,1,Avocado,Avocado,0,BARMM,Tawi-Tawi,6.26,15.7
 2026,1,1,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,0.5,1.8
-2026,1,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,194.29,739.0
-2026,1,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2026,1,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,287.48,82.0
-2026,1,1,Banana,Latundan,0,BARMM,Tawi-Tawi,191.57,56.0
-2026,1,1,Banana,Others,0,BARMM,Tawi-Tawi,98.09,372.0
-2026,1,1,Banana,Saba,0,BARMM,Tawi-Tawi,914.0,234.0
+2026,1,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,190.17999999999992,716.2291836734694
+2026,1,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,6.167142857142608,34.15622448979593
+2026,1,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,298.56000000000074,76.93061224489793
+2026,1,1,Banana,Latundan,0,BARMM,Tawi-Tawi,187.4985714285714,53.296326530612205
+2026,1,1,Banana,Others,0,BARMM,Tawi-Tawi,93.9785714285716,349.2291836734694
+2026,1,1,Banana,Saba,0,BARMM,Tawi-Tawi,923.4371428571436,332.85775510204076
 2026,1,1,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2026,1,1,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2026,1,1,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,0.26,1.3
@@ -453881,10 +453881,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mabolo,Mabolo,0,BARMM,Tawi-Tawi,,
 2026,1,1,Makopa,Makopa,0,BARMM,Tawi-Tawi,0.35,0.9
 2026,1,1,Mandarin,Mandarin,0,BARMM,Tawi-Tawi,,9.25
-2026,1,1,Mango,Carabao,0,BARMM,Tawi-Tawi,200.0,67.0
-2026,1,1,Mango,Indian,0,BARMM,Tawi-Tawi,,5.09
-2026,1,1,Mango,Others,0,BARMM,Tawi-Tawi,65.54,342.0
-2026,1,1,Mango,Piko,0,BARMM,Tawi-Tawi,,0.4
+2026,1,1,Mango,Carabao,0,BARMM,Tawi-Tawi,198.1818181818182,5.526071428571413
+2026,1,1,Mango,Indian,0,BARMM,Tawi-Tawi,3.636363636363639,-56.383928571428555
+2026,1,1,Mango,Others,0,BARMM,Tawi-Tawi,64.59324675324676,285.37035714285713
+2026,1,1,Mango,Piko,0,BARMM,Tawi-Tawi,11.85727272727273,179.9789285714286
 2026,1,1,Mangosteen,Mangosteen,0,BARMM,Tawi-Tawi,7.56,2.8
 2026,1,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Tawi-Tawi,,
 2026,1,1,Marang,Marang,0,BARMM,Tawi-Tawi,82.0,176.0
@@ -453894,9 +453894,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,1,1,Mulberry,Mulberry,0,BARMM,Tawi-Tawi,,
 2026,1,1,Orange,Orange,0,BARMM,Tawi-Tawi,,
 2026,1,1,Pangi,Pangi,0,BARMM,Tawi-Tawi,,
-2026,1,1,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,24.12,7.5
-2026,1,1,Papaya,Native,0,BARMM,Tawi-Tawi,14.52,20.75
-2026,1,1,Papaya,Solo,0,BARMM,Tawi-Tawi,,
+2026,1,1,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,24.12,7.418367346938775
+2026,1,1,Papaya,Native,0,BARMM,Tawi-Tawi,14.52,20.95408163265306
+2026,1,1,Papaya,Solo,0,BARMM,Tawi-Tawi,,0.16326530612244888
 2026,1,1,Passion Fruit,Passion Fruit,0,BARMM,Tawi-Tawi,,
 2026,1,1,Pears,Pears,0,BARMM,Tawi-Tawi,,
 2026,1,1,Persimmon,Persimmon,0,BARMM,Tawi-Tawi,,
@@ -460467,12 +460467,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Atis,Atis,0,BARMM,Basilan,,3.0
 2026,2,1,Avocado,Avocado,0,BARMM,Basilan,50.1,14.61
 2026,2,1,Balimbing,Balimbing,0,BARMM,Basilan,,0.14
-2026,2,1,Banana,Bungulan,0,BARMM,Basilan,432.7,832.17
-2026,2,1,Banana,Cavendish,0,BARMM,Basilan,,
-2026,2,1,Banana,Lakatan,0,BARMM,Basilan,189.2,516.8
-2026,2,1,Banana,Latundan,0,BARMM,Basilan,1128.37,839.86
-2026,2,1,Banana,Others,0,BARMM,Basilan,866.17,831.5
-2026,2,1,Banana,Saba,0,BARMM,Basilan,4809.2,3536.93
+2026,2,1,Banana,Bungulan,0,BARMM,Basilan,408.71244897959156,809.3991836734693
+2026,2,1,Banana,Cavendish,0,BARMM,Basilan,35.98132653061267,34.15622448979593
+2026,2,1,Banana,Lakatan,0,BARMM,Basilan,173.0524489795922,511.7306122448979
+2026,2,1,Banana,Latundan,0,BARMM,Basilan,1104.45387755102,837.1563265306122
+2026,2,1,Banana,Others,0,BARMM,Basilan,842.1824489795915,808.7291836734694
+2026,2,1,Banana,Saba,0,BARMM,Basilan,4945.2124489795915,3635.7877551020406
 2026,2,1,Batwan,Batwan,0,BARMM,Basilan,,
 2026,2,1,Bignay,Bignay,0,BARMM,Basilan,,
 2026,2,1,Breadfruit,Breadfruit,0,BARMM,Basilan,,0.5
@@ -460503,10 +460503,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mabolo,Mabolo,0,BARMM,Basilan,,
 2026,2,1,Makopa,Makopa,0,BARMM,Basilan,,0.5
 2026,2,1,Mandarin,Mandarin,0,BARMM,Basilan,,3.0
-2026,2,1,Mango,Carabao,0,BARMM,Basilan,52.0,20.0
-2026,2,1,Mango,Indian,0,BARMM,Basilan,15.0,6.67
-2026,2,1,Mango,Others,0,BARMM,Basilan,68.49,65.0
-2026,2,1,Mango,Piko,0,BARMM,Basilan,2.44,8.0
+2026,2,1,Mango,Carabao,0,BARMM,Basilan,43.33714285714281,-41.47392857142859
+2026,2,1,Mango,Indian,0,BARMM,Basilan,6.337142857142824,-54.803928571428585
+2026,2,1,Mango,Others,0,BARMM,Basilan,61.98428571428571,8.37035714285711
+2026,2,1,Mango,Piko,0,BARMM,Basilan,26.27142857142853,187.57892857142855
 2026,2,1,Mangosteen,Mangosteen,0,BARMM,Basilan,,13.0
 2026,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Basilan,,
 2026,2,1,Marang,Marang,0,BARMM,Basilan,192.47,4.68
@@ -460516,9 +460516,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mulberry,Mulberry,0,BARMM,Basilan,,
 2026,2,1,Orange,Orange,0,BARMM,Basilan,,
 2026,2,1,Pangi,Pangi,0,BARMM,Basilan,,
-2026,2,1,Papaya,Hawaiian,0,BARMM,Basilan,0.9,5.0
-2026,2,1,Papaya,Native,0,BARMM,Basilan,5.23,13.52
-2026,2,1,Papaya,Solo,0,BARMM,Basilan,,0.53
+2026,2,1,Papaya,Hawaiian,0,BARMM,Basilan,0.9,4.918367346938775
+2026,2,1,Papaya,Native,0,BARMM,Basilan,5.240357142857142,13.72408163265306
+2026,2,1,Papaya,Solo,0,BARMM,Basilan,0.0058928571428578744,0.4075510204081632
 2026,2,1,Passion Fruit,Passion Fruit,0,BARMM,Basilan,,
 2026,2,1,Pears,Pears,0,BARMM,Basilan,,
 2026,2,1,Persimmon,Persimmon,0,BARMM,Basilan,,
@@ -460544,12 +460544,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Atis,Atis,0,BARMM,Lanao del Sur,0.64,0.1
 2026,2,1,Avocado,Avocado,0,BARMM,Lanao del Sur,15.2,8.1
 2026,2,1,Balimbing,Balimbing,0,BARMM,Lanao del Sur,,1.9
-2026,2,1,Banana,Bungulan,0,BARMM,Lanao del Sur,7453.0,1550.0
-2026,2,1,Banana,Cavendish,0,BARMM,Lanao del Sur,78.3,465.0
-2026,2,1,Banana,Lakatan,0,BARMM,Lanao del Sur,11907.0,1200.0
-2026,2,1,Banana,Latundan,0,BARMM,Lanao del Sur,3980.0,754.0
-2026,2,1,Banana,Others,0,BARMM,Lanao del Sur,2061.0,256.0
-2026,2,1,Banana,Saba,0,BARMM,Lanao del Sur,9100.2,1390.0
+2026,2,1,Banana,Bungulan,0,BARMM,Lanao del Sur,7429.012448979592,1527.2291836734694
+2026,2,1,Banana,Cavendish,0,BARMM,Lanao del Sur,30.324897959183097,419.45836734693876
+2026,2,1,Banana,Lakatan,0,BARMM,Lanao del Sur,11890.852448979593,1194.930612244898
+2026,2,1,Banana,Latundan,0,BARMM,Lanao del Sur,3956.08387755102,751.2963265306122
+2026,2,1,Banana,Others,0,BARMM,Lanao del Sur,2037.0124489795915,233.22918367346938
+2026,2,1,Banana,Saba,0,BARMM,Lanao del Sur,9236.212448979591,1488.8577551020408
 2026,2,1,Batwan,Batwan,0,BARMM,Lanao del Sur,,
 2026,2,1,Bignay,Bignay,0,BARMM,Lanao del Sur,,
 2026,2,1,Breadfruit,Breadfruit,0,BARMM,Lanao del Sur,,
@@ -460580,10 +460580,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mabolo,Mabolo,0,BARMM,Lanao del Sur,,
 2026,2,1,Makopa,Makopa,0,BARMM,Lanao del Sur,3.95,0.04
 2026,2,1,Mandarin,Mandarin,0,BARMM,Lanao del Sur,,1.79
-2026,2,1,Mango,Carabao,0,BARMM,Lanao del Sur,23.2,21.0
-2026,2,1,Mango,Indian,0,BARMM,Lanao del Sur,27.3,5.37
-2026,2,1,Mango,Others,0,BARMM,Lanao del Sur,82.1,16.3
-2026,2,1,Mango,Piko,0,BARMM,Lanao del Sur,4.23,5.0
+2026,2,1,Mango,Carabao,0,BARMM,Lanao del Sur,14.53714285714281,-40.47392857142859
+2026,2,1,Mango,Indian,0,BARMM,Lanao del Sur,18.637142857142827,-56.10392857142859
+2026,2,1,Mango,Others,0,BARMM,Lanao del Sur,75.59428571428572,-40.329642857142886
+2026,2,1,Mango,Piko,0,BARMM,Lanao del Sur,28.06142857142853,184.57892857142855
 2026,2,1,Mangosteen,Mangosteen,0,BARMM,Lanao del Sur,,6.0
 2026,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Lanao del Sur,,
 2026,2,1,Marang,Marang,0,BARMM,Lanao del Sur,265.2,340.2
@@ -460593,9 +460593,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mulberry,Mulberry,0,BARMM,Lanao del Sur,,
 2026,2,1,Orange,Orange,0,BARMM,Lanao del Sur,,
 2026,2,1,Pangi,Pangi,0,BARMM,Lanao del Sur,,
-2026,2,1,Papaya,Hawaiian,0,BARMM,Lanao del Sur,15.98,7.04
-2026,2,1,Papaya,Native,0,BARMM,Lanao del Sur,19.2,5.23
-2026,2,1,Papaya,Solo,0,BARMM,Lanao del Sur,14.5,4.03
+2026,2,1,Papaya,Hawaiian,0,BARMM,Lanao del Sur,15.98,6.9583673469387755
+2026,2,1,Papaya,Native,0,BARMM,Lanao del Sur,19.21035714285714,5.434081632653062
+2026,2,1,Papaya,Solo,0,BARMM,Lanao del Sur,14.492142857142856,3.9075510204081634
 2026,2,1,Passion Fruit,Passion Fruit,0,BARMM,Lanao del Sur,,
 2026,2,1,Pears,Pears,0,BARMM,Lanao del Sur,,
 2026,2,1,Persimmon,Persimmon,0,BARMM,Lanao del Sur,,
@@ -460621,12 +460621,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Atis,Atis,0,BARMM,Maguindanao,,
 2026,2,1,Avocado,Avocado,0,BARMM,Maguindanao,,
 2026,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao,,
-2026,2,1,Banana,Bungulan,0,BARMM,Maguindanao,,
-2026,2,1,Banana,Cavendish,0,BARMM,Maguindanao,,
-2026,2,1,Banana,Lakatan,0,BARMM,Maguindanao,,
-2026,2,1,Banana,Latundan,0,BARMM,Maguindanao,,
-2026,2,1,Banana,Others,0,BARMM,Maguindanao,,
-2026,2,1,Banana,Saba,0,BARMM,Maguindanao,,
+2026,2,1,Banana,Bungulan,0,BARMM,Maguindanao,59.96887755102112,56.92704081632655
+2026,2,1,Banana,Cavendish,0,BARMM,Maguindanao,35.98132653061267,34.15622448979593
+2026,2,1,Banana,Lakatan,0,BARMM,Maguindanao,67.8088775510218,74.6284693877551
+2026,2,1,Banana,Latundan,0,BARMM,Maguindanao,60.04030612244969,76.99418367346938
+2026,2,1,Banana,Others,0,BARMM,Maguindanao,59.96887755102112,56.92704081632655
+2026,2,1,Banana,Saba,0,BARMM,Maguindanao,219.9688775510211,178.55561224489793
 2026,2,1,Batwan,Batwan,0,BARMM,Maguindanao,,
 2026,2,1,Bignay,Bignay,0,BARMM,Maguindanao,,
 2026,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao,,
@@ -460657,10 +460657,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mabolo,Mabolo,0,BARMM,Maguindanao,,
 2026,2,1,Makopa,Makopa,0,BARMM,Maguindanao,,
 2026,2,1,Mandarin,Mandarin,0,BARMM,Maguindanao,,
-2026,2,1,Mango,Carabao,0,BARMM,Maguindanao,,
-2026,2,1,Mango,Indian,0,BARMM,Maguindanao,,
-2026,2,1,Mango,Others,0,BARMM,Maguindanao,,
-2026,2,1,Mango,Piko,0,BARMM,Maguindanao,,
+2026,2,1,Mango,Carabao,0,BARMM,Maguindanao,21.657142857142922,153.68482142857147
+2026,2,1,Mango,Indian,0,BARMM,Maguindanao,21.657142857142937,153.68482142857147
+2026,2,1,Mango,Others,0,BARMM,Maguindanao,23.814285714285834,158.52910714285716
+2026,2,1,Mango,Piko,0,BARMM,Maguindanao,54.15142857142864,394.7376785714286
 2026,2,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao,,
 2026,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao,,
 2026,2,1,Marang,Marang,0,BARMM,Maguindanao,,
@@ -460670,9 +460670,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mulberry,Mulberry,0,BARMM,Maguindanao,,
 2026,2,1,Orange,Orange,0,BARMM,Maguindanao,,
 2026,2,1,Pangi,Pangi,0,BARMM,Maguindanao,,
-2026,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao,,
-2026,2,1,Papaya,Native,0,BARMM,Maguindanao,,
-2026,2,1,Papaya,Solo,0,BARMM,Maguindanao,,
+2026,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao,0.013750000000001705,0.204081632653061
+2026,2,1,Papaya,Native,0,BARMM,Maguindanao,0.024107142857143264,0.4897959183673472
+2026,2,1,Papaya,Solo,0,BARMM,Maguindanao,0.0058928571428578744,0.16326530612244888
 2026,2,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao,,
 2026,2,1,Pears,Pears,0,BARMM,Maguindanao,,
 2026,2,1,Persimmon,Persimmon,0,BARMM,Maguindanao,,
@@ -460698,12 +460698,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Atis,Atis,0,BARMM,Maguindanao del Norte,,
 2026,2,1,Avocado,Avocado,0,BARMM,Maguindanao del Norte,442.0,2.56
 2026,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Norte,,0.16
-2026,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,180.0,200.25
-2026,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,11534.0,2074.5
-2026,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,14461.58,1764.0
-2026,2,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,912.2,114.75
-2026,2,1,Banana,Others,0,BARMM,Maguindanao del Norte,250.0,170.0
-2026,2,1,Banana,Saba,0,BARMM,Maguindanao del Norte,18980.0,3821.65
+2026,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Norte,156.01244897959154,177.47918367346938
+2026,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Norte,11486.024897959183,2028.9583673469388
+2026,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Norte,14445.432448979593,1758.930612244898
+2026,2,1,Banana,Latundan,0,BARMM,Maguindanao del Norte,888.2838775510202,112.0463265306122
+2026,2,1,Banana,Others,0,BARMM,Maguindanao del Norte,226.01244897959154,147.22918367346938
+2026,2,1,Banana,Saba,0,BARMM,Maguindanao del Norte,19116.012448979593,3920.507755102041
 2026,2,1,Batwan,Batwan,0,BARMM,Maguindanao del Norte,,
 2026,2,1,Bignay,Bignay,0,BARMM,Maguindanao del Norte,,
 2026,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Norte,,
@@ -460734,10 +460734,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Norte,,
 2026,2,1,Makopa,Makopa,0,BARMM,Maguindanao del Norte,,0.3
 2026,2,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Norte,,
-2026,2,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,3145.0,1487.25
-2026,2,1,Mango,Indian,0,BARMM,Maguindanao del Norte,20.0,22.0
-2026,2,1,Mango,Others,0,BARMM,Maguindanao del Norte,2378.0,2807.48
-2026,2,1,Mango,Piko,0,BARMM,Maguindanao del Norte,466.26,59.0
+2026,2,1,Mango,Carabao,0,BARMM,Maguindanao del Norte,3136.3371428571427,1425.7760714285714
+2026,2,1,Mango,Indian,0,BARMM,Maguindanao del Norte,11.337142857142824,-39.47392857142859
+2026,2,1,Mango,Others,0,BARMM,Maguindanao del Norte,2371.4942857142855,2750.8503571428573
+2026,2,1,Mango,Piko,0,BARMM,Maguindanao del Norte,490.09142857142854,238.57892857142855
 2026,2,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Norte,62.1,1.26
 2026,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Norte,,
 2026,2,1,Marang,Marang,0,BARMM,Maguindanao del Norte,15.0,220.2
@@ -460747,9 +460747,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mulberry,Mulberry,0,BARMM,Maguindanao del Norte,,
 2026,2,1,Orange,Orange,0,BARMM,Maguindanao del Norte,,
 2026,2,1,Pangi,Pangi,0,BARMM,Maguindanao del Norte,,
-2026,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,29.2,7.2
-2026,2,1,Papaya,Native,0,BARMM,Maguindanao del Norte,50.0,18.9
-2026,2,1,Papaya,Solo,0,BARMM,Maguindanao del Norte,101.0,15.6
+2026,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Norte,29.2,7.118367346938776
+2026,2,1,Papaya,Native,0,BARMM,Maguindanao del Norte,50.01035714285714,19.10408163265306
+2026,2,1,Papaya,Solo,0,BARMM,Maguindanao del Norte,100.99214285714285,15.477551020408162
 2026,2,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Norte,,
 2026,2,1,Pears,Pears,0,BARMM,Maguindanao del Norte,,
 2026,2,1,Persimmon,Persimmon,0,BARMM,Maguindanao del Norte,,
@@ -460775,12 +460775,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Atis,Atis,0,BARMM,Maguindanao del Sur,,0.5
 2026,2,1,Avocado,Avocado,0,BARMM,Maguindanao del Sur,287.1,18.45
 2026,2,1,Balimbing,Balimbing,0,BARMM,Maguindanao del Sur,,
-2026,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,250.0,244.75
-2026,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,19000.0,2535.5
-2026,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,6987.0,2156.0
-2026,2,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,1612.2,140.25
-2026,2,1,Banana,Others,0,BARMM,Maguindanao del Sur,296.0,255.0
-2026,2,1,Banana,Saba,0,BARMM,Maguindanao del Sur,24675.0,4675.0
+2026,2,1,Banana,Bungulan,0,BARMM,Maguindanao del Sur,226.01244897959154,221.97918367346938
+2026,2,1,Banana,Cavendish,0,BARMM,Maguindanao del Sur,18952.02489795918,2489.9583673469388
+2026,2,1,Banana,Lakatan,0,BARMM,Maguindanao del Sur,6970.852448979592,2150.930612244898
+2026,2,1,Banana,Latundan,0,BARMM,Maguindanao del Sur,1588.2838775510202,137.54632653061222
+2026,2,1,Banana,Others,0,BARMM,Maguindanao del Sur,272.01244897959157,232.22918367346938
+2026,2,1,Banana,Saba,0,BARMM,Maguindanao del Sur,24811.012448979593,4773.857755102041
 2026,2,1,Batwan,Batwan,0,BARMM,Maguindanao del Sur,,
 2026,2,1,Bignay,Bignay,0,BARMM,Maguindanao del Sur,,
 2026,2,1,Breadfruit,Breadfruit,0,BARMM,Maguindanao del Sur,,
@@ -460811,10 +460811,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mabolo,Mabolo,0,BARMM,Maguindanao del Sur,,
 2026,2,1,Makopa,Makopa,0,BARMM,Maguindanao del Sur,0.09,2.0
 2026,2,1,Mandarin,Mandarin,0,BARMM,Maguindanao del Sur,,
-2026,2,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,3976.0,1817.75
-2026,2,1,Mango,Indian,0,BARMM,Maguindanao del Sur,56.2,33.0
-2026,2,1,Mango,Others,0,BARMM,Maguindanao del Sur,1802.0,945.0
-2026,2,1,Mango,Piko,0,BARMM,Maguindanao del Sur,498.0,36.0
+2026,2,1,Mango,Carabao,0,BARMM,Maguindanao del Sur,3967.3371428571427,1756.2760714285714
+2026,2,1,Mango,Indian,0,BARMM,Maguindanao del Sur,47.537142857142825,-28.473928571428587
+2026,2,1,Mango,Others,0,BARMM,Maguindanao del Sur,1795.4942857142858,888.3703571428571
+2026,2,1,Mango,Piko,0,BARMM,Maguindanao del Sur,521.8314285714285,215.57892857142855
 2026,2,1,Mangosteen,Mangosteen,0,BARMM,Maguindanao del Sur,0.64,1.2
 2026,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Maguindanao del Sur,,
 2026,2,1,Marang,Marang,0,BARMM,Maguindanao del Sur,4.7,146.8
@@ -460824,9 +460824,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mulberry,Mulberry,0,BARMM,Maguindanao del Sur,,
 2026,2,1,Orange,Orange,0,BARMM,Maguindanao del Sur,,
 2026,2,1,Pangi,Pangi,0,BARMM,Maguindanao del Sur,,
-2026,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,24.0,4.8
-2026,2,1,Papaya,Native,0,BARMM,Maguindanao del Sur,29.0,2.0
-2026,2,1,Papaya,Solo,0,BARMM,Maguindanao del Sur,69.2,10.4
+2026,2,1,Papaya,Hawaiian,0,BARMM,Maguindanao del Sur,24.0,4.718367346938775
+2026,2,1,Papaya,Native,0,BARMM,Maguindanao del Sur,29.010357142857142,2.2040816326530615
+2026,2,1,Papaya,Solo,0,BARMM,Maguindanao del Sur,69.19214285714285,10.277551020408163
 2026,2,1,Passion Fruit,Passion Fruit,0,BARMM,Maguindanao del Sur,,
 2026,2,1,Pears,Pears,0,BARMM,Maguindanao del Sur,,
 2026,2,1,Persimmon,Persimmon,0,BARMM,Maguindanao del Sur,,
@@ -460852,12 +460852,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Atis,Atis,0,BARMM,Sulu,,
 2026,2,1,Avocado,Avocado,0,BARMM,Sulu,,
 2026,2,1,Balimbing,Balimbing,0,BARMM,Sulu,,
-2026,2,1,Banana,Bungulan,0,BARMM,Sulu,,
-2026,2,1,Banana,Cavendish,0,BARMM,Sulu,,
-2026,2,1,Banana,Lakatan,0,BARMM,Sulu,,
-2026,2,1,Banana,Latundan,0,BARMM,Sulu,,
-2026,2,1,Banana,Others,0,BARMM,Sulu,,
-2026,2,1,Banana,Saba,0,BARMM,Sulu,,
+2026,2,1,Banana,Bungulan,0,BARMM,Sulu,59.96887755102112,56.92704081632655
+2026,2,1,Banana,Cavendish,0,BARMM,Sulu,35.98132653061267,34.15622448979593
+2026,2,1,Banana,Lakatan,0,BARMM,Sulu,67.8088775510218,74.6284693877551
+2026,2,1,Banana,Latundan,0,BARMM,Sulu,60.04030612244969,76.99418367346938
+2026,2,1,Banana,Others,0,BARMM,Sulu,59.96887755102112,56.92704081632655
+2026,2,1,Banana,Saba,0,BARMM,Sulu,219.9688775510211,178.55561224489793
 2026,2,1,Batwan,Batwan,0,BARMM,Sulu,,
 2026,2,1,Bignay,Bignay,0,BARMM,Sulu,,
 2026,2,1,Breadfruit,Breadfruit,0,BARMM,Sulu,,
@@ -460888,10 +460888,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mabolo,Mabolo,0,BARMM,Sulu,,
 2026,2,1,Makopa,Makopa,0,BARMM,Sulu,,
 2026,2,1,Mandarin,Mandarin,0,BARMM,Sulu,,
-2026,2,1,Mango,Carabao,0,BARMM,Sulu,,
-2026,2,1,Mango,Indian,0,BARMM,Sulu,,
-2026,2,1,Mango,Others,0,BARMM,Sulu,,
-2026,2,1,Mango,Piko,0,BARMM,Sulu,,
+2026,2,1,Mango,Carabao,0,BARMM,Sulu,21.657142857142922,153.68482142857147
+2026,2,1,Mango,Indian,0,BARMM,Sulu,21.657142857142937,153.68482142857147
+2026,2,1,Mango,Others,0,BARMM,Sulu,23.814285714285834,158.52910714285716
+2026,2,1,Mango,Piko,0,BARMM,Sulu,54.15142857142864,394.7376785714286
 2026,2,1,Mangosteen,Mangosteen,0,BARMM,Sulu,,
 2026,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Sulu,,
 2026,2,1,Marang,Marang,0,BARMM,Sulu,,
@@ -460901,9 +460901,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mulberry,Mulberry,0,BARMM,Sulu,,
 2026,2,1,Orange,Orange,0,BARMM,Sulu,,
 2026,2,1,Pangi,Pangi,0,BARMM,Sulu,,
-2026,2,1,Papaya,Hawaiian,0,BARMM,Sulu,,
-2026,2,1,Papaya,Native,0,BARMM,Sulu,,
-2026,2,1,Papaya,Solo,0,BARMM,Sulu,,
+2026,2,1,Papaya,Hawaiian,0,BARMM,Sulu,0.013750000000001705,0.204081632653061
+2026,2,1,Papaya,Native,0,BARMM,Sulu,0.024107142857143264,0.4897959183673472
+2026,2,1,Papaya,Solo,0,BARMM,Sulu,0.0058928571428578744,0.16326530612244888
 2026,2,1,Passion Fruit,Passion Fruit,0,BARMM,Sulu,,
 2026,2,1,Pears,Pears,0,BARMM,Sulu,,
 2026,2,1,Persimmon,Persimmon,0,BARMM,Sulu,,
@@ -460929,12 +460929,12 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Atis,Atis,0,BARMM,Tawi-Tawi,1.16,3.6
 2026,2,1,Avocado,Avocado,0,BARMM,Tawi-Tawi,2.23,15.7
 2026,2,1,Balimbing,Balimbing,0,BARMM,Tawi-Tawi,1.21,1.75
-2026,2,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,150.0,739.0
-2026,2,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,,
-2026,2,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,107.71,82.0
-2026,2,1,Banana,Latundan,0,BARMM,Tawi-Tawi,300.0,56.0
-2026,2,1,Banana,Others,0,BARMM,Tawi-Tawi,169.53,374.0
-2026,2,1,Banana,Saba,0,BARMM,Tawi-Tawi,850.0,234.0
+2026,2,1,Banana,Bungulan,0,BARMM,Tawi-Tawi,126.01244897959155,716.2291836734694
+2026,2,1,Banana,Cavendish,0,BARMM,Tawi-Tawi,35.98132653061267,34.15622448979593
+2026,2,1,Banana,Lakatan,0,BARMM,Tawi-Tawi,91.5624489795922,76.93061224489793
+2026,2,1,Banana,Latundan,0,BARMM,Tawi-Tawi,276.0838775510201,53.296326530612205
+2026,2,1,Banana,Others,0,BARMM,Tawi-Tawi,145.54244897959154,351.2291836734694
+2026,2,1,Banana,Saba,0,BARMM,Tawi-Tawi,986.0124489795916,332.85775510204076
 2026,2,1,Batwan,Batwan,0,BARMM,Tawi-Tawi,,
 2026,2,1,Bignay,Bignay,0,BARMM,Tawi-Tawi,,
 2026,2,1,Breadfruit,Breadfruit,0,BARMM,Tawi-Tawi,2.98,1.3
@@ -460965,10 +460965,10 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mabolo,Mabolo,0,BARMM,Tawi-Tawi,,
 2026,2,1,Makopa,Makopa,0,BARMM,Tawi-Tawi,0.9,0.9
 2026,2,1,Mandarin,Mandarin,0,BARMM,Tawi-Tawi,,9.0
-2026,2,1,Mango,Carabao,0,BARMM,Tawi-Tawi,230.0,69.0
-2026,2,1,Mango,Indian,0,BARMM,Tawi-Tawi,2.33,5.2
-2026,2,1,Mango,Others,0,BARMM,Tawi-Tawi,315.58,342.0
-2026,2,1,Mango,Piko,0,BARMM,Tawi-Tawi,,0.5
+2026,2,1,Mango,Carabao,0,BARMM,Tawi-Tawi,221.33714285714282,7.526071428571413
+2026,2,1,Mango,Indian,0,BARMM,Tawi-Tawi,-6.332857142857176,-56.273928571428584
+2026,2,1,Mango,Others,0,BARMM,Tawi-Tawi,309.0742857142857,285.37035714285713
+2026,2,1,Mango,Piko,0,BARMM,Tawi-Tawi,54.15142857142864,180.07892857142855
 2026,2,1,Mangosteen,Mangosteen,0,BARMM,Tawi-Tawi,,2.8
 2026,2,1,Manguelas (June Plum),Manguelas (June Plum),0,BARMM,Tawi-Tawi,,
 2026,2,1,Marang,Marang,0,BARMM,Tawi-Tawi,158.32,176.0
@@ -460978,9 +460978,9 @@ year,quarter,semester,crop_group,crop_subtype,is_aggregate,region,province,volum
 2026,2,1,Mulberry,Mulberry,0,BARMM,Tawi-Tawi,,
 2026,2,1,Orange,Orange,0,BARMM,Tawi-Tawi,,
 2026,2,1,Pangi,Pangi,0,BARMM,Tawi-Tawi,,
-2026,2,1,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,2.6,7.3
-2026,2,1,Papaya,Native,0,BARMM,Tawi-Tawi,4.24,20.75
-2026,2,1,Papaya,Solo,0,BARMM,Tawi-Tawi,,
+2026,2,1,Papaya,Hawaiian,0,BARMM,Tawi-Tawi,2.6,7.218367346938775
+2026,2,1,Papaya,Native,0,BARMM,Tawi-Tawi,4.250357142857141,20.95408163265306
+2026,2,1,Papaya,Solo,0,BARMM,Tawi-Tawi,0.0058928571428578744,0.16326530612244888
 2026,2,1,Passion Fruit,Passion Fruit,0,BARMM,Tawi-Tawi,,
 2026,2,1,Pears,Pears,0,BARMM,Tawi-Tawi,,
 2026,2,1,Persimmon,Persimmon,0,BARMM,Tawi-Tawi,,

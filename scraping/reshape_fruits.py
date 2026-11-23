@@ -9,22 +9,22 @@ from typing import Any, Callable
 
 try:
     from .fetch_horticulture import FRUITS, RAW_DIR
-    from .geo import (
-        build_geo_lookup,
-        ordered_unique,
-        parse_value,
-        quarter_from_period,
-        semester_from_quarter,
+    from .geo import parse_value, quarter_from_period, semester_from_quarter
+    from .geo_rollup import (
+        apply_production_rollups,
+        build_geo_lookup_from_obs,
+        horticulture_crop_obs,
+        horticulture_period_obs,
     )
     from .paths import DATA_DIR, ensure_data_dirs
 except ImportError:
     from fetch_horticulture import FRUITS, RAW_DIR
-    from geo import (
-        build_geo_lookup,
-        ordered_unique,
-        parse_value,
-        quarter_from_period,
-        semester_from_quarter,
+    from geo import parse_value, quarter_from_period, semester_from_quarter
+    from geo_rollup import (
+        apply_production_rollups,
+        build_geo_lookup_from_obs,
+        horticulture_crop_obs,
+        horticulture_period_obs,
     )
     from paths import DATA_DIR, ensure_data_dirs
 
@@ -97,8 +97,10 @@ def observations_to_long(
     rows: list[dict[str, Any]],
     value_field: str,
     classify: Callable[[str], tuple[str, str, bool]],
+    *,
+    geo_by_label: dict | None = None,
 ) -> dict[tuple, dict]:
-    geo_by_label = build_geo_lookup(ordered_unique([r["geo_label"] for r in rows]))
+    geo_by_label = geo_by_label or build_geo_lookup_from_obs(rows)
     long_map: dict[tuple, dict] = {}
     for row in rows:
         crop_type = row.get("crop_label") or ""
@@ -141,10 +143,11 @@ def observations_to_long(
 
 
 def combine_long(volume_rows: list[dict], area_rows: list[dict], classify) -> list[dict]:
+    geo_by_label = build_geo_lookup_from_obs(volume_rows + area_rows)
     combined: dict[tuple, dict] = {}
-    for key, row in observations_to_long(volume_rows, "volume_mt", classify).items():
+    for key, row in observations_to_long(volume_rows, "volume_mt", classify, geo_by_label=geo_by_label).items():
         combined[key] = {**{f: row[f] for f in JOIN_KEYS}, "volume_mt": row["volume_mt"], "area_ha": None}
-    for key, row in observations_to_long(area_rows, "area_ha", classify).items():
+    for key, row in observations_to_long(area_rows, "area_ha", classify, geo_by_label=geo_by_label).items():
         if key in combined:
             combined[key]["area_ha"] = row["area_ha"]
         else:
@@ -153,6 +156,15 @@ def combine_long(volume_rows: list[dict], area_rows: list[dict], classify) -> li
                 "volume_mt": None,
                 "area_ha": row["area_ha"],
             }
+    apply_production_rollups(
+        combined,
+        volume_rows,
+        area_rows,
+        row_crop_obs=lambda row: horticulture_crop_obs(row, classify),
+        row_period_obs=horticulture_period_obs,
+        dataset_label="fruits",
+        verify_volume=False,
+    )
     rows = list(combined.values())
     rows.sort(key=lambda r: (r["year"], r["quarter"], r["region"], r["province"], r["crop_group"], r["crop_subtype"]))
     return rows

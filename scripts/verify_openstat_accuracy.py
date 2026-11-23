@@ -432,8 +432,18 @@ def coverage_checks() -> CheckResult:
     import sqlite3
 
     from scraping.reshape_farmgate import OBS_CSVS, iter_long_rows_from_obs
-
     c = sqlite3.connect(DATA / "palay.db")
+    q2 = c.execute(
+        "SELECT SUM(volume_mt) FROM palay_long WHERE year=2026 AND quarter=2 AND crop_group='Palay'"
+    ).fetchone()[0]
+    if q2 is None:
+        result.fail("palay 2026 Q2 volume sum is empty")
+    else:
+        expected = 4628990.71  # PHILIPPINES irrigated + rainfed (OpenSTAT)
+        if abs(q2 - expected) > 0.1:
+            result.fail(f"palay 2026 Q2 sum={q2:,.2f} expected OpenSTAT PH={expected:,.2f}")
+        else:
+            result.info(f"palay 2026 Q2 matches PHILIPPINES official ({q2:,.2f} mt)")
     q3 = c.execute(
         "SELECT SUM(volume_mt) FROM palay_long WHERE year=2026 AND quarter=3"
     ).fetchone()[0]

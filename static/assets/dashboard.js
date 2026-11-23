@@ -1961,9 +1961,7 @@ function geoParams() {
 }
 
 function defaultYearTo() {
-  if (isPriceMode()) return yearBounds.max;
-  const previousYear = new Date().getFullYear() - 1;
-  return Math.max(yearBounds.min, Math.min(yearBounds.max, previousYear));
+  return yearBounds.max;
 }
 
 function getYearRange() {

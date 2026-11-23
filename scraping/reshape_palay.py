@@ -14,17 +14,19 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from .geo import (
-        build_geo_lookup,
-        parse_value,
-        semester_from_quarter,
+    from .geo import parse_value, semester_from_quarter
+    from .geo_rollup import (
+        build_geo_lookup_from_obs,
+        national_gap_vs_provinces,
+        reconcile_region_rollups,
     )
     from .paths import DATA_DIR, ensure_data_dirs
 except ImportError:
-    from geo import (
-        build_geo_lookup,
-        parse_value,
-        semester_from_quarter,
+    from geo import parse_value, semester_from_quarter
+    from geo_rollup import (
+        build_geo_lookup_from_obs,
+        national_gap_vs_provinces,
+        reconcile_region_rollups,
     )
     from paths import DATA_DIR, ensure_data_dirs
 
@@ -59,15 +61,26 @@ CROP_META = {
 }
 
 
-def observations_to_long(rows: list[dict[str, Any]], value_field: str) -> dict[tuple, dict]:
-    labels = []
-    seen = set()
-    for row in rows:
-        label = row.get("geo_label")
-        if label and label not in seen:
-            labels.append(label)
-            seen.add(label)
-    geo_by_label = build_geo_lookup(labels)
+def _row_period(row: dict[str, Any]) -> int | None:
+    period = row.get("period")
+    return QUARTER_META.get(period or "")
+
+
+def _row_crop(row: dict[str, Any]) -> tuple[str, str, int] | None:
+    crop_type = row.get("crop_label")
+    if crop_type not in CROP_META:
+        return None
+    crop_group, crop_subtype, is_agg = CROP_META[crop_type]
+    return crop_group, crop_subtype, int(is_agg)
+
+
+def observations_to_long(
+    rows: list[dict[str, Any]],
+    value_field: str,
+    *,
+    geo_by_label: dict[str, dict[str, str]] | None = None,
+) -> dict[tuple, dict]:
+    geo_by_label = geo_by_label or build_geo_lookup_from_obs(rows)
 
     long_map: dict[tuple, dict] = {}
     for row in rows:
@@ -110,10 +123,19 @@ def observations_to_long(rows: list[dict[str, Any]], value_field: str) -> dict[t
 
 
 def combine_long(volume_rows: list[dict[str, Any]], area_rows: list[dict[str, Any]]) -> list[dict]:
+    geo_by_label = build_geo_lookup_from_obs(volume_rows + area_rows)
     combined: dict[tuple, dict] = {}
-    for key, row in observations_to_long(volume_rows, "volume_mt").items():
+    for key, row in observations_to_long(volume_rows, "volume_mt", geo_by_label=geo_by_label).items():
         combined[key] = {**{f: row[f] for f in JOIN_KEYS}, "volume_mt": row["volume_mt"], "area_ha": None}
-    for key, row in observations_to_long(area_rows, "area_ha").items():
+    reconcile_region_rollups(
+        combined,
+        volume_rows,
+        geo_by_label,
+        row_period_obs=_row_period,
+        row_crop=_row_crop,
+        value_field="volume_mt",
+    )
+    for key, row in observations_to_long(area_rows, "area_ha", geo_by_label=geo_by_label).items():
         if key in combined:
             combined[key]["area_ha"] = row["area_ha"]
         else:
@@ -122,6 +144,27 @@ def combine_long(volume_rows: list[dict[str, Any]], area_rows: list[dict[str, An
                 "volume_mt": None,
                 "area_ha": row["area_ha"],
             }
+    reconcile_region_rollups(
+        combined,
+        area_rows,
+        geo_by_label,
+        row_period_obs=_row_period,
+        row_crop=_row_crop,
+        value_field="area_ha",
+    )
+    gaps = national_gap_vs_provinces(
+        combined,
+        volume_rows,
+        row_period_obs=_row_period,
+        row_crop=_row_crop,
+        value_field="volume_mt",
+    )
+    if gaps:
+        sample = gaps[:3]
+        raise RuntimeError(
+            f"Palay volume still off vs PHILIPPINES official after region reconcile "
+            f"({len(gaps)} cells); sample={sample}"
+        )
     rows = list(combined.values())
     rows.sort(
         key=lambda r: (
